@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
 import aboutIcon from "../../assets/icons/about.svg";
 import Logo from "../../assets/logos/black-logo.svg";
+import memberPattern from "../../assets/images/memberCardPattern.svg";
 import { data } from "../../data/aboutUsData";
 import Head from "../../components/Layout/PageContainer/Head";
 import PageHeader from "../../components/UI/PageHeader";
+import colors from "../../settings";
+
 const AboutUsPage = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
   const MissionCard = ({ title, text, icon }) => {
     return (
       <div className="w-[90%] space-y-4">
@@ -31,12 +34,19 @@ const AboutUsPage = () => {
     return (
       <div
         style={{
-          background: "linear-gradient(290deg, #DDB26E -0%, #171534 50%)",
+          background: `linear-gradient(279deg, ${colors.secondary} -32.79%, ${colors.primary} 54.12%)`,
         }}
         className="rounded-md"
         dir={flip ? "rtl" : "ltr"}
       >
-        <div className="grid grid-cols-2 place-items-center rounded-md bg-membersLinesBg bg-no-repeat bg-left bg-cover ">
+        <div
+          className="grid grid-cols-2 place-items-center rounded-md bg-no-repeat bg-center bg-cover"
+          style={{
+            backgroundImage: `url(${memberPattern})`,
+            backgroundPosition: "70% 50%",
+            backgroundSize: "140%",
+          }}
+        >
           <img
             src={image}
             alt=""
@@ -44,7 +54,7 @@ const AboutUsPage = () => {
           />
 
           <div dir="ltr" className="p-12 text-white max-md:col-span-2 ">
-            <p className="text-primary font-semibold text-big">{name} </p>
+            <p className="text-secondary font-semibold text-big">{name} </p>
             <p className="text-small">{title} </p>
             <p className="py-2 text-smaller font-light">{description} </p>
           </div>
