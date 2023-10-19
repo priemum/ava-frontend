@@ -5,10 +5,9 @@ const HomeFilter = () => {
   const [selectedPurpose, setSelectedPurpose] = useState(0);
   return (
     <div
-      className="flex justify-center items-center text-white h-[30vh] -mt-[25vh] z-30 backdrop-blur-[2px]"
+      className="flex justify-center items-center text-white h-[30vh] -mt-[29.5vh] z-30 backdrop-blur-[2px]"
       style={{
-        background:
-          "linear-gradient(0deg, #FFF 25%, rgba(255, 255, 255, 0.00) 99.8%)",
+        background: "linear-gradient(0deg, #FFF 5%, transparent 90%)",
       }}
     >
       <div className="bg-primary/30 backdrop-blur-[21px] h-[30vh] w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10">
