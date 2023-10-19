@@ -35,8 +35,11 @@ const HomePage = () => {
       <Header />
       <HomeFilter />
       <HomeProperties />
+
       <Announcements />
+
       <HomeAddresses />
+
       {/* <div className="w-full h-24" /> */}
     </div>
   );
