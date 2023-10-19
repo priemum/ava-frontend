@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import aboutIcon from "../../assets/icons/about.svg";
 import Logo from "../../assets/logos/black-logo.svg";
 import memberPattern from "../../assets/images/memberCardPattern.svg";
+import aboutUsPattern from "../../assets/images/aboutUsPattern.svg";
 import { data } from "../../data/aboutUsData";
 import Head from "../../components/Layout/PageContainer/Head";
 import PageHeader from "../../components/UI/PageHeader";
@@ -162,9 +163,13 @@ const AboutUsPage = () => {
           />
         </div>
       </div>
-      <br />
-      <br />
-      <div className="px-[5%] xl:px-[10%] 2xl:px-[15%] py-16 space-y-28">
+      <div
+        className="w-full h-[400px] bg-no-repeat bg-top bg-cover"
+        style={{
+          backgroundImage: `url(${aboutUsPattern})`,
+        }}
+      />
+      <div className="px-[5%]  pb-16 space-y-28">
         {data.founnders.map((item, index) => {
           return (
             <MemberCard
