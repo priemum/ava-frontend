@@ -1,122 +1,60 @@
 import React, { useRef, useState } from "react";
-import { data } from "../../../../data/projectsData";
-import useWindowDimensions from "../../../../hooks/screenDimentions";
+import { useTranslation } from "react-i18next";
+import propertyIcon from "../../../../assets/icons/property-icon.svg";
+import PropertyCard from "../../../../components/UI/PropertyCard";
 import Slider from "react-slick";
-import PropertiesNavigator from "./PropertiesNavigator";
-import ProjectDetails from "./ProjectDetails";
-import PropertyCard from "./PropertyCard";
-const Properties = () => {
-  const { width } = useWindowDimensions();
-  const [selected, setSelected] = useState(0);
+import { useGetActivePropertiesQuery } from "../../../../redux/properties/propertiesSlice";
+import { useNavigate } from "react-router-dom";
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
+const HomeProperties = () => {
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef();
+  const { data, isLoading, isFetching, isSuccess, isError, error } =
+    useGetActivePropertiesQuery();
   return (
-    <div className="rounded-md mx-[2%] lg:mx-[5%] px-[2%] -mt-10 lg:-mt-24 relative bg-white">
-      <PropertiesNavigator
-        selected={selected}
-        setSelected={setSelected}
-        sliderRef={sliderRef}
-      />
-      <div
-        style={{
-          width: width - (width * 11) / 100,
-          maxWidth: "1920px",
-        }}
-      >
+    <div className="mt-20 flex flex-col justify-center items-center px-[5%]">
+      <div className="flex w-full">
+        <div className="flex items-center self-start flex-1">
+          <img src={propertyIcon} alt="property Icon" />
+          <p className="text-med font-bold">{t("HomePropertiesTitle")}</p>
+        </div>
+        <div className="bg-primary/10 rounded-md p-3 flex items-center self-center gap-x-4">
+          <FaAngleLeft
+            onClick={() => {
+              sliderRef.current.slickGoTo(currentSlide - 1);
+            }}
+            size={24}
+            className="cursor-pointer"
+          />
+          <div className="w-px h-6 bg-primary/30" />
+          <FaAngleRight
+            onClick={() => {
+              sliderRef.current.slickGoTo(currentSlide + 1);
+            }}
+            size={24}
+            className="cursor-pointer"
+          />
+        </div>
+      </div>
+      {isSuccess && !isFetching && !isLoading && (
         <Slider
           ref={sliderRef}
-          touchMove={false}
-          slidesToShow={1}
           slidesToScroll={1}
-          dots={false}
+          slidesToShow={data.ids.length >= 4 ? 4 : data.ids.length}
           arrows={false}
-          infinite={false}
-          autoplay={false}
+          dots={false}
+          className="w-full"
+          beforeChange={(prev, next) => setCurrentSlide(next)}
         >
-          {data.map((item, index) => {
-            return (
-              <div key={index}>
-                <div className="lg:grid lg:grid-cols-12 gap-x-5 lg:mt-12">
-                  <div className="col-span-5">
-                    <ProjectDetails
-                      title={item.title}
-                      description={item.description}
-                      // plan={item.plan}
-                      plans={item.plans}
-                      location={item.location}
-                      startingPrice={item.startingPrice}
-                    />
-                  </div>
-
-                  <div className="col-span-7 max-lg:mt-7">
-                    <Slider
-                      touchMove={true}
-                      slidesToShow={2}
-                      slidesToScroll={2}
-                      rows={2}
-                      dots={true}
-                      arrows={false}
-                      infinite={false}
-                      autoplay={false}
-                      responsive={[
-                        {
-                          breakpoint: 3000,
-                          settings: {
-                            slidesToShow: 2,
-                            rows: 2,
-                          },
-                        },
-                        {
-                          breakpoint: 1200,
-                          settings: {
-                            slidesToShow: 2,
-                            rows: 1,
-                          },
-                        },
-                        {
-                          breakpoint: 590,
-                          settings: {
-                            slidesToShow: 1,
-                            rows: 1,
-                            centerMode: true,
-                            centerPadding: "30px",
-                          },
-                        },
-                        {
-                          breakpoint: 400,
-                          settings: {
-                            slidesToShow: 1,
-                            row: 1,
-                            centerMode: true,
-                            centerPadding: "20px",
-                          },
-                        },
-                      ]}
-                      className="w-full h-full"
-                    >
-                      {item.propertes.map((i, idx) => {
-                        return (
-                          <div key={idx} className="mb-5">
-                            <PropertyCard
-                              image={i.image}
-                              area={i.area}
-                              bathsNumber={i.bathsNumber}
-                              bedroomNumber={i.bedroomNumber}
-                              startingPrice={i.startingPrice}
-                              name={i.name}
-                              smallDescription={i.smallDescription}
-                            />
-                          </div>
-                        );
-                      })}
-                    </Slider>
-                  </div>
-                </div>
-              </div>
-            );
+          {data.ids.map((item, index) => {
+            return <PropertyCard key={index} data={data.entities[item]} />;
           })}
         </Slider>
-      </div>
+      )}
     </div>
   );
 };
-export default Properties;
+
+export default HomeProperties;

@@ -3,6 +3,9 @@ import Header from "./components/Header/Header";
 // import Properties from "./components/Properties";
 import { Helmet } from "react-helmet";
 import HomeFilter from "./components/Filter/Filter";
+import HomeProperties from "./components/Properties";
+import Announcements from "./components/Announcements";
+import HomeAddresses from "./components/Addresses";
 const HomePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -31,7 +34,10 @@ const HomePage = () => {
       </Helmet>
       <Header />
       <HomeFilter />
-      <div className="w-full h-screen" />
+      <HomeProperties />
+      <Announcements />
+      <HomeAddresses />
+      {/* <div className="w-full h-24" /> */}
     </div>
   );
 };

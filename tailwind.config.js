@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import colors from "./src/settings";
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -20,21 +22,18 @@ export default {
         EXBOLD: "LAMASANSEXTRABOLD", //800
       },
       colors: {
-        offWhite: "#F1F1F1",
-
-        primary: "#AA8A3A",
-        secondary: "#161535",
-        third: "#F4F4F4",
+        primary: colors.primary,
+        secondary: colors.secondary,
+        third: colors.third,
+        fourth: colors.fourth,
+        fifth: colors.fifth,
       },
       backgroundImage: {
-        headerBg: "url(./src/assets/images/home/headerBg.png)",
-        contactLinesBg: "url(./src/assets/images/home/contactLines.svg)",
-        membersLinesBg: "url(./src/assets/images/aboutus/members-lines.svg)",
+        buttonGrad:
+          "linear-gradient(110deg, #DDB26E 13.14%, #FFE0AE 49.03%, #EFC27C 88.87%)",
       },
-      backgroundColor: {
-        redss:
-          "radial-gradient(152.99% 768.95% at 126.35% 26.15%, #1A5F7A 0%, #57C5B6 27.72%, #159895 70.83%, #27E1C1 100%)",
-      },
+      backgroundColor: {},
+      background: {},
     },
   },
   plugins: [],

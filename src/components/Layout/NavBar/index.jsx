@@ -11,6 +11,7 @@ import { handleScroll } from "../../../helpers/scroll";
 import { NavElement } from "../../../data/navData";
 import Logo from "../../../assets/logos/AVA-Logo.svg";
 import { useLocation, useNavigate } from "react-router-dom";
+import colors from "../../../settings";
 const NavBarT2 = () => {
   const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -44,23 +45,23 @@ const NavBarT2 = () => {
             header == "white"
               ? "shadow-2xl border-transparent"
               : "shadow-0 border-gray-400"
-          } transition-all duration-500 z-40 fixed max-w-[1920px] w-full top-0 px-2 xl:px-12 py-4 flex justify-between md:justify-start items-center  md:gap-x-24`}
+          } transition-all duration-500 z-40 fixed max-w-[1920px] w-full top-0 px-2 xl:px-12 py-1 flex justify-between md:justify-start items-center  md:gap-x-24`}
           style={{
             background:
               header === "white"
-                ? "#161535"
+                ? colors.primary
                 : location.pathname == "/" ||
                   location.pathname == "/about-us" ||
                   location.pathname == "/jobs" ||
                   location.pathname == "/articles" ||
                   location.pathname == `/articles/${slug}`
                 ? "transparent"
-                : "#161535",
+                : colors.primary,
           }}
         >
           <img
             src={Logo}
-            className="h-12 2xl:h-16"
+            className="h-12 2xl:h-16 scale-125 translate-y-1"
             alt=""
             onClick={() => navigate("/")}
           />
@@ -115,7 +116,6 @@ const NavBarT2 = () => {
           />
         ))}
       </Drawer>
-      {/* <div className="h-16" /> */}
     </>
   );
 };

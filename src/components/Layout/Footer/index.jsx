@@ -8,16 +8,18 @@ import {
   FaLocationArrow,
 } from "react-icons/fa";
 import { MdLocationOn, MdEmail, MdPhone } from "react-icons/md";
+import colors from "../../../settings";
 const Footer = () => {
   return (
     <div
       style={{
-        background: "linear-gradient(132deg, #161535 40%, white 200%)",
+        // background: `linear-gradient(132deg, ${colors.primary} 40%, ${colors.third} 200%)`,
+        background: colors.primary,
       }}
       className="max-w-[1920px] w-full "
     >
       <div className="grid md:grid-cols-2 w-full px-[3%] py-[3%] justify-items-center  ">
-        <div className="max-md:w-[80%] text-base md:text-lg text-offWhite space-y-3 flex flex-col">
+        <div className="max-md:w-[80%] text-base md:text-lg text-white space-y-3 flex flex-col">
           <div className="flex-1 space-y-3">
             <p className="text-start text-smaller font-semibold py-3">
               Contact Us
@@ -39,11 +41,11 @@ const Footer = () => {
             </div>
           </div>
 
-          <p className=" pt-5 text-start text-tiny text-offWhite font-semibold max-md:hidden">
+          <p className=" pt-5 text-start text-tiny text-white font-semibold max-md:hidden">
             @2023 AVA REAL ESTATE, LLC. All rights reserved
           </p>
         </div>
-        <div className="text-base w-[80%] lg:w-[50%] text-offWhite max-md:py-4 space-y-3 flex flex-col">
+        <div className="text-base w-[80%] lg:w-[50%] text-white max-md:py-4 space-y-3 flex flex-col">
           <div className="flex-1 space-y-3">
             <p className="text-start text-smaller font-semibold py-3">
               Social Media
@@ -115,7 +117,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <p className=" pt-5 text-center text-tiny text-offWhite font-semibold pb-3 md:hidden">
+      <p className=" pt-5 text-center text-tiny text-white font-semibold pb-3 md:hidden">
         @2023 AVA REAL ESTATE, LLC. All rights reserved
       </p>
     </div>
