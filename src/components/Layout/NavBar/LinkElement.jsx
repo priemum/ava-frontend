@@ -1,13 +1,14 @@
 import { NavLink } from "react-router-dom";
+import colors from "../../../settings";
 const LinkElement = ({ name, link, styled, onClick }) => {
   return (
     <NavLink
       onClick={onClick}
       style={({ isActive }) => {
         return {
-          color: isActive ? "#B28A5D" : "white",
+          color: isActive ? colors.secondary : "white",
           borderRadius: 0,
-          borderBottomColor: isActive ? "#B28A5D" : "transparent",
+          borderBottomColor: isActive ? colors.secondary : "transparent",
           borderBottomWidth: 2,
           paddingBottom: 4,
         };
