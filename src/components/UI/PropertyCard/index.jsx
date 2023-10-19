@@ -10,20 +10,20 @@ import squareft from "../../../assets/icons/squareft.svg";
 function SampleNextArrow({ onClick }) {
   return (
     <div
-      className="absolute cursor-pointer z-10 right-3 top-[45%] rounded-full bg-transparent backdrop-blur-[21px]"
+      className="absolute cursor-pointer z-10 right-3 top-[45%] rounded-full bg-primary/20 backdrop-blur-[21px]"
       onClick={onClick}
     >
-      <FaAngleRight className="text-primary" size={35} />
+      <FaAngleRight className="text-white" size={35} />
     </div>
   );
 }
 function SamplePrevArrow({ onClick }) {
   return (
     <div
-      className="absolute cursor-pointer z-10 left-3 top-[45%] rounded-full bg-transparent backdrop-blur-[21px]"
+      className="absolute cursor-pointer z-10 left-3 top-[45%] rounded-full bg-primary/20 backdrop-blur-[21px]"
       onClick={onClick}
     >
-      <FaAngleLeft className="text-primary" size={35} />
+      <FaAngleLeft className="text-white" size={35} />
     </div>
   );
 }

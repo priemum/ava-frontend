@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 import aboutIcon from "../../assets/icons/about.svg";
 import Logo from "../../assets/logos/black-logo.svg";
 import { data } from "../../data/aboutUsData";
-import Header from "./components/Header";
 import Head from "../../components/Layout/PageContainer/Head";
-
+import PageHeader from "../../components/UI/PageHeader";
 const AboutUsPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -65,7 +64,7 @@ const AboutUsPage = () => {
         }
         canonicalLink={"/about-us"}
       />
-      <Header />
+      <PageHeader text={data.headerTitle} />
       <div className="max-md:flex max-md:flex-col max-md:justify-center max-md:items-center md:grid md:grid-cols-12 gap-7 mt-20 max-md:px-[5%] ">
         <div className="col-span-5 w-[85%] md:w-[90%] 2xl:w-[80%] relative place-self-center">
           <div
