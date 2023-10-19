@@ -13,7 +13,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <Helmet htmlAttributes>
+      <Helmet>
         <html lang="en" />
         <meta charset="UTF-8" />
         <meta name="title" content="Ava Real Estate" />
