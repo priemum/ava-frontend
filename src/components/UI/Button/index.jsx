@@ -42,9 +42,9 @@ const Button = ({
         height: h,
         transition: "0.4s",
       }}
-      className={`text-center p-1 py-1 lg:max-w-[280px] my-2 flex items-center justify-center text-smaller font-medium ${customStyle} ${
-        disabled ? "bg-gray-500" : bgColor
-      } ${textColor}  ${loading && "py-3"} cursor-pointer`}
+      className={`text-center p-1 py-1 lg:max-w-[280px] my-2 flex items-center justify-center text-smaller font-medium ${customStyle}  disabled:bg-gray-500 ${bgColor} ${textColor}  ${
+        loading && "py-3"
+      } cursor-pointer`}
       onClick={onClick}
       disabled={disabled}
     >

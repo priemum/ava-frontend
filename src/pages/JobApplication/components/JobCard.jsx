@@ -9,6 +9,9 @@ import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 import { useTranslation } from "react-i18next";
+import { showModal, hideModal } from "../../../redux/modal.slice";
+import { useDispatch } from "react-redux";
+import Modal from "../../../components/UI/Modal/Modal";
 const JobCard = ({
   Author,
   Location,
@@ -19,7 +22,7 @@ const JobCard = ({
   Expired,
 }) => {
   const [expandJob, setExpandJob] = useState(false);
-  const { i18n } = useTranslation();
+  const dispatch = useDispatch();
   return (
     <div className="bg-primary/10 p-8 rounded-md shadow-md flex justify-start items-start gap-x-4 w-10/12">
       <div className="w-24 h-24">
@@ -50,7 +53,7 @@ const JobCard = ({
           </div>
           {Expired && (
             <div className="absolute -rotate-45 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <p className="text-red-500 font-bold text-big">EXPIRED</p>
+              <p className="text-red-500 font-bold text-med">EXPIRED</p>
             </div>
           )}
           <div className="flex justify-center items-center gap-x-4">
@@ -73,12 +76,16 @@ const JobCard = ({
               }}
             />
             <Button
-              bgColor={"bg-primary"}
-              text={"Apply"}
-              textColor={"text-third"}
+              bgColor={"bg-primary disabled:bg-transparent"}
+              borderColor={Expired && "border-primary"}
+              text={Expired ? "EXPIRED" : "Apply"}
+              textColor={Expired ? "text-red-800 !font-bold" : "text-third"}
               borderRadius={4}
               customStyle={"!p-2"}
               w={"200px"}
+              onClick={() => {
+                dispatch(showModal());
+              }}
               disabled={Expired}
             />
           </div>
@@ -91,6 +98,11 @@ const JobCard = ({
           <ReactQuill value={Description} readOnly={true} theme={"bubble"} />
         </div>
       </div>
+      <Modal>
+        <div>
+          <p>Hiiiiii</p>
+        </div>
+      </Modal>
     </div>
   );
 };

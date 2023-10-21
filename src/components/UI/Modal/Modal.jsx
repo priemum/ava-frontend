@@ -46,7 +46,6 @@ export default function Modal() {
           >
             <MdClose className="text-bigger sm:text-huge" />
           </div>
-          {/* <Register modal={true} /> */}
           {data?.data}
         </div>
       </div>
