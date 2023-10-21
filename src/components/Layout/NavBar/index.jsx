@@ -40,7 +40,6 @@ const NavBarT2 = () => {
     <>
       <div className={`flex flex-col justify-center items-center`}>
         <div
-          // dir={i18n.language == "en" ? "" : "rtl"}
           className={`${
             header == "white"
               ? "shadow-2xl border-transparent"

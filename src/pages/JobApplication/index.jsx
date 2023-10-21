@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
-import GradientText from "../../components/UI/GradientText";
-import JobForm from "./components/Job/JobForm";
-import JobInfo from "./components/Job/JobInfo";
+import React from "react";
 import Head from "../../components/Layout/PageContainer/Head";
 import PageHeader from "../../components/UI/PageHeader";
+import JobsList from "./components/JobsList";
 const JobApplicationPage = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   return (
-    <div className="flex flex-col items-stretch">
+    <div className="">
       <Head
         title={"Join us"}
         desc={"Join our team."}
@@ -18,8 +13,8 @@ const JobApplicationPage = () => {
         }
         canonicalLink={"/jobs"}
       />
-      {/* <Header /> */}
       <PageHeader text={"Join Our Team"} />
+      <JobsList />
     </div>
   );
 };

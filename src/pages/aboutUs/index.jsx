@@ -1,68 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import aboutIcon from "../../assets/icons/about.svg";
 import Logo from "../../assets/logos/black-logo.svg";
-import memberPattern from "../../assets/images/memberCardPattern.svg";
 import aboutUsPattern from "../../assets/images/aboutUsPattern.svg";
 import { data } from "../../data/aboutUsData";
 import Head from "../../components/Layout/PageContainer/Head";
 import PageHeader from "../../components/UI/PageHeader";
-import colors from "../../settings";
-
+import Location from "./components/Location";
+import MemberCard from "./components/MemberCard";
+import MissionCard from "./components/MissionCard";
+import Teams from "./components/Teams";
 const AboutUsPage = () => {
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
-  const MissionCard = ({ title, text, icon }) => {
-    return (
-      <div className="w-[90%] space-y-4">
-        <div className="flex justify-start items-center gap-x-2">
-          <div
-            style={{
-              background:
-                "linear-gradient(120.27deg, rgba(111, 111, 111, 0.24), 60%, rgba(22, 21, 53, 1) 100%)",
-            }}
-            className="p-3 rounded-xl shadow-md"
-          >
-            <img src={icon} alt="icon" />
-          </div>
-          <p className="font-semibold text-small">{title}</p>
-        </div>
-        <p className="text-tiny">{text}</p>
-      </div>
-    );
-  };
-  const MemberCard = ({ name, image, description, title, flip }) => {
-    return (
-      <div
-        style={{
-          background: `linear-gradient(279deg, ${colors.secondary} -32.79%, ${colors.primary} 54.12%)`,
-        }}
-        className="rounded-md"
-        dir={flip ? "rtl" : "ltr"}
-      >
-        <div
-          className="grid grid-cols-2 place-items-center rounded-md bg-no-repeat bg-center bg-cover"
-          style={{
-            backgroundImage: `url(${memberPattern})`,
-            backgroundPosition: "70% 50%",
-            backgroundSize: "140%",
-          }}
-        >
-          <img
-            src={image}
-            alt=""
-            className={`drop-shadow-2xl max-md:col-span-2 h-[500px] lg:h-[650px] rounded-md bg-white p-1 max-md:-mt-20 md:-translate-y-20`}
-          />
-
-          <div dir="ltr" className="p-12 text-white max-md:col-span-2 ">
-            <p className="text-secondary font-semibold text-big">{name} </p>
-            <p className="text-small">{title} </p>
-            <p className="py-2 text-smaller font-light">{description} </p>
-          </div>
-        </div>
-      </div>
-    );
-  };
   return (
     <div>
       <Head
@@ -140,7 +87,7 @@ const AboutUsPage = () => {
                 "linear-gradient(225deg, rgba(98, 98, 98, 0.24) 0%, rgba(98, 98, 98, 0.03) 100%)",
             }}
           >
-            <p className="text-white text-small font-semibold">
+            <p className="text-white text-small font-semibold text-center">
               There is a new way to search for a house
             </p>
 
@@ -169,7 +116,7 @@ const AboutUsPage = () => {
           backgroundImage: `url(${aboutUsPattern})`,
         }}
       />
-      <div className="px-[5%]  pb-16 space-y-28">
+      <div className="px-[5%] pb-16 space-y-28">
         {data.founnders.map((item, index) => {
           return (
             <MemberCard
@@ -183,6 +130,8 @@ const AboutUsPage = () => {
           );
         })}
       </div>
+      <Teams />
+      <Location />
     </div>
   );
 };

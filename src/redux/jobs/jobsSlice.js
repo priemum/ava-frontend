@@ -19,7 +19,7 @@ export const jobsApiSlice = apiSlice.injectEndpoints({
         initialActiveState.count = responseData.count;
         initialActiveState.normalData = responseData.Jobs;
         const loaded = responseData.Jobs;
-        return jobsActiveAdapter.setAll(initialState, loaded);
+        return jobsActiveAdapter.setAll(initialActiveState, loaded);
       },
       providesTags: (result, error, arg) => [
         { type: "ActiveJobs", id: "LIST" },
