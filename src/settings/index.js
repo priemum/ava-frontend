@@ -6,7 +6,7 @@ export const systemSettings = {
       secondary: "rgba(221, 178, 110, 1)",
       third: "white",
       fourth: "rgba(111, 111, 111, 0.50)",
-      fifth: "#E02C2B",
+      fifth: "rgba(50, 50, 50, 1)",
     },
     dark: {
       primary: "",

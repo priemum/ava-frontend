@@ -8,10 +8,9 @@ import Button from "../../../components/UI/Button";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
-import { useTranslation } from "react-i18next";
-import { showModal, hideModal } from "../../../redux/modal.slice";
+import { showModal } from "../../../redux/modal.slice";
 import { useDispatch } from "react-redux";
-import Modal from "../../../components/UI/Modal/Modal";
+import JobForm from "./JobForm";
 const JobCard = ({
   Author,
   Location,
@@ -84,25 +83,24 @@ const JobCard = ({
               customStyle={"!p-2"}
               w={"200px"}
               onClick={() => {
-                dispatch(showModal());
+                dispatch(
+                  showModal({
+                    data: <JobForm title={Title} />,
+                  })
+                );
               }}
               disabled={Expired}
             />
           </div>
         </div>
         <div
-          className={`text-tiny origin-top h-[400px] ${
+          className={`text-tiny origin-top ${
             expandJob ? "h-[400px] max-h-[400px] mt-8" : "h-0 mt-0"
-          } overflow-y-auto transition-all duration-500`}
+          } overflow-y-auto transition-all duration-500 ease-out`}
         >
           <ReactQuill value={Description} readOnly={true} theme={"bubble"} />
         </div>
       </div>
-      <Modal>
-        <div>
-          <p>Hiiiiii</p>
-        </div>
-      </Modal>
     </div>
   );
 };

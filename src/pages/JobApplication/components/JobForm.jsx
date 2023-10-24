@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import Button from "../../../../components/UI/Button";
+import Button from "../../../components/UI/Button";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import TiktokPixel from "tiktok-pixel";
@@ -20,7 +20,7 @@ const CustomInput = ({
       <p className="text-tiny font-semibold px-2">
         {placeholder + (required ? "*" : "")}
       </p>
-      <div className="bg-white rounded-md px-4 py-4 flex items-center gap-x-2 shadow-sm drop-shadow-sm w-full">
+      <div className="bg-white/30 rounded-md px-4 py-4 flex items-center gap-x-2 shadow-sm drop-shadow-sm w-full">
         {icon}
 
         <input
@@ -35,7 +35,7 @@ const CustomInput = ({
       </div>
     </div>
   ) : type == "radio" ? (
-    <div className="flex max-md:flex-col justify-start items-center gap-x-4 bg-white rounded-md shadow-sm drop-shadow-sm px-4 py-4 ">
+    <div className="flex max-md:flex-col justify-start items-center gap-x-4 bg-white/30 rounded-md shadow-sm drop-shadow-sm px-4 py-4 ">
       <p className="text-tiny font-semibold max-md:py-2 max-md:self-start">
         {placeholder + (required ? "*" : "")}
       </p>
@@ -83,7 +83,7 @@ let defaultFormState = {
   closing_deal: "",
   cv: "",
 };
-const JobForm = () => {
+const JobForm = ({ title }) => {
   const [form, setForm] = useState(defaultFormState);
   const [file, setFile] = useState();
   const [loading, setLoading] = useState(false);
@@ -175,11 +175,14 @@ const JobForm = () => {
     <form
       ref={formRef}
       onSubmit={handleSubmit}
-      className="mt-8 p-8 w-full lg:grid grid-cols-2 gap-x-5 space-y-8 bg-third rounded-md shadow-md"
+      className="p-8 w-full space-y-8 bg-transparent rounded-md text-white"
     >
-      <p className="text-med font-semibold p-4 self-start lg:col-span-2">
-        Apply For The Job
-      </p>
+      <div>
+        <p className="text-med lg:text-big font-bold">
+          {title ?? "Appy For The Job"}
+        </p>
+        <div className="h-px bg-white/50" />
+      </div>
       <CustomInput
         placeholder={"Full Name"}
         type="text"
@@ -209,7 +212,7 @@ const JobForm = () => {
             required: true,
           }}
           onChange={(e) => setForm({ ...form, phone_No: e })}
-          containerClass="bg-white !rounded-md shadow-sm drop-shadow-sm px-1 flex z-10"
+          containerClass="bg-white/30 !rounded-md shadow-sm drop-shadow-sm px-1 flex z-10"
           inputClass={`!bg-transparent !text-black !w-full !text-lg !h-full !border-none px-0 !outline-none`}
           buttonClass={`!border-none !text-lg `}
           buttonStyle={{ direction: "ltr" }}

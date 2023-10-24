@@ -23,7 +23,10 @@ const Announcements = () => {
   });
   const { i18n } = useTranslation();
   return (
-    isSuccess && (
+    isSuccess &&
+    !isLoading &&
+    !isFetching &&
+    data.count !== 0 && (
       <div ref={compRef} className="mt-24 px-[5%] overflow-hidden">
         <div
           style={{
