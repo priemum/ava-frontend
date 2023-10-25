@@ -12,6 +12,7 @@ export const apiSlice = createApi({
     "Addresses",
     "Amenities",
     "Applications",
+    "Users",
     "Jobs",
     "Cateogories",
     "Currencies",

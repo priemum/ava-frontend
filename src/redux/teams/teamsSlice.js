@@ -12,7 +12,7 @@ export const teamsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getActiveTeams: builder.query({
       query: (args) => ({
-        url: `/team-active`,
+        url: `team-active-view`,
         method: "GET",
       }),
       transformResponse: (responseData) => {

@@ -175,9 +175,9 @@ const JobForm = ({ title }) => {
     <form
       ref={formRef}
       onSubmit={handleSubmit}
-      className="p-8 w-full space-y-8 bg-transparent rounded-md text-white"
+      className="p-8 w-full space-y-8 bg-transparent rounded-md text-white overflow-y-auto mt-1"
     >
-      <div>
+      <div className="">
         <p className="text-med lg:text-big font-bold">
           {title ?? "Appy For The Job"}
         </p>
