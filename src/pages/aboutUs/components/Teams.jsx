@@ -63,7 +63,7 @@ const Teams = () => {
               arrows={true}
               infinite={false}
               touchMove={false}
-              slidesToShow={teams.ids.length < 4 ? teams.ids.length : 4}
+              slidesToShow={teams.count < 4 ? teams.count : 4}
               slidesToScroll={1}
               className="overflow-hidden h-full w-full"
               initialSlide={currentSlide}
@@ -96,14 +96,16 @@ const Teams = () => {
               })}
             </Slider>
           </div>
-          <div className="overflow-x-hidden px-5 relative">
+          <div className="overflow-x-hidden px-5 relative h-[500px] flex justify-start items-center">
             {usersIsSuccess && teamUsers?.count > 0 && (
               <>
                 <div
-                  className="absolute cursor-pointer z-40 left-[360px] top-1/2 -translate-y-1/2 rounded-md bg-gray-300 backdrop-blur-[21px] shadow-lg"
+                  className="absolute cursor-pointer z-40 left-[405px] top-1/2 -translate-y-1/2 rounded-md bg-gray-300 backdrop-blur-[21px] shadow-lg"
                   onClick={() =>
                     setUserIndex(
-                      userIndex + 1 < teamUsers.count ? userIndex + 1 : 0
+                      userIndex + 1 < teamUsers.count
+                        ? userIndex + 1
+                        : teamUsers.count - 1
                     )
                   }
                 >
@@ -123,45 +125,51 @@ const Teams = () => {
               <div className="flex justify-center items-center my-24 text-smaller md:text-small font-bold text-center w-full">
                 Loading Members
               </div>
-            ) : usersIsSuccess && teamUsers.ids.length == 0 ? (
+            ) : usersIsSuccess && teamUsers.count == 0 ? (
               <div className="flex justify-center items-center my-24 text-smaller md:text-small font-bold text-center w-full">
                 No Members To View
               </div>
             ) : (
-              <div className="flex justify-start items-center relative !w-[350px] min-w-[350px] h-[500px]">
-                {teamUsers?.ids.map((item, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className={`absolute !w-[350px] min-w-[350px] rounded-md transition-all duration-500 top-0 left-0 ${
-                        index == userIndex
-                          ? "opacity-100 !h-[450px] z-20 left-0"
-                          : index == userIndex + 1
-                          ? "opacity-100 !h-[400px] left-[75%] z-10"
-                          : index == userIndex + 2
-                          ? "opacity-75 !h-[350px] left-[125%] z-0"
-                          : index > userIndex + 2
-                          ? "opacity-0 !h-[300px] -z-20"
-                          : index < userIndex && "opacity-0 !h-[300px] -z-10"
-                      }`}
-                    >
-                      <img
-                        src={API_BASE_URL + teamUsers.entities[item].Image.URL}
-                        alt={"Member" + index}
-                        className="rounded-md w-full h-full object-cover object-center"
-                      />
-                      <div className="absolute bg-fifth/20 backdrop-blur-[21px] w-full h-1/4 bottom-0 left-0 rounded-b-md p-4">
-                        <p className="text-white font-bold text-smaller">
-                          {teamUsers.entities[item].Name}
-                        </p>
-                        <p className="text-white text-tiny">
-                          {teamUsers.entities[item].Title}
-                        </p>
+              usersIsSuccess && (
+                <div className="flex flex-col justify-start items-center relative !w-[400px] min-w-[350px] h-[500px]">
+                  {teamUsers.ids.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className={`absolute !w-[400px] min-w-[400px] rounded-md transition-all duration-500 top-1/2 -translate-y-1/2 left-0 ${
+                          index == userIndex
+                            ? "opacity-100 !h-[450px] z-30 left-0 "
+                            : index == userIndex + 1
+                            ? "opacity-100 !h-[425px] left-[75%] z-20"
+                            : index == userIndex + 2
+                            ? "opacity-100 !h-[400px] left-[125%] z-10"
+                            : index == userIndex + 3
+                            ? "opacity-75 !h-[375px] left-[175%] z-0"
+                            : index > userIndex + 3
+                            ? "opacity-0 !h-[375px] -z-20"
+                            : index < userIndex && "opacity-0 !h-[375px] -z-10"
+                        }`}
+                      >
+                        <img
+                          src={
+                            API_BASE_URL + teamUsers.entities[item].Image.URL
+                          }
+                          alt={"Member" + index}
+                          className="rounded-md w-full h-full object-cover object-center"
+                        />
+                        <div className="absolute bg-fifth/20 backdrop-blur-[21px] w-full h-1/4 bottom-0 left-0 rounded-b-md p-4">
+                          <p className="text-white font-bold text-smaller">
+                            {teamUsers.entities[item].Name}
+                          </p>
+                          <p className="text-white text-tiny">
+                            {teamUsers.entities[item].Title}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              )
             )}
           </div>
         </div>
