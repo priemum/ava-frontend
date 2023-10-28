@@ -1,19 +1,11 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import emailjs from "@emailjs/browser";
-import { useDispatch, useSelector } from "react-redux";
-import { MdMail, MdPerson } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { MdMail, MdPerson, MdLocationOn } from "react-icons/md";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
-// import Brochure from "../../../assets/pdf/brochure.pdf";
-// import {
-//   hideModal,
-//   register,
-//   counterIsFull,
-//   selectDownloadState,
-//   selectRegisterState,
-// } from "../../../redux/modal.slice";
 import { useTranslation } from "react-i18next";
+import { useAddFeedbackMutation } from "../../../redux/feedback/feedbackSlice";
 const CustomInput = ({
   icon,
   placeholder,
@@ -24,11 +16,11 @@ const CustomInput = ({
   onChange,
 }) => {
   return (
-    <div className="border-b-[1px] border-gray-300 px-4 py-3 flex">
+    <div className="border-b-[1px] border-white px-4 py-2 flex bg-white/10 rounded-md">
       {icon}
       <input
         type={type}
-        className="bg-transparent px-2 w-full outline-none"
+        className="bg-transparent px-2 w-full outline-none placeholder:text-white"
         name={name}
         onChange={onChange}
         placeholder={placeholder}
@@ -44,62 +36,12 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [subject, setSubject] = useState("");
+  const [Message, setMessage] = useState("");
   const form = useRef();
-  // const downloadState = useSelector(selectDownloadState);
-  // const registerState = useSelector(selectRegisterState);
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-    emailjs
-      .sendForm(
-        "service_5wdnu6j",
-        "template_slqqcpm",
-        form.current,
-        "sxh5TJan60LQqD6Sw"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          window.location.reload(false);
-        },
-        (error) => {
-          console.log(error.text);
-          alert("Registration Failed!");
-        }
-      );
-  };
+  const [addFeedback, { isLoading, isSuccess }] = useAddFeedbackMutation();
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-    sendEmail(e);
-    // let formData = new FormData(form.current);
-    // try {
-    //   const response = await fetch(
-    //     "https://hooks.zapier.com/hooks/catch/12792925/312q4d0/",
-    //     {
-    //       method: "POST",
-    //       body: formData,
-    //       "Content-Type": "multipart/form-data",
-    //     }
-    //   );
-    //   const result = response.json();
-    //   console.log("Success:", result);
-    //   sendEmail(e);
-    //   if (downloadState) {
-    //     let alink = document.createElement("a");
-    //     alink.href = Brochure;
-    //     alink.download = "BrochurePdf.pdf";
-    //     alink.click();
-    //   }
-    //   dispatch(register());
-    //   dispatch(counterIsFull());
-    //   dispatch(hideModal());
-    //   navigate("/thankyou");
-    // } catch (error) {
-    //   console.error("Error here:", error);
-    // }
-    alert("Thank You !!!");
+    addFeedback({ form: {} });
   };
 
   return (
@@ -109,7 +51,7 @@ const RegisterForm = () => {
       className="flex flex-col justify-between items-stretch h-full w-full space-y-8"
     >
       <CustomInput
-        icon={<MdPerson className="text-white text-big" />}
+        icon={<MdPerson className="text-white text-med" />}
         placeholder={t("formFullName")}
         type="text"
         name="fullName"
@@ -119,7 +61,7 @@ const RegisterForm = () => {
       />
 
       <CustomInput
-        icon={<MdMail className="text-white text-big" />}
+        icon={<MdMail className="text-white text-med" />}
         placeholder={t("formEmail")}
         type="email"
         name="email"
@@ -127,13 +69,7 @@ const RegisterForm = () => {
         value={email}
         onChange={(event) => setEmail(event.target.value)}
       />
-      <input
-        type="text"
-        className="hidden "
-        name={"project"}
-        value="Main Website"
-        readOnly
-      />
+
       <PhoneInput
         country={"ae"}
         placeholder={t("formPhoneNumber")}
@@ -144,25 +80,45 @@ const RegisterForm = () => {
           required: true,
         }}
         onChange={setPhone}
-        containerClass="!border-b-[1px] border-gray-300 px-1 flex "
-        inputClass={`!bg-transparent !text-offWhite !w-full !text-lg !h-full !border-none  ${
+        containerClass="!border-b-[1px] border-white px-1 flex bg-white/10 rounded-md "
+        inputClass={`!bg-transparent !text-white !w-full !text-lg !h-full !border-none  ${
           i18n.language == "en" ? "px-0" : "mx-10"
         } !outline-none`}
         buttonClass={`!border-none !text-lg `}
         buttonStyle={{ direction: "ltr" }}
         inputStyle={{
           direction: "ltr",
+          outline: "none",
         }}
       />
+      <CustomInput
+        // icon={<MdLocationOn className="text-white text-med" />}
+        placeholder={t("subject")}
+        type="text"
+        name="subject"
+        id="subject"
+        value={email}
+        onChange={(event) => setLocation(event.target.value)}
+      />
+      <CustomInput
+        // icon={<MdLocationOn className="text-white text-med" />}
+        placeholder={t("message")}
+        type="text"
+        name="message"
+        id="message"
+        value={email}
+        onChange={(event) => setLocation(event.target.value)}
+      />
       <button
-        className="bg-primary text-white text-small w-full py-4 disabled:bg-gray-500 "
+        className="bg-secondary text-white text-small w-full py-4 disabled:bg-gray-500 "
         disabled={
           email.replace(/ /g, "") == "" ||
           fullName.replace(/ /g, "") == "" ||
+          location.replace(/ /g, "") == "" ||
           phone.length < 12
         }
       >
-        {t("register")}
+        {t("send")}
       </button>
     </form>
   );

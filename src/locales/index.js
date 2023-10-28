@@ -22,6 +22,8 @@ i18n.use(initReactI18next).init({
         formEmail: "الايميل",
         AboutUs: "من نحن",
         JoinUs: "انضم لنا",
+        send: "ارسال",
+        location: "الموقع",
       },
     },
     en: {
@@ -42,6 +44,8 @@ i18n.use(initReactI18next).init({
         formEmail: "Email",
         AboutUs: "About Us",
         JoinUs: "Join Us",
+        send: "Send",
+        location: "Location",
       },
     },
   },

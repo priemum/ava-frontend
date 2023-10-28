@@ -3,7 +3,14 @@ export const NavElement = [
   { name: "AboutUs", link: "/about-us" },
   { name: "Articles", link: "/articles" },
   { name: "Jobs", link: "/jobs" },
-  { name: "Services", link: "/forms" },
+  {
+    name: "Services",
+    id: "ServicesDropDown",
+    dropData: [
+      { name: "List With Us", link: "/list-with-us" },
+      { name: "Enquiry", link: "/enquiry" },
+      { name: "Contact Us", link: "/contact" },
+    ],
+  },
   // { name: "Properties", link: "/properties" },
-  // { name: "Announcements", link: "/announcements" },
 ];

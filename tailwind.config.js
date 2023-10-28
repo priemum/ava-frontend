@@ -31,6 +31,8 @@ export default {
       backgroundImage: {
         buttonGrad:
           "linear-gradient(110deg, #DDB26E 13.14%, #FFE0AE 49.03%, #EFC27C 88.87%)",
+        ServicesBackGround:
+          "linear-gradient(92deg, rgba(90, 90, 90, 0.40) 15.42%, rgba(95, 95, 95, 0.26) 100.94%)",
       },
       backgroundColor: {},
       background: {},

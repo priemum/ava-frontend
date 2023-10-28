@@ -9,7 +9,7 @@ export const publicRoutes = [
   },
   {
     path: "/jobs",
-    element: lazy(() => import("../pages/JobApplication/index.jsx")),
+    element: lazy(() => import("../pages/jobs/index.jsx")),
   },
   {
     path: "/articles",
@@ -22,6 +22,18 @@ export const publicRoutes = [
   {
     path: "/privacy-policy",
     element: lazy(() => import("../pages/privacy/index.jsx")),
+  },
+  {
+    path: "/list-with-us",
+    element: lazy(() => import("../pages/listing/index.jsx")),
+  },
+  {
+    path: "/contact",
+    element: lazy(() => import("../pages/contact/index.jsx")),
+  },
+  {
+    path: "/enquiry",
+    element: lazy(() => import("../pages/enquiry/index.jsx")),
   },
 
   {

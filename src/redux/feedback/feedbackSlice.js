@@ -1,15 +1,15 @@
-import { createEntityAdapter } from "@reduxjs/toolkit";
 import { apiSlice } from "../api/apiSlice";
-
-const feedbackAdapter = createEntityAdapter();
-
-const initialState = feedbackAdapter.getInitialState({
-  count: "",
-  normalData: [],
-});
-
 export const feedbackApiSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({}),
+  endpoints: (builder) => ({
+    addFeedback: builder.mutation({
+      query: (args) => ({
+        url: `/feedback`,
+        method: "POST",
+        body: args.form,
+      }),
+      invalidatesTags: [{ type: "Feedback", id: "LIST" }],
+    }),
+  }),
 });
 
-export const {} = feedbackApiSlice;
+export const { useAddFeedbackMutation } = feedbackApiSlice;
