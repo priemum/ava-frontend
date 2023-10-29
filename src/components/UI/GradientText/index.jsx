@@ -6,7 +6,7 @@ const GradientText = ({ text, customStyle, header }) => {
       style={{
         background: header
           ? `linear-gradient(116deg, ${colors.secondary} 0%, ${colors.primary} 100%)`
-          : `linear-gradient(316deg, ${colors.secondary} 0%, ${colors.primary} 100%)`,
+          : `linear-gradient(316deg, ${colors.secondary} 0%, ${colors.primary} 120%)`,
         backgroundClip: "text",
         WebkitBackgroundClip: "text",
         color: "transparent",
