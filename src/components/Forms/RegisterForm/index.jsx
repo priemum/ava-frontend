@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { MdMail, MdPerson } from "react-icons/md";
 import PhoneInput from "react-phone-input-2";
@@ -44,7 +44,8 @@ const RegisterForm = () => {
   const { t, i18n } = useTranslation();
   const [form, setForm] = useState(defaultFormState);
   const [phone, setPhone] = useState("");
-  const [addFeedback, { isLoading, isSuccess }] = useAddFeedbackMutation();
+  const [addFeedback, { isLoading, isSuccess, isError }] =
+    useAddFeedbackMutation();
 
   function handleChange(e) {
     setForm({
@@ -59,6 +60,11 @@ const RegisterForm = () => {
     setForm({ ...form, PhoneNo: phone });
     addFeedback({ form });
   };
+
+  useEffect(() => {
+    if (!isLoading && isSuccess) alert("Thank you for your Feedback");
+    if (!isLoading && isError) alert("Somthing Went Wrong, Please Try Again");
+  }, [isSuccess]);
 
   return (
     <form className="flex flex-col justify-between items-stretch h-full w-full space-y-4">
@@ -155,10 +161,10 @@ const RegisterForm = () => {
         } `}
         onClick={handleSubmit}
         disabled={
-          form.Email.toString().replace(/ /g, "") == "" ||
-          form.FullName.toString().replace(/ /g, "") == "" ||
-          form.Message.toString().replace(/ /g, "") == "" ||
-          form.Subject.toString().replace(/ /g, "") == "" ||
+          form.Email.replace(/ /g, "") == "" ||
+          form.FullName.replace(/ /g, "") == "" ||
+          form.Message.replace(/ /g, "") == "" ||
+          form.Subject.replace(/ /g, "") == "" ||
           phone.length < 12 ||
           isLoading
         }

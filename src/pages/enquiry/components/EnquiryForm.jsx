@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MdMail, MdPerson } from "react-icons/md";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import { Gender, Purpose } from "../../../constants";
+import { useAddEnquiryMutation } from "../../../redux/enquiry/enquirySlice";
 const defaultFormState = {
   Type: "",
   Purpose: "Rent",
@@ -44,8 +45,9 @@ const CustomInput = ({
 const EnquiryForm = () => {
   const { t, i18n } = useTranslation();
   const [form, setForm] = useState(defaultFormState);
-  const [phone, setPhone] = useState();
-  const isLoading = false;
+  const [phone, setPhone] = useState("");
+  const [addEnquiry, { isLoading, isSuccess, isError }] =
+    useAddEnquiryMutation();
   function handleChange(e) {
     setForm({
       ...form,
@@ -57,7 +59,13 @@ const EnquiryForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setForm({ ...form, PhoneNo: phone });
+    addEnquiry({ form });
   };
+
+  useEffect(() => {
+    if (!isLoading && isSuccess) alert("Thank you for your Enquiry");
+    if (!isLoading && isError) alert("Somthing Went Wrong, Please Try Again");
+  }, [isSuccess]);
   return (
     <>
       <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[30vw] min-h-[65vh]">
@@ -213,10 +221,13 @@ const EnquiryForm = () => {
           } `}
           onClick={handleSubmit}
           disabled={
-            form.Email.toString().replace(/ /g, "") == "" ||
-            form.FullName.toString().replace(/ /g, "") == "" ||
-            form.Message.toString().replace(/ /g, "") == "" ||
-            form.Subject.toString().replace(/ /g, "") == "" ||
+            form.Email.replace(/ /g, "") == "" ||
+            form.Bedrooms.toString().replace(/ /g, "") == "" ||
+            form.PriceMax.toString().replace(/ /g, "") == "" ||
+            form.PriceMin.toString().replace(/ /g, "") == "" ||
+            form.Type.replace(/ /g, "") == "" ||
+            form.FullName.replace(/ /g, "") == "" ||
+            form.Message.replace(/ /g, "") == "" ||
             phone.length < 12 ||
             isLoading
           }
