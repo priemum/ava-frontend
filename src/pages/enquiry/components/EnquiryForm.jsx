@@ -60,12 +60,13 @@ const EnquiryForm = () => {
     e.preventDefault();
     setForm({ ...form, PhoneNo: phone });
     addEnquiry({ form });
+    setForm(defaultFormState);
   };
 
   useEffect(() => {
     if (!isLoading && isSuccess) alert("Thank you for your Enquiry");
     if (!isLoading && isError) alert("Somthing Went Wrong, Please Try Again");
-  }, [isSuccess]);
+  }, [isSuccess, isError]);
   return (
     <>
       <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[30vw] min-h-[65vh]">

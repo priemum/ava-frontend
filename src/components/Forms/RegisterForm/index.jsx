@@ -59,6 +59,7 @@ const RegisterForm = () => {
     e.preventDefault();
     setForm({ ...form, PhoneNo: phone });
     addFeedback({ form });
+    setForm(defaultFormState);
   };
 
   useEffect(() => {
