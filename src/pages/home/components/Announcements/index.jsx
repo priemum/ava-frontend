@@ -77,7 +77,7 @@ const Announcements = () => {
                   </div>
                   <div className="h-full w-full relative">
                     <div
-                      className={`h-[450px] w-[600px] absolute top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md ease-in`}
+                      className={`h-[450px] w-[600px] absolute top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md ease-out duration-500  transition-all`}
                       style={{
                         rotate: -scrollY / 50 + "deg",
                         transform: "translate(" + -scrollY * 0.3 + "%, -50%)",

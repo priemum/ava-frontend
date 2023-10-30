@@ -8,7 +8,7 @@ const ContactPage = () => {
     <div>
       <PageHeader text={"We Are Happy To Hear From You"} />
       <div className="flex flex-col justify-center items-center pb-12">
-        <div className="w-[80vw] bg-ServicesBackGround  backdrop-blur-[21px] h-full shadow-lg -mt-[15vh] rounded-md grid md:grid-cols-2 place-items-center lg:p-20 space-y-12">
+        <div className="w-[80vw] bg-ServicesBackGround backdrop-blur-[21px] h-full shadow-lg -mt-[15vh] rounded-md grid md:grid-cols-2 place-items-center lg:p-20 space-y-12">
           <div className="w-[80%]">
             <RegisterForm />
           </div>

@@ -5,6 +5,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import { useTranslation } from "react-i18next";
 import { useAddFeedbackMutation } from "../../../redux/feedback/feedbackSlice";
+import { Gender } from "../../../constants";
 const CustomInput = ({
   icon,
   placeholder,
@@ -60,7 +61,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <form className="flex flex-col justify-between items-stretch h-full w-full space-y-8">
+    <form className="flex flex-col justify-between items-stretch h-full w-full space-y-4">
       <CustomInput
         icon={<MdPerson className="text-white text-med" />}
         placeholder={t("formFullName")}
@@ -102,6 +103,32 @@ const RegisterForm = () => {
           outline: "none",
         }}
       />
+      <div className="space-y-1">
+        <p className="text-tiny text-white">{t("Gender")} </p>
+
+        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2">
+          {Gender.map((item, index) => {
+            return (
+              <>
+                <div
+                  key={index}
+                  className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                    form.Gender == item
+                      ? "bg-secondary text-primary"
+                      : "bg-transparent text-white"
+                  }`}
+                  onClick={() => setForm({ ...form, Gender: item })}
+                >
+                  {item}
+                </div>
+                {index !== Gender.length - 1 && (
+                  <div className="h-10 w-1 bg-white/50" />
+                )}
+              </>
+            );
+          })}
+        </div>
+      </div>
       <CustomInput
         // icon={<MdLocationOn className="text-white text-med" />}
         placeholder={t("subject")}
@@ -123,7 +150,7 @@ const RegisterForm = () => {
         />
       </div>
       <button
-        className={`bg-secondary text-white text-small w-full py-4 disabled:bg-gray-500 ${
+        className={`bg-buttonGrad text-primary font-semibold text-small w-full py-3 disabled:bg-none disabled:bg-gray-500 disabled:text-white rounded-md ${
           isLoading && "animate-pulse"
         } `}
         onClick={handleSubmit}
