@@ -33,6 +33,8 @@ i18n.use(initReactI18next).init({
         Subject: "العنوان",
         Gender: "الجنس",
         Purpose: "العقد",
+        Balconey: "البلكونة",
+        Price: "السعر",
       },
     },
     en: {
@@ -64,6 +66,8 @@ i18n.use(initReactI18next).init({
         Subject: "Subject",
         Gender: "Gender",
         Purpose: "Purpose",
+        Balconey: "Balconey",
+        Price: "Price",
       },
     },
   },

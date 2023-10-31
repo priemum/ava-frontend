@@ -10,7 +10,7 @@ const EnquiryPage = () => {
     >
       <div className="bg-primary/70 h-full min-h-screen py-24 flex flex-col justify-center items-center space-y-12">
         <GradientText
-          text={"Show your apartment for sale or rent with us"}
+          text={"Make A Request For The Apartment You Desire"}
           customStyle={
             "text-med md:text-[60px] font-bold text-center drop-shadow-2xl w-3/5"
           }

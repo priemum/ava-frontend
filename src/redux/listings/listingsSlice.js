@@ -1,14 +1,15 @@
-import { createEntityAdapter } from "@reduxjs/toolkit";
 import { apiSlice } from "../api/apiSlice";
-
-const listingsAdapter = createEntityAdapter();
-
-const initialState = listingsAdapter.getInitialState({
-  count: "",
+export const listingApiSlice = apiSlice.injectEndpoints({
+  endpoints: (builder) => ({
+    addListing: builder.mutation({
+      query: (args) => ({
+        url: `/list-with-us`,
+        method: "POST",
+        body: args.form,
+      }),
+      invalidatesTags: [{ type: "Listings", id: "LIST" }],
+    }),
+  }),
 });
 
-export const listingsApiSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({}),
-});
-
-export const {} = listingsApiSlice;
+export const { useAddListingMutation } = listingApiSlice;
