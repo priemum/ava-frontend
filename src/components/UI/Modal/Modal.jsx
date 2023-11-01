@@ -33,7 +33,7 @@ export default function Modal() {
       >
         <div
           ref={ref}
-          className="rounded-xl shadow-xl relative flex flex-col z-50 outline-none focus:outline-none overflow-hidden bg-fifth/40 backdrop-blur-[21px] border-[1px] border-white/40 h-full max-h-[70vh] w-full max-w-[70vw]"
+          className="rounded-xl shadow-xl relative flex flex-col z-50 outline-none focus:outline-none overflow-hidden bg-fifth/40 backdrop-blur-[21px] border-[1px] border-white/40 h-full max-h-[90vh] w-full max-w-[70vw]"
         >
           <div
             onClick={() => {

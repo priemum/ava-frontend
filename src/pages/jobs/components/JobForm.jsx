@@ -26,7 +26,7 @@ const CustomInput = ({
         <input
           placeholder={placeholder + (required ? "*" : "")}
           type={type}
-          className="bg-transparent px-2 w-full outline-none flex-1"
+          className="bg-transparent px-2 w-full outline-none flex-1 placeholder:text-white"
           name={name}
           onChange={onChange}
           id={name}
@@ -133,33 +133,6 @@ const JobForm = ({ title }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     sendEmail(e);
-    // let formData = new FormData(form.current);
-    // try {
-    //   const response = await fetch(
-    //     "https://hooks.zapier.com/hooks/catch/12792925/312q4d0/",
-    //     {
-    //       method: "POST",
-    //       body: formData,
-    //       "Content-Type": "multipart/form-data",
-    //     }
-    //   );
-    //   const result = response.json();
-    //   console.log("Success:", result);
-    //   sendEmail(e);
-    //   if (downloadState) {
-    //     let alink = document.createElement("a");
-    //     alink.href = Brochure;
-    //     alink.download = "BrochurePdf.pdf";
-    //     alink.click();
-    //   }
-    //   dispatch(register());
-    //   dispatch(counterIsFull());
-    //   dispatch(hideModal());
-    //   navigate("/thankyou");
-    // } catch (error) {
-    //   console.error("Error here:", error);
-    // }
-    // alert("Thank You !!!");
   };
   const options = {
     debug: true, // enable logs
@@ -175,9 +148,9 @@ const JobForm = ({ title }) => {
     <form
       ref={formRef}
       onSubmit={handleSubmit}
-      className="p-8 w-full space-y-8 bg-transparent rounded-md text-white overflow-y-auto mt-1"
+      className="p-8 w-full space-y-4 bg-transparent rounded-md text-white overflow-y-auto relative my-20"
     >
-      <div className="">
+      <div className=" fixed w-full left-0 top-0 px-4 py-3">
         <p className="text-med lg:text-big font-bold">
           {title ?? "Appy For The Job"}
         </p>
@@ -422,7 +395,7 @@ const JobForm = ({ title }) => {
         onChange={handleChange}
         required
       />
-      <div className="col-span-full flex max-sm:flex-col justify-between items-center">
+      <div className="col-span-full flex max-sm:flex-col justify-between items-center fixed py-1 px-4 w-full left-0 bottom-0">
         <div className="md:flex items-center md:gap-4">
           <Button
             textColor={"text-white font-medium"}
