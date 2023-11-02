@@ -35,6 +35,8 @@ i18n.use(initReactI18next).init({
         Purpose: "العقد",
         Balconey: "البلكونة",
         Price: "السعر",
+        PropertyTitle: "عنوان العقار",
+        PropertyDescription: "نص عن العقار",
       },
     },
     en: {
@@ -68,6 +70,8 @@ i18n.use(initReactI18next).init({
         Purpose: "Purpose",
         Balconey: "Balconey",
         Price: "Price",
+        PropertyTitle: "Property Title",
+        PropertyDescription: "Property Description",
       },
     },
   },

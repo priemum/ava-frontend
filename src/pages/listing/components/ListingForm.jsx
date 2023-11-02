@@ -131,7 +131,8 @@ const ListingForm = () => {
           return {
             ...obj,
             Name: type == "Name" ? e.target.value : obj.Name,
-            Description: type == "Description" ? e : obj.Description,
+            Description:
+              type == "Description" ? e.target.value : obj.Description,
           };
         }
         return obj;
@@ -164,7 +165,7 @@ const ListingForm = () => {
 
   return (
     <>
-      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[30vw] md:max-w-[60%] md:min-h-[65vh] col-span-2 ">
+      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[30vw] md:max-w-[60%] md:min-h-[97vh] col-span-2 ">
         <p className="text-smaller"> Property Information</p>
         <div className="space-y-4">
           <div className="space-y-1">
@@ -229,12 +230,12 @@ const ListingForm = () => {
             />
           </div>
           <div
-            className={`${
+            className={`space-y-4 ${
               listWithUs_Translation.length !== 0 ? "block" : "hidden"
             }`}
           >
             <CustomInput
-              placeholder={t("Name")}
+              placeholder={t("PropertyTitle")}
               type="text"
               name="Name"
               id="Name"
@@ -250,24 +251,109 @@ const ListingForm = () => {
                 )
               }
             />
-            <RichTextBox
-              label={`Description`}
-              value={
-                listWithUs_Translation.find((x) => x.Language.Code == "En")
-                  ?.Description
-              }
-              onChange={(e) =>
-                handleTranslationChange(
-                  e,
-                  listWithUs_Translation.find((x) => x.Language.Code == "En"),
-                  "Description"
-                )
-              }
-            />
+            <div className="border-b-[1px] border-white px-4 py-2 flex bg-white/20 rounded-md">
+              <textarea
+                placeholder={t("PropertyDescription")}
+                name="Message"
+                id="Message"
+                value={
+                  listWithUs_Translation.find((x) => x.Language.Code == "En")
+                    ?.Description
+                }
+                onChange={(e) =>
+                  handleTranslationChange(
+                    e,
+                    listWithUs_Translation.find((x) => x.Language.Code == "En"),
+                    "Description"
+                  )
+                }
+                className="bg-transparent px-2 w-full outline-none placeholder:text-white resize-none"
+                rows={15}
+              />
+            </div>
           </div>
         </div>
       </div>
       <div className="w-[90%] md:max-w-[30%] space-y-4">
+        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-full h-[40vh] md:max-h-[40vh] flex flex-col overflow-x-hidden overflow-y-auto">
+          <div className="w-full flex items-center gap-x-6">
+            <Button
+              textColor={"text-primary"}
+              text={"Upload Photos"}
+              bgColor={"bg-secondary"}
+              customStyle={"py-2 px-4"}
+              borderRadius={6}
+              onClick={(e) => {
+                e.preventDefault();
+                hiddenFileInput.current.click();
+              }}
+            />
+            <input
+              type="file"
+              accept="image/png, image/jpeg, image/jpg"
+              multiple
+              name="images"
+              onChange={onImageChange}
+              style={{ display: "none" }}
+              ref={hiddenFileInput}
+            />
+            {imageURL.length !== 0 && (
+              <div
+                onClick={() => {
+                  setImages([]);
+                  setImageURL([]);
+                }}
+                className="text-center cursor-pointer flex items-center gap-x-1"
+              >
+                <DeleteAllIcon className="text-med" />
+                <p className="text-smaller">Delete All</p>
+              </div>
+            )}
+          </div>
+          {imageURL.length !== 0 && (
+            <Slider
+              slidesToScroll={1}
+              slidesToShow={imageURL.length <= 1 ? imageURL.length : 2}
+              dots={true}
+              arrows={true}
+              infinite={false}
+              className="max-h-[30vh] w-full"
+            >
+              {imageURL?.map((imageSrc, i) => {
+                return (
+                  <div
+                    className="relative !h-[200px] !max-h-[200px] !w-[95%]"
+                    key={i}
+                  >
+                    <img
+                      className="h-full w-full"
+                      src={imageSrc}
+                      alt={"Guest Property Image" + i}
+                    />
+                    <div
+                      className="text-center cursor-pointer flex items-center gap-x-1 absolute top-0 left-0 bg-primary/40 backdrop-blur-[21px] shadow-md rounded-br-md p-1"
+                      onClick={() => {
+                        let tempUrls = imageURL;
+                        let newTempUrls = tempUrls.filter(
+                          (img) => img !== imageSrc
+                        );
+                        let idx = tempUrls.indexOf(imageSrc);
+                        let tempImages = images;
+                        setImageURL(newTempUrls);
+                        if (idx > -1) {
+                          tempImages.splice(idx, 1);
+                          setImages(tempImages);
+                        }
+                      }}
+                    >
+                      <DeleteIcon className="text-med" />
+                    </div>
+                  </div>
+                );
+              })}
+            </Slider>
+          )}
+        </div>
         <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-full h-[55vh] md:max-h-[55vh] flex flex-col overflow-x-hidden overflow-y-auto">
           <p className="text-smaller"> Personal Information</p>
           <div className="space-y-4 flex-1">
@@ -335,104 +421,25 @@ const ListingForm = () => {
                 })}
               </div>
             </div>
-          </div>
-          <button
-            className={`bg-buttonGrad text-primary text-small w-full py-4 disabled:!bg-gray-500 disabled:bg-none disabled:text-white rounded-md ${
-              isLoading && "animate-pulse"
-            } `}
-            onClick={handleSubmit}
-            disabled={
-              form.Email.replace(/ /g, "") == "" ||
-              form.Bedrooms.toString().replace(/ /g, "") == "" ||
-              form.Bacloney.toString().replace(/ /g, "") == "" ||
-              form.Price.toString().replace(/ /g, "") == "" ||
-              form.Type.replace(/ /g, "") == "" ||
-              form.FullName.replace(/ /g, "") == "" ||
-              phone.length < 12 ||
-              isLoading
-            }
-          >
-            {isLoading ? t("sending") : t("send")}
-          </button>
-        </div>
-        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-full h-[45vh] md:max-h-[45vh] flex flex-col overflow-x-hidden overflow-y-auto">
-          <div className="w-full flex items-center gap-x-6">
-            <Button
-              textColor={"text-primary"}
-              text={"Upload Photos"}
-              bgColor={"bg-secondary"}
-              customStyle={"py-2 px-4"}
-              borderRadius={6}
-              onClick={(e) => {
-                e.preventDefault();
-                hiddenFileInput.current.click();
-              }}
-            />
-            <input
-              type="file"
-              accept="image/png, image/jpeg, image/jpg"
-              multiple
-              name="images"
-              onChange={onImageChange}
-              style={{ display: "none" }}
-              ref={hiddenFileInput}
-            />
-            {imageURL.length !== 0 && (
-              <div
-                onClick={() => {
-                  setImages([]);
-                  setImageURL([]);
-                }}
-                className="text-center cursor-pointer flex items-center gap-x-1"
-              >
-                <DeleteAllIcon className="text-med" />
-                <p className="text-smaller">Delete All</p>
-              </div>
-            )}
-          </div>
-          {imageURL.length !== 0 && (
-            <Slider
-              slidesToScroll={1}
-              slidesToShow={imageURL.length <= 1 ? imageURL.length : 2}
-              dots={true}
-              arrows={true}
-              infinite={false}
-              className="max-h-[30vh] w-full"
+            <button
+              className={`bg-buttonGrad text-primary text-small w-full shadow-2xl py-4 disabled:!bg-gray-500 disabled:bg-none disabled:text-white rounded-md ${
+                isLoading && "animate-pulse"
+              } `}
+              onClick={handleSubmit}
+              disabled={
+                form.Email.replace(/ /g, "") == "" ||
+                form.Bedrooms.toString().replace(/ /g, "") == "" ||
+                form.Bacloney.toString().replace(/ /g, "") == "" ||
+                form.Price.toString().replace(/ /g, "") == "" ||
+                form.Type.replace(/ /g, "") == "" ||
+                form.FullName.replace(/ /g, "") == "" ||
+                phone.length < 12 ||
+                isLoading
+              }
             >
-              {imageURL?.map((imageSrc, i) => {
-                return (
-                  <div
-                    className="relative !h-[250px] !max-h-[250px] !w-[95%]"
-                    key={i}
-                  >
-                    <img
-                      className="h-full w-full"
-                      src={imageSrc}
-                      alt={"Guest Property Image" + i}
-                    />
-                    <div
-                      className="text-center cursor-pointer flex items-center gap-x-1 absolute top-0 left-0 bg-primary/40 backdrop-blur-[21px] shadow-md rounded-br-md p-1"
-                      onClick={() => {
-                        let tempUrls = imageURL;
-                        let newTempUrls = tempUrls.filter(
-                          (img) => img !== imageSrc
-                        );
-                        let idx = tempUrls.indexOf(imageSrc);
-                        let tempImages = images;
-                        setImageURL(newTempUrls);
-                        if (idx > -1) {
-                          tempImages.splice(idx, 1);
-                          setImages(tempImages);
-                        }
-                      }}
-                    >
-                      <DeleteIcon className="text-med" />
-                    </div>
-                  </div>
-                );
-              })}
-            </Slider>
-          )}
+              {isLoading ? t("sending") : t("send")}
+            </button>
+          </div>
         </div>
       </div>
     </>

@@ -5,8 +5,8 @@ const GradientText = ({ text, customStyle, header }) => {
     <p
       style={{
         background: header
-          ? `linear-gradient(116deg, ${colors.secondary} 0%, ${colors.primary} 100%)`
-          : `linear-gradient(316deg, ${colors.secondary} 40%, ${colors.primary} 100%)`,
+          ? `linear-gradient(116deg, ${colors.primary} -50%, ${colors.secondary} 100%)`
+          : `linear-gradient(316deg, ${colors.primary} -50%, ${colors.secondary} 100%)`,
         backgroundClip: "text",
         WebkitBackgroundClip: "text",
         color: "transparent",

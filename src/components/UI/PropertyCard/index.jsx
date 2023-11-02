@@ -7,6 +7,7 @@ import { FaCoins, FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import bath from "../../../assets/icons/bath.svg";
 import bedroom from "../../../assets/icons/bedroom.svg";
 import squareft from "../../../assets/icons/squareft.svg";
+import LazyImage from "../LazyImage";
 function SampleNextArrow({ onClick }) {
   return (
     <div
@@ -47,7 +48,7 @@ const PropertyCard = ({ data }) => {
         >
           {data.Images.map((item, index) => {
             return (
-              <img
+              <LazyImage
                 key={index}
                 src={API_BASE_URL + item.URL}
                 alt={`${
@@ -55,6 +56,9 @@ const PropertyCard = ({ data }) => {
                     (x) => x.Language.Code == i18n.language
                   )?.Name + index
                 }`}
+                divStyle={"h-[550px] w-full"}
+                imgStyle={"h-[550px] w-full object-cover object-center"}
+                skelatonStyle={"h-[550px] w-full"}
                 className="h-[550px] w-full object-cover object-center"
               />
             );

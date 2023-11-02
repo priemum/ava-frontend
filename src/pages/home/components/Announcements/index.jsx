@@ -6,14 +6,17 @@ import Slider from "react-slick";
 import { useGetActiveAnnouncementsQuery } from "../../../../redux/announcements/announcementsSlice";
 import { API_BASE_URL } from "../../../../constants";
 import { useTranslation } from "react-i18next";
+import LazyImage from "../../../../components/UI/LazyImage";
 const Announcements = () => {
   const { data, isLoading, isFetching, isSuccess, isError, error } =
     useGetActiveAnnouncementsQuery();
   const [scrollY, setScrollY] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef();
   const compRef = useRef();
   useEffect(() => {
     const handleScroll = () => {
-      if (compRef.current.getBoundingClientRect().top > 170)
+      if (compRef.current.getBoundingClientRect().top > 190)
         setScrollY(compRef.current.getBoundingClientRect().top);
     };
     window.addEventListener("scroll", handleScroll);
@@ -32,13 +35,39 @@ const Announcements = () => {
           style={{
             background: `linear-gradient(279deg, ${colors.secondary} -33.22%, ${colors.primary} 41.05%)`,
           }}
-          className="rounded-md"
+          className="rounded-md relative"
         >
+          {data.ids.length > 1 && (
+            <div className="absolute h-9 flex justify-center items-center left-12 bottom-12 gap-x-8">
+              {data.ids.map((item, index) => {
+                return (
+                  <div
+                    className={`${
+                      currentSlide == index
+                        ? "border-white/80"
+                        : "border-transparent"
+                    } transition-all duration-500 z-30 border-[2px] rounded-full p-px`}
+                  >
+                    <div
+                      onClick={() => sliderRef.current.slickGoTo(index)}
+                      key={item}
+                      className={`w-7 h-7 rounded-full bg-white/50 backdrop-blur-[21px] cursor-pointer transition-all duration-500`}
+                    />
+                  </div>
+                );
+              })}
+              <div className="w-[80%] h-1 bg-white/50 absolute z-0" />
+            </div>
+          )}
           <Slider
+            ref={sliderRef}
             slidesToScroll={1}
             slidesToShow={1}
             arrows={false}
             className="!w-full !h-[600px]"
+            beforeChange={(prev, next) => {
+              setCurrentSlide(next);
+            }}
           >
             {data.ids.map((item, index) => {
               return (
@@ -77,16 +106,23 @@ const Announcements = () => {
                   </div>
                   <div className="h-full w-full relative">
                     <div
-                      className={`h-[450px] w-[600px] absolute top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md ease-out duration-500  transition-all`}
+                      className={`h-[450px] w-[600px] absolute top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md ease-out duration-500  transition-all ${
+                        index == currentSlide ? "opacity-100" : "opacity-0"
+                      }`}
                       style={{
                         rotate: -scrollY / 50 + "deg",
-                        transform: "translate(" + -scrollY * 0.3 + "%, -50%)",
+                        transform: "translate(" + -scrollY * 0.2 + "%, -50%)",
                       }}
                     >
-                      <img
+                      <LazyImage
                         src={API_BASE_URL + data.entities[item].Image.URL}
                         // src={testIMG}
                         alt="Announcement Image"
+                        divStyle={`h-full w-full rounded-md`}
+                        imgStyle={
+                          "h-full w-full object-center object-cover rounded-md"
+                        }
+                        skelatonStyle={"h-full w-full rounded-md"}
                         className="h-full w-full object-center object-cover rounded-md"
                       />
                     </div>

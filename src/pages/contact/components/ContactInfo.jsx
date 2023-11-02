@@ -3,19 +3,21 @@ import { MdLocationOn, MdPhone, MdEmail } from "react-icons/md";
 
 const ContactInfo = () => {
   return (
-    <div className="text-white space-y-8 text-smaller">
-      <p className="text-bold text-big">Contact Information </p>
+    <div className="text-white space-y-8 text-smaller font-semibold">
+      <p className="text-bold text-big font-bold">Contact Information </p>
       <div className="flex items-center gap-x-4">
         <MdLocationOn size={24} />
-        <p>Address - Street - District Building No</p>
+        <p>
+          Office 609, Clover Bay Tower - 6a Marasi Dr - Business Bay - Dubai
+        </p>
       </div>
       <div className="flex items-center gap-x-4">
         <MdEmail size={24} />
-        <p> name@mail.com</p>
+        <p> info@avarealestate.ae</p>
       </div>
       <div className="flex items-center gap-x-4">
         <MdPhone size={24} />
-        <p>065486264841 - 545631654653</p>
+        <p>+971501108606</p>
       </div>
     </div>
   );

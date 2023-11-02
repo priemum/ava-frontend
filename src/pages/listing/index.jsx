@@ -8,7 +8,7 @@ const ListingPage = () => {
       style={{ backgroundImage: `url(${backImage})` }}
       className="w-full h-full min-h-screen bg-center bg-cover bg-no-repeat"
     >
-      <div className="bg-primary/50 h-full min-h-screen py-24 flex flex-col justify-center items-center space-y-12">
+      <div className="bg-primary/70 h-full min-h-screen py-24 flex flex-col justify-center items-center space-y-12">
         <GradientText
           text={"Share Your Apartment For Sale/Rent With Us"}
           customStyle={

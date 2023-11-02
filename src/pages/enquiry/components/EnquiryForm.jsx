@@ -136,10 +136,9 @@ const EnquiryForm = () => {
             <textarea
               placeholder={t("Message")}
               name="Message"
-              s
               id="Message"
               value={form.Message}
-              className="bg-transparent px-2 w-full outline-none placeholder:text-white"
+              className="bg-transparent px-2 w-full outline-none placeholder:text-white resize-none"
               onChange={handleChange}
               rows={5}
             />
