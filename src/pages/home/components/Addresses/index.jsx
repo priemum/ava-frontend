@@ -3,13 +3,24 @@ import addressesIcon from "../../../../assets/icons/addresses-icon.svg";
 import { useGetActiveAddressQuery } from "../../../../redux/addresses/addressesSlice";
 import { useTranslation } from "react-i18next";
 import AddressCard from "./AddressCard";
-
+import Loader from "../../../../components/UI/Loader";
 const HomeAddresses = () => {
   const { t, i18n } = useTranslation();
-  const { data, isLoading, isFetching, isSuccess, isError, error } =
+  const { data, isLoading, isFetching, isSuccess, isError } =
     useGetActiveAddressQuery();
-  return (
-    isSuccess && (
+  return isLoading || isFetching ? (
+    <div className="my-44 flex flex-col justify-center items-center relative">
+      <Loader />
+    </div>
+  ) : isError ? (
+    <div className="my-24 flex flex-col justify-center items-center relative">
+      <p className="text-med font-bold">
+        Somthing went wrong, Please reload the page!
+      </p>
+    </div>
+  ) : (
+    isSuccess &&
+    data.count !== 0 && (
       <div className="py-16 mt-24 px-[5%] bg-[#F4F4F4]">
         <div className="flex w-full">
           <div className="flex items-center self-start flex-1">

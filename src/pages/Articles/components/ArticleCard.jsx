@@ -25,7 +25,7 @@ const ArticleCard = ({
         <img
           src={API_BASE_URL + Image}
           alt=""
-          className="w-full h-full rounded-md"
+          className="w-full h-full rounded-md object-cover object-center"
         />
         <div className="bg-primary/20 w-full absolute bottom-0 left-0 transition-all duration-500 backdrop-blur-[21px] p-3">
           <div className="flex justify-start items-center gap-x-3 h-[60px]">
@@ -43,9 +43,11 @@ const ArticleCard = ({
           </div>
         </div>
       </div>
-      <div className="p-5 lg:p-8 space-y-1">
+      <div className="p-5 lg:p-8 space-y-1 h-[250px] flex flex-col">
         <p className="font-bold text-small">{Title}</p>
-        <p className="line-clamp-2 text-tiny"> {Caption}</p>
+        <div className="flex-1">
+          <p className="line-clamp-2 text-tiny ">{Caption}</p>
+        </div>
         <div className="flex items-center text-smaller !mt-4 gap-x-1">
           <p>{"Read More"}</p>
           <MdArrowOutward size={24} />

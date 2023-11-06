@@ -7,8 +7,9 @@ import { useGetActiveAnnouncementsQuery } from "../../../../redux/announcements/
 import { API_BASE_URL } from "../../../../constants";
 import { useTranslation } from "react-i18next";
 import LazyImage from "../../../../components/UI/LazyImage";
+import Loader from "../../../../components/UI/Loader";
 const Announcements = () => {
-  const { data, isLoading, isFetching, isSuccess, isError, error } =
+  const { data, isLoading, isFetching, isSuccess, isError } =
     useGetActiveAnnouncementsQuery();
   const [scrollY, setScrollY] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -25,10 +26,18 @@ const Announcements = () => {
     };
   });
   const { i18n } = useTranslation();
-  return (
+  return isLoading || isFetching ? (
+    <div className="my-24 flex flex-col justify-center items-center relative">
+      <Loader />
+    </div>
+  ) : isError ? (
+    <div className="my-24 flex flex-col justify-center items-center relative">
+      <p className="text-med font-bold">
+        Somthing went wrong, Please reload the page!
+      </p>
+    </div>
+  ) : (
     isSuccess &&
-    !isLoading &&
-    !isFetching &&
     data.count !== 0 && (
       <div ref={compRef} className="mt-24 px-[5%] overflow-hidden">
         <div
@@ -37,7 +46,7 @@ const Announcements = () => {
           }}
           className="rounded-md relative"
         >
-          {data.ids.length > 1 && (
+          {data.count > 1 && (
             <div className="absolute h-9 flex justify-center items-center left-12 bottom-12 gap-x-8">
               {data.ids.map((item, index) => {
                 return (

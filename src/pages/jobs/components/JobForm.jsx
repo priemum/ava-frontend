@@ -35,7 +35,7 @@ const CustomInput = ({
       </div>
     </div>
   ) : type == "radio" ? (
-    <div className="flex max-md:flex-col justify-start items-center gap-x-4 bg-white/30 rounded-md shadow-sm drop-shadow-sm px-4 py-4 ">
+    <div className="flex max-md:flex-col justify-start items-center gap-x-4 bg-white/30 rounded-md shadow-sm drop-shadow-sm px-4 py-4">
       <p className="text-tiny font-semibold max-md:py-2 max-md:self-start">
         {placeholder + (required ? "*" : "")}
       </p>

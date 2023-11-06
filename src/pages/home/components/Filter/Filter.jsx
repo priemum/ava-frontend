@@ -1,16 +1,80 @@
 import React, { useState } from "react";
 import { Purpose } from "../../../../constants";
-import { MdExpandMore } from "react-icons/md";
+import { MdExpandMore, MdLocationOn } from "react-icons/md";
+// import {useGetActiveCategoryQuery} from "../../../../redux/categories/categoriesSlice"
+// import {useGetActiveCategoryQuery} from "../../../../redux/"
+import Button from "../../../../components/UI/Button";
+const CustomInput = ({
+  icon,
+  placeholder,
+  type,
+  name,
+  id,
+  value,
+  onChange,
+}) => {
+  return (
+    <div className="px-4 py-2 flex bg-white rounded-md items-center text-primary">
+      {icon}
+      <input
+        type={type}
+        className="bg-transparent py-1 px-2 w-full outline-none placeholder:text-primary"
+        name={name}
+        onChange={onChange}
+        placeholder={placeholder}
+        id={id}
+        value={value}
+      />
+    </div>
+  );
+};
+
+const SelectInput = ({
+  selectID,
+  firstOption,
+  options,
+  data,
+  onChange,
+  value,
+}) => {
+  return (
+    <select
+      value={value}
+      onChange={onChange}
+      id={selectID}
+      className="px-4 py-3 flex bg-white rounded-md items-center text-primary outline-none"
+    >
+      <option className="py-1 px-2" value={""}>
+        {firstOption}
+      </option>
+      {data
+        ? data.ids.map((item, index) => {
+            return (
+              <option
+                key={index}
+                value={data.entities[item].id}
+                // selected={value == data.entities[item].id}
+                className="py-1 px-2"
+              >
+                {data.entities[item].nameEn}
+              </option>
+            );
+          })
+        : options}
+    </select>
+  );
+};
 const HomeFilter = () => {
   const [selectedPurpose, setSelectedPurpose] = useState(0);
+
   return (
     <div
-      className="flex justify-center items-center text-white h-[30vh] -mt-[29.5vh] z-30 backdrop-blur-[2px]"
+      className="flex justify-center items-center text-white -mt-[14%]  z-30 backdrop-blur-[2px]"
       style={{
         background: "linear-gradient(0deg, #FFF 5%, transparent 90%)",
       }}
     >
-      <div className="bg-primary/30 backdrop-blur-[21px] h-[30vh] w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10">
+      <div className="bg-primary/30 backdrop-blur-[21px]  w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10">
         <div className="flex gap-x-8 text-small px-4">
           {Purpose.map((item, index) => {
             return (
@@ -37,7 +101,24 @@ const HomeFilter = () => {
             );
           })}
         </div>
-        <div>filter</div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+          <CustomInput
+            placeholder={"Enter Location"}
+            icon={<MdLocationOn className="text-small" />}
+            id={""}
+            value={""}
+            onChange={() => {}}
+            type="text"
+            name={""}
+          />
+          <SelectInput firstOption={"Choose Category"} />
+          <SelectInput firstOption={"Beds & Baths"} />
+          <SelectInput firstOption={"Area"} />
+          <SelectInput firstOption={"Price"} />
+          <button className=" w-full bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider">
+            Find
+          </button>
+        </div>
       </div>
     </div>
   );

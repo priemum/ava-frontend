@@ -8,6 +8,7 @@ import {
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import { useLazyGetUsersByTeamIdQuery } from "../../../redux/users/usersSlice";
 import { API_BASE_URL } from "../../../constants";
+import Loader from "../../../components/UI/Loader";
 const Teams = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [userIndex, setUserIndex] = useState(0);
@@ -41,8 +42,19 @@ const Teams = () => {
     }
   }, [teams]);
 
-  return (
-    teamsIsSuccess && (
+  return teamsIsLoading || teamsIsFetching ? (
+    <div className="my-24 flex flex-col justify-center items-center relative">
+      <Loader />
+    </div>
+  ) : teamsIsError ? (
+    <div className="my-2 flex flex-col justify-center items-center relative">
+      <p className="text-med font-bold">
+        Somthing went wrong, Please reload the page!
+      </p>
+    </div>
+  ) : (
+    teamsIsSuccess &&
+    teams.count !== 0 && (
       <div className="overflow-x-hidden grid grid-cols-3 px-[5%]">
         <div className="col-span-1 flex flex-col justify-center items-start">
           <p className="text-big lg:text-[60px] font-bold md:w-[85%]">
@@ -87,6 +99,7 @@ const Teams = () => {
                         setCurrentSlide(index);
                         setSelectedTeamId(item);
                         getUsersByTeamId({ id: item });
+                        setUserIndex(0);
                       }}
                     >
                       {teams.entities[item]?.Title}

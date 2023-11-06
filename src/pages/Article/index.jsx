@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { data } from "../../data/articlesData";
-import { Helmet } from "react-helmet";
 import Head from "../../components/Layout/PageContainer/Head";
 import { useGetArticleByIdQuery } from "../../redux/articles/articlesSlice";
 import { useTranslation } from "react-i18next";
 import { API_BASE_URL } from "../../constants";
 import ReactQuill from "react-quill";
+import Loader from "../../components/UI/Loader";
 import "react-quill/dist/quill.bubble.css";
 const ArticlePage = () => {
   const { slug } = useParams();
@@ -17,26 +16,38 @@ const ArticlePage = () => {
     isFetching,
     isSuccess,
     isError,
-    error,
   } = useGetArticleByIdQuery({ id: slug });
-  return (
+  return isLoading || isFetching ? (
+    <div className="h-screen flex flex-col justify-center items-center relative">
+      <Loader />
+    </div>
+  ) : isError ? (
+    <div className="h-screen flex flex-col justify-center items-center relative">
+      <p className="text-med font-bold">
+        Somthing went wrong, Please reload the page!
+      </p>
+    </div>
+  ) : (
     isSuccess && (
       <div className="flex flex-col justify-center items-center">
-        {/* <Head
+        <Head
           title={
             article?.Articles_Translation.find(
-              (x) =>
-                x.Language.Code.toLowerCase() == i18n.language.toLowerCase()
+              (x) => x.Language.Code.toLowerCase() == "en"
             ).Title
           }
-          desc={article?.title}
+          desc={
+            article?.Articles_Translation.find(
+              (x) => x.Language.Code.toLowerCase() == "en"
+            ).Title
+          }
           additionMeta={
-            <meta name="author" content={article?.author?.name}></meta>
+            <meta name="author" content={article?.Author?.Name}></meta>
           }
           keywords={article?.keywords}
-          canonicalLink={article?.slug}
-        /> */}
-        <div className="h-[500px] relative w-full ">
+          canonicalLink={article.id}
+        />
+        <div className="h-[500px] relative w-full">
           <img
             src={API_BASE_URL + article?.Image.URL}
             className="h-full w-full object-cover object-bottom"

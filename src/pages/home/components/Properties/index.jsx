@@ -6,12 +6,13 @@ import Slider from "react-slick";
 import { useGetActivePropertiesQuery } from "../../../../redux/properties/propertiesSlice";
 import { useNavigate } from "react-router-dom";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
+import Loader from "../../../../components/UI/Loader";
 const HomeProperties = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef();
-  const { data, isLoading, isFetching, isSuccess, isError, error } =
+  const { data, isLoading, isFetching, isSuccess, isError } =
     useGetActivePropertiesQuery();
   return (
     <div className="mt-20 flex flex-col justify-center items-center px-[5%]">
@@ -38,20 +39,37 @@ const HomeProperties = () => {
           />
         </div>
       </div>
-      {isSuccess && !isFetching && !isLoading && (
-        <Slider
-          ref={sliderRef}
-          slidesToScroll={1}
-          slidesToShow={data.ids.length >= 4 ? 4 : data.ids.length}
-          arrows={false}
-          dots={false}
-          className="w-full"
-          beforeChange={(prev, next) => setCurrentSlide(next)}
-        >
-          {data.ids.map((item, index) => {
-            return <PropertyCard key={index} data={data.entities[item]} />;
-          })}
-        </Slider>
+      {isLoading || isFetching ? (
+        <div className="my-24 flex flex-col justify-center items-center relative">
+          <Loader />
+        </div>
+      ) : isError ? (
+        <div className="my-2 flex flex-col justify-center items-center relative">
+          <p className="text-med font-bold">
+            Somthing went wrong, Please reload the page!
+          </p>
+        </div>
+      ) : isSuccess && data.count == 0 ? (
+        <div className="my-2 flex flex-col justify-center items-center relative">
+          <p className="text-med font-bold">There Are No Properties Yet!</p>
+        </div>
+      ) : (
+        isSuccess &&
+        data.count !== 0 && (
+          <Slider
+            ref={sliderRef}
+            slidesToScroll={1}
+            slidesToShow={data.ids.length >= 4 ? 4 : data.ids.length}
+            arrows={false}
+            dots={false}
+            className="w-full"
+            beforeChange={(prev, next) => setCurrentSlide(next)}
+          >
+            {data.ids.map((item, index) => {
+              return <PropertyCard key={index} data={data.entities[item]} />;
+            })}
+          </Slider>
+        )
       )}
     </div>
   );
