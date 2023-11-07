@@ -66,9 +66,8 @@ const SelectInput = ({
 };
 const HomeFilter = () => {
   const [selectedPurpose, setSelectedPurpose] = useState(0);
-
   return (
-    <div className="h-[20vh] -mt-[13.5%]">
+    <div className="h-[20vh] -mt-64">
       <div
         className="flex justify-center items-center text-white z-30 backdrop-blur-[2px] absolute w-screen left-0"
         style={{
