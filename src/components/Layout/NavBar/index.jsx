@@ -2,17 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import Drawer from "./Drawer";
 import LinkElement from "./LinkElement";
-// import Dropdown from "./Language";
 import { MdDehaze } from "react-icons/md";
-// import { FaPlus } from "react-icons/fa";
-// import { useDispatch } from "react-redux";
-// import { showModal } from "../../../redux/modal.slice";
 import { handleScroll } from "../../../helpers/scroll";
 import { NavElement } from "../../../data/navData";
 import Logo from "../../../assets/logos/AVA-Logo.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import colors from "../../../settings";
-const NavBarT2 = () => {
+const NavBar = () => {
   const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [header, setHeader] = useState("transparent");
@@ -21,10 +17,8 @@ const NavBarT2 = () => {
     open: false,
     id: "",
   });
-  // const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-
   const listenScrollEvent = (event) => {
     if (document.documentElement.scrollTop < 300) {
       return setHeader("transparent");
@@ -39,9 +33,7 @@ const NavBarT2 = () => {
       document.removeEventListener("scroll", listenScrollEvent);
     };
   }, []);
-
   const dropDownRef = useRef(null);
-
   const handleClickOutside = (event) => {
     if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
       setDropDownSelect({ open: false, id: "" });
@@ -53,7 +45,6 @@ const NavBarT2 = () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, []);
-
   return (
     <>
       <div
@@ -65,11 +56,11 @@ const NavBarT2 = () => {
         }}
       >
         <div
-          className={`transition-all duration-500  w-full px-2 xl:px-12 py-1 max-w-[1920px] flex justify-between md:justify-start items-center md:gap-x-24`}
+          className={`transition-all duration-500 w-full px-2 xl:px-12 py-1 max-w-[1920px] flex justify-between md:justify-start items-center md:gap-x-24`}
         >
           <img
             src={Logo}
-            className="h-12 2xl:h-16 scale-125 translate-y-1"
+            className="h-[7vh] scale-125 translate-y-1"
             alt=""
             onClick={() => navigate("/")}
           />
@@ -161,4 +152,4 @@ const NavBarT2 = () => {
   );
 };
 
-export default NavBarT2;
+export default NavBar;
