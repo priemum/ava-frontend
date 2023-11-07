@@ -68,56 +68,58 @@ const HomeFilter = () => {
   const [selectedPurpose, setSelectedPurpose] = useState(0);
 
   return (
-    <div
-      className="flex justify-center items-center text-white -mt-[14%]  z-30 backdrop-blur-[2px]"
-      style={{
-        background: "linear-gradient(0deg, #FFF 5%, transparent 90%)",
-      }}
-    >
-      <div className="bg-primary/30 backdrop-blur-[21px]  w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10">
-        <div className="flex gap-x-8 text-small px-4">
-          {Purpose.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className="flex items-center gap-x-1 w-20 cursor-pointer"
-                onClick={() => setSelectedPurpose(index)}
-              >
-                <p>{item}</p>
-                <MdExpandMore />
-              </div>
-            );
-          })}
-        </div>
-        <div className="bg-white/50 h-1 w-full gap-x-2 self-center flex my-3">
-          {Purpose.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className={`w-28 h-full transition-all duration-500 ${
-                  selectedPurpose == index && "bg-white scale-y-125"
-                }`}
-              />
-            );
-          })}
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
-          <CustomInput
-            placeholder={"Enter Location"}
-            icon={<MdLocationOn className="text-small" />}
-            id={""}
-            value={""}
-            onChange={() => {}}
-            type="text"
-            name={""}
-          />
-          <SelectInput firstOption={"Choose Category"} />
-          <SelectInput firstOption={"Beds & Baths"} />
-          <SelectInput firstOption={"Area"} />
-          <SelectInput firstOption={"Price"} />
-          <button className=" w-full bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider">
-            Find
-          </button>
+    <div className="h-[20vh] -mt-[13.5%]">
+      <div
+        className="flex justify-center items-center text-white z-30 backdrop-blur-[2px] absolute w-screen left-0"
+        style={{
+          background: "linear-gradient(0deg, #FFF 5%, transparent 90%)",
+        }}
+      >
+        <div className="bg-primary/30 backdrop-blur-[21px]  w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10 max-w-[1920px]">
+          <div className="flex gap-x-8 text-small px-4">
+            {Purpose.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex items-center gap-x-1 w-20 cursor-pointer"
+                  onClick={() => setSelectedPurpose(index)}
+                >
+                  <p>{item}</p>
+                  <MdExpandMore />
+                </div>
+              );
+            })}
+          </div>
+          <div className="bg-white/50 h-1 w-full gap-x-2 self-center flex my-3">
+            {Purpose.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className={`w-28 h-full transition-all duration-500 ${
+                    selectedPurpose == index && "bg-white scale-y-125"
+                  }`}
+                />
+              );
+            })}
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+            <CustomInput
+              placeholder={"Enter Location"}
+              icon={<MdLocationOn className="text-small" />}
+              id={""}
+              value={""}
+              onChange={() => {}}
+              type="text"
+              name={""}
+            />
+            <SelectInput firstOption={"Choose Category"} />
+            <SelectInput firstOption={"Beds & Baths"} />
+            <SelectInput firstOption={"Area"} />
+            <SelectInput firstOption={"Price"} />
+            <button className=" w-full bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider">
+              Find
+            </button>
+          </div>
         </div>
       </div>
     </div>
