@@ -56,14 +56,16 @@ const NavBarT2 = () => {
 
   return (
     <>
-      <div className={`flex flex-col justify-center items-center`}>
+      <div
+        className={`flex flex-col justify-center items-center top-0 !w-screen fixed backdrop-blur-[21px] z-40 ${
+          header == "white" ? "shadow-2xl" : "shadow-0"
+        }`}
+        style={{
+          background: header === "white" ? colors.primary : "transparent",
+        }}
+      >
         <div
-          className={`${
-            header == "white" ? "shadow-2xl" : "shadow-0"
-          } transition-all duration-500  z-40 fixed backdrop-blur-[21px] max-w-[1920px] w-full top-0 px-2 xl:px-12 py-1 flex justify-between md:justify-start items-center  md:gap-x-24`}
-          style={{
-            background: header === "white" ? colors.primary : "transparent",
-          }}
+          className={`transition-all duration-500  w-full px-2 xl:px-12 py-1 max-w-[1920px] flex justify-between md:justify-start items-center md:gap-x-24`}
         >
           <img
             src={Logo}
@@ -125,22 +127,7 @@ const NavBarT2 = () => {
               </div>
             )
           )}
-
           <div className={`flex justify-between items-center md:hidden`}>
-            {/* <div className="flex flex-1">
-              <div
-                className="flex justify-center items-center px-[3%] cursor-pointer"
-                onClick={() =>
-                  dispatch(showModal({ data: <RegisterT1 modal={true} /> }))
-                }
-              >
-                <FaPlus className="animate-pulse" />
-                <p className="font-normal uppercase p-4 ">{t("register")}</p>
-              </div>
-            </div> */}
-            {/* <Dropdown
-              textColor={header == "white" ? "text-primary" : "text-white"}
-            /> */}
             <div
               onClick={() => setMobileOpen(true)}
               className=" cursor-pointer text-white flex justify-center items-center gap-x-2"
