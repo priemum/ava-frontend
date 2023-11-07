@@ -12,7 +12,13 @@ export const articlesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getActiveArticles: builder.query({
       query: (args) => ({
-        url: `/article-active`,
+        url: `/${
+          args?.searchTerm
+            ? `article/search/${args.searchTerm}`
+            : `article-active`
+        }?page=${args?.page ? args.page : ""}&limit=${
+          args?.limit ? args.limit : ""
+        } `,
         method: "GET",
       }),
       transformResponse: (responseData) => {

@@ -17,7 +17,7 @@ const ArticleCard = ({
     <div
       className="w-[90%] rounded-md group bg-primary/10 backdrop-blur-[21px] shadow-md"
       onClick={() => {
-        navigate(`/articles/${id}`);
+        navigate(`/article/${id}`);
         localStorage.setItem("slug", id);
       }}
     >

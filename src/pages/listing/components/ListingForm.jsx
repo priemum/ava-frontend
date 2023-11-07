@@ -5,15 +5,21 @@ import {
   MdPerson,
   MdDeleteOutline as DeleteIcon,
   MdOutlineDeleteSweep as DeleteAllIcon,
+  MdExpandMore,
 } from "react-icons/md";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
-import { Gender, Purpose } from "../../../constants";
+import {
+  Gender,
+  Purpose,
+  RentFrequency,
+  CompletionStatus,
+} from "../../../constants";
 import { useAddListingMutation } from "../../../redux/listings/listingsSlice";
 import { useGetLNGQuery } from "../../../redux/languages/languagesSlice";
-import RichTextBox from "../../../components/Forms/RichTextBox";
 import Button from "../../../components/UI/Button";
 import Slider from "react-slick";
+
 const defaultFormState = {
   Purpose: "Rent",
   Type: "",
@@ -34,19 +40,57 @@ const CustomInput = ({
   id,
   value,
   onChange,
+  reverseIcon,
+  readOnly,
+  customStyle,
+  options,
+  select,
+  setState,
+  state,
 }) => {
+  const [selectStatus, setSelectStatus] = useState(false);
+
   return (
-    <div className="border-b-[1px] border-white px-4 py-2 flex bg-white/20 rounded-md w-full">
+    <div
+      className={`border-b-[1px] border-white px-4 py-2 flex bg-white/20 rounded-md w-full items-center relative ${
+        reverseIcon && "flex-row-reverse"
+      } ${select && "cursor-pointer"}`}
+      onClick={() => {
+        if (select) setSelectStatus(!selectStatus);
+      }}
+    >
       {icon}
       <input
         type={type}
-        className="bg-transparent py-1 px-2 w-full outline-none placeholder:text-white"
+        className={`bg-transparent py-1 px-2 w-full outline-none placeholder:text-white ${customStyle} ${
+          select && "cursor-pointer"
+        }`}
         name={name}
         onChange={onChange}
         placeholder={placeholder}
         id={id}
-        value={value}
+        value={value ?? ""}
+        readOnly={readOnly}
       />
+      {select && (
+        <div
+          className={`${
+            selectStatus ? "scale-100" : "scale-0"
+          } z-30 transition-all duration-300 origin-top absolute left-0 top-14 rounded-md shadow-2xl drop-shadow-2xl bg-primary/70 backdrop-blur-[21px] text-white w-full p-2`}
+        >
+          {options.map((item, index) => {
+            return (
+              <p
+                key={index}
+                className="text-tiny hover:bg-secondary/50 rounded-md p-2 transition-all duration-300"
+                onClick={() => setState({ ...state, Type: item })}
+              >
+                {item}
+              </p>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
@@ -57,6 +101,7 @@ const ListingForm = () => {
   const [phone, setPhone] = useState("");
   const [images, setImages] = useState([]);
   const [imageURL, setImageURL] = useState([]);
+  const [typeOptions, setTypeOptions] = useState(RentFrequency);
   const [listWithUs_Translation, setListWithUs_Translation] = useState([]);
   const {
     data: lngs,
@@ -66,6 +111,7 @@ const ListingForm = () => {
     isError: lngIsError,
     error: lngError,
   } = useGetLNGQuery();
+
   const [addListing, { isLoading, isSuccess, isError }] =
     useAddListingMutation();
   function handleChange(e) {
@@ -85,6 +131,15 @@ const ListingForm = () => {
     setImages([...images, ...e.target.files]);
   }
 
+  useEffect(() => {
+    if (form.Purpose == "Rent") {
+      setTypeOptions(RentFrequency);
+      setForm({ ...form, Type: RentFrequency[0] });
+    } else {
+      setTypeOptions(CompletionStatus);
+      setForm({ ...form, Type: CompletionStatus[0] });
+    }
+  }, [form.Purpose]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -173,9 +228,8 @@ const ListingForm = () => {
             <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2">
               {Purpose.map((item, index) => {
                 return (
-                  <>
+                  <React.Fragment key={index}>
                     <div
-                      key={index}
                       className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
                         form.Purpose == item
                           ? "bg-secondary text-primary"
@@ -188,19 +242,23 @@ const ListingForm = () => {
                     {index !== Gender.length - 1 && (
                       <div className="h-10 w-1 bg-white/50" />
                     )}
-                  </>
+                  </React.Fragment>
                 );
               })}
             </div>
           </div>
           <div className="w-full flex justify-center items-center gap-x-2">
             <CustomInput
-              placeholder={t("Type")}
-              type="text"
-              name="Type"
-              id="Type"
               value={form.Type}
-              onChange={handleChange}
+              selectID={"types"}
+              inputType="text"
+              options={typeOptions}
+              setState={setForm}
+              state={form}
+              reverseIcon
+              icon={<MdExpandMore className="text-smaller" />}
+              select
+              readOnly
             />
             <CustomInput
               placeholder={t("Price")}
@@ -401,7 +459,7 @@ const ListingForm = () => {
               <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2">
                 {Gender.map((item, index) => {
                   return (
-                    <>
+                    <React.Fragment key={index}>
                       <div
                         key={index}
                         className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
@@ -414,9 +472,9 @@ const ListingForm = () => {
                         {item}
                       </div>
                       {index !== Gender.length - 1 && (
-                        <div className="h-10 w-1 bg-white/50" />
+                        <div key={item} className="h-10 w-1 bg-white/50" />
                       )}
-                    </>
+                    </React.Fragment>
                   );
                 })}
               </div>

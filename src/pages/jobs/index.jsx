@@ -2,9 +2,10 @@ import React from "react";
 import Head from "../../components/Layout/PageContainer/Head";
 import PageHeader from "../../components/UI/PageHeader";
 import JobsList from "./components/JobsList";
+import SearchJob from "./components/SearchJob";
 const JobApplicationPage = () => {
   return (
-    <div className="">
+    <div className="flex flex-col justify-center items-center">
       <Head
         title={"Join us"}
         desc={"Join our team."}
@@ -14,6 +15,7 @@ const JobApplicationPage = () => {
         canonicalLink={"/jobs"}
       />
       <PageHeader text={"Join Our Team"} />
+      <SearchJob />
       <JobsList />
     </div>
   );

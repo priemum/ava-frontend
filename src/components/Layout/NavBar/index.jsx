@@ -26,9 +26,9 @@ const NavBarT2 = () => {
   const navigate = useNavigate();
 
   const listenScrollEvent = (event) => {
-    if (document.documentElement.scrollTop < 700) {
+    if (document.documentElement.scrollTop < 300) {
       return setHeader("transparent");
-    } else if (document.documentElement.scrollTop > 700) {
+    } else if (document.documentElement.scrollTop > 300) {
       return setHeader("white");
     }
   };
@@ -39,7 +39,6 @@ const NavBarT2 = () => {
       document.removeEventListener("scroll", listenScrollEvent);
     };
   }, []);
-  let slug = localStorage.getItem("slug");
 
   const dropDownRef = useRef(null);
 
@@ -60,21 +59,10 @@ const NavBarT2 = () => {
       <div className={`flex flex-col justify-center items-center`}>
         <div
           className={`${
-            header == "white"
-              ? "shadow-2xl border-transparent"
-              : "shadow-0 border-gray-400"
-          } transition-all duration-500 z-40 fixed max-w-[1920px] w-full top-0 px-2 xl:px-12 py-1 flex justify-between md:justify-start items-center  md:gap-x-24`}
+            header == "white" ? "shadow-2xl" : "shadow-0"
+          } transition-all duration-500  z-40 fixed backdrop-blur-[21px] max-w-[1920px] w-full top-0 px-2 xl:px-12 py-1 flex justify-between md:justify-start items-center  md:gap-x-24`}
           style={{
-            background:
-              header === "white"
-                ? colors.primary
-                : location.pathname == "/" ||
-                  location.pathname == "/about-us" ||
-                  location.pathname == "/jobs" ||
-                  location.pathname == "/articles" ||
-                  location.pathname == `/articles/${slug}`
-                ? "transparent"
-                : colors.primary,
+            background: header === "white" ? colors.primary : "transparent",
           }}
         >
           <img

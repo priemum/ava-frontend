@@ -12,11 +12,19 @@ export const publicRoutes = [
     element: lazy(() => import("../pages/jobs/index.jsx")),
   },
   {
+    path: "/jobs/:search",
+    element: lazy(() => import("../pages/jobs/index.jsx")),
+  },
+  {
     path: "/articles",
     element: lazy(() => import("../pages/Articles/index.jsx")),
   },
   {
-    path: "/articles/:slug",
+    path: "/articles/:search",
+    element: lazy(() => import("../pages/Articles/index.jsx")),
+  },
+  {
+    path: "/article/:slug",
     element: lazy(() => import("../pages/Article/index.jsx")),
   },
   {

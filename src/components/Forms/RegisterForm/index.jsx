@@ -116,9 +116,8 @@ const RegisterForm = () => {
         <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2">
           {Gender.map((item, index) => {
             return (
-              <>
+              <React.Fragment key={index}>
                 <div
-                  key={index}
                   className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
                     form.Gender == item
                       ? "bg-secondary text-primary"
@@ -131,14 +130,14 @@ const RegisterForm = () => {
                 {index !== Gender.length - 1 && (
                   <div className="h-10 w-1 bg-white/50" />
                 )}
-              </>
+              </React.Fragment>
             );
           })}
         </div>
       </div>
       <CustomInput
         // icon={<MdLocationOn className="text-white text-med" />}
-        placeholder={t("subject")}
+        placeholder={t("Subject")}
         type="text"
         name="Subject"
         id="Subject"
@@ -147,7 +146,7 @@ const RegisterForm = () => {
       />
       <div className="border-b-[1px] border-white px-4 py-2 flex bg-white/20 rounded-md">
         <textarea
-          placeholder={t("message")}
+          placeholder={t("Message")}
           name="Message"
           id="Message"
           value={form.Message}

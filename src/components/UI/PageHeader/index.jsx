@@ -6,7 +6,7 @@ import pattern from "../../../assets/images/pattern.svg";
 const PageHeader = ({ text }) => {
   return (
     <div
-      className="h-[60vh] flex justify-center items-center bg-primary bg-no-repeat bg-cover bg-center relative overflow-hidden rounded-b-xl"
+      className="w-full h-[60vh] flex justify-center items-center bg-primary bg-no-repeat bg-cover bg-center relative overflow-hidden rounded-b-xl"
       style={{
         backgroundImage: `url(${pattern})`,
         backgroundPosition: "100% 20%",

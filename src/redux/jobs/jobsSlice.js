@@ -12,7 +12,11 @@ export const jobsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getActiveJobs: builder.query({
       query: (args) => ({
-        url: `/job-active`,
+        url: `/${
+          args?.searchTerm ? `job/search/${args.searchTerm}` : `job-active`
+        }?page=${args?.page ? args.page : ""}&limit=${
+          args?.limit ? args.limit : ""
+        } `,
         method: "GET",
       }),
       transformResponse: (responseData) => {
