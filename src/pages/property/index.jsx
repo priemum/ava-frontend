@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import UnitSlider from "./components/UnitSlider";
 import Amenities from "./components/Amenities";
 import Location from "./components/Location";
+import PropertyInfo from "./components/PropertyInfo";
 const PropertyPage = () => {
   const { id } = useParams();
   const { data, isLoading, isFetching, isSuccess, isError } =
@@ -38,6 +39,7 @@ const PropertyPage = () => {
                 <UnitSlider data={data.propertyUnits} />
                 <Amenities data={data.Aminities} />
                 <Location data={data} />
+                <PropertyInfo data={data} />
               </div>
               <div className="col-span-1 border-l-2 h-full min-h-[40vh]">
                 side Info
