@@ -51,6 +51,7 @@ const Announcements = () => {
               {data.ids.map((item, index) => {
                 return (
                   <div
+                    key={index}
                     className={`${
                       currentSlide == index
                         ? "border-white/80"

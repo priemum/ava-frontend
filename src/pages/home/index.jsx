@@ -12,7 +12,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="relative overflow-x-hidden">
       <Helmet>
         <html lang="en" />
         <meta charset="UTF-8" />
@@ -35,12 +35,8 @@ const HomePage = () => {
       <Header />
       <HomeFilter />
       <HomeProperties />
-
       <Announcements />
-
       <HomeAddresses />
-
-      {/* <div className="w-full h-24" /> */}
     </div>
   );
 };

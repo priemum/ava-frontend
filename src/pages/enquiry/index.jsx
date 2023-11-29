@@ -15,9 +15,7 @@ const EnquiryPage = () => {
             "text-med md:text-[60px] font-bold text-center drop-shadow-2xl w-3/5"
           }
         />
-        <div className=" w-full flex max-md:flex-col max-md:justify-center md:justify-center items-center md:gap-x-8">
-          <EnquiryForm />
-        </div>
+        <EnquiryForm />
       </div>
     </div>
   );

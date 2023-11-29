@@ -28,6 +28,14 @@ export const publicRoutes = [
     element: lazy(() => import("../pages/Article/index.jsx")),
   },
   {
+    path: "/properties",
+    element: lazy(() => import("../pages/properties/index.jsx")),
+  },
+  {
+    path: "/properties/:id",
+    element: lazy(() => import("../pages/property/index.jsx")),
+  },
+  {
     path: "/privacy-policy",
     element: lazy(() => import("../pages/privacy/index.jsx")),
   },

@@ -1,5 +1,6 @@
 export const NavElement = [
   { name: "home", link: "/" },
+  { name: "Properties", link: "/properties" },
   { name: "AboutUs", link: "/about-us" },
   { name: "Articles", link: "/articles" },
   { name: "Jobs", link: "/jobs" },

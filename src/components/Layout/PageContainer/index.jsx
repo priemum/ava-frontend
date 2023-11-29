@@ -15,7 +15,7 @@ const PageLayout = ({ children }) => {
     setW(width);
   }, [width]);
   return (
-    <div className=" flex flex-col justify-center items-center relative overflow-x-hidden">
+    <div className="flex flex-col justify-center items-center relative">
       <NavBar />
       <div className="min-h-screen w-full max-w-[1920px]">{children}</div>
       <Footer />

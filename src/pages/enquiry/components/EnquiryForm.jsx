@@ -10,6 +10,8 @@ import {
   CompletionStatus,
 } from "../../../constants";
 import { useAddEnquiryMutation } from "../../../redux/enquiry/enquirySlice";
+import { useForm } from "react-hook-form";
+
 const defaultFormState = {
   Type: "",
   Purpose: "Rent",
@@ -90,6 +92,7 @@ const EnquiryForm = () => {
   const [form, setForm] = useState(defaultFormState);
   const [phone, setPhone] = useState("");
   const [typeOptions, setTypeOptions] = useState(RentFrequency);
+  const { register, handleSubmit } = useForm();
 
   const [addEnquiry, { isLoading, isSuccess, isError }] =
     useAddEnquiryMutation();
@@ -109,7 +112,7 @@ const EnquiryForm = () => {
       setForm({ ...form, Type: CompletionStatus[0] });
     }
   }, [form.Purpose]);
-  const handleSubmit = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     setForm({ ...form, PhoneNo: phone });
     addEnquiry({ form });
@@ -122,7 +125,10 @@ const EnquiryForm = () => {
   }, [isSuccess, isError]);
 
   return (
-    <>
+    <form
+      className="w-full flex max-md:flex-col max-md:justify-center md:justify-center items-center md:gap-x-8"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[30vw] min-h-[65vh]">
         <p className="text-smaller"> Property Information</p>
         <div className="space-y-4">
@@ -170,7 +176,6 @@ const EnquiryForm = () => {
             value={form.Bedrooms}
             onChange={handleChange}
           />
-
           <div className="flex justify-between items-center w-full gap-x-4">
             <CustomInput
               placeholder={t("MinPrice")}
@@ -275,7 +280,8 @@ const EnquiryForm = () => {
           className={`bg-buttonGrad text-primary text-small w-full py-4 disabled:!bg-gray-500 disabled:bg-none disabled:text-white rounded-md ${
             isLoading && "animate-pulse"
           } `}
-          onClick={handleSubmit}
+          type="submit"
+          // onClick={handleSubmit}
           disabled={
             form.Email.replace(/ /g, "") == "" ||
             form.Bedrooms.toString().replace(/ /g, "") == "" ||
@@ -291,7 +297,7 @@ const EnquiryForm = () => {
           {isLoading ? t("sending") : t("send")}
         </button>
       </div>
-    </>
+    </form>
   );
 };
 
