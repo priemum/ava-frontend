@@ -41,5 +41,6 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
 export const {
   useLazyGetPropertyByIdQuery,
   useGetActivePropertiesQuery,
+  useGetPropertyByIdQuery,
   useLazyGetActivePropertiesQuery,
 } = propertiesApiSlice;

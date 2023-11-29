@@ -4,6 +4,7 @@ import Footer from "../Footer";
 import useWindowDimensions from "../../../hooks/screenDimentions";
 import { MdOutlineWhatsapp } from "react-icons/md";
 import Modal from "../../UI/Modal/Modal";
+import GalleryModal from "../../UI/GalleryModal";
 const PageLayout = ({ children }) => {
   const { width } = useWindowDimensions();
   const [w, setW] = useState(width);
@@ -20,6 +21,7 @@ const PageLayout = ({ children }) => {
       <div className="min-h-screen w-full max-w-[1920px]">{children}</div>
       <Footer />
       <Modal />
+      <GalleryModal />
       <div
         className="fixed bottom-3 md:bottom-5 right-3 md:right-5 bg-[#25D366]/80 text-white p-3 rounded-full cursor-pointer z-40"
         onClick={(e) => {

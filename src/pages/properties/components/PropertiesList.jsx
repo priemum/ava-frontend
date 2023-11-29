@@ -3,7 +3,7 @@ import { useGetActivePropertiesQuery } from "../../../redux/properties/propertie
 import Loader from "../../../components/UI/Loader";
 import PropertyCard from "../../../components/UI/PropertyCard";
 const PropertiesList = () => {
-  const { data, isLoading, isFetching, isSuccess, isError, error } =
+  const { data, isLoading, isFetching, isSuccess, isError } =
     useGetActivePropertiesQuery();
 
   return isLoading || isFetching ? (
@@ -15,6 +15,10 @@ const PropertiesList = () => {
       <p className="font-bold text-med">
         Somthing Went Wrong, Please Refresh The Page
       </p>
+    </div>
+  ) : isSuccess && data.count == 0 ? (
+    <div className="h-screen flex justify-center items-center">
+      <p className="font-bold text-med">There Are No Properties Yet</p>
     </div>
   ) : (
     isSuccess && (
