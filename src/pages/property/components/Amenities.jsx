@@ -1,11 +1,9 @@
 import React from "react";
 import { API_BASE_URL } from "../../../constants";
-import colors from "../../../settings";
 import pattern from "../../../assets/images/AmenityPattern.png";
 import AmenityIcon from "../../../assets/icons/AmenityIcon.svg";
 import { showModal } from "../../../redux/modal.slice";
 import { useDispatch } from "react-redux";
-import PropertyCard from "../../../components/UI/PropertyCard";
 
 const Amenities = ({ data }) => {
   const dispatch = useDispatch();
@@ -35,7 +33,7 @@ const Amenities = ({ data }) => {
   const AmenitiesCard = ({ icon, name, count, data }) => {
     return (
       <div
-        className="w-[225px] h-[225px] flex flex-col justify-center items-center relative rounded-md cursor-pointer"
+        className="w-[225px] h-[225px] flex flex-col justify-center items-center relative rounded-xl cursor-pointer"
         onClick={() => {
           showAmenitiesModal();
         }}
@@ -54,7 +52,7 @@ const Amenities = ({ data }) => {
         </div>
 
         <div
-          className="absolute w-full h-full left-0 top-0 rounded-md z-10"
+          className="absolute w-full h-full left-0 top-0 rounded-xl z-10"
           style={{
             background: `linear-gradient(141deg, #161535 22.49%, #FBCD7E 143.56%)`,
           }}
@@ -63,10 +61,10 @@ const Amenities = ({ data }) => {
             style={{
               backgroundImage: `url(${pattern})`,
             }}
-            className="w-full h-full bg-no-repeat bg-center bg-cover rounded-md"
+            className="w-full h-full bg-no-repeat bg-center bg-cover rounded-xl"
           />
         </div>
-        <div className="absolute w-full h-full left-0 top-0 rounded-md z-20 bg-white/0 backdrop-blur-[3px]" />
+        <div className="absolute w-full h-full left-0 top-0 rounded-xl z-20 bg-white/0 backdrop-blur-[2px]" />
       </div>
     );
   };

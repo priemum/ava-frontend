@@ -22,7 +22,7 @@ const Location = ({ data }) => {
         title="Property Map Location"
         id="iframeId"
         height="600px"
-        width="97%"
+        width="100%"
         className="rounded-xl shadow-md"
         sandbox="allow-scripts allow-same-origin allow-presentation"
         loading="lazy"

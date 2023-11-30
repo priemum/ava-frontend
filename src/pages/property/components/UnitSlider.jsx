@@ -1,28 +1,28 @@
-import React, { useRef, useState } from "react";
-import { FaCoins, FaAngleRight, FaAngleLeft } from "react-icons/fa";
+import React, { useRef } from "react";
 import bath from "../../../assets/icons/bath.svg";
 import bedroom from "../../../assets/icons/bedroom.svg";
 import squareft from "../../../assets/icons/squareft.svg";
 import Slider from "react-slick";
-const UnitSlider = ({ data }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
   const sliderRef = useRef();
   return (
-    <div className="mt-6 w-[600px]">
+    <div className="mt-6 p-8 bg-white rounded-xl shadow-xl w-[80%]">
       <Slider
         dots={false}
         arrows={true}
         infinite={false}
         slidesToShow={data.length ?? 4}
         slidesToScroll={1}
-        className="overflow-hidden h-full w-full"
+        className={`overflow-hidden h-full w-full ${
+          data.length < 2 && "hidden"
+        }`}
         initialSlide={currentSlide}
       >
         {data.map((item, index) => {
           return (
             <div
               key={index}
-              className={`max-w-[270px] py-1 px-2 text-center font-semibold backdrop-blur-[21px] ${
+              className={`max-w-[95%] py-1 px-2 text-center font-semibold backdrop-blur-[21px] ${
                 currentSlide == index
                   ? "bg-secondary text-primary"
                   : "bg-primary/50 text-white shadow-2xl"

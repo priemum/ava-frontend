@@ -63,7 +63,7 @@ const ImageSlider = ({ data }) => {
     );
   };
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-4 px-8">
       <LazyImage
         src={API_BASE_URL + data[0].URL}
         divStyle={"h-[516px] cursor-pointer"}
