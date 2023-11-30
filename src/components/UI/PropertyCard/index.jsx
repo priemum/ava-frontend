@@ -94,6 +94,7 @@ const PropertyCard = ({ data }) => {
                 className="bg-third p-2 rounded-md text-black text-smaller cursor-pointer"
                 onClick={() => {
                   navigate(`/properties/${data.id}`);
+                  sessionStorage.setItem("propertyId", data.id);
                 }}
               >
                 <MdArrowOutward size={24} />

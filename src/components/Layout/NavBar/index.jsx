@@ -6,7 +6,7 @@ import { MdDehaze } from "react-icons/md";
 import { handleScroll } from "../../../helpers/scroll";
 import { NavElement } from "../../../data/navData";
 import Logo from "../../../assets/logos/AVA-Logo.svg";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import colors from "../../../settings";
 const NavBar = () => {
   const { t } = useTranslation();
@@ -52,7 +52,13 @@ const NavBar = () => {
           header == "white" ? "shadow-2xl" : "shadow-0"
         }`}
         style={{
-          background: header === "white" ? colors.primary : "transparent",
+          background:
+            header === "white" ||
+            location.pathname == "/properties" ||
+            location.pathname ==
+              `/properties/${sessionStorage.getItem("propertyId")}`
+              ? colors.primary
+              : "transparent",
         }}
       >
         <div

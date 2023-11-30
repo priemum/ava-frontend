@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import colors from "../../../../settings";
 import Button from "../../../../components/UI/Button";
-import testIMG from "../../../../assets/images/home/amber.webp";
 import Slider from "react-slick";
 import { useGetActiveAnnouncementsQuery } from "../../../../redux/announcements/announcementsSlice";
 import { API_BASE_URL } from "../../../../constants";
