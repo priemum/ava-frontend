@@ -6,14 +6,14 @@ const PropertiesPage = () => {
   return (
     <div className="pt-24 pb-12 bg-[#F6F6F6] flex">
       <div
-        className="w-[25vw] top-[10%] left-0 h-[200px]"
+        className="w-[25vw] hidden lg:block top-[10%] left-0 h-[200px]"
         style={{
           position: "sticky",
         }}
       >
         <Filter />
       </div>
-      <div className="w-[75vw]">
+      <div className="w-full lg:w-[75vw] ">
         <PropertiesList />
       </div>
     </div>

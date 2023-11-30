@@ -56,7 +56,7 @@ const PropertyCard = ({ data }) => {
           <Slider
             slidesToScroll={1}
             slidesToShow={1}
-            dots={true}
+            dots={false}
             arrows={true}
             className="!h-[550px] w-full"
             nextArrow={<SampleNextArrow />}
@@ -113,15 +113,27 @@ const PropertyCard = ({ data }) => {
             <div className="pb-2 pt-5 flex justify-evenly items-center font-bold text-smaller h-2/5">
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
-                  <p>{lower.Bathrooms + " - " + higher.Bathrooms}</p>
-                  <img src={bath} className="w-8 h-8" alt="bath-icon" />
+                  <p className="text-tiny md:text-smaller">
+                    {lower.Bathrooms + " - " + higher.Bathrooms}
+                  </p>
+                  <img
+                    src={bath}
+                    className="w-6 h-6 md:w-8 md:h-8"
+                    alt="bath-icon"
+                  />
                 </div>
                 <p className="font-normal text-[12px] md:text-tiny">Baths</p>
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
-                  <p>{lower.Bedrooms + " - " + higher.Bedrooms}</p>
-                  <img src={bedroom} className="w-8 h-8" alt="bedroom-icon" />
+                  <p className="text-tiny md:text-smaller">
+                    {lower.Bedrooms + " - " + higher.Bedrooms}
+                  </p>
+                  <img
+                    src={bedroom}
+                    className="w-6 h-6 md:w-8 md:h-8"
+                    alt="bedroom-icon"
+                  />
                 </div>
                 <p className="font-normal text-[12px] md:text-tiny">Bedrooms</p>
               </div>
@@ -130,7 +142,11 @@ const PropertyCard = ({ data }) => {
                   <p className="text-tiny lg:text-smaller">
                     {lower.Size + " - " + higher.Size}
                   </p>
-                  <img src={squareft} className="w-8 h-8" alt="area-icon" />
+                  <img
+                    src={squareft}
+                    className="w-6 h-6 md:w-8 md:h-8"
+                    alt="area-icon"
+                  />
                 </div>
                 <p className="font-normal text-[12px] md:text-tiny">
                   Square (Ft)

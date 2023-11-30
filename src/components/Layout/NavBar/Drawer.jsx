@@ -29,7 +29,7 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
               }  `)
         }
       >
-        <article className="relative w-full pb-10 flex flex-col justify-start items-center space-y-6 overflow-y-scroll h-full bg-secondary">
+        <article className="relative w-full pb-10 flex flex-col justify-start items-center space-y-6 overflow-y-scroll h-full bg-primary">
           <header
             dir={i18n.language == "en" ? "ltr" : "rtl"}
             className="p-4 font-bold w-full flex justify-between items-start "
