@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import LazyImage from "../../../components/ui/LazyImage";
+import LazyImage from "../../../components/UI/LazyImage";
 import { API_BASE_URL } from "../../../constants";
 import Slider from "react-slick";
 import { useDispatch } from "react-redux";
