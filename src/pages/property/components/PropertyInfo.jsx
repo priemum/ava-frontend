@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 const PropertyInfo = ({ data }) => {
   const { i18n } = useTranslation();
   return (
-    <div className="my-12">
+    <div className="mt-12">
       <div className="flex items-center self-start flex-1">
         <img src={propertyInfoIcon} alt="property Icon" />
         <p className="text-med font-bold">Description</p>

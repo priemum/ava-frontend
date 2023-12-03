@@ -7,7 +7,8 @@ import UnitSlider from "./components/UnitSlider";
 import Amenities from "./components/Amenities";
 import Location from "./components/Location";
 import PropertyInfo from "./components/PropertyInfo";
-import { FaCoins, FaAngleRight, FaAngleLeft } from "react-icons/fa";
+import { FaCoins } from "react-icons/fa";
+import PaymentPlan from "./components/PaymentPlan";
 
 const PropertyPage = () => {
   const { id } = useParams();
@@ -49,6 +50,10 @@ const PropertyPage = () => {
                 <Amenities data={data.Aminities} />
                 <Location data={data} />
                 <PropertyInfo data={data} />
+                <PaymentPlan
+                  data={data?.propertyUnits[0]?.Paymentplan[0]}
+                  unitPrice={data.propertyUnits[currentSlide].Price}
+                />
               </div>
               <div className="col-span-1 h-[700px] min-h-[40vh] px-8 sticky top-[10%] left-0 ">
                 <div className="bg-white shadow-xl rounded-xl p-4 space-y-2">
