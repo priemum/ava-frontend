@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import PropTypes from "prop-types";
-import "./multiRangeSlider.css";
+import "./MultiRangeSlider.css";
 
 const MultiRangeSlider = ({ min, max }) => {
   const [minVal, setMinVal] = useState(min);
@@ -37,7 +36,7 @@ const MultiRangeSlider = ({ min, max }) => {
   }, [maxVal, getPercent]);
 
   return (
-    <div className="container">
+    <div className="flex items-center justify-center">
       <input
         type="range"
         min={min}
@@ -48,7 +47,7 @@ const MultiRangeSlider = ({ min, max }) => {
           setMinVal(value);
           minValRef.current = value;
         }}
-        className="thumb thumb--left"
+        className="thumb z-30"
         style={{ zIndex: minVal > max - 100 && "5" }}
       />
       <input
@@ -61,22 +60,24 @@ const MultiRangeSlider = ({ min, max }) => {
           setMaxVal(value);
           maxValRef.current = value;
         }}
-        className="thumb thumb--right"
+        className="thumb z-40"
       />
 
-      <div className="slider">
-        <div className="slider__track" />
-        <div ref={range} className="slider__range" />
-        <div className="slider__left-value">{minVal}</div>
-        <div className="slider__right-value">{maxVal}</div>
+      <div className="relative w-[200px]">
+        <div className="absolute rounded-sm h-[5px] z-10 bg-[#ced4da] w-full" />
+        <div
+          ref={range}
+          className="absolute rounded-sm h-[5px] bg-secondary z-20"
+        />
+        <div className="absolute text-primary text-tiny mt-5 left-[6px]">
+          {minVal}
+        </div>
+        <div className="absolute text-primary text-tiny mt-5 -right-1">
+          {maxVal}
+        </div>
       </div>
     </div>
   );
-};
-
-MultiRangeSlider.propTypes = {
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
 };
 
 export default MultiRangeSlider;
