@@ -1,9 +1,14 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import "./MultiRangeSlider.css";
 
-const MultiRangeSlider = ({ min, max }) => {
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
+const MultiRangeSlider = ({
+  min,
+  max,
+  minVal,
+  setMinVal,
+  maxVal,
+  setMaxVal,
+}) => {
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef(null);
@@ -36,7 +41,7 @@ const MultiRangeSlider = ({ min, max }) => {
   }, [maxVal, getPercent]);
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center relative">
       <input
         type="range"
         min={min}

@@ -10,10 +10,19 @@ const initialActiveState = propertiesActiveAdapter.getInitialState({
 
 export const propertiesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getActiveProperties: builder.query({
+    getActiveProperties: builder.mutation({
       query: (args) => ({
-        url: `/property-active`,
-        method: "GET",
+        url: `/${
+          args?.searchTerm
+            ? `property/search/${args.searchTerm}`
+            : args?.filter
+            ? `property/filter`
+            : `property-active`
+        }?page=${args?.page ? args.page : ""}&limit=${
+          args?.limit ? args.limit : ""
+        } `,
+        method: args.filter ? "POST" : "GET",
+        body: args.filter && args.form,
       }),
       transformResponse: (responseData) => {
         initialActiveState.count = responseData.count;
@@ -40,7 +49,6 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useLazyGetPropertyByIdQuery,
-  useGetActivePropertiesQuery,
+  useGetActivePropertiesMutation,
   useGetPropertyByIdQuery,
-  useLazyGetActivePropertiesQuery,
 } = propertiesApiSlice;

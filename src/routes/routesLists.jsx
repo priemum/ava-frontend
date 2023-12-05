@@ -1,6 +1,10 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import Home from "../pages/home";
+import ArticlePage from "../pages/Article/index.jsx";
+const ArticlesPage = lazy(() => import("../pages/Articles/index.jsx"));
+const JobPage = lazy(() => import("../pages/jobs/index.jsx"));
+const PropertiesPage = lazy(() => import("../pages/properties/index.jsx"));
 export const publicRoutes = [
   { path: "/", element: Home },
   {
@@ -9,19 +13,19 @@ export const publicRoutes = [
   },
   {
     path: "/jobs",
-    element: lazy(() => import("../pages/jobs/index.jsx")),
+    element: JobPage,
   },
   {
     path: "/jobs/:search",
-    element: lazy(() => import("../pages/jobs/index.jsx")),
+    element: JobPage,
   },
   {
     path: "/articles",
-    element: lazy(() => import("../pages/Articles/index.jsx")),
+    element: ArticlePage,
   },
   {
     path: "/articles/:search",
-    element: lazy(() => import("../pages/Articles/index.jsx")),
+    element: ArticlePage,
   },
   {
     path: "/article/:slug",
@@ -29,10 +33,18 @@ export const publicRoutes = [
   },
   {
     path: "/properties",
-    element: lazy(() => import("../pages/properties/index.jsx")),
+    element: PropertiesPage,
   },
   {
-    path: "/properties/:id",
+    path: "/properties/:search",
+    element: PropertiesPage,
+  },
+  {
+    path: "/properties/:PriceMin/:PriceMax/:AreaMin/:AreaMax/:purpose/:rentFrequency/:completionStatus/:Bedrooms/:parentCategory/:CategoryID/:Bathrooms/:Addresses",
+    element: PropertiesPage,
+  },
+  {
+    path: "/property/:id",
     element: lazy(() => import("../pages/property/index.jsx")),
   },
   {

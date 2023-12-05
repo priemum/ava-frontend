@@ -2,7 +2,7 @@ import React from "react";
 
 const PaymentPlan = ({ data, unitPrice }) => {
   return (
-    <div className="my-12 rounded-xl bg-white p-8 flex flex-col justify-start items-center">
+    <div className="mb-12 rounded-xl bg-white p-8 flex flex-col justify-start items-center">
       <div className="grid grid-cols-3 gap-6 text-start w-full text-smaller">
         <p className="col-span-full font-bold">Payment Plan </p>
 

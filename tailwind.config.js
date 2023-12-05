@@ -5,6 +5,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      boxShadow: {
+        "top-shadow": "0px -4px 3px rgba(50, 50, 50, 0.50)",
+      },
       fontSize: {
         huge: "87px",
         mobileHuge: "60px",

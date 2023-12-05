@@ -1,9 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import propertyIcon from "../../../../assets/icons/property-icon.svg";
 import PropertyCard from "../../../../components/UI/PropertyCard";
 import Slider from "react-slick";
-import { useGetActivePropertiesQuery } from "../../../../redux/properties/propertiesSlice";
+import { useGetActivePropertiesMutation } from "../../../../redux/properties/propertiesSlice";
 import { useNavigate } from "react-router-dom";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import Loader from "../../../../components/UI/Loader";
@@ -12,8 +12,16 @@ const HomeProperties = () => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef();
-  const { data, isLoading, isFetching, isSuccess, isError } =
-    useGetActivePropertiesQuery();
+  const [
+    getActiveProperties,
+    { data, isLoading, isFetching, isSuccess, isError },
+  ] = useGetActivePropertiesMutation();
+  useEffect(() => {
+    getActiveProperties({
+      page: 0,
+      limit: 9,
+    });
+  }, []);
   return (
     <div className="mt-20 flex flex-col justify-center items-center px-[5%]">
       <div className="flex w-full">

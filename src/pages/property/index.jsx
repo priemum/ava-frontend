@@ -50,10 +50,12 @@ const PropertyPage = () => {
                 <Amenities data={data.Aminities} />
                 <Location data={data} />
                 <PropertyInfo data={data} />
-                <PaymentPlan
-                  data={data?.propertyUnits[0]?.Paymentplan[0]}
-                  unitPrice={data.propertyUnits[currentSlide].Price}
-                />
+                {data?.propertyUnits[0]?.Paymentplan.length !== 0 && (
+                  <PaymentPlan
+                    data={data?.propertyUnits[0]?.Paymentplan[0]}
+                    unitPrice={data.propertyUnits[currentSlide].Price}
+                  />
+                )}
               </div>
               <div className="col-span-1 h-[700px] min-h-[40vh] px-8 sticky top-[10%] left-0 ">
                 <div className="bg-white shadow-xl rounded-xl p-4 space-y-2">
@@ -83,6 +85,10 @@ const PropertyPage = () => {
                   <p className="font-semibold">
                     <span className="text-[#6A6A6A]">ReraNo: </span>
                     {data.ReraNo}
+                  </p>
+                  <p className="font-semibold">
+                    <span className="text-[#6A6A6A]">BRN-No: </span>
+                    {"52615"}
                   </p>
                   <p className="font-semibold">
                     <span className="text-[#6A6A6A]">Permit Number: </span>

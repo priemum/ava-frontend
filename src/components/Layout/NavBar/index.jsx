@@ -58,7 +58,9 @@ const NavBar = () => {
             header === "white" ||
             location.pathname == "/properties" ||
             location.pathname ==
-              `/properties/${sessionStorage.getItem("propertyId")}`
+              `/properties/${sessionStorage.getItem("propertyId")}` ||
+            location.pathname ==
+              `/properties/${sessionStorage.getItem("filter")}`
               ? colors.primary
               : "transparent",
         }}
@@ -117,7 +119,7 @@ const NavBar = () => {
                   dropDownSelect.open && dropDownSelect.id == e.id
                     ? "scale-100"
                     : "scale-0"
-                } transition-all duration-500 origin-top-left z-10 absolute top-10 bg-fourth/50 backdrop-blur-[21px] rounded-lg shadow-2xl w-44 text-tiny text-white`}
+                } transition-all duration-300 origin-top-left z-10 absolute top-10 bg-fourth/50 backdrop-blur-[21px] rounded-lg shadow-2xl w-60 text-med text-white`}
               >
                 <ul className="p-1">
                   {e.dropData.map((item, index) => {

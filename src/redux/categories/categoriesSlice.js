@@ -6,6 +6,7 @@ const categoryActiveAdapter = createEntityAdapter();
 const initialActiveState = categoryActiveAdapter.getInitialState({
   count: "",
   normalData: [],
+  parentCategories: [],
 });
 
 export const categoryApiSlice = apiSlice.injectEndpoints({
@@ -18,6 +19,9 @@ export const categoryApiSlice = apiSlice.injectEndpoints({
       transformResponse: (responseData) => {
         initialActiveState.count = responseData?.count;
         initialActiveState.normalData = responseData.Category;
+        initialActiveState.parentCategories = responseData.Category.filter(
+          (x) => x.ParentID == null
+        );
         const loaded = responseData.Category;
         return categoryActiveAdapter.setAll(initialActiveState, loaded);
       },
