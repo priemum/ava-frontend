@@ -94,10 +94,10 @@ const NavBar = () => {
         </div>
       </div>
       <Drawer isOpen={mobileOpen} setIsOpen={setMobileOpen}>
-        {NavElement.map((e) =>
+        {NavElement.map((e, i) =>
           e.link ? (
             <LinkElement
-              key={e.link}
+              key={i}
               name={t(e.name)}
               link={e.link}
               selectedLink={selectedLink}
@@ -105,7 +105,7 @@ const NavBar = () => {
               onClick={() => setMobileOpen(false)}
             />
           ) : (
-            <React.Fragment>
+            <React.Fragment key={i}>
               <button
                 key={e.link}
                 className="flex gap-x-1 items-center px-1 cursor-pointer font-bold text-white text-med 2xl:text-big hover:text-secondary transition-all duration-300 "
@@ -121,10 +121,10 @@ const NavBar = () => {
                 )}
               </button>
 
-              {e.dropData.map((item) => {
+              {e.dropData.map((item, index) => {
                 return (
                   <LinkElement
-                    key={item.link}
+                    key={index}
                     name={t(item.name)}
                     link={item.link}
                     selectedLink={selectedLink}
