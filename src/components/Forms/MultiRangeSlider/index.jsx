@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import "./MultiRangeSlider.css";
+import { numberWithComma } from "../../../helpers/numberComma";
 
 const MultiRangeSlider = ({
   min,
@@ -8,6 +9,7 @@ const MultiRangeSlider = ({
   setMinVal,
   maxVal,
   setMaxVal,
+  textColor,
 }) => {
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
@@ -74,11 +76,19 @@ const MultiRangeSlider = ({
           ref={range}
           className="absolute rounded-sm h-[5px] bg-secondary z-20"
         />
-        <div className="absolute text-primary text-tiny mt-5 left-[6px]">
-          {minVal}
+        <div
+          className={`absolute ${
+            textColor ?? "text-primary"
+          } text-tiny mt-5 left-[6px]`}
+        >
+          {numberWithComma(minVal)}
         </div>
-        <div className="absolute text-primary text-tiny mt-5 -right-1">
-          {maxVal}
+        <div
+          className={`absolute ${
+            textColor ?? "text-primary"
+          } text-tiny mt-5 -right-1`}
+        >
+          {numberWithComma(maxVal)}
         </div>
       </div>
     </div>

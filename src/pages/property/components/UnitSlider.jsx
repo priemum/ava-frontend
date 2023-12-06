@@ -3,6 +3,7 @@ import bath from "../../../assets/icons/bath.svg";
 import bedroom from "../../../assets/icons/bedroom.svg";
 import squareft from "../../../assets/icons/squareft.svg";
 import Slider from "react-slick";
+import { numberWithComma } from "../../../helpers/numberComma";
 const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
   const sliderRef = useRef();
   return (
@@ -67,7 +68,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
-                  <p className="font-bold">{item.Size}</p>
+                  <p className="font-bold">{numberWithComma(item.Size)}</p>
                   <img src={squareft} className="w-6 h-6" alt="area-icon" />
                 </div>
                 <p className="font-normal text-[12px] md:text-tiny">

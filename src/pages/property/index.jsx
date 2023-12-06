@@ -9,6 +9,7 @@ import Location from "./components/Location";
 import PropertyInfo from "./components/PropertyInfo";
 import { FaCoins } from "react-icons/fa";
 import PaymentPlan from "./components/PaymentPlan";
+import { numberWithComma } from "../../helpers/numberComma";
 
 const PropertyPage = () => {
   const { id } = useParams();
@@ -62,12 +63,14 @@ const PropertyPage = () => {
                   <p className="text-[#878787]">Price Of Unit</p>
                   <div className="text-primary text-med flex items-center gap-x-3">
                     <FaCoins size={24} />
-                    {data.propertyUnits[currentSlide].Price}
+                    {numberWithComma(data.propertyUnits[currentSlide].Price)}
                   </div>
                   <p className="text-[#878787]">Price Per SQFT</p>
                   <div className="text-primary text-med flex items-center gap-x-3">
                     <FaCoins size={24} />
-                    {Math.round(data.propertyUnits[currentSlide].PricePerSQFT)}
+                    {numberWithComma(
+                      data.propertyUnits[currentSlide].PricePerSQFT
+                    )}
                   </div>
                 </div>
                 <div className="bg-white shadow-xl rounded-xl p-4 mt-4 space-y-3">

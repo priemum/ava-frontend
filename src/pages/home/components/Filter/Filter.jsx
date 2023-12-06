@@ -10,6 +10,7 @@ import { useGetActiveCategoryQuery } from "../../../../redux/categories/categori
 import MultiRangeSlider from "../../../../components/Forms/MultiRangeSlider";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { numberWithComma } from "../../../../helpers/numberComma";
 const defaultFormState = {
   Addresses: [],
   CategoryID: "",
@@ -367,12 +368,19 @@ const HomeFilter = () => {
               readOnly
               customStyle={"!text-primary font-semibold"}
               placeholder={t("BathroomsNumber")}
-              value={t("Price") + ": " + priceMin + " - " + priceMax}
+              value={
+                t("Price") +
+                ": " +
+                numberWithComma(priceMin) +
+                " - " +
+                numberWithComma(priceMax)
+              }
               select
               otherOptions={
                 <div className="flex flex-col space-y-2 p-2 pb-12">
                   <p className="font-semibold text-smaller">{t("Price")}:</p>
                   <MultiRangeSlider
+                    textColor={"text-white"}
                     max={1000000}
                     min={20000}
                     maxVal={priceMax}
@@ -389,12 +397,19 @@ const HomeFilter = () => {
               readOnly
               customStyle={"!text-primary font-semibold"}
               placeholder={t("Size")}
-              value={t("Size") + ": " + areaMin + " - " + areaMax}
+              value={
+                t("Size") +
+                ": " +
+                numberWithComma(areaMin) +
+                " - " +
+                numberWithComma(areaMax)
+              }
               select
               otherOptions={
                 <div className="flex flex-col space-y-2 p-2 pb-12">
                   <p className="font-semibold text-smaller">{t("Size")}:</p>
                   <MultiRangeSlider
+                    textColor={"text-white"}
                     max={2000}
                     min={100}
                     maxVal={areaMax}
