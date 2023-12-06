@@ -88,7 +88,9 @@ const PropertyCard = ({ data }) => {
             <div className="flex items-center justify-between -mt-10 h-1/5 overflow-hidden">
               <div className="bg-secondary min-w-[200px] p-2 rounded-md text-black text-smaller flex items-center gap-x-3">
                 <FaCoins size={20} />
-                {lower.Price + " - " + higher.Price}
+                {lower.Price == higher.Price
+                  ? lower.Price
+                  : lower.Price + " - " + higher.Price}
               </div>
               <div
                 className="bg-third p-2 rounded-md text-black text-smaller cursor-pointer"
@@ -115,7 +117,9 @@ const PropertyCard = ({ data }) => {
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
                   <p className="text-tiny md:text-smaller">
-                    {lower.Bathrooms + " - " + higher.Bathrooms}
+                    {lower.Bathrooms == higher.Bathrooms
+                      ? lower.Bathrooms
+                      : lower.Bathrooms + " - " + higher.Bathrooms}
                   </p>
                   <img
                     src={bath}
@@ -128,7 +132,9 @@ const PropertyCard = ({ data }) => {
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
                   <p className="text-tiny md:text-smaller">
-                    {lower.Bedrooms + " - " + higher.Bedrooms}
+                    {lower.Bedrooms == higher.Bedrooms
+                      ? lower.Bedrooms
+                      : lower.Bedrooms + " - " + higher.Bedrooms}
                   </p>
                   <img
                     src={bedroom}
@@ -141,7 +147,9 @@ const PropertyCard = ({ data }) => {
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
                   <p className="text-tiny lg:text-smaller">
-                    {lower.Size + " - " + higher.Size}
+                    {lower.Size == higher.Size
+                      ? lower.Size
+                      : lower.Size + " - " + higher.Size}
                   </p>
                   <img
                     src={squareft}
