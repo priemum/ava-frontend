@@ -114,7 +114,7 @@ const Filter = () => {
   }, [form.purpose]);
 
   return (
-    <div className="m-8 rounded-lg shadow-md bg-white h-[88vh] w-[calc(100%-32px)] overflow-y-auto relative">
+    <div className="m-8 rounded-lg shadow-md bg-white h-[88vh] w-[calc(100%-4rem)] overflow-y-auto relative">
       <div className="flex flex-col space-y-2 p-8">
         <CustomInput
           containerStyle={"!bg-[#F6F6F6]"}
