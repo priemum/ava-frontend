@@ -115,14 +115,12 @@ const JobForm = ({ title }) => {
       const userId = "sxh5TJan60LQqD6Sw";
       emailjs.sendForm(serviceId, templateId, formRef.current, userId).then(
         (result) => {
-          console.log(result.text);
           setLoading(false);
           alert("Application Submitted Successfully, Thank You!");
           setForm(defaultFormState);
           window.location.reload(false);
         },
         (error) => {
-          console.log(error.text);
           setLoading(false);
           alert("Somthing went wrong, please try again!");
           window.location.reload(false);

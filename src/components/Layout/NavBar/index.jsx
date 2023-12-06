@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import Drawer from "./Drawer";
 import LinkElement from "./LinkElement";
-import { MdDehaze } from "react-icons/md";
+import { MdDehaze, MdExpandLess, MdExpandMore } from "react-icons/md";
 import { handleScroll } from "../../../helpers/scroll";
 import { NavElement } from "../../../data/navData";
 import Logo from "../../../assets/logos/AVA-Logo.svg";
@@ -58,9 +58,11 @@ const NavBar = () => {
             header === "white" ||
             location.pathname == "/properties" ||
             location.pathname ==
-              `/properties/${sessionStorage.getItem("propertyId")}` ||
+              `/property/${sessionStorage.getItem("propertyId")}` ||
             location.pathname ==
-              `/properties/${sessionStorage.getItem("filter")}`
+              `/properties/${sessionStorage.getItem("filter")}` ||
+            location.pathname ==
+              `/properties/${sessionStorage.getItem("search")}`
               ? colors.primary
               : "transparent",
         }}
@@ -100,52 +102,46 @@ const NavBar = () => {
               link={e.link}
               selectedLink={selectedLink}
               header={header}
-              styled={"max-md:hidden"}
               onClick={() => setMobileOpen(false)}
             />
           ) : (
-            <div key={e.name} className="relative">
+            <React.Fragment>
               <button
-                className="max-md:hidden px-1 cursor-pointer font-bold text-white text-med 2xl:text-big hover:scale-150 transition-all duration-300"
+                key={e.link}
+                className="flex gap-x-1 items-center px-1 cursor-pointer font-bold text-white text-med 2xl:text-big hover:text-secondary transition-all duration-300 "
                 onClick={() =>
                   setDropDownSelect({ open: !dropDownSelect.open, id: e.id })
                 }
               >
                 {e.name}
+                {dropDownSelect.open ? (
+                  <MdExpandLess className="text-med 2xl:text-big translate-y-2" />
+                ) : (
+                  <MdExpandMore className="text-med 2xl:text-big translate-y-2" />
+                )}
               </button>
-              <div
-                ref={dropDownRef}
-                className={`${
-                  dropDownSelect.open && dropDownSelect.id == e.id
-                    ? "scale-100"
-                    : "scale-0"
-                } transition-all duration-300 origin-top-left z-10 absolute top-10 bg-fourth/50 backdrop-blur-[21px] rounded-lg shadow-2xl w-60 text-med text-white`}
-              >
-                <ul className="p-1">
-                  {e.dropData.map((item, index) => {
-                    return (
-                      <li
-                        key={index}
-                        onClick={() => {
-                          setDropDownSelect({
-                            open: !dropDownSelect.open,
-                            id: "",
-                          });
-                          setMobileOpen(false);
-                        }}
-                      >
-                        <a
-                          href={item.link}
-                          className="block px-4 py-2 hover:bg-secondary/20 duration-500 transition-all rounded-lg "
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            </div>
+
+              {e.dropData.map((item) => {
+                return (
+                  <LinkElement
+                    key={item.link}
+                    name={t(item.name)}
+                    link={item.link}
+                    selectedLink={selectedLink}
+                    header={header}
+                    styled={` transition-all duration-300 ${
+                      dropDownSelect.open && dropDownSelect.id == e.id
+                        ? "opacity-100 block"
+                        : "opacity-0 hidden"
+                    }`}
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setDropDownSelect(!false);
+                    }}
+                  />
+                );
+              })}
+            </React.Fragment>
           )
         )}
       </Drawer>

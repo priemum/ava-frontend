@@ -59,13 +59,23 @@ const Filter = () => {
         ? ""
         : completionStatus,
     Bedrooms:
-      Bedrooms == "all" || Array.isArray(Bedrooms) == false
+      Bedrooms == "all" ||
+      Array.isArray(
+        Bedrooms?.split(",").map(function (x) {
+          return parseInt(x, 10);
+        })
+      ) == false
         ? []
         : Bedrooms.split(",").map(function (x) {
             return parseInt(x, 10);
           }),
     Bathrooms:
-      Bathrooms == "all" || Array.isArray(Bathrooms) == false
+      Bathrooms == "all" ||
+      Array.isArray(
+        Bathrooms?.split(",").map(function (x) {
+          return parseInt(x, 10);
+        })
+      ) == false
         ? []
         : Bathrooms.split(",").map(function (x) {
             return parseInt(x, 10);
@@ -85,7 +95,6 @@ const Filter = () => {
     isSuccess: categoriesIsSuccess,
   } = useGetActiveCategoryQuery();
   useEffect(() => {
-    console.log(form);
     if (categoriesIsSuccess) {
       if (parentCategory) {
         setParentType(parentCategory);
@@ -119,6 +128,7 @@ const Filter = () => {
           disabled={searchTerm.replace(/ /g, "") == ""}
           className="bg-secondary w-full text-primary font-semibold rounded-md px-8 py-2 disabled:bg-gray-500"
           onClick={() => {
+            sessionStorage.setItem("search", searchTerm);
             navigate(`/properties/${searchTerm}`);
           }}
         >
@@ -261,7 +271,10 @@ const Filter = () => {
                               ? "bg-secondary text-primary"
                               : "bg-transparent text-primary"
                           }`}
-                          onClick={() => setParentType(item)}
+                          onClick={() => {
+                            setParentType(item);
+                            setForm({ ...form, CategoryID: "" });
+                          }}
                         >
                           {
                             categories.entities[item].Category_Translation.find(

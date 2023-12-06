@@ -11,11 +11,12 @@ const Amenities = ({ data }) => {
     dispatch(
       showModal({
         data: (
-          <div className="grid grid-cols-3 gap-4 p-8">
+          <div className="grid grid-cols-3 gap-6 p-8 place-items-center">
             {data.map((item, index) => {
               return (
                 <AmenitiesCard
                   key={index}
+                  popUp
                   icon={item.Image.URL}
                   name={
                     item.Aminities_Translation.find(
@@ -30,7 +31,7 @@ const Amenities = ({ data }) => {
       })
     );
   };
-  const AmenitiesCard = ({ icon, name, count, data }) => {
+  const AmenitiesCard = ({ icon, name, count, data, popUp }) => {
     return (
       <div
         className="w-[225px] h-[225px] flex flex-col justify-center items-center relative rounded-xl cursor-pointer"
@@ -38,7 +39,9 @@ const Amenities = ({ data }) => {
           showAmenitiesModal();
         }}
       >
-        <div className="space-y-4 z-30 text-white flex flex-col justify-center items-center">
+        <div
+          className={`space-y-4 z-30 text-primary font-semibold flex flex-col justify-center items-center`}
+        >
           {!count ? (
             <img
               src={API_BASE_URL + icon}
@@ -52,10 +55,9 @@ const Amenities = ({ data }) => {
         </div>
 
         <div
-          className="absolute w-full h-full left-0 top-0 rounded-xl z-10"
-          style={{
-            background: `linear-gradient(141deg, #161535 22.49%, #FBCD7E 143.56%)`,
-          }}
+          className={`absolute w-full h-full left-0 top-0 rounded-xl z-10 ${
+            popUp ? "bg-white/50" : "bg-primary/30"
+          } backdrop-blur-[21px] shadow-lg drop-shadow-lg`}
         >
           <div
             style={{
@@ -64,7 +66,6 @@ const Amenities = ({ data }) => {
             className="w-full h-full bg-no-repeat bg-center bg-cover rounded-xl"
           />
         </div>
-        <div className="absolute w-full h-full left-0 top-0 rounded-xl z-20 bg-white/0 backdrop-blur-[2px]" />
       </div>
     );
   };

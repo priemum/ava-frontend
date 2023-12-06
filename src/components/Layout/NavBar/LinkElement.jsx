@@ -14,7 +14,7 @@ const LinkElement = ({ name, link, styled, onClick }) => {
         };
       }}
       to={link}
-      className="hover:scale-150 transition-all duration-200"
+      className="hover:!text-secondary transition-all duration-200"
     >
       <p
         className={`px-1 cursor-pointer font-bold text-med 2xl:text-big ${styled}`}

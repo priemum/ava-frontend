@@ -1,7 +1,6 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import Home from "../pages/home";
-import ArticlePage from "../pages/Article/index.jsx";
 const ArticlesPage = lazy(() => import("../pages/Articles/index.jsx"));
 const JobPage = lazy(() => import("../pages/jobs/index.jsx"));
 const PropertiesPage = lazy(() => import("../pages/properties/index.jsx"));
@@ -21,11 +20,11 @@ export const publicRoutes = [
   },
   {
     path: "/articles",
-    element: ArticlePage,
+    element: ArticlesPage,
   },
   {
     path: "/articles/:search",
-    element: ArticlePage,
+    element: ArticlesPage,
   },
   {
     path: "/article/:slug",
