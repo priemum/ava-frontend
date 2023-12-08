@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import MultiRangeSlider from "../../../components/Forms/MultiRangeSlider";
 import { useGetActiveCategoryQuery } from "../../../redux/categories/categoriesSlice";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Purpose, RentFrequency, CompletionStatus } from "../../../constants";
 import { MdSearch } from "react-icons/md";
 import CustomInput from "../../../components/Forms/CustomInput";
@@ -36,7 +36,6 @@ const Filter = () => {
     Bathrooms,
     Addresses,
   } = useParams();
-  const location = useLocation();
   const rooms = [1, 2, 3, 4, 5, 6];
   const [searchTerm, setSearchTerm] = useState(search ?? "");
   const [priceMin, setPriceMin] = useState(PriceMin ?? 20000);

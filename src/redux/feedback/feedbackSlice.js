@@ -5,7 +5,7 @@ export const feedbackApiSlice = apiSlice.injectEndpoints({
       query: (args) => ({
         url: `/feedback`,
         method: "POST",
-        body: args.form,
+        body: args.values,
       }),
       invalidatesTags: [{ type: "Feedback", id: "LIST" }],
     }),

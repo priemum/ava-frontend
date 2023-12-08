@@ -1,151 +1,99 @@
-import React, { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
+import React, { useRef, useState, useEffect } from "react";
 import Button from "../../../components/UI/Button";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
-import TiktokPixel from "tiktok-pixel";
-const CustomInput = ({
-  icon,
-  placeholder,
-  type,
-  name,
-  value,
-  onChange,
-  radios,
-  radiosViewType,
-  required,
-}) => {
-  return type == "text" || type == "email" || type == "number" ? (
-    <div className="space-y-1">
-      <p className="text-tiny font-semibold px-2">
-        {placeholder + (required ? "*" : "")}
-      </p>
-      <div className="bg-white/30 rounded-md px-4 py-4 flex items-center gap-x-2 shadow-sm drop-shadow-sm w-full">
-        {icon}
-
-        <input
-          placeholder={placeholder + (required ? "*" : "")}
-          type={type}
-          className="bg-transparent px-2 w-full outline-none flex-1 placeholder:text-white"
-          name={name}
-          onChange={onChange}
-          id={name}
-          value={value}
-        />
-      </div>
-    </div>
-  ) : type == "radio" ? (
-    <div className="flex max-md:flex-col justify-start items-center gap-x-4 bg-white/30 rounded-md shadow-sm drop-shadow-sm px-4 py-4">
-      <p className="text-tiny font-semibold max-md:py-2 max-md:self-start">
-        {placeholder + (required ? "*" : "")}
-      </p>
-
-      <div className={`${radiosViewType}`}>
-        {radios.map((item, index) => {
-          return (
-            <div key={index} className={`${item.customStyle}`}>
-              <input
-                type="radio"
-                name={item.name}
-                value={item.value}
-                id={item.id}
-                checked={item.checked}
-                onChange={onChange}
-                style={{
-                  accentColor: "#AA8A3A",
-                }}
-                className="mr-2"
-              />
-              <label htmlFor={item.id} className="" onClick={onChange}>
-                {item.placeholder}
-              </label>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  ) : (
-    <div> what is this?</div>
-  );
-};
-
+import { useDispatch } from "react-redux";
+import { showMessage } from "../../../redux/messageAction.slice";
+import { Fields, Gender, Language_Lvl } from "../../../constants";
+import { MdExpandMore } from "react-icons/md";
+import { useTranslation } from "react-i18next";
+import CustomInput from "../../../components/Forms/CustomInput";
+import useForm from "../../../hooks/useForm";
+import { omit } from "lodash";
+import { useAddApplicationMutation } from "../../../redux/applications/applicationsSlice";
 let defaultFormState = {
-  full_name: "",
-  email: "",
-  phone_No: "",
-  years_experience: 0,
-  area: "",
-  field: "",
-  gender: "",
-  lvl_english: "",
-  lvl_arabic: "",
-  other_lang: "",
-  closing_deal: "",
-  cv: "",
+  FullName: "",
+  Email: "",
+  IPAddress: "192",
+  PhoneNo: "",
+  Gender: "Male",
+  Message: "",
+  YearsOfExp: "",
+  AreaSpecialty: "",
+  LinkedInURL: "",
+  Field: "Off Plan",
+  EnglishLvl: "No proficiency",
+  ArabicLvl: "No proficiency",
+  jobID: "",
+  OtherLanguages: "",
+  File: "",
 };
-const JobForm = ({ title }) => {
-  const [form, setForm] = useState(defaultFormState);
+const JobForm = ({ title, id }) => {
+  const {
+    disabled,
+    setErrors,
+    errors,
+    setValues,
+    values,
+    handleChange,
+    handleSubmit,
+  } = useForm(submit, defaultFormState);
+  const [addApplication, { data, isLoading, isSuccess, isError }] =
+    useAddApplicationMutation();
+  const dispatch = useDispatch();
+  const { i18n, t } = useTranslation();
   const [file, setFile] = useState();
-  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]:
-        e.target.type === "checkbox" ? e.target.checked : e.target.value,
-    });
-  };
   function onFileChange(e) {
     if (!e.target.files || e.target.files.length === 0) {
       setFile(undefined);
     }
     setFile(e.target.files[0]);
-    setForm({ ...form, cv: e.target.files[0] });
+    setValues({ ...values, File: e.target.files[0] });
   }
   const hiddenFileInput = React.useRef(null);
 
-  const sendEmail = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = async (e) => {
-      const serviceId = "service_5wdnu6j";
-      const templateId = "template_tl2vjv3";
-      const userId = "sxh5TJan60LQqD6Sw";
-      emailjs.sendForm(serviceId, templateId, formRef.current, userId).then(
-        (result) => {
-          setLoading(false);
-          alert("Application Submitted Successfully, Thank You!");
-          setForm(defaultFormState);
-          window.location.reload(false);
-        },
-        (error) => {
-          setLoading(false);
-          alert("Somthing went wrong, please try again!");
-          window.location.reload(false);
-        }
+  function submit() {
+    const formData = new FormData();
+    formData.append("FullName", values.FullName);
+    formData.append("Email", values.Email);
+    formData.append("IPAddress", values.IPAddress);
+    formData.append("PhoneNo", values.PhoneNo);
+    formData.append("Gender", values.Gender);
+    formData.append("Message", values.Message);
+    formData.append("YearsOfExp", values.YearsOfExp);
+    formData.append("AreaSpecialty", values.AreaSpecialty);
+    formData.append("LinkedInURL", values.LinkedInURL);
+    formData.append("Field", values.Field);
+    formData.append("EnglishLvl", values.EnglishLvl);
+    formData.append("ArabicLvl", values.ArabicLvl);
+    formData.append("jobID", values.jobID);
+    formData.append("OtherLanguages", values.OtherLanguages);
+    formData.append("File", file);
+    addApplication({ values: formData });
+    setValues([]);
+    setFile();
+  }
+  useEffect(() => {
+    if (!isLoading && isSuccess)
+      dispatch(
+        showMessage({
+          variant: "success",
+          message: "Thank you for your Application",
+        })
       );
-    };
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    sendEmail(e);
-  };
-  const options = {
-    debug: true, // enable logs
-  };
-  TiktokPixel.init("CJE7143C77U2JVNFTR80", options);
-  const formRef = React.useRef();
-  TiktokPixel.track("SubmitForm", {
-    content_name: "submit",
-    content_category: "job",
-    status: "submitted",
-  });
+    if (!isLoading && isError)
+      dispatch(
+        showMessage({
+          variant: "error",
+          message: "Somthing Went Wrong, Please Try Again",
+        })
+      );
+  }, [isSuccess, isError]);
+  const formRef = useRef();
   return (
     <form
       ref={formRef}
-      onSubmit={handleSubmit}
       className="p-8 w-full space-y-4 bg-transparent rounded-md text-white overflow-y-auto relative my-20"
     >
       <div className=" fixed w-full left-0 top-0 px-4 py-3">
@@ -155,252 +103,207 @@ const JobForm = ({ title }) => {
         <div className="h-px bg-white/50" />
       </div>
       <CustomInput
-        placeholder={"Full Name"}
+        inputLabel={t("formFullName")}
+        placeholder={t("formFullName")}
         type="text"
-        name="full_name"
-        value={form.full_name}
+        name="FullName"
+        value={values.FullName}
         onChange={handleChange}
-        required
+        error={Boolean(errors?.FullName)}
       />
       <CustomInput
-        placeholder={"Email"}
-        type="email"
+        inputLabel={t("formEmail")}
+        placeholder={t("formEmail")}
+        type="Email"
         name="email"
-        value={form.email}
+        value={values.Email}
         onChange={handleChange}
-        required
+        error={Boolean(errors?.Email)}
       />
-      <div className="space-y-1">
-        <p className="text-tiny font-semibold px-2">{"Phone Number*"} </p>
+      <>
+        <p className="font-semibold leading-3 translate-y-2 px-1">
+          {t("formPhoneNumber")}
+        </p>
         <PhoneInput
           country={"ae"}
-          placeholder={"Phone Number"}
+          placeholder={t("formPhoneNumber")}
           enableSearch={true}
-          // value={form.phone_No}
           inputProps={{
-            name: "phone_No",
-            id: "phone_No",
+            name: "phone",
+            id: "phone",
             required: true,
           }}
-          onChange={(e) => setForm({ ...form, phone_No: e })}
-          containerClass="bg-white/30 !rounded-md shadow-sm drop-shadow-sm px-1 flex z-10"
-          inputClass={`!bg-transparent !text-black !w-full !text-lg !h-full !border-none px-0 !outline-none`}
-          buttonClass={`!border-none !text-lg `}
-          buttonStyle={{ direction: "ltr" }}
+          onChange={(phone) => {
+            if (phone < 10) {
+              setErrors({
+                ...errors,
+                PhoneNo: "Phone Number is atleast 10 digits",
+              });
+            } else {
+              let newObj = omit(errors, "PhoneNo");
+              setErrors(newObj);
+            }
+            setValues({ ...values, PhoneNo: phone });
+          }}
+          value={values.PhoneNo}
+          containerStyle={{
+            outline: "none",
+            outlineOffset: "0px",
+            boxShadow: "none",
+          }}
+          containerClass={`${
+            Boolean(errors.PhoneNo)
+              ? "!border-[1px] border-red-500"
+              : "!border-b-[1px] border-white"
+          } px-1 flex bg-white/20 rounded-md !outline-none`}
+          inputClass={`!bg-transparent !text-white !w-full !text-lg !h-full !border-none ${
+            i18n.language == "en" ? "px-0" : "mx-10"
+          } !outline-none`}
+          buttonClass={`!border-none !outline-none !text-lg `}
+          buttonStyle={{
+            direction: "ltr",
+            outline: "none",
+            outlineOffset: "0px",
+            boxShadow: "none",
+          }}
+          dropdownClass="!bg-primary/70 !backdrop-blur-[21px] !text-secondary"
+          searchClass="!bg-primary/70 !backdrop-blur-[21px] !text-secondary"
           inputStyle={{
             direction: "ltr",
+            outline: "none",
+            outlineOffset: "0px",
+            boxShadow: "none",
           }}
         />
-      </div>
-      <CustomInput
-        placeholder={"Years Of Experience"}
-        type="number"
-        name="years_experience"
-        value={form.years_experience}
-        onChange={handleChange}
-        required
-      />
-      <CustomInput
-        placeholder={"Area Specialty"}
-        type="text"
-        name="area"
-        value={form.area}
-        onChange={handleChange}
-        required
-      />
-      <div />
-      <CustomInput
-        radiosViewType={
-          "grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2 max-md:w-full"
-        }
-        placeholder={"Field:"}
-        type="radio"
-        onChange={handleChange}
-        radios={[
-          {
-            name: "field",
-            value: "Off Plan",
-            checked: form.field == "Off Plan",
-            placeholder: "Off Plan",
-            id: "Off Plan",
-          },
-          {
-            name: "field",
-            value: "Rent",
-            checked: form.field == "Rent",
-            placeholder: "Rent",
-            id: "Rent",
-          },
-          {
-            name: "field",
-            value: "Secondary Market",
-            checked: form.field == "Secondary Market",
-            placeholder: "Secondary Market",
-            id: "Secondary Market",
-            customStyle: "max-md:col-span-full",
-          },
-        ]}
-        required
-      />
-      <CustomInput
-        radiosViewType={
-          "grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2 max-md:w-full"
-        }
-        placeholder={"Gender:"}
-        type="radio"
-        onChange={handleChange}
-        radios={[
-          {
-            name: "gender",
-            value: "Male",
-            checked: form.gender == "Male",
-            placeholder: "Male",
-            id: "Male",
-          },
-          {
-            name: "gender",
-            value: "Female",
-            checked: form.gender == "Female",
-            placeholder: "Female",
-            id: "Female",
-          },
-        ]}
-        required
-      />
-      <div className="lg:col-span-2">
-        <CustomInput
-          radiosViewType={
-            "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-1"
-          }
-          placeholder={"English Level:"}
-          type="radio"
-          onChange={handleChange}
-          radios={[
-            {
-              name: "lvl_english",
-              value: "No proficiency",
-              checked: form.lvl_english == "No proficiency",
-              placeholder: "0 - No proficiency",
-              id: "Noproficiencyen",
-            },
-            {
-              name: "lvl_english",
-              value: "Elementary proficiency",
-              checked: form.lvl_english == "Elementary proficiency",
-              placeholder: "1 - Elementary proficiency",
-              id: "Elementaryproficiencyen",
-            },
-            {
-              name: "lvl_english",
-              value: "Limited working proficiency",
-              checked: form.lvl_english == "Limited working proficiency",
-              placeholder: "2 - Limited working proficiency",
-              id: "Limitedworkingproficiencyen",
-            },
-            {
-              name: "lvl_english",
-              value: "Professional working proficiency",
-              checked: form.lvl_english == "Professional working proficiency",
-              placeholder: "3 - Professional working proficiency",
-              id: "Professionalworkingproficiencyen",
-            },
-            {
-              name: "lvl_english",
-              value: "Full professional proficiency",
-              checked: form.lvl_english == "Full professional proficiency",
-              placeholder: "4 - Full professional proficiency",
-              id: "Fullprofessionalproficiencyen",
-            },
-            {
-              name: "lvl_english",
-              value: "Primary fluency / Native",
-              checked: form.lvl_english == "Primary fluency / Native",
-              placeholder: "5 - Primary fluency / Native",
-              id: "Primaryfluency/Nativeen",
-            },
-          ]}
-          required
-        />
-      </div>
-      <div className="lg:col-span-2">
-        <CustomInput
-          radiosViewType={
-            "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-1"
-          }
-          placeholder={"Arabic Level:"}
-          type="radio"
-          onChange={handleChange}
-          radios={[
-            {
-              name: "lvl_arabic",
-              value: "No proficiency",
-              checked: form.lvl_arabic == "No proficiency",
-              placeholder: "0 - No proficiency",
-              id: "Noproficiencyar",
-            },
-            {
-              name: "lvl_arabic",
-              value: "Elementary proficiency",
-              checked: form.lvl_arabic == "Elementary proficiency",
-              placeholder: "1 - Elementary proficiency",
-              id: "Elementaryproficiencyar",
-            },
-            {
-              name: "lvl_arabic",
-              value: "Limited working proficiency",
-              checked: form.lvl_arabic == "Limited working proficiency",
-              placeholder: "2 - Limited working proficiency",
-              id: "Limitedworkingproficiencyar",
-            },
-            {
-              name: "lvl_arabic",
-              value: "Professional working proficiency",
-              checked: form.lvl_arabic == "Professional working proficiency",
-              placeholder: "3 - Professional working proficiency",
-              id: "Professionalworkingproficiencyar",
-            },
-            {
-              name: "lvl_arabic",
-              value: "Full professional proficiency",
-              checked: form.lvl_arabic == "Full professional proficiency",
-              placeholder: "4 - Full professional proficiency",
-              id: "Fullprofessionalproficiencyar",
-            },
-            {
-              name: "lvl_arabic",
-              value: "Primary fluency / Native",
-              checked: form.lvl_arabic == "Primary fluency / Native",
-              placeholder: "5 - Primary fluency / Native",
-              id: "Primaryfluency/Nativear",
-            },
-          ]}
-          required
-        />
-      </div>
+      </>
 
       <CustomInput
-        placeholder={"Other Languages"}
-        type="text"
-        name="other_lang"
-        value={form.other_lang}
+        inputLabel={t("YearsOfExperience")}
+        placeholder={t("YearsOfExperience")}
+        type="number"
+        name="YearsOfExp"
+        value={values.YearsOfExp}
         onChange={handleChange}
+        error={Boolean(errors?.YearsOfExp)}
       />
       <CustomInput
-        placeholder={"Approximate Value Of Last Year Closing Deal (AED)"}
+        inputLabel={t("AreaSpecialty")}
+        placeholder={t("AreaSpecialty")}
         type="text"
-        name="closing_deal"
-        value={form.closing_deal}
+        name="area"
+        value={values.area}
         onChange={handleChange}
-        required
+        error={Boolean(errors?.AreaSpecialty)}
+      />
+      <div />
+
+      <div className="space-y-1">
+        <p className="text-tiny">{t("Field")} </p>
+        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2">
+          {Fields.map((item, index) => {
+            return (
+              <React.Fragment key={index}>
+                <div
+                  className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                    values.Field == item
+                      ? "bg-secondary text-primary"
+                      : "bg-transparent text-white"
+                  }`}
+                  onClick={() =>
+                    setValues({
+                      ...values,
+                      Field: item,
+                    })
+                  }
+                >
+                  {item}
+                </div>
+                {index !== Fields.length - 1 && (
+                  <div className="h-10 w-1 bg-white/50" />
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
+      </div>
+      <div className="space-y-1">
+        <p className="text-tiny">{t("Gender")} </p>
+        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2">
+          {Gender.map((item, index) => {
+            return (
+              <React.Fragment key={index}>
+                <div
+                  className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                    values.Gender == item
+                      ? "bg-secondary text-primary"
+                      : "bg-transparent text-white"
+                  }`}
+                  onClick={() => setValues({ ...values, Gender: item })}
+                >
+                  {item}
+                </div>
+                {index !== Gender.length - 1 && (
+                  <div className="h-10 w-1 bg-white/50" />
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
+      </div>
+      <CustomInput
+        inputLabel={t("EnglishLvl")}
+        value={values.EnglishLvl}
+        selectID={"EnglishLvl"}
+        inputType="text"
+        options={Language_Lvl}
+        setState={setValues}
+        state={values}
+        reverseIcon
+        icon={<MdExpandMore className="text-smaller" />}
+        select
+        readOnly
+      />
+      <CustomInput
+        inputLabel={t("ArabicLvl")}
+        value={values.ArabicLvl}
+        selectID={"ArabicLvl"}
+        inputType="text"
+        options={Language_Lvl}
+        setState={setValues}
+        state={values}
+        reverseIcon
+        icon={<MdExpandMore className="text-smaller" />}
+        select
+        readOnly
+      />
+
+      <CustomInput
+        inputLabel={t("OtherLanguages")}
+        placeholder={t("OtherLanguages")}
+        type="text"
+        name="OtherLanguages"
+        value={values.OtherLanguages}
+        onChange={handleChange}
+        error={Boolean(errors?.OtherLanguages)}
+      />
+      <CustomInput
+        inputLabel={t("LinkedInURL")}
+        placeholder={t("LinkedInURL")}
+        type="text"
+        name="LinkedInURL"
+        value={values.LinkedInURL}
+        onChange={handleChange}
+        error={Boolean(errors?.LinkedInURL)}
       />
       <div className="col-span-full flex max-sm:flex-col justify-between items-center fixed py-1 px-4 w-full left-0 bottom-0">
         <div className="md:flex items-center md:gap-4">
           <Button
             textColor={"text-white font-medium"}
             w={"200px"}
-            text={"Upload CV"}
+            text={t("UploadCV")}
             bgColor={"bg-primary"}
             customStyle={"py-2 px-4"}
+            borderRadius={"6px"}
             onClick={(e) => {
               e.preventDefault();
               hiddenFileInput.current.click();
@@ -409,31 +312,24 @@ const JobForm = ({ title }) => {
           <input
             type="file"
             // accept="images/*"
-            name="cv"
+            name="File"
             onChange={onFileChange}
             style={{ display: "none" }}
             ref={hiddenFileInput}
           />
-          <p>{form.cv?.name} </p>
+          <p>{values.File?.name} </p>
         </div>
         <button
-          className="text-white font-medium bg-secondary py-2 px-4 rounded-[27px] text-center text-smaller disabled:bg-gray-500 w-[200px]"
+          className="text-primary font-medium bg-secondary py-2 px-4 rounded-md text-center text-smaller disabled:bg-gray-500 w-[200px]"
           type="submit"
-          disabled={
-            form.full_name == "" ||
-            form.email == "" ||
-            form.phone_No == "" ||
-            form.years_experience == "" ||
-            form.area == "" ||
-            form.field == "" ||
-            form.gender == "" ||
-            form.lvl_arabic == "" ||
-            form.lvl_english == "" ||
-            form.closing_deal == "" ||
-            form.cv == ""
-          }
+          onClick={handleSubmit}
+          disabled={disabled}
         >
-          {!loading ? "Send" : <div className="animate-bounce">Sending...</div>}
+          {!isLoading ? (
+            t("Send")
+          ) : (
+            <div className="animate-bounce">{t("Sending")}</div>
+          )}
         </button>
       </div>
     </form>

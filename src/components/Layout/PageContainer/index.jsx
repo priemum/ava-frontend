@@ -5,6 +5,7 @@ import useWindowDimensions from "../../../hooks/screenDimentions";
 import { MdOutlineWhatsapp } from "react-icons/md";
 import Modal from "../../UI/Modal/Modal";
 import GalleryModal from "../../UI/GalleryModal";
+import MessageBox from "../../UI/Message";
 const PageLayout = ({ children }) => {
   const { width } = useWindowDimensions();
   const [w, setW] = useState(width);
@@ -17,6 +18,7 @@ const PageLayout = ({ children }) => {
   }, [width]);
   return (
     <div className="flex flex-col justify-center items-center relative">
+      <MessageBox />
       <NavBar />
       <div className="min-h-screen w-full max-w-[1920px]">{children}</div>
       <Footer />

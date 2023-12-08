@@ -1,35 +1,15 @@
 import React, { useEffect, useState } from "react";
-
+import { omit } from "lodash";
 import { MdMail, MdPerson } from "react-icons/md";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import { useTranslation } from "react-i18next";
 import { useAddFeedbackMutation } from "../../../redux/feedback/feedbackSlice";
 import { Gender } from "../../../constants";
-const CustomInput = ({
-  icon,
-  placeholder,
-  type,
-  name,
-  id,
-  value,
-  onChange,
-}) => {
-  return (
-    <div className="border-b-[1px] border-white px-4 py-2 flex bg-white/20 rounded-md">
-      {icon}
-      <input
-        type={type}
-        className="bg-transparent py-1 px-2 w-full outline-none placeholder:text-white"
-        name={name}
-        onChange={onChange}
-        placeholder={placeholder}
-        id={id}
-        value={value}
-      />
-    </div>
-  );
-};
+import CustomInput from "../CustomInput";
+import useForm from "../../../hooks/useForm";
+import { useDispatch } from "react-redux";
+import { showMessage } from "../../../redux/messageAction.slice";
 
 const defaultFormState = {
   Email: "",
@@ -42,29 +22,41 @@ const defaultFormState = {
 };
 const RegisterForm = () => {
   const { t, i18n } = useTranslation();
-  const [form, setForm] = useState(defaultFormState);
+  const dispatch = useDispatch();
+  const {
+    disabled,
+    setErrors,
+    errors,
+    setValues,
+    values,
+    handleChange,
+    handleSubmit,
+  } = useForm(submit, defaultFormState);
   const [phone, setPhone] = useState("");
   const [addFeedback, { isLoading, isSuccess, isError }] =
     useAddFeedbackMutation();
 
-  function handleChange(e) {
-    setForm({
-      ...form,
-      [e.target.name]:
-        e.target.type === "checkbox" ? e.target.checked : e.target.value,
-    });
+  function submit(e) {
+    setValues({ ...values, PhoneNo: phone });
+    addFeedback({ values });
+    setValues(defaultFormState);
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setForm({ ...form, PhoneNo: phone });
-    addFeedback({ form });
-    setForm(defaultFormState);
-  };
-
   useEffect(() => {
-    if (!isLoading && isSuccess) alert("Thank you for your Feedback");
-    if (!isLoading && isError) alert("Somthing Went Wrong, Please Try Again");
+    if (!isLoading && isSuccess)
+      dispatch(
+        showMessage({
+          variant: "success",
+          message: "Thank you for your Feedback",
+        })
+      );
+    if (!isLoading && isError)
+      dispatch(
+        showMessage({
+          variant: "error",
+          message: "Somthing Went Wrong, Please Try Again",
+        })
+      );
   }, [isSuccess]);
 
   return (
@@ -75,8 +67,9 @@ const RegisterForm = () => {
         type="text"
         name="FullName"
         id="FullName"
-        value={form.FullName}
+        value={values.FullName}
         onChange={handleChange}
+        error={Boolean(errors?.FullName)}
       />
 
       <CustomInput
@@ -85,8 +78,9 @@ const RegisterForm = () => {
         type="email"
         name="Email"
         id="Email"
-        value={form.Email}
+        value={values.Email}
         onChange={handleChange}
+        error={Boolean(errors?.Email)}
       />
 
       <PhoneInput
@@ -98,16 +92,46 @@ const RegisterForm = () => {
           id: "phone",
           required: true,
         }}
-        onChange={setPhone}
-        containerClass="!border-b-[1px] border-white px-1 flex bg-white/20 rounded-md"
-        inputClass={`!bg-transparent !text-white !w-full !text-lg !h-full !border-none  ${
+        onChange={(phone) => {
+          if (phone.length < 10) {
+            setErrors({
+              ...errors,
+              PhoneNo: "Phone Number is atleast 10 digits",
+            });
+          } else {
+            let newObj = omit(errors, "PhoneNo");
+            setErrors(newObj);
+          }
+          setValues({ ...values, PhoneNo: phone });
+        }}
+        value={values.PhoneNo}
+        containerStyle={{
+          outline: "none",
+          outlineOffset: "0px",
+          boxShadow: "none",
+        }}
+        containerClass={`${
+          Boolean(errors.PhoneNo)
+            ? "!border-[1px] border-red-500"
+            : "!border-b-[1px] border-white"
+        } px-1 flex bg-white/20 rounded-md !outline-none`}
+        inputClass={`!bg-transparent !text-white !w-full !text-lg !h-full !border-none ${
           i18n.language == "en" ? "px-0" : "mx-10"
         } !outline-none`}
-        buttonClass={`!border-none !text-lg `}
-        buttonStyle={{ direction: "ltr" }}
+        buttonClass={`!border-none !outline-none !text-lg `}
+        buttonStyle={{
+          direction: "ltr",
+          outline: "none",
+          outlineOffset: "0px",
+          boxShadow: "none",
+        }}
+        dropdownClass="!bg-primary/70 !backdrop-blur-[21px] !text-secondary"
+        searchClass="!bg-primary/70 !backdrop-blur-[21px] !text-secondary"
         inputStyle={{
           direction: "ltr",
           outline: "none",
+          outlineOffset: "0px",
+          boxShadow: "none",
         }}
       />
       <div className="space-y-1">
@@ -119,11 +143,11 @@ const RegisterForm = () => {
               <React.Fragment key={index}>
                 <div
                   className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
-                    form.Gender == item
+                    values.Gender == item
                       ? "bg-secondary text-primary"
                       : "bg-transparent text-white"
                   }`}
-                  onClick={() => setForm({ ...form, Gender: item })}
+                  onClick={() => setValues({ ...values, Gender: item })}
                 >
                   {item}
                 </div>
@@ -136,38 +160,30 @@ const RegisterForm = () => {
         </div>
       </div>
       <CustomInput
-        // icon={<MdLocationOn className="text-white text-med" />}
         placeholder={t("Subject")}
         type="text"
         name="Subject"
         id="Subject"
-        value={form.Subject}
+        value={values.Subject}
         onChange={handleChange}
+        error={Boolean(errors?.Subject)}
       />
-      <div className="border-b-[1px] border-white px-4 py-2 flex bg-white/20 rounded-md">
-        <textarea
-          placeholder={t("Message")}
-          name="Message"
-          id="Message"
-          value={form.Message}
-          className="bg-transparent px-2 w-full outline-none placeholder:text-white"
-          onChange={handleChange}
-          rows={5}
-        />
-      </div>
+      <CustomInput
+        placeholder={t("Message")}
+        name="Message"
+        id="Message"
+        value={values.Message}
+        onChange={handleChange}
+        textArea
+        textAreaRows={8}
+        error={Boolean(errors?.Message)}
+      />
       <button
         className={`bg-buttonGrad text-primary font-semibold text-small w-full py-3 disabled:bg-none disabled:bg-gray-500 disabled:text-white rounded-md ${
           isLoading && "animate-pulse"
         } `}
         onClick={handleSubmit}
-        disabled={
-          form.Email.replace(/ /g, "") == "" ||
-          form.FullName.replace(/ /g, "") == "" ||
-          form.Message.replace(/ /g, "") == "" ||
-          form.Subject.replace(/ /g, "") == "" ||
-          phone.length < 12 ||
-          isLoading
-        }
+        disabled={disabled}
       >
         {isLoading ? t("sending") : t("send")}
       </button>

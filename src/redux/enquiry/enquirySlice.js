@@ -5,7 +5,7 @@ export const enquiryApiSlice = apiSlice.injectEndpoints({
       query: (args) => ({
         url: `/enquiry`,
         method: "POST",
-        body: args.form,
+        body: args.values,
       }),
       invalidatesTags: [{ type: "Enquiries", id: "LIST" }],
     }),

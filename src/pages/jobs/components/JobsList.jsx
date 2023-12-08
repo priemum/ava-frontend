@@ -45,6 +45,7 @@ const JobsList = () => {
         {data.ids.map((item, index) => {
           return (
             <JobCard
+              id={item}
               key={index}
               Author={data.entities[item].Author}
               Location={data.entities[item].Location}

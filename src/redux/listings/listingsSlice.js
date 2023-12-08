@@ -5,7 +5,7 @@ export const listingApiSlice = apiSlice.injectEndpoints({
       query: (args) => ({
         url: `/list-with-us`,
         method: "POST",
-        body: args.form,
+        body: args.values,
       }),
       invalidatesTags: [{ type: "Listings", id: "LIST" }],
     }),

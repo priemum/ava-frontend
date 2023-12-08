@@ -19,6 +19,7 @@ const JobCard = ({
   Type,
   WeekHours,
   Expired,
+  id,
 }) => {
   const [expandJob, setExpandJob] = useState(false);
   const dispatch = useDispatch();
@@ -85,7 +86,7 @@ const JobCard = ({
               onClick={() => {
                 dispatch(
                   showModal({
-                    data: <JobForm title={Title} />,
+                    data: <JobForm title={Title} id={id} />,
                   })
                 );
               }}
