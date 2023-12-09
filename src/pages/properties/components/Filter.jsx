@@ -144,6 +144,7 @@ const Filter = () => {
           minVal={priceMin}
           setMaxVal={setPriceMax}
           setMinVal={setPriceMin}
+          price
         />
         <p className="font-semibold text-smaller pt-8">{t("Size")}:</p>
         <MultiRangeSlider
@@ -153,6 +154,7 @@ const Filter = () => {
           minVal={areaMin}
           setMaxVal={setAreaMax}
           setMinVal={setAreaMin}
+          unit
         />
       </div>
       <div className="h-px w-full bg-primary/20 mt-8" />

@@ -6,6 +6,7 @@ import { MdOutlineWhatsapp } from "react-icons/md";
 import Modal from "../../UI/Modal/Modal";
 import GalleryModal from "../../UI/GalleryModal";
 import MessageBox from "../../UI/Message";
+import SettingsModal from "../NavBar/SettingsModal";
 const PageLayout = ({ children }) => {
   const { width } = useWindowDimensions();
   const [w, setW] = useState(width);
@@ -24,6 +25,7 @@ const PageLayout = ({ children }) => {
       <Footer />
       <Modal />
       <GalleryModal />
+      <SettingsModal />
       <div
         className="fixed bottom-3 md:bottom-5 right-3 md:right-5 bg-[#25D366]/80 text-white p-3 rounded-full cursor-pointer z-40"
         onClick={(e) => {

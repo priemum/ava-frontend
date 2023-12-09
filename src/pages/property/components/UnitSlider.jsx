@@ -4,8 +4,11 @@ import bedroom from "../../../assets/icons/bedroom.svg";
 import squareft from "../../../assets/icons/squareft.svg";
 import Slider from "react-slick";
 import { numberWithComma } from "../../../helpers/numberComma";
+import { useSelector } from "react-redux";
+import { selectCurrentUnit } from "../../../redux/websiteSettings.slice";
 const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
   const sliderRef = useRef();
+  const currentUnit = useSelector(selectCurrentUnit);
   return (
     <div className="mt-6 p-8 bg-white rounded-xl shadow-xl w-[80%]">
       <Slider
@@ -68,7 +71,9 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
-                  <p className="font-bold">{numberWithComma(item.Size)}</p>
+                  <p className="font-bold">
+                    {numberWithComma(item.Size * currentUnit.conversionRate)}
+                  </p>
                   <img src={squareft} className="w-6 h-6" alt="area-icon" />
                 </div>
                 <p className="font-normal text-[12px] md:text-tiny">

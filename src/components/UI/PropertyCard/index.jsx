@@ -10,6 +10,11 @@ import squareft from "../../../assets/icons/squareft.svg";
 import LazyImage from "../LazyImage";
 import { useNavigate } from "react-router-dom";
 import { numberWithComma } from "../../../helpers/numberComma";
+import { useSelector } from "react-redux";
+import {
+  selectCurrentCurrency,
+  selectCurrentUnit,
+} from "../../../redux/websiteSettings.slice";
 function SampleNextArrow({ onClick }) {
   return (
     <div
@@ -33,6 +38,8 @@ function SamplePrevArrow({ onClick }) {
 const PropertyCard = ({ data }) => {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
+  const currentUnit = useSelector(selectCurrentUnit);
+  const currentCurrency = useSelector(selectCurrentCurrency);
   const [showDetails, setShowDetails] = useState(false);
   const [lower, setLower] = useState({});
   const [higher, setHigher] = useState({});
@@ -90,10 +97,16 @@ const PropertyCard = ({ data }) => {
               <div className="bg-secondary min-w-[200px] p-2 rounded-md text-black text-smaller flex items-center gap-x-3">
                 <FaCoins size={20} />
                 {lower.Price == higher.Price
-                  ? numberWithComma(lower.Price)
-                  : numberWithComma(lower.Price) +
+                  ? numberWithComma(
+                      lower.Price * currentCurrency.conversionRate
+                    )
+                  : numberWithComma(
+                      lower.Price * currentCurrency.conversionRate
+                    ) +
                     " - " +
-                    numberWithComma(higher.Price)}
+                    numberWithComma(
+                      higher.Price * currentCurrency.conversionRate
+                    )}
               </div>
               <div
                 className="bg-third p-2 rounded-md text-black text-smaller cursor-pointer"
@@ -151,10 +164,14 @@ const PropertyCard = ({ data }) => {
                 <div className="flex gap-x-2 items-center">
                   <p className="text-tiny lg:text-smaller">
                     {lower.Size == higher.Size
-                      ? numberWithComma(lower.Size)
-                      : numberWithComma(lower.Size) +
+                      ? numberWithComma(lower.Size * currentUnit.conversionRate)
+                      : numberWithComma(
+                          lower.Size * currentUnit.conversionRate
+                        ) +
                         " - " +
-                        numberWithComma(higher.Size)}
+                        numberWithComma(
+                          higher.Size * currentUnit.conversionRate
+                        )}
                   </p>
                   <img
                     src={squareft}

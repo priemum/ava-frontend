@@ -1,6 +1,11 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import "./MultiRangeSlider.css";
 import { numberWithComma } from "../../../helpers/numberComma";
+import { useSelector } from "react-redux";
+import {
+  selectCurrentCurrency,
+  selectCurrentUnit,
+} from "../../../redux/websiteSettings.slice";
 
 const MultiRangeSlider = ({
   min,
@@ -10,11 +15,14 @@ const MultiRangeSlider = ({
   maxVal,
   setMaxVal,
   textColor,
+  unit,
+  price,
 }) => {
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef(null);
-
+  const currentCurrency = useSelector(selectCurrentCurrency);
+  const currentUnit = useSelector(selectCurrentUnit);
   // Convert to percentage
   const getPercent = useCallback(
     (value) => Math.round(((value - min) / (max - min)) * 100),
@@ -81,14 +89,22 @@ const MultiRangeSlider = ({
             textColor ?? "text-primary"
           } text-tiny mt-5 left-[6px]`}
         >
-          {numberWithComma(minVal)}
+          {price
+            ? numberWithComma(minVal * currentCurrency.conversionRate)
+            : unit
+            ? numberWithComma(minVal * currentUnit.conversionRate)
+            : minVal}
         </div>
         <div
           className={`absolute ${
             textColor ?? "text-primary"
           } text-tiny mt-5 -right-1`}
         >
-          {numberWithComma(maxVal)}
+          {price
+            ? numberWithComma(maxVal * currentCurrency.conversionRate)
+            : unit
+            ? numberWithComma(maxVal * currentUnit.conversionRate)
+            : maxVal}
         </div>
       </div>
     </div>

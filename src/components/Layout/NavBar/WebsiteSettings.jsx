@@ -1,15 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { MdSettings } from "react-icons/md";
-import { showModal, hideModal } from "../../../redux/modal.slice";
+import { showSettingsModal } from "../../../redux/modal.slice";
 import { useDispatch } from "react-redux";
+import CurrencySettings from "./CurrencySettings";
+import UnitSettings from "./UnitSettings";
+
 export default function WebsiteSettings() {
   const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
   const ref = useRef(null);
-
   const handleClickOutside = (event) => {
     if (ref.current && !ref.current.contains(event.target)) {
       setOpen(false);
@@ -42,14 +44,26 @@ export default function WebsiteSettings() {
         >
           <div
             className="flex justify-start items-center cursor-pointer"
-            onClick={() => {}}
+            onClick={() => {
+              dispatch(
+                showSettingsModal({
+                  data: <CurrencySettings />,
+                })
+              );
+            }}
           >
             <p>{t("Currency")}</p>
           </div>
 
           <div
             className="flex justify-start items-center cursor-pointer"
-            onClick={() => {}}
+            onClick={() => {
+              dispatch(
+                showSettingsModal({
+                  data: <UnitSettings />,
+                })
+              );
+            }}
           >
             <p>{t("AriaUnit")}</p>
           </div>

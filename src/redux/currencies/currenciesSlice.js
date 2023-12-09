@@ -17,8 +17,8 @@ export const currencyApiSlice = apiSlice.injectEndpoints({
       }),
       transformResponse: (responseData) => {
         initialActiveState.count = responseData?.length;
-        initialActiveState.normalData = responseData;
-        const loaded = responseData;
+        initialActiveState.normalData = responseData.Currency;
+        const loaded = responseData.Currency;
         return currencyActiveAdapter.setAll(initialActiveState, loaded);
       },
       providesTags: (result, error, arg) => [

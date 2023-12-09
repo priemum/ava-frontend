@@ -188,7 +188,7 @@ const ListingForm = () => {
           <div className="w-full flex justify-center items-center gap-x-2">
             <CustomInput
               value={values.Type}
-              selectID={"types"}
+              name={"Type"}
               inputType="text"
               options={typeOptions}
               setState={setValues}

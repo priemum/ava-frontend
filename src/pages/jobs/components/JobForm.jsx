@@ -186,7 +186,7 @@ const JobForm = ({ title, id }) => {
         onChange={handleChange}
         error={Boolean(errors?.YearsOfExp)}
       />
-      <CustomInput
+      {/* <CustomInput
         inputLabel={t("AreaSpecialty")}
         placeholder={t("AreaSpecialty")}
         type="text"
@@ -194,10 +194,10 @@ const JobForm = ({ title, id }) => {
         value={values.area}
         onChange={handleChange}
         error={Boolean(errors?.AreaSpecialty)}
-      />
-      <div />
+      /> */}
+      {/* <div /> */}
 
-      <div className="space-y-1">
+      {/* <div className="space-y-1">
         <p className="text-tiny">{t("Field")} </p>
         <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2">
           {Fields.map((item, index) => {
@@ -225,7 +225,7 @@ const JobForm = ({ title, id }) => {
             );
           })}
         </div>
-      </div>
+      </div> */}
       <div className="space-y-1">
         <p className="text-tiny">{t("Gender")} </p>
         <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2">
@@ -253,7 +253,7 @@ const JobForm = ({ title, id }) => {
       <CustomInput
         inputLabel={t("EnglishLvl")}
         value={values.EnglishLvl}
-        selectID={"EnglishLvl"}
+        name={"EnglishLvl"}
         inputType="text"
         options={Language_Lvl}
         setState={setValues}
@@ -266,7 +266,7 @@ const JobForm = ({ title, id }) => {
       <CustomInput
         inputLabel={t("ArabicLvl")}
         value={values.ArabicLvl}
-        selectID={"ArabicLvl"}
+        name={"ArabicLvl"}
         inputType="text"
         options={Language_Lvl}
         setState={setValues}

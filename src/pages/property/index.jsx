@@ -10,12 +10,15 @@ import PropertyInfo from "./components/PropertyInfo";
 import { FaCoins } from "react-icons/fa";
 import PaymentPlan from "./components/PaymentPlan";
 import { numberWithComma } from "../../helpers/numberComma";
+import { useSelector } from "react-redux";
+import { selectCurrentCurrency } from "../../redux/websiteSettings.slice";
 
 const PropertyPage = () => {
   const { id } = useParams();
   const { data, isLoading, isFetching, isSuccess, isError } =
     useGetPropertyByIdQuery({ id });
   const [currentSlide, setCurrentSlide] = useState(0);
+  const currentCurrency = useSelector(selectCurrentCurrency);
   return (
     <div className="pt-24 bg-[#F6F6F6] min-h-screen h-full">
       {isLoading || isFetching ? (
@@ -63,13 +66,17 @@ const PropertyPage = () => {
                   <p className="text-[#878787]">Price Of Unit</p>
                   <div className="text-primary text-med flex items-center gap-x-3">
                     <FaCoins size={24} />
-                    {numberWithComma(data.propertyUnits[currentSlide].Price)}
+                    {numberWithComma(
+                      data.propertyUnits[currentSlide].Price *
+                        currentCurrency.conversionRate
+                    )}
                   </div>
                   <p className="text-[#878787]">Price Per SQFT</p>
                   <div className="text-primary text-med flex items-center gap-x-3">
                     <FaCoins size={24} />
                     {numberWithComma(
-                      data.propertyUnits[currentSlide].PricePerSQFT
+                      data.propertyUnits[currentSlide].PricePerSQFT *
+                        currentCurrency.conversionRate
                     )}
                   </div>
                 </div>

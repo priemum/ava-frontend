@@ -57,7 +57,7 @@ const CustomInput = ({
           reverseIcon && "flex-row-reverse"
         } ${select && "cursor-pointer"}`}
         onClick={() => {
-          if (select) setSelectStatus(true);
+          setSelectStatus(!selectStatus);
         }}
       >
         {icon}
@@ -107,7 +107,9 @@ const CustomInput = ({
                     <p
                       key={index}
                       className="text-tiny hover:bg-secondary/50 rounded-md p-2 transition-all duration-300"
-                      onClick={() => setState({ ...state, Type: item })}
+                      onClick={() => {
+                        setState({ ...state, [name]: item });
+                      }}
                     >
                       {item}
                     </p>

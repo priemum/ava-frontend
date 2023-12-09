@@ -17,8 +17,8 @@ export const unitApiSlice = apiSlice.injectEndpoints({
       }),
       transformResponse: (responseData) => {
         initialActiveState.count = responseData?.length;
-        initialActiveState.normalData = responseData;
-        const loaded = responseData;
+        initialActiveState.normalData = responseData.Unit;
+        const loaded = responseData.Unit;
         return unitActiveAdapter.setAll(initialActiveState, loaded);
       },
       providesTags: (result, error, arg) => [

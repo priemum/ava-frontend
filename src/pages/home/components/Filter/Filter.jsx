@@ -11,6 +11,11 @@ import MultiRangeSlider from "../../../../components/Forms/MultiRangeSlider";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { numberWithComma } from "../../../../helpers/numberComma";
+import { useSelector } from "react-redux";
+import {
+  selectCurrentCurrency,
+  selectCurrentUnit,
+} from "../../../../redux/websiteSettings.slice";
 const defaultFormState = {
   Addresses: [],
   CategoryID: "",
@@ -27,6 +32,8 @@ const defaultFormState = {
 const HomeFilter = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const currentCurrency = useSelector(selectCurrentCurrency);
+  const currentUnit = useSelector(selectCurrentUnit);
   const [parentType, setParentType] = useState();
   const [priceMin, setPriceMin] = useState(20000);
   const [areaMin, setAreaMin] = useState(100);
@@ -371,9 +378,9 @@ const HomeFilter = () => {
               value={
                 t("Price") +
                 ": " +
-                numberWithComma(priceMin) +
+                numberWithComma(priceMin * currentCurrency.conversionRate) +
                 " - " +
-                numberWithComma(priceMax)
+                numberWithComma(priceMax * currentCurrency.conversionRate)
               }
               select
               otherOptions={
@@ -387,6 +394,7 @@ const HomeFilter = () => {
                     minVal={priceMin}
                     setMaxVal={setPriceMax}
                     setMinVal={setPriceMin}
+                    price
                   />
                 </div>
               }
@@ -400,9 +408,9 @@ const HomeFilter = () => {
               value={
                 t("Size") +
                 ": " +
-                numberWithComma(areaMin) +
+                numberWithComma(areaMin * currentUnit.conversionRate) +
                 " - " +
-                numberWithComma(areaMax)
+                numberWithComma(areaMax * currentUnit.conversionRate)
               }
               select
               otherOptions={
@@ -416,6 +424,7 @@ const HomeFilter = () => {
                     minVal={areaMin}
                     setMaxVal={setAreaMax}
                     setMinVal={setAreaMin}
+                    unit
                   />
                 </div>
               }

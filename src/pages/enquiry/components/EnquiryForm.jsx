@@ -105,7 +105,7 @@ const EnquiryForm = () => {
           </div>
           <CustomInput
             value={values.Type}
-            selectID={"types"}
+            name={"Type"}
             inputType="text"
             options={typeOptions}
             setState={setValues}
