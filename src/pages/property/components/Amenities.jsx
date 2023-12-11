@@ -79,7 +79,7 @@ const Amenities = ({ data }) => {
           Advantages and services
         </p>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 max-lg:place-items-center">
         {data.map((item, index) => {
           if (index < 5)
             return (
