@@ -48,7 +48,7 @@ const HomeFilter = () => {
     isSuccess: categoriesIsSuccess,
   } = useGetActiveCategoryQuery();
   useEffect(() => {
-    if (categoriesIsSuccess) {
+    if (categoriesIsSuccess && categories.count !== 0) {
       setParentType(categories.parentCategories[0].id);
     }
   }, [categoriesIsSuccess]);
@@ -61,14 +61,14 @@ const HomeFilter = () => {
     }
   }, [form.purpose]);
   return (
-    <div className="h-[30vh] -mt-[30vh] w-full relative">
+    <div className="h-[60vh] sm:h-[40vh] xl:h-[30vh] -mt-[29.2vh] w-full relative">
       <div
         className="flex justify-center items-center text-white z-30 backdrop-blur-[3px] absolute w-screen left-0 h-full"
         style={{
-          background: "linear-gradient(0deg, #FFF 15%, transparent 100%)",
+          background: "linear-gradient(0deg, #FFF 25%, transparent 100%)",
         }}
       >
-        <div className="bg-primary/40 w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10 max-w-[1920px] h-full">
+        <div className="bg-primary/40 w-[90%] md:w-[85%] lg:w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10 max-w-[1920px] h-full">
           <CustomInput
             containerStyle={"!w-[300px]"}
             readOnly
@@ -148,27 +148,26 @@ const HomeFilter = () => {
             reverseIcon
           />
           <div className="bg-white/80 h-1 w-full gap-x-2 self-center flex my-3" />
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+          <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8">
             <CustomInput
               readOnly
               customStyle={"!text-primary font-semibold"}
               value={
                 categoriesIsLoading || categoriesIsFetching
                   ? t("Loading")
-                  : categoriesIsSuccess &&
-                    t("Category") +
-                      ": " +
-                      categories.entities[
-                        parentType
-                      ]?.Category_Translation.find(
-                        (x) => x.Language.Code.toLowerCase() == i18n.language
-                      ).Name +
-                      `${form.CategoryID.length !== 0 ? " / " : ""}` +
-                      (categories.entities[
-                        form.CategoryID
-                      ]?.Category_Translation.find(
-                        (x) => x.Language.Code.toLowerCase() == i18n.language
-                      ).Name ?? "")
+                  : categoriesIsSuccess && categories.count !== 0
+                  ? t("Category") +
+                    ": " +
+                    categories.entities[parentType]?.Category_Translation.find(
+                      (x) => x.Language.Code.toLowerCase() == i18n.language
+                    ).Name +
+                    `${form.CategoryID.length !== 0 ? " / " : ""}` +
+                    (categories.entities[
+                      form.CategoryID
+                    ]?.Category_Translation.find(
+                      (x) => x.Language.Code.toLowerCase() == i18n.language
+                    ).Name ?? "")
+                  : "No categories yet"
               }
               select
               otherOptions={
@@ -177,60 +176,23 @@ const HomeFilter = () => {
                     <div className="text-center text-smaller font-bold">
                       {t("Loading")}
                     </div>
-                  ) : (
-                    categoriesIsSuccess && (
-                      <React.Fragment>
-                        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 backdrop-blur-[21px]">
-                          {categories.ids.map((item, index) => {
-                            if (categories.entities[item].ParentID == null)
-                              return (
-                                <React.Fragment key={index}>
-                                  <div
-                                    className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
-                                      parentType == item
-                                        ? "bg-secondary text-primary"
-                                        : "bg-transparent text-white"
-                                    }`}
-                                    onClick={() => {
-                                      setParentType(item);
-                                      setForm({ ...form, CategoryID: "" });
-                                    }}
-                                  >
-                                    {
-                                      categories.entities[
-                                        item
-                                      ].Category_Translation.find(
-                                        (x) =>
-                                          x.Language.Code.toLowerCase() ==
-                                          i18n.language
-                                      ).Name
-                                    }
-                                  </div>
-                                  {index !==
-                                    categories.parentCategories.length - 1 && (
-                                    <div className="h-10 w-1 bg-white/50" />
-                                  )}
-                                </React.Fragment>
-                              );
-                          })}
-                        </div>
-
-                        <div className="grid grid-cols-2 place-items-center gap-4">
-                          {categories.ids.map((item, index) => {
-                            if (
-                              categories.entities[item].ParentID == parentType
-                            )
-                              return (
+                  ) : categoriesIsSuccess && categories.count !== 0 ? (
+                    <React.Fragment>
+                      <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 backdrop-blur-[21px]">
+                        {categories.ids.map((item, index) => {
+                          if (categories.entities[item].ParentID == null)
+                            return (
+                              <React.Fragment key={index}>
                                 <div
-                                  key={index}
-                                  className={`h-10 w-full border-[1px] border-secondary ${
-                                    form.CategoryID == item
-                                      ? "text-primary bg-secondary"
-                                      : "text-secondary bg-transparent"
-                                  } flex justify-center items-center text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
-                                  onClick={() =>
-                                    setForm({ ...form, CategoryID: item })
-                                  }
+                                  className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                                    parentType == item
+                                      ? "bg-secondary text-primary"
+                                      : "bg-transparent text-white"
+                                  }`}
+                                  onClick={() => {
+                                    setParentType(item);
+                                    setForm({ ...form, CategoryID: "" });
+                                  }}
                                 >
                                   {
                                     categories.entities[
@@ -242,11 +204,46 @@ const HomeFilter = () => {
                                     ).Name
                                   }
                                 </div>
-                              );
-                          })}
-                        </div>
-                      </React.Fragment>
-                    )
+                                {index !==
+                                  categories.parentCategories.length - 1 && (
+                                  <div className="h-10 w-1 bg-white/50" />
+                                )}
+                              </React.Fragment>
+                            );
+                        })}
+                      </div>
+
+                      <div className="grid grid-cols-2 place-items-center gap-4">
+                        {categories.ids.map((item, index) => {
+                          if (categories.entities[item].ParentID == parentType)
+                            return (
+                              <div
+                                key={index}
+                                className={`h-10 w-full border-[1px] border-secondary ${
+                                  form.CategoryID == item
+                                    ? "text-primary bg-secondary"
+                                    : "text-secondary bg-transparent"
+                                } flex justify-center items-center text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
+                                onClick={() =>
+                                  setForm({ ...form, CategoryID: item })
+                                }
+                              >
+                                {
+                                  categories.entities[
+                                    item
+                                  ].Category_Translation.find(
+                                    (x) =>
+                                      x.Language.Code.toLowerCase() ==
+                                      i18n.language
+                                  ).Name
+                                }
+                              </div>
+                            );
+                        })}
+                      </div>
+                    </React.Fragment>
+                  ) : (
+                    "No Categories Yet"
                   )}
                 </div>
               }
@@ -458,9 +455,9 @@ const HomeFilter = () => {
                 sessionStorage.setItem("filter", filterUrl);
                 navigate(`/properties/${filterUrl}`);
               }}
-              className=" w-full bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider"
+              className=" w-full max-sm:py-2 bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider"
             >
-              Find
+              {t("Find")}
             </button>
           </div>
         </div>

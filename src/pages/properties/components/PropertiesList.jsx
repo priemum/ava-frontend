@@ -133,7 +133,7 @@ const PropertiesList = () => {
     isSuccess &&
     data.count !== 0 && (
       <>
-        <div className="p-4 lg:p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4 min-h-screen w-full">
+        <div className="p-4 lg:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 min-h-screen w-full">
           {data.ids.map((item, index) => {
             return <PropertyCard data={data.entities[item]} key={index} />;
           })}

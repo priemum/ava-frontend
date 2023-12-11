@@ -37,7 +37,7 @@ const Teams = () => {
   ] = useLazyGetUsersByTeamIdQuery();
 
   useEffect(() => {
-    if (teamsIsSuccess && selectedTeamId == "") {
+    if (teamsIsSuccess && selectedTeamId == "" && teams.count !== 0) {
       getUsersByTeamId({ id: teams.ids[0] });
     }
   }, [teams]);
@@ -55,26 +55,26 @@ const Teams = () => {
   ) : (
     teamsIsSuccess &&
     teams.count !== 0 && (
-      <div className="overflow-x-hidden grid grid-cols-3 px-[5%]">
+      <div className="overflow-x-hidden grid md:grid-cols-3 gap-8 px-[5%]">
         <div className="col-span-1 flex flex-col justify-center items-start">
           <p className="text-big lg:text-[60px] font-bold md:w-[85%]">
             Find out who is behind AVA realestate
           </p>
-          <p className="text-smaller text-gray-600 md:w-[90%]">
+          <p className="text-smaller text-gray-600">
             Lorem ipsum dolor sit amet . The graphic and typographic operators
             know this well, in reality all the professions dealing with the
             universe of communication have a stable relationship Lorem ipsum
             dolor sit amet .
           </p>
         </div>
-        <div className="col-span-2 space-y-4">
+        <div className="col-span-2 space-y-4 max-md:w-[90vw]">
           <div>
             <Slider
               ref={sliderRef}
               dots={false}
               arrows={true}
               infinite={false}
-              touchMove={false}
+              // touchMove={false}
               slidesToShow={teams.count < 4 ? teams.count : 4}
               slidesToScroll={1}
               className="overflow-hidden h-full w-full"
@@ -89,7 +89,7 @@ const Teams = () => {
                     className="w-full !flex justify-center items-center"
                   >
                     <div
-                      className={`w-full max-w-[90%] py-3 px-2 text-center font-semibold ${
+                      className={`w-full max-w-[90%] h-[75px] flex justify-center items-center py-3 px-2 text-center font-semibold ${
                         currentSlide == index
                           ? "bg-buttonGrad !text-primary"
                           : "bg-primary/50 text-white"
@@ -165,7 +165,7 @@ const Teams = () => {
                       >
                         <img
                           src={
-                            API_BASE_URL + teamUsers.entities[item].Image.URL
+                            API_BASE_URL + teamUsers.entities[item].Image?.URL
                           }
                           alt={"Member" + index}
                           className="rounded-md w-full h-full object-cover object-center"

@@ -33,17 +33,17 @@ export default function Modal() {
       >
         <div
           ref={ref}
-          className="rounded-xl shadow-xl relative flex flex-col z-50 outline-none focus:outline-none overflow-hidden bg-fifth/40 backdrop-blur-[21px] border-[1px] border-white/40 h-full max-h-[90vh] w-full max-w-[70vw]"
+          className="rounded-xl shadow-xl relative flex flex-col z-50 outline-none focus:outline-none overflow-hidden bg-fifth/40 backdrop-blur-[21px] border-[1px] border-white/40 h-full max-h-[90vh] w-full max-w-[90vw] md:max-w-[70vw]"
         >
           <div
             onClick={() => {
               dispatch(hideModal());
             }}
-            className={`cursor-pointer font-bold self-center text-white hover:scale-125 hover:rotate-180 absolute ${
+            className={`cursor-pointer font-bold self-center text-secondary hover:scale-125 hover:rotate-180 absolute ${
               i18n.language == "en" ? "right-5" : "left-5"
             }  top-2 sm:max-md:top-8 md:top-3 transition-all duration-500 z-30`}
           >
-            <MdClose size={30} />
+            <MdClose size={35} />
           </div>
           {data?.data}
         </div>

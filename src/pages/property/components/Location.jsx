@@ -16,7 +16,7 @@ const Location = ({ data }) => {
     <div className="mt-12">
       <div className="flex items-center self-start flex-1">
         <img src={locationIcon} alt="property Icon" />
-        <p className="text-med font-bold">Location</p>
+        <p className="text-small sm:text-med font-bold">Location</p>
       </div>
       <iframe
         title="Property Map Location"

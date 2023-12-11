@@ -6,10 +6,10 @@ const PageHeader = ({ text }) => {
   return (
     <div className="h-[60vh]">
       <div
-        className="w-full h-[60vh] flex justify-center items-center bg-primary bg-no-repeat bg-cover bg-center overflow-hidden rounded-b-xl absolute left-0 top-0"
+        className="w-full h-[60vh] flex justify-center items-center bg-primary bg-no-repeat bg-[length:350%] sm:bg-[length:300%] md:bg-[length:200%] xl:bg-[length:110%] 2xl:bg-cover 2xl:bg-[100%_20%] overflow-hidden rounded-b-xl absolute left-0 top-0"
         style={{
           backgroundImage: `url(${pattern})`,
-          backgroundPosition: "100% 20%",
+          // backgroundPosition: "100% 20%",
         }}
       >
         <div className="absolute -left-[30vh] -top-[30vh] h-[60vh] w-[60vh] bg-white/30 rounded-full blur-[200px]" />

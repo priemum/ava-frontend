@@ -4,6 +4,8 @@ import { useGetActiveAddressQuery } from "../../../../redux/addresses/addressesS
 import { useTranslation } from "react-i18next";
 import AddressCard from "./AddressCard";
 import Loader from "../../../../components/UI/Loader";
+import Slider from "react-slick";
+
 const HomeAddresses = () => {
   const { t, i18n } = useTranslation();
   const { data, isLoading, isFetching, isSuccess, isError } =
@@ -25,10 +27,10 @@ const HomeAddresses = () => {
         <div className="flex w-full">
           <div className="flex items-center self-start flex-1">
             <img src={addressesIcon} alt="property Icon" />
-            <p className="text-med font-bold">{t("Addresses")}</p>
+            <p className="text-small md:text-med font-bold">{t("Addresses")}</p>
           </div>
         </div>
-        <div className="grid grid-cols-3 place-items-center gap-7">
+        <div className="max-lg:hidden grid md:grid-cols-2 xl:grid-cols-3 place-items-center gap-7">
           {data.ids.map((item, index) => {
             if (data.entities[item].addressID == null)
               return (
@@ -49,6 +51,41 @@ const HomeAddresses = () => {
               );
           })}
         </div>
+        <Slider
+          slidesToScroll={2}
+          slidesToShow={2}
+          arrows={false}
+          dots={false}
+          className="w-full lg:hidden"
+          beforeChange={(prev, next) => setCurrentSlide(next)}
+          responsive={[
+            {
+              breakpoint: 850,
+              settings: { slidesToShow: 1 },
+            },
+          ]}
+        >
+          {data.ids.map((item, index) => {
+            return (
+              <div className="!flex !justify-center !items-center w-full">
+                <AddressCard
+                  key={index}
+                  Name={
+                    data.entities[item].Address_Translation.find(
+                      (x) =>
+                        x.Language.Code.toLowerCase() ==
+                        i18n.language.toLowerCase()
+                    ).Name
+                  }
+                  Latitude={data.entities[item].Latitude}
+                  Longitude={data.entities[item].Longitude}
+                  Image={data.entities[item].Image.URL}
+                  Places={data.entities[item].Addresses.length}
+                />
+              </div>
+            );
+          })}
+        </Slider>
       </div>
     )
   );

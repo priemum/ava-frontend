@@ -4,7 +4,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import { useDispatch } from "react-redux";
 import { showMessage } from "../../../redux/messageAction.slice";
-import { Fields, Gender, Language_Lvl } from "../../../constants";
+import { Gender, Language_Lvl } from "../../../constants";
 import { MdExpandMore } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import CustomInput from "../../../components/Forms/CustomInput";

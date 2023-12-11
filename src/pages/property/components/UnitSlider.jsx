@@ -6,11 +6,13 @@ import Slider from "react-slick";
 import { numberWithComma } from "../../../helpers/numberComma";
 import { useSelector } from "react-redux";
 import { selectCurrentUnit } from "../../../redux/websiteSettings.slice";
+import { useTranslation } from "react-i18next";
 const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
   const sliderRef = useRef();
   const currentUnit = useSelector(selectCurrentUnit);
+  const { i18n } = useTranslation();
   return (
-    <div className="mt-6 p-8 bg-white rounded-xl shadow-xl w-[80%]">
+    <div className="mt-6 p-4 lg:p-8 bg-white rounded-xl shadow-xl w-[95%] sm:w-[80%]">
       <Slider
         dots={false}
         arrows={true}
@@ -26,7 +28,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
           return (
             <div
               key={index}
-              className={`max-w-[95%] py-1 px-2 text-center font-semibold backdrop-blur-[21px] ${
+              className={`max-w-[98%] py-1 px-2 text-center font-semibold backdrop-blur-[21px] ${
                 currentSlide == index
                   ? "bg-secondary text-primary"
                   : "bg-primary/50 text-white shadow-2xl"
@@ -77,7 +79,11 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
                   <img src={squareft} className="w-6 h-6" alt="area-icon" />
                 </div>
                 <p className="font-normal text-[12px] md:text-tiny">
-                  Square (Ft)
+                  {
+                    currentUnit.Unit_Translation.find(
+                      (x) => x.Language.Code.toLowerCase() == i18n.language
+                    ).Name
+                  }
                 </p>
               </div>
             </div>

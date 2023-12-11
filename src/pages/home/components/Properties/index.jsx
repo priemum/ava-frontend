@@ -27,25 +27,29 @@ const HomeProperties = () => {
       <div className="flex w-full">
         <div className="flex items-center self-start flex-1">
           <img src={propertyIcon} alt="property Icon" />
-          <p className="text-med font-bold">{t("HomePropertiesTitle")}</p>
+          <p className="text-small md:text-med font-bold">
+            {t("HomePropertiesTitle")}
+          </p>
         </div>
-        <div className="bg-primary/10 rounded-md p-3 flex items-center self-center gap-x-4">
-          <FaAngleLeft
-            onClick={() => {
-              sliderRef.current.slickGoTo(currentSlide - 1);
-            }}
-            size={24}
-            className="cursor-pointer"
-          />
-          <div className="w-px h-6 bg-primary/30" />
-          <FaAngleRight
-            onClick={() => {
-              sliderRef.current.slickGoTo(currentSlide + 1);
-            }}
-            size={24}
-            className="cursor-pointer"
-          />
-        </div>
+        {isSuccess && data.count > 4 && (
+          <div className="bg-primary/10 rounded-md p-3 flex items-center self-center gap-x-4 max-lg:hidden">
+            <FaAngleLeft
+              onClick={() => {
+                sliderRef.current.slickGoTo(currentSlide - 1);
+              }}
+              size={24}
+              className="cursor-pointer"
+            />
+            <div className="w-px h-6 bg-primary/30" />
+            <FaAngleRight
+              onClick={() => {
+                sliderRef.current.slickGoTo(currentSlide + 1);
+              }}
+              size={24}
+              className="cursor-pointer"
+            />
+          </div>
+        )}
       </div>
       {isLoading || isFetching ? (
         <div className="my-24 flex flex-col justify-center items-center relative">
@@ -72,6 +76,16 @@ const HomeProperties = () => {
             dots={false}
             className="w-full"
             beforeChange={(prev, next) => setCurrentSlide(next)}
+            responsive={[
+              {
+                breakpoint: 1200,
+                settings: { slidesToShow: data.count >= 2 ? 2 : data.count },
+              },
+              {
+                breakpoint: 700,
+                settings: { slidesToShow: 1 },
+              },
+            ]}
           >
             {data.ids.map((item, index) => {
               return <PropertyCard key={index} data={data.entities[item]} />;

@@ -45,7 +45,7 @@ const CurrencySettings = () => {
               )?.Name
             }
             select
-            otherOptions={currencies.ids.map((item, index) => {
+            otherOptions={currencies?.ids.map((item, index) => {
               return (
                 <p
                   key={index}

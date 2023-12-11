@@ -20,7 +20,7 @@ const defaultFormState = {
   AreaMin: 100,
   AreaMax: 2000,
 };
-const Filter = () => {
+const Filter = ({ containerStyle }) => {
   const {
     search,
     PriceMin,
@@ -94,7 +94,7 @@ const Filter = () => {
     isSuccess: categoriesIsSuccess,
   } = useGetActiveCategoryQuery();
   useEffect(() => {
-    if (categoriesIsSuccess) {
+    if (categoriesIsSuccess && categories.count !== 0) {
       if (parentCategory) {
         setParentType(parentCategory);
       } else {
@@ -113,7 +113,9 @@ const Filter = () => {
   }, [form.purpose]);
 
   return (
-    <div className="m-8 rounded-lg shadow-md bg-white h-[88vh] w-[calc(100%-4rem)] overflow-y-auto relative">
+    <div
+      className={`m-8 rounded-lg shadow-md ${containerStyle} bg-white h-[88vh] w-[calc(100%-4rem)] overflow-y-auto relative`}
+    >
       <div className="flex flex-col space-y-2 p-8">
         <CustomInput
           containerStyle={"!bg-[#F6F6F6]"}
@@ -253,55 +255,29 @@ const Filter = () => {
         </div>
       </div>
       <div className="h-px w-full bg-primary/20" />
-      <div className="flex flex-col p-8 space-y-2">
-        {categoriesIsFetching || categoriesIsLoading ? (
-          <div className="text-center text-smaller font-bold">
-            {t("Loading")}
-          </div>
-        ) : (
-          categoriesIsSuccess && (
-            <React.Fragment>
-              <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
-                {categories.ids.map((item, index) => {
-                  if (categories.entities[item].ParentID == null)
-                    return (
-                      <React.Fragment key={index}>
-                        <div
-                          className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
-                            parentType == item
-                              ? "bg-secondary text-primary"
-                              : "bg-transparent text-primary"
-                          }`}
-                          onClick={() => {
-                            setParentType(item);
-                            setForm({ ...form, CategoryID: "" });
-                          }}
-                        >
-                          {
-                            categories.entities[item].Category_Translation.find(
-                              (x) =>
-                                x.Language.Code.toLowerCase() == i18n.language
-                            ).Name
-                          }
-                        </div>
-                        <div className="h-10 w-1 bg-white/50" />
-                      </React.Fragment>
-                    );
-                })}
-              </div>
-
-              <div className="grid grid-cols-2 place-items-center gap-4">
-                {categories.ids.map((item, index) => {
-                  if (categories.entities[item].ParentID == parentType)
-                    return (
+      {categoriesIsFetching || categoriesIsLoading ? (
+        <div className="text-center text-smaller font-bold p-8 flex flex-col">
+          {t("Loading")}
+        </div>
+      ) : (
+        categoriesIsSuccess &&
+        categories.count !== 0 && (
+          <React.Fragment>
+            <div className="flex justify-center items-center border-[1px] rounded-md gap-x-2 bg-[#F6F6F6] p-8 ">
+              {categories.ids.map((item, index) => {
+                if (categories.entities[item].ParentID == null)
+                  return (
+                    <React.Fragment key={index}>
                       <div
-                        key={index}
-                        className={`h-10 w-32 border-[1px] border-secondary ${
-                          form.CategoryID == item
-                            ? "text-primary bg-secondary"
-                            : "text-secondary bg-transparent"
-                        } flex justify-center items-center text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
-                        onClick={() => setForm({ ...form, CategoryID: item })}
+                        className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                          parentType == item
+                            ? "bg-secondary text-primary"
+                            : "bg-transparent text-primary"
+                        }`}
+                        onClick={() => {
+                          setParentType(item);
+                          setForm({ ...form, CategoryID: "" });
+                        }}
                       >
                         {
                           categories.entities[item].Category_Translation.find(
@@ -310,14 +286,38 @@ const Filter = () => {
                           ).Name
                         }
                       </div>
-                    );
-                })}
-              </div>
-            </React.Fragment>
-          )
-        )}
-      </div>
+                      <div className="h-10 w-1 bg-white/50" />
+                    </React.Fragment>
+                  );
+              })}
+            </div>
+            <div className="grid grid-cols-2 place-items-center gap-4 p-8">
+              {categories.ids.map((item, index) => {
+                if (categories.entities[item].ParentID == parentType)
+                  return (
+                    <div
+                      key={index}
+                      className={`h-10 w-32 border-[1px] border-secondary ${
+                        form.CategoryID == item
+                          ? "text-primary bg-secondary"
+                          : "text-secondary bg-transparent"
+                      } flex justify-center items-center text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
+                      onClick={() => setForm({ ...form, CategoryID: item })}
+                    >
+                      {
+                        categories.entities[item].Category_Translation.find(
+                          (x) => x.Language.Code.toLowerCase() == i18n.language
+                        ).Name
+                      }
+                    </div>
+                  );
+              })}
+            </div>
+          </React.Fragment>
+        )
+      )}
       <div className="h-px w-full bg-primary/20" />
+
       <div className="flex flex-col p-8 space-y-2">
         <p className="font-semibold text-smaller">{t("Bathrooms")}:</p>
         <div className="grid grid-cols-5 gap-4">
@@ -383,7 +383,7 @@ const Filter = () => {
           {t("Clear")}
         </button>
         <button
-          className="w-full p-2 rounded-md shadow-sm bg-secondary font-semibold"
+          className="w-full p-2 rounded-md shadow-sm bg-buttonGrad font-semibold"
           onClick={() => {
             setForm({
               ...form,

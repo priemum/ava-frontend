@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const AddressCard = ({ Name, Latitude, Longitude, Image, Places }) => {
   const navigate = useNavigate();
   return (
-    <div className="h-[500px] w-[420px] relative rounded-md  group">
+    <div className="md:max-2xl:h-[450px] md:max-2xl:w-[350px] h-[500px] w-[420px] relative rounded-md  group">
       <div className="w-full h-full overflow-hidden rounded-md">
         <img
           src={API_BASE_URL + Image}

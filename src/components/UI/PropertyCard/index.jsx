@@ -180,7 +180,11 @@ const PropertyCard = ({ data }) => {
                   />
                 </div>
                 <p className="font-normal text-[12px] md:text-tiny">
-                  Square (Ft)
+                  {
+                    currentUnit.Unit_Translation.find(
+                      (x) => x.Language.Code.toLowerCase() == i18n.language
+                    ).Name
+                  }
                 </p>
               </div>
             </div>

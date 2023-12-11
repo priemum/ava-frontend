@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import aboutIcon from "../../assets/icons/about.svg";
 import Logo from "../../assets/logos/black-logo.svg";
 import aboutUsPattern from "../../assets/images/aboutUsPattern.svg";
@@ -9,7 +9,17 @@ import Location from "./components/Location";
 import MemberCard from "./components/MemberCard";
 import MissionCard from "./components/MissionCard";
 import Teams from "./components/Teams";
+import useWindowDimensions from "../../hooks/screenDimentions";
 const AboutUsPage = () => {
+  const { width } = useWindowDimensions();
+  const [w, setW] = useState(width);
+
+  useEffect(() => {
+    if (width !== w) {
+      window.location.reload();
+    }
+    setW(width);
+  }, [width]);
   return (
     <div>
       <Head

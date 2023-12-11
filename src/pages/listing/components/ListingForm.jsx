@@ -158,7 +158,7 @@ const ListingForm = () => {
 
   return (
     <>
-      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[30vw] md:max-w-[60%] md:min-h-[97vh] col-span-2 ">
+      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-4 md:p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[1000px]">
         <p className="text-smaller"> Property Information</p>
         <div className="space-y-4">
           <div className="space-y-1">
@@ -296,8 +296,8 @@ const ListingForm = () => {
           </div>
         </div>
       </div>
-      <div className="w-[90%] md:max-w-[30%] space-y-4">
-        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-full h-[40vh] md:max-h-[40vh] flex flex-col overflow-x-hidden overflow-y-auto">
+      <div className="w-[90%] lg:w-[40%] 2xl:w-[35%] space-y-8 h-[1000px]">
+        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 h-[40%] w-full flex flex-col overflow-x-hidden overflow-y-auto">
           <div className="w-full flex items-center gap-x-6">
             <Button
               textColor={"text-primary"}
@@ -376,8 +376,8 @@ const ListingForm = () => {
             </Slider>
           )}
         </div>
-        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-full h-[55vh] md:max-h-[55vh] flex flex-col overflow-x-hidden overflow-y-auto">
-          <p className="text-smaller"> Personal Information</p>
+        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-full h-[57%] flex flex-col overflow-x-hidden overflow-y-auto">
+          <p className="text-smaller"> {t("PersonalInformation")} </p>
           <div className="space-y-4 flex-1">
             <CustomInput
               icon={<MdPerson className="text-white text-med" />}

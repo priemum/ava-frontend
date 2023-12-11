@@ -34,7 +34,7 @@ const Amenities = ({ data }) => {
   const AmenitiesCard = ({ icon, name, count, data, popUp }) => {
     return (
       <div
-        className="w-[225px] h-[225px] flex flex-col justify-center items-center relative rounded-xl cursor-pointer"
+        className="w-[150px] h-[150px] sm:w-[225px] sm:h-[225px] 2xl:w-[210px] 2xl:h-[210px] flex flex-col justify-center items-center relative rounded-xl cursor-pointer"
         onClick={() => {
           showAmenitiesModal();
         }}
@@ -49,9 +49,11 @@ const Amenities = ({ data }) => {
               className="!w-16 !h-16"
             />
           ) : (
-            <p className="text-smaller font-bold">{"+ " + data}</p>
+            <p className="text-tiny sm:text-smaller font-bold">{"+ " + data}</p>
           )}
-          <p className="text-smaller">{!count ? name : "Find More"}</p>
+          <p className="text-tiny sm:text-smaller">
+            {!count ? name : "Find More"}
+          </p>
         </div>
 
         <div
@@ -71,24 +73,28 @@ const Amenities = ({ data }) => {
   };
   return (
     <div className="mt-12">
-      <div className="flex items-center self-start flex-1">
+      <div className="flex items-center self-start  flex-1">
         <img src={AmenityIcon} alt="property Icon" />
-        <p className="text-med font-bold">Advantages and services</p>
+        <p className="text-small md:text-med font-bold">
+          Advantages and services
+        </p>
       </div>
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
         {data.map((item, index) => {
-          return (
-            <AmenitiesCard
-              key={index}
-              icon={item.Image.URL}
-              name={
-                item.Aminities_Translation.find((x) => x.Language.Code == "En")
-                  .Name
-              }
-              count={index > 3}
-              data={data.length - 4}
-            />
-          );
+          if (index < 5)
+            return (
+              <AmenitiesCard
+                key={index}
+                icon={item.Image.URL}
+                name={
+                  item.Aminities_Translation.find(
+                    (x) => x.Language.Code == "En"
+                  ).Name
+                }
+                count={index > 3}
+                data={data.length - 4}
+              />
+            );
         })}
       </div>
     </div>

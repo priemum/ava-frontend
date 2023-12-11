@@ -75,9 +75,9 @@ const EnquiryForm = () => {
   }, [isSuccess, isError]);
 
   return (
-    <div className="w-full flex max-md:flex-col max-md:justify-center md:justify-center items-center md:gap-x-8">
-      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[30vw] min-h-[65vh]">
-        <p className="text-smaller"> Property Information</p>
+    <div className="w-full flex max-lg:flex-col justify-center items-center gap-12">
+      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-4 md:p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[700px]">
+        <p className="text-smaller"> {t("PropertyInformation")} </p>
         <div className="space-y-4">
           <div className="space-y-1">
             <p className="text-tiny">{t("Purpose")} </p>
@@ -156,8 +156,8 @@ const EnquiryForm = () => {
           />
         </div>
       </div>
-      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[30vw] min-h-[65vh] flex flex-col">
-        <p className="text-smaller"> Personal Information</p>
+      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-4 md:p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[700px] flex flex-col">
+        <p className="text-smaller"> {t("PersonalInformation")}</p>
         <div className="space-y-4 flex-1">
           <CustomInput
             icon={<MdPerson className="text-white text-med" />}
