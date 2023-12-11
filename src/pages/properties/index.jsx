@@ -11,7 +11,7 @@ const PropertiesPage = () => {
   return (
     <div className="bg-[#F6F6F6] flex min-h-screen pt-20 pb-12">
       <div
-        className="w-full max-w-[25vw] bg-black max-xl:hidden top-[5vh] left-0 h-screen"
+        className="w-full max-w-[25vw] max-xl:hidden top-[5vh] left-0 h-screen"
         style={{
           position: "sticky",
         }}

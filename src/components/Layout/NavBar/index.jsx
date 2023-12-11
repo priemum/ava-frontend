@@ -50,7 +50,7 @@ const NavBar = () => {
   return (
     <>
       <div
-        className={`flex flex-col justify-center items-center top-0 !w-screen fixed backdrop-blur-[21px] z-40 h-[7vh] ${
+        className={`flex flex-col justify-center items-center top-0 !w-screen fixed backdrop-blur-[21px] z-40 h-[70px] ${
           header == "white" ? "shadow-2xl" : "shadow-0"
         }`}
         style={{
@@ -82,7 +82,7 @@ const NavBar = () => {
           <div className="flex justify-center items-center absolute -top-3 left-1/2 -translate-x-1/2">
             <img
               src={Logo}
-              className="h-[7vh] cursor-pointer"
+              className="h-[70px] cursor-pointer"
               alt=""
               onClick={() => navigate("/")}
             />
