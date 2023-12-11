@@ -13,13 +13,13 @@ import useWindowDimensions from "../../hooks/screenDimentions";
 const AboutUsPage = () => {
   const { width } = useWindowDimensions();
   const [w, setW] = useState(width);
-
   useEffect(() => {
     if (width !== w) {
       window.location.reload();
     }
     setW(width);
   }, [width]);
+
   return (
     <div>
       <Head

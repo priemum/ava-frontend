@@ -55,10 +55,13 @@ const HomeAddresses = () => {
           slidesToScroll={2}
           slidesToShow={2}
           arrows={false}
-          dots={false}
+          dots={true}
           className="w-full lg:hidden"
-          beforeChange={(prev, next) => setCurrentSlide(next)}
           responsive={[
+            {
+              breakpoint: 2000,
+              settings: { slidesToShow: 2 },
+            },
             {
               breakpoint: 850,
               settings: { slidesToShow: 1 },
@@ -67,7 +70,7 @@ const HomeAddresses = () => {
         >
           {data.ids.map((item, index) => {
             return (
-              <div className="!flex !justify-center !items-center w-full">
+              <div className="!flex !justify-center !items-center h-full pb-5 w-full">
                 <AddressCard
                   key={index}
                   Name={

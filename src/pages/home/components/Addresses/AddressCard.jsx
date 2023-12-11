@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const AddressCard = ({ Name, Latitude, Longitude, Image, Places }) => {
   const navigate = useNavigate();
   return (
-    <div className="md:max-2xl:h-[450px] md:max-2xl:w-[350px] h-[500px] w-[420px] relative rounded-md  group">
+    <div className="w-[300px] h-[400px] sm:h-[450px] sm:w-[350px] 2xl:h-[500px] 2xl:w-[420px] relative rounded-md  group">
       <div className="w-full h-full overflow-hidden rounded-md">
         <img
           src={API_BASE_URL + Image}
@@ -22,7 +22,7 @@ const AddressCard = ({ Name, Latitude, Longitude, Image, Places }) => {
       </div>
       <div
         onClick={() => {}}
-        className="w-24 h-24 bg-primary/30 backdrop-blur-[15px] text-white absolute -right-4 -bottom-4 rounded-md flex flex-col gap-y-2 justify-center items-center cursor-pointer"
+        className="w-20 h-20 2xl:w-24 2xl:h-24 bg-primary/30 backdrop-blur-[15px] text-white absolute -right-3 -bottom-3 2xl:-right-4 2xl:-bottom-4 rounded-md flex flex-col gap-y-2 justify-center items-center cursor-pointer"
       >
         <MdArrowOutward size={24} />
         <p>See More</p>

@@ -11,7 +11,7 @@ const Amenities = ({ data }) => {
     dispatch(
       showModal({
         data: (
-          <div className="grid grid-cols-3 gap-6 p-8 place-items-center">
+          <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 p-8 place-items-center overflow-y-scroll">
             {data.map((item, index) => {
               return (
                 <AmenitiesCard
@@ -34,7 +34,7 @@ const Amenities = ({ data }) => {
   const AmenitiesCard = ({ icon, name, count, data, popUp }) => {
     return (
       <div
-        className="w-[150px] h-[150px] sm:w-[225px] sm:h-[225px] 2xl:w-[210px] 2xl:h-[210px] flex flex-col justify-center items-center relative rounded-xl cursor-pointer"
+        className="w-[150px] h-[150px] sm:w-[210px] sm:h-[210px] flex flex-col justify-center items-center relative rounded-xl cursor-pointer border-[1px]  border-primary"
         onClick={() => {
           showAmenitiesModal();
         }}
@@ -58,15 +58,15 @@ const Amenities = ({ data }) => {
 
         <div
           className={`absolute w-full h-full left-0 top-0 rounded-xl z-10 ${
-            popUp ? "bg-white/50" : "bg-primary/30"
+            popUp ? "bg-white/50" : "bg-primary/10"
           } backdrop-blur-[21px] shadow-lg drop-shadow-lg`}
         >
-          <div
+          {/* <div
             style={{
               backgroundImage: `url(${pattern})`,
             }}
             className="w-full h-full bg-no-repeat bg-center bg-cover rounded-xl"
-          />
+          /> */}
         </div>
       </div>
     );

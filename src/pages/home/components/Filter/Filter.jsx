@@ -61,7 +61,7 @@ const HomeFilter = () => {
     }
   }, [form.purpose]);
   return (
-    <div className="h-[60vh] sm:h-[40vh] xl:h-[30vh] -mt-[29.2vh] w-full relative">
+    <div className="h-[600px] sm:h-[400px] xl:h-[300px] -mt-[295px] w-full relative">
       <div
         className="flex justify-center items-center text-white z-30 backdrop-blur-[3px] absolute w-screen left-0 h-full"
         style={{
@@ -70,6 +70,7 @@ const HomeFilter = () => {
       >
         <div className="bg-primary/40 w-[90%] md:w-[85%] lg:w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10 max-w-[1920px] h-full">
           <CustomInput
+            keepOnSelect
             containerStyle={"!w-[300px]"}
             readOnly
             value={
@@ -150,6 +151,7 @@ const HomeFilter = () => {
           <div className="bg-white/80 h-1 w-full gap-x-2 self-center flex my-3" />
           <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8">
             <CustomInput
+              keepOnSelect
               readOnly
               customStyle={"!text-primary font-semibold"}
               value={
@@ -251,6 +253,7 @@ const HomeFilter = () => {
               reverseIcon
             />
             <CustomInput
+              keepOnSelect
               readOnly
               customStyle={"!text-primary font-semibold"}
               value={
@@ -309,6 +312,7 @@ const HomeFilter = () => {
               reverseIcon
             />
             <CustomInput
+              keepOnSelect
               readOnly
               customStyle={"!text-primary font-semibold"}
               value={
@@ -369,6 +373,7 @@ const HomeFilter = () => {
               reverseIcon
             />
             <CustomInput
+              keepOnSelect
               readOnly
               customStyle={"!text-primary font-semibold"}
               placeholder={t("BathroomsNumber")}
@@ -399,6 +404,7 @@ const HomeFilter = () => {
               reverseIcon
             />
             <CustomInput
+              keepOnSelect
               readOnly
               customStyle={"!text-primary font-semibold"}
               placeholder={t("Size")}

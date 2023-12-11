@@ -22,6 +22,7 @@ const CustomInput = ({
   textArea,
   textAreaRows,
   inputLabel,
+  keepOnSelect,
 }) => {
   const [selectStatus, setSelectStatus] = useState(false);
 
@@ -57,7 +58,7 @@ const CustomInput = ({
           reverseIcon && "flex-row-reverse"
         } ${select && "cursor-pointer"}`}
         onClick={() => {
-          setSelectStatus(!selectStatus);
+          !keepOnSelect && setSelectStatus(!selectStatus);
         }}
       >
         {icon}
