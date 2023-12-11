@@ -70,9 +70,11 @@ const HomeAddresses = () => {
         >
           {data.ids.map((item, index) => {
             return (
-              <div className="!flex !justify-center !items-center h-full pb-5 w-full">
+              <div
+                key={index}
+                className="!flex !justify-center !items-center h-full pb-5 w-full"
+              >
                 <AddressCard
-                  key={index}
                   Name={
                     data.entities[item].Address_Translation.find(
                       (x) =>

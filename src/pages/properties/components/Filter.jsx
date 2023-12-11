@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Purpose, RentFrequency, CompletionStatus } from "../../../constants";
 import { MdSearch } from "react-icons/md";
 import CustomInput from "../../../components/Forms/CustomInput";
+import { useGetGeneralDataQuery } from "../../../redux/generalData/generalDataSlice";
 
 const defaultFormState = {
   Addresses: [],
@@ -38,11 +39,19 @@ const Filter = ({ containerStyle }) => {
   } = useParams();
   const rooms = [1, 2, 3, 4, 5, 6];
   const [searchTerm, setSearchTerm] = useState(search ?? "");
-  const [priceMin, setPriceMin] = useState(PriceMin ?? 20000);
-  const [areaMin, setAreaMin] = useState(AreaMin ?? 100);
-  const [priceMax, setPriceMax] = useState(PriceMax ?? 1000000);
-  const [areaMax, setAreaMax] = useState(AreaMax ?? 2000);
+  const [priceMin, setPriceMin] = useState();
+  const [areaMin, setAreaMin] = useState();
+  const [priceMax, setPriceMax] = useState();
+  const [areaMax, setAreaMax] = useState();
   const [parentType, setParentType] = useState();
+  const {
+    data: generalData,
+    isLoading: generalDataIsLoading,
+    isFetching: generalDataIsFetching,
+    isSuccess: generalDataIsSuccess,
+    isError: generalDataIsError,
+  } = useGetGeneralDataQuery();
+
   const [form, setForm] = useState({
     Addresses:
       Addresses == "all" || Array.isArray(Addresses) == false ? [] : Addresses,
@@ -84,6 +93,21 @@ const Filter = ({ containerStyle }) => {
     AreaMin: areaMin,
     AreaMax: areaMax,
   });
+  useEffect(() => {
+    if (generalDataIsSuccess) {
+      setAreaMin(AreaMin ?? generalData.MinSize);
+      setAreaMax(AreaMax ?? generalData.MaxSize);
+      setPriceMin(PriceMin ?? generalData.MinPrice);
+      setPriceMax(PriceMax ?? generalData.MaxPrice);
+      setForm({
+        ...form,
+        AreaMin: AreaMin ?? generalData.MinSize,
+        AreaMax: AreaMax ?? generalData.MaxSize,
+        PriceMin: PriceMin ?? generalData.MinPrice,
+        PriceMax: PriceMax ?? generalData.MaxPrice,
+      });
+    }
+  }, [generalDataIsSuccess]);
 
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -137,32 +161,40 @@ const Filter = ({ containerStyle }) => {
         </button>
       </div>
       <div className="h-px w-full bg-primary/20" />
-      <div className="flex flex-col p-8 space-y-2">
-        <p className="font-semibold text-tiny 2xl:text-smaller">
-          {t("Price")}:
-        </p>
-        <MultiRangeSlider
-          max={1000000}
-          min={20000}
-          maxVal={priceMax}
-          minVal={priceMin}
-          setMaxVal={setPriceMax}
-          setMinVal={setPriceMin}
-          price
-        />
-        <p className="font-semibold text-tiny 2xl:text-smaller pt-12">
-          {t("Size")}:
-        </p>
-        <MultiRangeSlider
-          max={2000}
-          min={100}
-          maxVal={areaMax}
-          minVal={areaMin}
-          setMaxVal={setAreaMax}
-          setMinVal={setAreaMin}
-          unit
-        />
-      </div>
+      {generalDataIsLoading || generalDataIsFetching ? (
+        <div className="text-center text-smaller font-bold p-8 flex flex-col">
+          {t("Loading")}
+        </div>
+      ) : (
+        generalDataIsSuccess && (
+          <div className="flex flex-col p-8 space-y-2">
+            <p className="font-semibold text-tiny 2xl:text-smaller">
+              {t("Price")}:
+            </p>
+            <MultiRangeSlider
+              max={generalData.MaxPrice}
+              min={generalData.MinPrice}
+              maxVal={priceMax}
+              minVal={priceMin}
+              setMaxVal={setPriceMax}
+              setMinVal={setPriceMin}
+              price
+            />
+            <p className="font-semibold text-tiny 2xl:text-smaller pt-12">
+              {t("Size")}:
+            </p>
+            <MultiRangeSlider
+              max={generalData.MaxSize}
+              min={generalData.MinSize}
+              maxVal={areaMax}
+              minVal={areaMin}
+              setMaxVal={setAreaMax}
+              setMinVal={setAreaMin}
+              unit
+            />
+          </div>
+        )
+      )}
       <div className="h-px w-full bg-primary/20 mt-8" />
       <div className="flex flex-col p-8 space-y-2">
         <React.Fragment>

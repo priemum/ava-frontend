@@ -16,6 +16,7 @@ import {
   selectCurrentCurrency,
   selectCurrentUnit,
 } from "../../../../redux/websiteSettings.slice";
+import { useGetGeneralDataQuery } from "../../../../redux/generalData/generalDataSlice";
 const defaultFormState = {
   Addresses: [],
   CategoryID: "",
@@ -35,10 +36,10 @@ const HomeFilter = () => {
   const currentCurrency = useSelector(selectCurrentCurrency);
   const currentUnit = useSelector(selectCurrentUnit);
   const [parentType, setParentType] = useState();
-  const [priceMin, setPriceMin] = useState(20000);
-  const [areaMin, setAreaMin] = useState(100);
-  const [priceMax, setPriceMax] = useState(1000000);
-  const [areaMax, setAreaMax] = useState(2000);
+  const [priceMin, setPriceMin] = useState();
+  const [areaMin, setAreaMin] = useState();
+  const [priceMax, setPriceMax] = useState();
+  const [areaMax, setAreaMax] = useState();
   const rooms = [1, 2, 3, 4, 5, 6];
   const [form, setForm] = useState(defaultFormState);
   const {
@@ -47,6 +48,13 @@ const HomeFilter = () => {
     isFetching: categoriesIsFetching,
     isSuccess: categoriesIsSuccess,
   } = useGetActiveCategoryQuery();
+  const {
+    data: generalData,
+    isLoading: generalDataIsLoading,
+    isFetching: generalDataIsFetching,
+    isSuccess: generalDataIsSuccess,
+    isError: generalDataIsError,
+  } = useGetGeneralDataQuery();
   useEffect(() => {
     if (categoriesIsSuccess && categories.count !== 0) {
       setParentType(categories.parentCategories[0].id);
@@ -60,6 +68,14 @@ const HomeFilter = () => {
       setRent_buy(CompletionStatus);
     }
   }, [form.purpose]);
+  useEffect(() => {
+    if (generalDataIsSuccess) {
+      setAreaMin(generalData.MinSize);
+      setAreaMax(generalData.MaxSize);
+      setPriceMin(generalData.MinPrice);
+      setPriceMax(generalData.MaxPrice);
+    }
+  }, [generalDataIsSuccess]);
   return (
     <div className="h-[600px] sm:h-[400px] xl:h-[300px] -mt-[295px] w-full relative">
       <div
@@ -372,68 +388,78 @@ const HomeFilter = () => {
               icon={<MdExpandMore size={24} />}
               reverseIcon
             />
-            <CustomInput
-              keepOnSelect
-              readOnly
-              customStyle={"!text-primary font-semibold"}
-              placeholder={t("BathroomsNumber")}
-              value={
-                t("Price") +
-                ": " +
-                numberWithComma(priceMin * currentCurrency.conversionRate) +
-                " - " +
-                numberWithComma(priceMax * currentCurrency.conversionRate)
-              }
-              select
-              otherOptions={
-                <div className="flex flex-col space-y-2 p-2 pb-12">
-                  <p className="font-semibold text-smaller">{t("Price")}:</p>
-                  <MultiRangeSlider
-                    textColor={"text-white"}
-                    max={1000000}
-                    min={20000}
-                    maxVal={priceMax}
-                    minVal={priceMin}
-                    setMaxVal={setPriceMax}
-                    setMinVal={setPriceMin}
-                    price
-                  />
-                </div>
-              }
-              icon={<MdExpandMore size={24} />}
-              reverseIcon
-            />
-            <CustomInput
-              keepOnSelect
-              readOnly
-              customStyle={"!text-primary font-semibold"}
-              placeholder={t("Size")}
-              value={
-                t("Size") +
-                ": " +
-                numberWithComma(areaMin * currentUnit.conversionRate) +
-                " - " +
-                numberWithComma(areaMax * currentUnit.conversionRate)
-              }
-              select
-              otherOptions={
-                <div className="flex flex-col space-y-2 p-2 pb-12">
-                  <p className="font-semibold text-smaller">{t("Size")}:</p>
-                  <MultiRangeSlider
-                    textColor={"text-white"}
-                    max={2000}
-                    min={100}
-                    maxVal={areaMax}
-                    minVal={areaMin}
-                    setMaxVal={setAreaMax}
-                    setMinVal={setAreaMin}
-                    unit
-                  />
-                </div>
-              }
-              icon={<MdExpandMore size={24} />}
-              reverseIcon
-            />
+            {generalDataIsSuccess &&
+              !generalDataIsLoading &&
+              !generalDataIsFetching && (
+                <CustomInput
+                  keepOnSelect
+                  readOnly
+                  customStyle={"!text-primary font-semibold"}
+                  placeholder={t("BathroomsNumber")}
+                  value={
+                    t("Price") +
+                    ": " +
+                    numberWithComma(priceMin * currentCurrency.conversionRate) +
+                    " - " +
+                    numberWithComma(priceMax * currentCurrency.conversionRate)
+                  }
+                  select
+                  otherOptions={
+                    <div className="flex flex-col space-y-2 p-2 pb-12">
+                      <p className="font-semibold text-smaller">
+                        {t("Price")}:
+                      </p>
+                      <MultiRangeSlider
+                        textColor={"text-white"}
+                        max={generalData.MaxPrice}
+                        min={generalData.MinPrice}
+                        maxVal={priceMax}
+                        minVal={priceMin}
+                        setMaxVal={setPriceMax}
+                        setMinVal={setPriceMin}
+                        price
+                      />
+                    </div>
+                  }
+                  icon={<MdExpandMore size={24} />}
+                  reverseIcon
+                />
+              )}
+            {generalDataIsSuccess &&
+              !generalDataIsLoading &&
+              !generalDataIsFetching && (
+                <CustomInput
+                  keepOnSelect
+                  readOnly
+                  customStyle={"!text-primary font-semibold"}
+                  placeholder={t("Size")}
+                  value={
+                    t("Size") +
+                    ": " +
+                    numberWithComma(areaMin * currentUnit.conversionRate) +
+                    " - " +
+                    numberWithComma(areaMax * currentUnit.conversionRate)
+                  }
+                  select
+                  otherOptions={
+                    <div className="flex flex-col space-y-2 p-2 pb-12">
+                      <p className="font-semibold text-smaller">{t("Size")}:</p>
+                      <MultiRangeSlider
+                        textColor={"text-white"}
+                        max={generalData.MaxSize}
+                        min={generalData.MinSize}
+                        maxVal={areaMax}
+                        minVal={areaMin}
+                        setMaxVal={setAreaMax}
+                        setMinVal={setAreaMin}
+                        unit
+                      />
+                    </div>
+                  }
+                  icon={<MdExpandMore size={24} />}
+                  reverseIcon
+                />
+              )}
             <button
               onClick={() => {
                 setForm({

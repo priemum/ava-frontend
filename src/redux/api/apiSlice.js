@@ -23,6 +23,7 @@ export const apiSlice = createApi({
     "Feedback",
     "Listings",
     "Languages",
+    "generalData",
   ],
   endpoints: (builder) => ({}),
 });
