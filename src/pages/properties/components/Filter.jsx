@@ -138,7 +138,9 @@ const Filter = ({ containerStyle }) => {
       </div>
       <div className="h-px w-full bg-primary/20" />
       <div className="flex flex-col p-8 space-y-2">
-        <p className="font-semibold text-smaller">{t("Price")}:</p>
+        <p className="font-semibold text-tiny 2xl:text-smaller">
+          {t("Price")}:
+        </p>
         <MultiRangeSlider
           max={1000000}
           min={20000}
@@ -148,7 +150,9 @@ const Filter = ({ containerStyle }) => {
           setMinVal={setPriceMin}
           price
         />
-        <p className="font-semibold text-smaller pt-8">{t("Size")}:</p>
+        <p className="font-semibold text-tiny 2xl:text-smaller pt-12">
+          {t("Size")}:
+        </p>
         <MultiRangeSlider
           max={2000}
           min={100}
@@ -167,7 +171,7 @@ const Filter = ({ containerStyle }) => {
               return (
                 <React.Fragment key={index}>
                   <div
-                    className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                    className={`w-24 2xl:w-32 h-12 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
                       form.purpose == item
                         ? "bg-secondary text-primary"
                         : "bg-transparent text-primary"
@@ -183,7 +187,9 @@ const Filter = ({ containerStyle }) => {
                   >
                     {item}
                   </div>
-                  <div className="h-10 w-1 bg-white/50" />
+                  {Purpose.length - 1 !== index && (
+                    <div className="h-10 w-1 bg-white/50" />
+                  )}
                 </React.Fragment>
               );
             })}
@@ -193,11 +199,11 @@ const Filter = ({ containerStyle }) => {
               return (
                 <div
                   key={index}
-                  className={`h-10 w-32 border-[1px] border-secondary ${
+                  className={`h-10 w-24 2xl:w-32 border-[1px] border-secondary ${
                     form.rentFrequency == item || form.completionStatus == item
                       ? "text-primary bg-secondary"
                       : "text-secondary bg-transparent"
-                  } flex justify-center items-center text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
+                  } flex justify-center items-center text-tiny 2xl:text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
                   onClick={() => {
                     if (form.purpose == "Rent") {
                       setForm({ ...form, rentFrequency: item });
@@ -216,7 +222,7 @@ const Filter = ({ containerStyle }) => {
       <div className="h-px w-full bg-primary/20" />
       <div className="flex flex-col p-8 space-y-2">
         <p className="font-semibold text-smaller">{t("Bedrooms")}:</p>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-4 2xl:grid-cols-5 gap-4">
           <div
             className={`h-10 w-10 border-[1px] border-secondary ${
               form.Bedrooms.length == 0
@@ -255,6 +261,7 @@ const Filter = ({ containerStyle }) => {
         </div>
       </div>
       <div className="h-px w-full bg-primary/20" />
+
       {categoriesIsFetching || categoriesIsLoading ? (
         <div className="text-center text-smaller font-bold p-8 flex flex-col">
           {t("Loading")}
@@ -263,13 +270,13 @@ const Filter = ({ containerStyle }) => {
         categoriesIsSuccess &&
         categories.count !== 0 && (
           <React.Fragment>
-            <div className="flex justify-center items-center border-[1px] rounded-md gap-x-2 bg-[#F6F6F6] p-8 ">
+            <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6] mx-4 mt-4">
               {categories.ids.map((item, index) => {
                 if (categories.entities[item].ParentID == null)
                   return (
                     <React.Fragment key={index}>
                       <div
-                        className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                        className={`w-24 2xl:w-32 h-12 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
                           parentType == item
                             ? "bg-secondary text-primary"
                             : "bg-transparent text-primary"
@@ -286,6 +293,7 @@ const Filter = ({ containerStyle }) => {
                           ).Name
                         }
                       </div>
+
                       <div className="h-10 w-1 bg-white/50" />
                     </React.Fragment>
                   );
@@ -297,11 +305,11 @@ const Filter = ({ containerStyle }) => {
                   return (
                     <div
                       key={index}
-                      className={`h-10 w-32 border-[1px] border-secondary ${
+                      className={`h-10 w-24 2xl:w-32 border-[1px] border-secondary ${
                         form.CategoryID == item
                           ? "text-primary bg-secondary"
                           : "text-secondary bg-transparent"
-                      } flex justify-center items-center text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
+                      } flex justify-center items-center text-tiny 2xl:text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
                       onClick={() => setForm({ ...form, CategoryID: item })}
                     >
                       {
@@ -320,7 +328,7 @@ const Filter = ({ containerStyle }) => {
 
       <div className="flex flex-col p-8 space-y-2">
         <p className="font-semibold text-smaller">{t("Bathrooms")}:</p>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-4 2xl:grid-cols-5 gap-4">
           <div
             className={`h-10 w-10 border-[1px] border-secondary ${
               form.Bathrooms.length == 0
