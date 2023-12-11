@@ -11,7 +11,7 @@ const Amenities = ({ data }) => {
     dispatch(
       showModal({
         data: (
-          <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 p-8 place-items-center overflow-y-scroll">
+          <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 p-4 lg:p-8 place-items-center overflow-y-scroll mt-8">
             {data.map((item, index) => {
               return (
                 <AmenitiesCard
