@@ -1,6 +1,6 @@
 import React from "react";
 import { API_BASE_URL } from "../../../constants";
-import pattern from "../../../assets/images/AmenityPattern.png";
+// import pattern from "../../../assets/images/AmenityPattern.png";
 import AmenityIcon from "../../../assets/icons/AmenityIcon.svg";
 import { showModal } from "../../../redux/modal.slice";
 import { useDispatch } from "react-redux";
