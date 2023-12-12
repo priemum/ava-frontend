@@ -203,24 +203,26 @@ const Filter = ({ containerStyle }) => {
               return (
                 <React.Fragment key={index}>
                   <div
-                    className={`w-24 2xl:w-32 h-12 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                    className={`w-full h-14 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
                       form.purpose == item
                         ? "bg-secondary text-primary"
                         : "bg-transparent text-primary"
                     }`}
-                    onClick={() =>
-                      setForm({
+                    onClick={() => {
+                      let tempForm = {
                         ...form,
                         purpose: item,
                         rentFrequency: "",
                         completionStatus: "",
-                      })
-                    }
+                      };
+                      setForm(tempForm);
+                      console.log(tempForm);
+                    }}
                   >
                     {item}
                   </div>
                   {Purpose.length - 1 !== index && (
-                    <div className="h-10 w-1 bg-white/50" />
+                    <div className="h-10 w-1 bg-secondary" />
                   )}
                 </React.Fragment>
               );
@@ -231,7 +233,7 @@ const Filter = ({ containerStyle }) => {
               return (
                 <div
                   key={index}
-                  className={`h-10 w-24 2xl:w-32 border-[1px] border-secondary ${
+                  className={`h-14 w-full border-[1px] border-secondary ${
                     form.rentFrequency == item || form.completionStatus == item
                       ? "text-primary bg-secondary"
                       : "text-secondary bg-transparent"
@@ -293,30 +295,57 @@ const Filter = ({ containerStyle }) => {
         </div>
       </div>
       <div className="h-px w-full bg-primary/20" />
-
-      {categoriesIsFetching || categoriesIsLoading ? (
-        <div className="text-center text-smaller font-bold p-8 flex flex-col">
-          {t("Loading")}
-        </div>
-      ) : (
-        categoriesIsSuccess &&
-        categories.count !== 0 && (
-          <React.Fragment>
-            <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6] mx-4 mt-4">
-              {categories.ids.map((item, index) => {
-                if (categories.entities[item].ParentID == null)
-                  return (
-                    <React.Fragment key={index}>
+      <div className="flex flex-col p-8 space-y-2">
+        {categoriesIsFetching || categoriesIsLoading ? (
+          <div className="text-center text-smaller font-bold">
+            {t("Loading")}
+          </div>
+        ) : (
+          categoriesIsSuccess &&
+          categories.count !== 0 && (
+            <React.Fragment>
+              <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
+                {categories.ids.map((item, index) => {
+                  if (categories.entities[item].ParentID == null)
+                    return (
+                      <React.Fragment key={index}>
+                        <div
+                          className={`w-full h-14 rounded-md text-tiny flex justify-center items-center text-center cursor-pointer transition-all duration-300 ${
+                            parentType == item
+                              ? "bg-secondary text-primary"
+                              : "bg-transparent text-primary"
+                          }`}
+                          onClick={() => {
+                            setParentType(item);
+                            setForm({ ...form, CategoryID: "" });
+                          }}
+                        >
+                          {
+                            categories.entities[item].Category_Translation.find(
+                              (x) =>
+                                x.Language.Code.toLowerCase() == i18n.language
+                            ).Name
+                          }
+                        </div>
+                        {index !== categories.parentCategories.length - 1 && (
+                          <div className="h-10 w-1 bg-secondary" />
+                        )}
+                      </React.Fragment>
+                    );
+                })}
+              </div>
+              <div className="grid grid-cols-2 place-items-center gap-4">
+                {categories.ids.map((item, index) => {
+                  if (categories.entities[item].ParentID == parentType)
+                    return (
                       <div
-                        className={`w-24 2xl:w-32 h-12 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
-                          parentType == item
-                            ? "bg-secondary text-primary"
-                            : "bg-transparent text-primary"
-                        }`}
-                        onClick={() => {
-                          setParentType(item);
-                          setForm({ ...form, CategoryID: "" });
-                        }}
+                        key={index}
+                        className={`h-16 w-full border-[1px] border-secondary ${
+                          form.CategoryID == item
+                            ? "text-primary bg-secondary"
+                            : "text-secondary bg-transparent"
+                        } flex justify-center items-center text-center text-tiny 2xl:text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
+                        onClick={() => setForm({ ...form, CategoryID: item })}
                       >
                         {
                           categories.entities[item].Category_Translation.find(
@@ -325,39 +354,14 @@ const Filter = ({ containerStyle }) => {
                           ).Name
                         }
                       </div>
-
-                      <div className="h-10 w-1 bg-white/50" />
-                    </React.Fragment>
-                  );
-              })}
-            </div>
-            <div className="grid grid-cols-2 place-items-center gap-4 p-8">
-              {categories.ids.map((item, index) => {
-                if (categories.entities[item].ParentID == parentType)
-                  return (
-                    <div
-                      key={index}
-                      className={`h-10 w-24 2xl:w-32 border-[1px] border-secondary ${
-                        form.CategoryID == item
-                          ? "text-primary bg-secondary"
-                          : "text-secondary bg-transparent"
-                      } flex justify-center items-center text-tiny 2xl:text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
-                      onClick={() => setForm({ ...form, CategoryID: item })}
-                    >
-                      {
-                        categories.entities[item].Category_Translation.find(
-                          (x) => x.Language.Code.toLowerCase() == i18n.language
-                        ).Name
-                      }
-                    </div>
-                  );
-              })}
-            </div>
-          </React.Fragment>
-        )
-      )}
+                    );
+                })}
+              </div>
+            </React.Fragment>
+          )
+        )}
+      </div>
       <div className="h-px w-full bg-primary/20" />
-
       <div className="flex flex-col p-8 space-y-2">
         <p className="font-semibold text-smaller">{t("Bathrooms")}:</p>
         <div className="grid grid-cols-4 2xl:grid-cols-5 gap-4">
@@ -413,10 +417,10 @@ const Filter = ({ containerStyle }) => {
             form.completionStatus == "" &&
             form.Bedrooms.length == 0 &&
             form.Bathrooms.length == 0 &&
-            form.PriceMin == 20000 &&
-            form.PriceMax == 1000000 &&
-            form.AreaMin == 100 &&
-            form.AreaMax == 2000 &&
+            form.PriceMin == generalData.MinPrice &&
+            form.PriceMax == generalData.MaxPrice &&
+            form.AreaMin == generalData.MinSize &&
+            form.AreaMax == generalData.MaxSize &&
             !PriceMax
           }
         >

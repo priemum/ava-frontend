@@ -52,7 +52,7 @@ const HomeAddresses = () => {
           })}
         </div>
         <Slider
-          slidesToScroll={2}
+          slidesToScroll={1}
           slidesToShow={2}
           arrows={false}
           dots={true}
@@ -69,26 +69,27 @@ const HomeAddresses = () => {
           ]}
         >
           {data.ids.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className="!flex !justify-center !items-center h-full pb-5 w-full"
-              >
-                <AddressCard
-                  Name={
-                    data.entities[item].Address_Translation.find(
-                      (x) =>
-                        x.Language.Code.toLowerCase() ==
-                        i18n.language.toLowerCase()
-                    ).Name
-                  }
-                  Latitude={data.entities[item].Latitude}
-                  Longitude={data.entities[item].Longitude}
-                  Image={data.entities[item].Image.URL}
-                  Places={data.entities[item].Addresses.length}
-                />
-              </div>
-            );
+            if (data.entities[item].addressID == null)
+              return (
+                <div
+                  key={index}
+                  className="!flex !justify-center !items-center h-full pb-5 w-full"
+                >
+                  <AddressCard
+                    Name={
+                      data.entities[item].Address_Translation.find(
+                        (x) =>
+                          x.Language.Code.toLowerCase() ==
+                          i18n.language.toLowerCase()
+                      ).Name
+                    }
+                    Latitude={data.entities[item].Latitude}
+                    Longitude={data.entities[item].Longitude}
+                    Image={data.entities[item].Image.URL}
+                    Places={data.entities[item].Addresses.length}
+                  />
+                </div>
+              );
           })}
         </Slider>
       </div>

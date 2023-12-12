@@ -91,10 +91,10 @@ const PropertyCard = ({ data }) => {
           <div
             className={`absolute ${
               showDetails ? "bottom-0" : "-bottom-[110px]"
-            } left-0 w-full h-1/2 z-20 bg-primary/20 backdrop-blur-[21px] text-white p-4 transition-all duration-500`}
+            } left-0 w-full h-1/2 z-20 bg-primary/40 backdrop-blur-[21px] text-white p-4 transition-all duration-500`}
           >
             <div className="flex items-center justify-between -mt-10 h-1/5 overflow-hidden">
-              <div className="bg-secondary min-w-[200px] p-2 rounded-md text-black text-smaller flex items-center gap-x-3">
+              <div className="bg-secondary min-w-[150px] p-2 rounded-md text-black text-smaller flex items-center gap-x-3">
                 <FaCoins size={20} />
                 {lower.Price == higher.Price
                   ? numberWithComma(

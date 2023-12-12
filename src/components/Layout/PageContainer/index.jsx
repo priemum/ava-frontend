@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../NavBar";
 import Footer from "../Footer";
-// import useWindowDimensions from "../../../hooks/screenDimentions";
+import useWindowDimensions from "../../../hooks/screenDimentions";
 import { MdOutlineWhatsapp } from "react-icons/md";
 import Modal from "../../UI/Modal/Modal";
 import GalleryModal from "../../UI/GalleryModal";
 import MessageBox from "../../UI/Message";
 import SettingsModal from "../NavBar/SettingsModal";
 const PageLayout = ({ children }) => {
-  // const { width } = useWindowDimensions();
-  // const [w, setW] = useState(width);
+  const { width } = useWindowDimensions();
+  const [w, setW] = useState(width);
 
-  // useEffect(() => {
-  //   if (width !== w) {
-  //     window.location.reload();
-  //   }
-  //   setW(width);
-  // }, [width]);
+  useEffect(() => {
+    if (width !== w) {
+      window.location.reload();
+    }
+    setW(width);
+  }, [width]);
   return (
     <div className="flex flex-col justify-center items-center relative">
       <MessageBox />

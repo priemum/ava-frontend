@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Header from "./components/Header/Header";
 // import Properties from "./components/Properties";
 import { Helmet } from "react-helmet";
@@ -6,20 +6,11 @@ import HomeFilter from "./components/Filter/Filter";
 import HomeProperties from "./components/Properties";
 import Announcements from "./components/Announcements";
 import HomeAddresses from "./components/Addresses";
-import useWindowDimensions from "../../hooks/screenDimentions";
 const HomePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const { width } = useWindowDimensions();
-  const [w, setW] = useState(width);
 
-  useEffect(() => {
-    if (width !== w) {
-      window.location.reload();
-    }
-    setW(width);
-  }, [width]);
   return (
     <div className="relative overflow-x-hidden">
       <Helmet>

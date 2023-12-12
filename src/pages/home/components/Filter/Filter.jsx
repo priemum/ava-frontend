@@ -77,9 +77,9 @@ const HomeFilter = () => {
     }
   }, [generalDataIsSuccess]);
   return (
-    <div className="h-[600px] sm:h-[400px] xl:h-[300px] -mt-[295px] w-full relative">
+    <div className="h-[600px] sm:h-[400px] xl:h-[310px] -mt-[295px] w-full relative">
       <div
-        className="flex justify-center items-center text-white z-30 backdrop-blur-[3px] absolute w-screen left-0 h-full"
+        className="flex justify-center items-center text-white z-30 backdrop-blur-[3px] absolute w-screen max-w-[1920px] left-0 h-full"
         style={{
           background: "linear-gradient(0deg, #FFF 25%, transparent 100%)",
         }}
