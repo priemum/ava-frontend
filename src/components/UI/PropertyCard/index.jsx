@@ -41,6 +41,12 @@ const PropertyCard = ({ data }) => {
   const currentUnit = useSelector(selectCurrentUnit);
   const currentCurrency = useSelector(selectCurrentCurrency);
   const [showDetails, setShowDetails] = useState(false);
+  const [priceSymbol, setPriceSymbol] = useState(
+    currentCurrency.Currency_Translation.find(
+      (x) => x.Language.Code.toLowerCase() == i18n.language
+    ).Symbol
+  );
+
   const [lower, setLower] = useState({});
   const [higher, setHigher] = useState({});
   useEffect(() => {
@@ -53,6 +59,14 @@ const PropertyCard = ({ data }) => {
     setLower(low);
     setHigher(high);
   }, [data]);
+
+  useEffect(() => {
+    setPriceSymbol(
+      currentCurrency.Currency_Translation.find(
+        (x) => x.Language.Code.toLowerCase() == i18n.language
+      ).Symbol ?? ""
+    );
+  }, [currentCurrency]);
 
   return (
     Object.keys(lower).length !== 0 &&
@@ -99,14 +113,16 @@ const PropertyCard = ({ data }) => {
                 {lower.Price == higher.Price
                   ? numberWithComma(
                       lower.Price * currentCurrency.conversionRate
-                    )
+                    ) + ` ${priceSymbol}`
                   : numberWithComma(
                       lower.Price * currentCurrency.conversionRate
                     ) +
+                    ` ${priceSymbol}` +
                     " - " +
                     numberWithComma(
                       higher.Price * currentCurrency.conversionRate
-                    )}
+                    ) +
+                    ` ${priceSymbol}`}
               </div>
               <div
                 className="bg-third p-2 rounded-md text-black text-smaller cursor-pointer"

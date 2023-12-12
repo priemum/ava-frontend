@@ -4,12 +4,11 @@ import Head from "../../components/Layout/PageContainer/Head";
 import { useGetArticleByIdQuery } from "../../redux/articles/articlesSlice";
 import { useTranslation } from "react-i18next";
 import { API_BASE_URL } from "../../constants";
-import ReactQuill from "react-quill";
 import Loader from "../../components/UI/Loader";
-import "react-quill/dist/quill.bubble.css";
+import ReactQuill from "../../components/Forms/RichTextBox";
 const ArticlePage = () => {
   const { slug } = useParams();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const {
     data: article,
     isLoading,
@@ -33,12 +32,12 @@ const ArticlePage = () => {
         <Head
           title={
             article?.Articles_Translation.find(
-              (x) => x.Language.Code.toLowerCase() == "en"
+              (x) => x.Language.Code.toLowerCase() == i18n.language
             ).Title
           }
           desc={
             article?.Articles_Translation.find(
-              (x) => x.Language.Code.toLowerCase() == "en"
+              (x) => x.Language.Code.toLowerCase() == i18n.language
             ).Title
           }
           additionMeta={
@@ -58,8 +57,7 @@ const ArticlePage = () => {
             <p className="font-semibold text-med md:text-big text-center w-[70%] 2xl:w-[50%] drop-shadow-2xl">
               {
                 article?.Articles_Translation.find(
-                  (x) =>
-                    x.Language.Code.toLowerCase() == i18n.language.toLowerCase()
+                  (x) => x.Language.Code.toLowerCase() == i18n.language
                 ).Title
               }
             </p>
@@ -78,9 +76,7 @@ const ArticlePage = () => {
                 <p className="font-semibold text-smaller md:text-med">
                   {
                     article?.Articles_Translation.find(
-                      (x) =>
-                        x.Language.Code.toLowerCase() ==
-                        i18n.language.toLowerCase()
+                      (x) => x.Language.Code.toLowerCase() == i18n.language
                     ).Title
                   }
                 </p>
@@ -89,7 +85,7 @@ const ArticlePage = () => {
                 </p>
                 <div className="flex items-center gap-x-4">
                   <p className="text-tiny md:text-smaller font-medium">
-                    {article?.MinRead} Min Read
+                    {article?.MinRead + t("MinRead")}
                   </p>
                   <p className="text-tiny font-medium">
                     {article?.CreatedAt?.split("T")[0]}
@@ -97,11 +93,11 @@ const ArticlePage = () => {
                 </div>
               </div>
             </div>
+
             <ReactQuill
               value={
                 article?.Articles_Translation.find(
-                  (x) =>
-                    x.Language.Code.toLowerCase() == i18n.language.toLowerCase()
+                  (x) => x.Language.Code.toLowerCase() == i18n.language
                 ).Description
               }
               readOnly={true}

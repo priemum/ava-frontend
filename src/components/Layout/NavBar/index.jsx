@@ -87,6 +87,9 @@ const NavBar = () => {
               onClick={() => navigate("/")}
             />
           </div>
+          <div className="flex flex-col justify-center items-center absolute left-1/2 translate-x-5 z-50">
+            <div className="p-2 text-secondary rounded-full text-med">BETA</div>
+          </div>
           <div className="flex justify-center items-center gap-x-4">
             <Language />
             <WebsiteSettings />
@@ -129,6 +132,7 @@ const NavBar = () => {
                     link={item.link}
                     selectedLink={selectedLink}
                     header={header}
+                    drop
                     styled={` transition-all duration-300 ${
                       dropDownSelect.open && dropDownSelect.id == e.id
                         ? "opacity-100 block"

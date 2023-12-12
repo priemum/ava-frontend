@@ -46,6 +46,7 @@ const websiteSettingsSlice = createSlice({
           Currency_Translation: [
             {
               Name: "AED",
+              Symbol: "AED",
               Language: {
                 Name: "English",
                 Code: "En",
@@ -53,6 +54,7 @@ const websiteSettingsSlice = createSlice({
             },
             {
               Name: "درهم",
+              Symbol: "AED",
               Language: {
                 Name: "Arabic",
                 Code: "Ar",
@@ -60,6 +62,7 @@ const websiteSettingsSlice = createSlice({
             },
             {
               Name: "",
+              Symbol: "",
               Language: {
                 Name: "Persian",
                 Code: "Fa",
@@ -67,6 +70,7 @@ const websiteSettingsSlice = createSlice({
             },
             {
               Name: "",
+              Symbol: "",
               Language: {
                 Name: "Russian",
                 Code: "Ru",

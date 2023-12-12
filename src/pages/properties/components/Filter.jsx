@@ -56,14 +56,14 @@ const Filter = ({ containerStyle }) => {
     Addresses:
       Addresses == "all" || Array.isArray(Addresses) == false ? [] : Addresses,
     CategoryID:
-      CategoryID == "all" || typeof CategoryID !== String ? "" : CategoryID,
-    purpose: purpose == "all" || typeof purpose !== String ? "Rent" : purpose,
+      CategoryID == "all" || typeof CategoryID !== "string" ? "" : CategoryID,
+    purpose: purpose == "all" || typeof purpose !== "string" ? "Rent" : purpose,
     rentFrequency:
-      rentFrequency == "all" || typeof rentFrequency !== String
+      rentFrequency == "all" || typeof rentFrequency !== "string"
         ? ""
         : rentFrequency,
     completionStatus:
-      completionStatus == "all" || typeof completionStatus !== String
+      completionStatus == "all" || typeof completionStatus !== "string"
         ? ""
         : completionStatus,
     Bedrooms:
@@ -417,10 +417,10 @@ const Filter = ({ containerStyle }) => {
             form.completionStatus == "" &&
             form.Bedrooms.length == 0 &&
             form.Bathrooms.length == 0 &&
-            form.PriceMin == generalData.MinPrice &&
-            form.PriceMax == generalData.MaxPrice &&
-            form.AreaMin == generalData.MinSize &&
-            form.AreaMax == generalData.MaxSize &&
+            form.PriceMin == generalData?.MinPrice &&
+            form.PriceMax == generalData?.MaxPrice &&
+            form.AreaMin == generalData?.MinSize &&
+            form.AreaMax == generalData?.MaxSize &&
             !PriceMax
           }
         >

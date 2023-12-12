@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import colors from "../../../settings";
-const LinkElement = ({ name, link, styled, onClick }) => {
+const LinkElement = ({ name, link, styled, onClick, drop }) => {
   return (
     <NavLink
       onClick={onClick}
@@ -17,7 +17,9 @@ const LinkElement = ({ name, link, styled, onClick }) => {
       className="hover:!text-secondary transition-all duration-200"
     >
       <p
-        className={`px-1 cursor-pointer font-bold text-med 2xl:text-big ${styled}`}
+        className={`px-1 cursor-pointer font-bold ${
+          drop ? "text-small 2xl:text-med" : "text-med 2xl:text-big "
+        } ${styled}`}
       >
         {name}
       </p>

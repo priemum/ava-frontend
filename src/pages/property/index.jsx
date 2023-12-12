@@ -10,13 +10,22 @@ import PropertyInfo from "./components/PropertyInfo";
 import PaymentPlan from "./components/PaymentPlan";
 import Prices from "./components/Prices";
 import RegInfo from "./components/RegInfo";
+import { useTranslation } from "react-i18next";
+import { useGetActiveAddressQuery } from "../../redux/addresses/addressesSlice";
 
 const PropertyPage = () => {
   const { id } = useParams();
   const { data, isLoading, isFetching, isSuccess, isError } =
     useGetPropertyByIdQuery({ id });
   const [currentSlide, setCurrentSlide] = useState(0);
-
+  const { i18n, t } = useTranslation();
+  const {
+    data: addresses,
+    isLoading: addressesIsLoading,
+    isFetching: addressesIsFetching,
+    isSuccess: addressesIsSuccess,
+    isError: addressesIsError,
+  } = useGetActiveAddressQuery();
   return (
     <div className="pt-24 bg-[#F6F6F6] min-h-screen h-full">
       {isLoading || isFetching ? (
@@ -35,6 +44,15 @@ const PropertyPage = () => {
             <ImageSlider data={data.Images} />
             <div className="grid lg:grid-cols-4 mt-12">
               <div className="col-span-3 border-r-2 px-4 lg:px-8">
+                <p className="font-bold text-smaller">
+                  {"/" +
+                    data.Address.Address_Translation.find(
+                      (x) =>
+                        x.Language.Code.toLowerCase() ==
+                        i18n.language.toLowerCase()
+                    ).Name +
+                    "/"}
+                </p>
                 <p className="font-bold text-med">
                   {
                     data.Property_Translation.find(

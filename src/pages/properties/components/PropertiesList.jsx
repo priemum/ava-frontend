@@ -57,17 +57,17 @@ const PropertiesList = () => {
               ? []
               : Addresses,
           CategoryID:
-            CategoryID == "all" || typeof CategoryID !== String
+            CategoryID == "all" || typeof CategoryID !== "string"
               ? ""
               : CategoryID,
           purpose:
-            purpose == "all" || typeof purpose !== String ? "Rent" : purpose,
+            purpose == "all" || typeof purpose !== "string" ? "Rent" : purpose,
           rentFrequency:
-            rentFrequency == "all" || typeof rentFrequency !== String
+            rentFrequency == "all" || typeof rentFrequency !== "string"
               ? ""
               : rentFrequency,
           completionStatus:
-            completionStatus == "all" || typeof completionStatus !== String
+            completionStatus == "all" || typeof completionStatus !== "string"
               ? ""
               : completionStatus,
           Bedrooms:
@@ -86,8 +86,8 @@ const PropertiesList = () => {
           PriceMax: PriceMax ? parseInt(PriceMax) : 1000000,
           AreaMin: AreaMin ? parseInt(AreaMin) : 100,
           AreaMax: AreaMax ? parseInt(AreaMax) : 2000,
-          BalconySizeMax: 1000000,
-          BalconySizeMin: 0,
+          // BalconySizeMax: 1000000,
+          // BalconySizeMin: 0,
           EstimatedRent: 0,
         },
         filter: true,
