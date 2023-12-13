@@ -13,6 +13,7 @@ import {
 import { useAddEnquiryMutation } from "../../../redux/enquiry/enquirySlice";
 import CustomInput from "../../../components/Forms/CustomInput";
 import useForm from "../../../hooks/useForm";
+import { useDispatch } from "react-redux";
 const defaultFormState = {
   Type: "",
   Purpose: "Rent",
@@ -29,6 +30,7 @@ const defaultFormState = {
 
 const EnquiryForm = () => {
   const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
   const {
     disabled,
     setErrors,

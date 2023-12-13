@@ -2,20 +2,9 @@ import React from "react";
 import ReactQuill from "react-quill";
 import { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import "react-quill/dist/quill.bubble.css";
 import "../../styles/quillStyles.css";
 
-const RichTextBox = ({
-  value,
-  setValue,
-  error,
-  moreStyle,
-  label,
-  onChange,
-  disabled,
-  theme,
-  h,
-}) => {
+const RichTextBox = ({ value, setValue, moreStyle, label, onChange }) => {
   const fontSizeArr = [
     // "8px",
     // "9px",
@@ -37,19 +26,16 @@ const RichTextBox = ({
   Size.whitelist = fontSizeArr;
   Quill.register(Size, true);
   return (
-    <div className={`flex flex-col m-4 ${h ?? "h-full"} ${moreStyle}`}>
+    <div className={`flex flex-col my-4 h-[500px] ${moreStyle}`}>
       <div className="text-tiny pb-2"> {label}</div>
       <ReactQuill
-        readOnly={disabled}
-        theme={theme ?? "snow"}
+        theme="snow"
         value={value}
         // onChange={(value) => {
         //   setValue(value);
         // }}
         onChange={onChange}
-        className={`w-full ${h ?? "h-full"}  ${
-          error && "border-red-600 border-[1px] pb-[60px]"
-        } `}
+        className="w-full h-[400px] bg-secondary text-primary"
         modules={{
           toolbar: [
             // [{ font: [] }],
