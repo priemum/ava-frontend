@@ -102,6 +102,7 @@ const ArticlePage = () => {
               }
               readOnly={true}
               theme={"bubble"}
+              disabled
             />
           </div>
         </div>
