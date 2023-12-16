@@ -16,14 +16,19 @@ const Announcements = () => {
   const compRef = useRef();
   useEffect(() => {
     const handleScroll = () => {
-      if (compRef.current.getBoundingClientRect().top > 190)
-        setScrollY(compRef.current.getBoundingClientRect().top);
+      if (compRef.current.getBoundingClientRect().top > 400) {
+        setScrollY(2000);
+      } else {
+        setScrollY(300);
+      }
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   });
+
+  console.log(compRef.current?.getBoundingClientRect().top);
   const { i18n } = useTranslation();
   return isLoading || isFetching ? (
     <div className="my-24 flex flex-col justify-center items-center relative">
@@ -73,7 +78,7 @@ const Announcements = () => {
             slidesToScroll={1}
             slidesToShow={1}
             arrows={false}
-            className="!w-full !h-[600px]"
+            className="!w-full !h-[1000px] sm:!h-[900px] md:!h-[600px]"
             beforeChange={(prev, next) => {
               setCurrentSlide(next);
             }}
@@ -82,7 +87,7 @@ const Announcements = () => {
               return (
                 <div
                   key={index}
-                  className="w-full h-[600px] !grid !grid-cols-2"
+                  className="w-full h-[1000px] sm:h-[900px] md:h-[600px] !grid md:!grid-cols-2"
                 >
                   <div className="p-8 xl:px-12 2xl:px-16 space-y-7 flex flex-col justify-center items-start h-full w-full">
                     <p className="text-white font-bold text-big ">
@@ -115,12 +120,12 @@ const Announcements = () => {
                   </div>
                   <div className="h-full w-full relative">
                     <div
-                      className={`h-[450px] w-[600px] absolute top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md ease-out duration-500  transition-all ${
+                      className={` h-[270px] w-[300px] sm:h-[300px] sm:w-[450px] md:h-[250px] md:w-[350px]  lg:h-[300px] lg:w-[450px] xl:h-[450px] xl:w-[600px] absolute top-1/4 md:top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md ease-out duration-1000  ${
                         index == currentSlide ? "opacity-100" : "opacity-0"
                       }`}
                       style={{
                         rotate: -scrollY / 50 + "deg",
-                        transform: "translate(" + -scrollY * 0.2 + "%, -50%)",
+                        transform: "translate(" + -scrollY * 0.15 + "%, -50%)",
                       }}
                     >
                       <LazyImage
