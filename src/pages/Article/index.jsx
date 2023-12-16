@@ -93,7 +93,6 @@ const ArticlePage = () => {
                 </div>
               </div>
             </div>
-
             <ReactQuill
               value={
                 article?.Articles_Translation.find(
