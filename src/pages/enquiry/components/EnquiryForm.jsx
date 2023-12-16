@@ -63,7 +63,15 @@ const EnquiryForm = () => {
         addEnquiry({ values });
         setValues(defaultFormState);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        dispatch(
+          showMessage({
+            variant: "error",
+            message: "Somthing Went Wrong, Please Try Again",
+          })
+        );
+      });
   }
 
   useEffect(() => {

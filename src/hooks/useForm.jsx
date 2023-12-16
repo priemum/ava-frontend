@@ -430,11 +430,8 @@ const useForm = (callback, defaultValues, translation, setTranslation) => {
       Object.keys(values).length !== 0 &&
       Object.keys(theErrors).length === 0
     ) {
-      console.log("errors", theErrors);
-      console.log("values", values);
       callback();
     } else {
-      console.log(errors);
       dispatch(
         showMessage({
           message: "Please fill the required fields",

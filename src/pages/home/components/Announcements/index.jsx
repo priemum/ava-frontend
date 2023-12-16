@@ -28,7 +28,6 @@ const Announcements = () => {
     };
   });
 
-  console.log(compRef.current?.getBoundingClientRect().top);
   const { i18n } = useTranslation();
   return isLoading || isFetching ? (
     <div className="my-24 flex flex-col justify-center items-center relative">
@@ -51,7 +50,7 @@ const Announcements = () => {
           className="rounded-md relative"
         >
           {data.count > 1 && (
-            <div className="absolute h-9 flex justify-center items-center left-12 bottom-12 gap-x-8">
+            <div className="absolute h-9 flex justify-center items-center left-12 bottom-5 md:bottom-12 gap-x-8">
               {data.ids.map((item, index) => {
                 return (
                   <div
@@ -78,7 +77,7 @@ const Announcements = () => {
             slidesToScroll={1}
             slidesToShow={1}
             arrows={false}
-            className="!w-full !h-[1000px] sm:!h-[900px] md:!h-[600px]"
+            className="!w-full !h-[85vh] md:!h-[600px]"
             beforeChange={(prev, next) => {
               setCurrentSlide(next);
             }}
@@ -87,10 +86,10 @@ const Announcements = () => {
               return (
                 <div
                   key={index}
-                  className="w-full h-[1000px] sm:h-[900px] md:h-[600px] !grid md:!grid-cols-2"
+                  className="w-full h-[85vh] md:h-[600px] !grid md:!grid-cols-2"
                 >
-                  <div className="p-8 xl:px-12 2xl:px-16 space-y-7 flex flex-col justify-center items-start h-full w-full">
-                    <p className="text-white font-bold text-big ">
+                  <div className="p-4 md:p-8 xl:px-12 2xl:px-16 space-y-7 flex flex-col md:justify-center items-center md:items-start h-full w-full">
+                    <p className="text-white font-bold text-med md:text-big">
                       {
                         data.entities[item].Announcements_Translation.find(
                           (x) =>
@@ -99,7 +98,7 @@ const Announcements = () => {
                         ).Title
                       }
                     </p>
-                    <p className="text-white font-medium text-small">
+                    <p className="text-white font-medium text-smaller max-md:text-center md:text-small">
                       {
                         data.entities[item].Announcements_Translation.find(
                           (x) =>
@@ -111,7 +110,7 @@ const Announcements = () => {
                     <Button
                       bgColor={"bg-buttonGrad"}
                       text={"More Details"}
-                      textColor={"text-primary text-tiny"}
+                      textColor={"text-primary text-tiny md:text-smaller"}
                       customStyle={"p-4"}
                       w={"200px"}
                       h={"45px"}
@@ -120,12 +119,12 @@ const Announcements = () => {
                   </div>
                   <div className="h-full w-full relative">
                     <div
-                      className={` h-[270px] w-[300px] sm:h-[300px] sm:w-[450px] md:h-[250px] md:w-[350px]  lg:h-[300px] lg:w-[450px] xl:h-[450px] xl:w-[600px] absolute top-1/4 md:top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md ease-out duration-1000  ${
+                      className={` h-[270px] w-[300px] sm:h-[300px] sm:w-[450px] md:h-[250px] md:w-[350px]  lg:h-[300px] lg:w-[450px] xl:h-[450px] xl:w-[600px] absolute top-0 md:top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md ease-out duration-1000  ${
                         index == currentSlide ? "opacity-100" : "opacity-0"
                       }`}
                       style={{
                         rotate: -scrollY / 50 + "deg",
-                        transform: "translate(" + -scrollY * 0.15 + "%, -50%)",
+                        transform: "translate(" + -scrollY * 0.135 + "%, -50%)",
                       }}
                     >
                       <LazyImage

@@ -216,7 +216,6 @@ const Filter = ({ containerStyle }) => {
                         completionStatus: "",
                       };
                       setForm(tempForm);
-                      console.log(tempForm);
                     }}
                   >
                     {item}

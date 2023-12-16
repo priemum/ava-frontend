@@ -15,12 +15,8 @@ export const generalDataApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
       transformResponse: (responseData) => {
-        // console.log("Reponse", responseData);
         return responseData;
       },
-      // providesTags: (result, error, args) => [
-      //   { type: "generalData", id: args.id },
-      // ],
     }),
   }),
 });
