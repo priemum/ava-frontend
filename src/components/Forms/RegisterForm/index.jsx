@@ -15,7 +15,7 @@ const defaultFormState = {
   Email: "",
   FullName: "",
   Gender: "Male",
-  IPAddress: "192.1.1.1test",
+  IPAddress: "",
   PhoneNo: "",
   Subject: "",
   Message: "",
@@ -32,14 +32,18 @@ const RegisterForm = () => {
     handleChange,
     handleSubmit,
   } = useForm(submit, defaultFormState);
-  const [phone, setPhone] = useState("");
   const [addFeedback, { isLoading, isSuccess, isError }] =
     useAddFeedbackMutation();
 
   function submit(e) {
-    setValues({ ...values, PhoneNo: phone });
-    addFeedback({ values });
-    setValues(defaultFormState);
+    fetch("https://geolocation-db.com/json/")
+      .then((response) => response.json())
+      .then((data) => {
+        setValues({ ...values, IPAddress: data.IPv4 });
+        addFeedback({ values });
+        setValues(defaultFormState);
+      })
+      .catch((error) => console.log(error));
   }
 
   useEffect(() => {

@@ -113,11 +113,18 @@ const ListingForm = () => {
         listWithUs_Translation[i].languagesID
       );
     }
-    addListing({ values: formData });
-    setValues(defaultFormState);
-    setImageURL([]);
-    setImages([]);
-    setListWithUs_Translation([]);
+
+    fetch("https://geolocation-db.com/json/")
+      .then((response) => response.json())
+      .then((data) => {
+        formData.append("IPAddress", data.IPv4);
+        addListing({ values: formData });
+        setValues(defaultFormState);
+        setImageURL([]);
+        setImages([]);
+        setListWithUs_Translation([]);
+      })
+      .catch((error) => console.log(error));
   }
 
   useEffect(() => {

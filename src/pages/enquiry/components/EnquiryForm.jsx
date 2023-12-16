@@ -56,8 +56,14 @@ const EnquiryForm = () => {
     }
   }, [values.Purpose]);
   function submit(e) {
-    addEnquiry({ values });
-    setValues(defaultFormState);
+    fetch("https://geolocation-db.com/json/")
+      .then((response) => response.json())
+      .then((data) => {
+        setValues({ ...values, IPAddress: data.IPv4 });
+        addEnquiry({ values });
+        setValues(defaultFormState);
+      })
+      .catch((error) => console.log(error));
   }
 
   useEffect(() => {
