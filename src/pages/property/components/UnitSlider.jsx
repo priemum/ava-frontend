@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
   const sliderRef = useRef();
   const currentUnit = useSelector(selectCurrentUnit);
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   return (
     <div className="mt-6 p-4 lg:p-8 bg-white rounded-xl shadow-xl w-[95%] sm:w-[80%]">
       <Slider
@@ -38,7 +38,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
                 setCurrentSlide(index);
               }}
             >
-              {item.Bedrooms + " Bedrooms"}
+              {item.Bedrooms + "  " + t("Bedrooms")}
             </div>
           );
         })}
@@ -62,14 +62,18 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
                   <p className="font-bold">{item.Bathrooms}</p>
                   <img src={bath} className="w-6 h-6" alt="bath-icon" />
                 </div>
-                <p className="font-normal text-[12px] md:text-tiny">Baths</p>
+                <p className="font-normal text-[12px] md:text-tiny">
+                  {t("Bathrooms")}
+                </p>
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
                   <p className="font-bold">{item.Bedrooms}</p>
                   <img src={bedroom} className="w-6 h-6" alt="bedroom-icon" />
                 </div>
-                <p className="font-normal text-[12px] md:text-tiny">Bedrooms</p>
+                <p className="font-normal text-[12px] md:text-tiny">
+                  {t("Bedrooms")}
+                </p>
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">

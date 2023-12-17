@@ -1,5 +1,5 @@
 export const NavElement = [
-  { name: "home", link: "/" },
+  { name: "Home", link: "/" },
   { name: "Properties", link: "/properties" },
   { name: "AboutUs", link: "/about-us" },
   { name: "Articles", link: "/articles" },
@@ -8,9 +8,9 @@ export const NavElement = [
     name: "Services",
     id: "ServicesDropDown",
     dropData: [
-      { name: "List With Us", link: "/list-with-us" },
+      { name: "ListWithUs", link: "/list-with-us" },
       { name: "Enquiry", link: "/enquiry" },
-      { name: "Contact Us", link: "/contact" },
+      { name: "ContactUs", link: "/contact" },
     ],
   },
   // { name: "Properties", link: "/properties" },

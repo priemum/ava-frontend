@@ -2,6 +2,7 @@ import React from "react";
 import { API_BASE_URL } from "../../../constants";
 import { MdArrowOutward } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const ArticleCard = ({
   id,
@@ -13,6 +14,7 @@ const ArticleCard = ({
   Caption,
 }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
     <div
       className="w-[90%] rounded-md group bg-primary/10 backdrop-blur-[21px] shadow-md"
@@ -38,7 +40,7 @@ const ArticleCard = ({
               <p className="text-white text-smaller ">{AuthorName}</p>
             </div>
             <p className="font-normal text-smaller drop-shadow-xl text-third h-[30px]">
-              {MinRead} Min Read
+              {MinRead + " " + t("MinRead")}
             </p>
           </div>
         </div>
@@ -49,7 +51,7 @@ const ArticleCard = ({
           <p className="line-clamp-2 text-tiny ">{Caption}</p>
         </div>
         <div className="flex items-center text-smaller !mt-4 gap-x-1">
-          <p>{"Read More"}</p>
+          <p>{t("ReadMore")}</p>
           <MdArrowOutward size={24} />
         </div>
       </div>

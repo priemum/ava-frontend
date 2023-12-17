@@ -10,7 +10,7 @@ const JobsList = () => {
   const [itemsPerPage] = useState(6);
   const [getActiveJobs, { data, isLoading, isFetching, isSuccess, isError }] =
     useLazyGetActiveJobsQuery();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
     if (search) {
@@ -30,13 +30,11 @@ const JobsList = () => {
     </div>
   ) : isError ? (
     <div className="my-44 flex flex-col justify-center items-center relative">
-      <p className="text-med font-bold">
-        Somthing went wrong, Please reload the page!
-      </p>
+      <p className="text-med font-bold">{t("ErrorPleaseReload")}</p>
     </div>
   ) : isSuccess && data.count == 0 ? (
     <div className="my-44 flex flex-col justify-center items-center relative">
-      <p className="text-med font-bold">There Are No Jobs Yet!</p>
+      <p className="text-med font-bold">{t("NoJobs")}</p>
     </div>
   ) : (
     isSuccess &&

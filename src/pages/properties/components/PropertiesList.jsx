@@ -4,6 +4,7 @@ import Loader from "../../../components/UI/Loader";
 import PropertyCard from "../../../components/UI/PropertyCard";
 import { useParams } from "react-router-dom";
 import Pagination from "../../../components/Forms/Pagination";
+import { useTranslation } from "react-i18next";
 const PropertiesList = () => {
   const {
     search,
@@ -27,6 +28,7 @@ const PropertiesList = () => {
     { data, isLoading, isFetching, isSuccess, isError },
   ] = useGetActivePropertiesMutation();
 
+  const { t, i18n } = useTranslation();
   useEffect(() => {
     if (search) {
       getActiveProperties({
@@ -121,13 +123,11 @@ const PropertiesList = () => {
     </div>
   ) : isError ? (
     <div className="h-screen flex justify-center items-center">
-      <p className="font-bold text-med">
-        Somthing Went Wrong, Please Refresh The Page
-      </p>
+      <p className="font-bold text-med">{t("ErrorPleaseReload")}</p>
     </div>
   ) : isSuccess && data.count == 0 ? (
     <div className="h-screen flex justify-center items-center">
-      <p className="font-bold text-med">There Are No Properties Yet</p>
+      <p className="font-bold text-med">{t("NoProperties")} </p>
     </div>
   ) : (
     isSuccess &&

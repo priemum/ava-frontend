@@ -81,9 +81,7 @@ const PropertyPage = () => {
         </div>
       ) : isError ? (
         <div className="h-screen flex justify-center items-center">
-          <p className="font-bold text-med">
-            Somthing Went Wrong, Please Refresh The Page
-          </p>
+          <p className="font-bold text-med">{t("ErrorPleaseReload")} </p>
         </div>
       ) : (
         isSuccess && (
@@ -95,7 +93,7 @@ const PropertyPage = () => {
                 <p className="font-bold text-med">
                   {
                     data.Property_Translation.find(
-                      (x) => x.Language.Code == "En"
+                      (x) => x.Language.Code.toLowerCase() == i18n.language
                     ).Name
                   }
                 </p>

@@ -116,7 +116,7 @@ const NavBar = () => {
                   setDropDownSelect({ open: !dropDownSelect.open, id: e.id })
                 }
               >
-                {e.name}
+                {t(e.name)}
                 {dropDownSelect.open ? (
                   <MdExpandLess className="text-med 2xl:text-big translate-y-2" />
                 ) : (

@@ -144,7 +144,7 @@ const Filter = ({ containerStyle }) => {
         <CustomInput
           containerStyle={"!bg-[#F6F6F6]"}
           customStyle={"placeholder:!text-primary"}
-          placeholder={"Search For Property"}
+          placeholder={t("SearchForProperty")}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           icon={<MdSearch className="text-small text-primary" />}
@@ -287,7 +287,7 @@ const Filter = ({ containerStyle }) => {
                   setForm({ ...form, Bedrooms: brooms });
                 }}
               >
-                {item == 0 ? "All" : item == 6 ? item + "+" : item}
+                {item == 0 ? t("All") : item == 6 ? item + "+" : item}
               </div>
             );
           })}
@@ -395,7 +395,7 @@ const Filter = ({ containerStyle }) => {
                   setForm({ ...form, Bathrooms: brooms });
                 }}
               >
-                {item == 0 ? "All" : item == 6 ? item + "+" : item}
+                {item == 0 ? t("All") : item == 6 ? item + "+" : item}
               </div>
             );
           })}

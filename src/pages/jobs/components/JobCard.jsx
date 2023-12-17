@@ -11,6 +11,7 @@ import "react-quill/dist/quill.bubble.css";
 import { showModal } from "../../../redux/modal.slice";
 import { useDispatch } from "react-redux";
 import JobForm from "./JobForm";
+import { useTranslation } from "react-i18next";
 const JobCard = ({
   Author,
   Location,
@@ -21,6 +22,7 @@ const JobCard = ({
   Expired,
   id,
 }) => {
+  const { t } = useTranslation();
   const [expandJob, setExpandJob] = useState(false);
   const dispatch = useDispatch();
   return (
@@ -47,7 +49,7 @@ const JobCard = ({
               </div>
               <div className="flex items-center gap-2">
                 <img src={medalIcon} alt="hours icon" />
-                <p>{WeekHours} Weak Hours</p>
+                <p>{WeekHours + " " + t("WeakHours")}</p>
               </div>
             </div>
           </div>
@@ -59,7 +61,7 @@ const JobCard = ({
           <div className="flex justify-center items-center gap-x-4">
             <Button
               borderColor={"border-primary"}
-              text={"More Details"}
+              text={t("MoreDetails")}
               textColor={"text-primary"}
               borderRadius={4}
               customStyle={"!p-2"}
@@ -78,7 +80,7 @@ const JobCard = ({
             <Button
               bgColor={"bg-primary disabled:bg-transparent"}
               borderColor={Expired && "border-primary"}
-              text={Expired ? "EXPIRED" : "Apply"}
+              text={Expired ? t("EXPIRED") : t("Apply")}
               textColor={Expired ? "text-red-800 !font-bold" : "text-third"}
               borderRadius={4}
               customStyle={"!p-2"}

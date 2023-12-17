@@ -7,7 +7,7 @@ import CurrencySettings from "./CurrencySettings";
 import UnitSettings from "./UnitSettings";
 
 export default function WebsiteSettings() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 

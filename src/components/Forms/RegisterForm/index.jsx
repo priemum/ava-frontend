@@ -48,7 +48,7 @@ const RegisterForm = () => {
         dispatch(
           showMessage({
             variant: "error",
-            message: "Somthing Went Wrong, Please Try Again",
+            message: t("TryAgain"),
           })
         );
       });
@@ -59,14 +59,14 @@ const RegisterForm = () => {
       dispatch(
         showMessage({
           variant: "success",
-          message: "Thank you for your Feedback",
+          message: t("FeedbackThanks"),
         })
       );
     if (!isLoading && isError)
       dispatch(
         showMessage({
           variant: "error",
-          message: "Somthing Went Wrong, Please Try Again",
+          message: t("TryAgain"),
         })
       );
   }, [isSuccess]);

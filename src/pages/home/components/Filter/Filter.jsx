@@ -185,7 +185,7 @@ const HomeFilter = () => {
                     ]?.Category_Translation.find(
                       (x) => x.Language.Code.toLowerCase() == i18n.language
                     ).Name ?? "")
-                  : "No categories yet"
+                  : t("NoCategories")
               }
               select
               otherOptions={
@@ -261,7 +261,7 @@ const HomeFilter = () => {
                       </div>
                     </React.Fragment>
                   ) : (
-                    "No Categories Yet"
+                    t("NoCategories")
                   )}
                 </div>
               }
@@ -317,7 +317,7 @@ const HomeFilter = () => {
                             setForm({ ...form, Bedrooms: brooms });
                           }}
                         >
-                          {item == 0 ? "All" : item == 6 ? item + "+" : item}
+                          {item == 0 ? t("All") : item == 6 ? item + "+" : item}
                         </div>
                       );
                     })}
@@ -378,7 +378,7 @@ const HomeFilter = () => {
                             setForm({ ...form, Bathrooms: brooms });
                           }}
                         >
-                          {item == 0 ? "All" : item == 6 ? item + "+" : item}
+                          {item == 0 ? t("All") : item == 6 ? item + "+" : item}
                         </div>
                       );
                     })}

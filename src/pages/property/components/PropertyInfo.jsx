@@ -63,7 +63,7 @@ const PropertyInfo = ({ data }) => {
           </p>
           {data.Purpose == "Rent" && (
             <p className="">
-              <span className="text-[#6A6A6A]">{t("Rent Frequency")}: </span>
+              <span className="text-[#6A6A6A]">{t("RentFrequency")}: </span>
               {data.RentFrequency}
             </p>
           )}

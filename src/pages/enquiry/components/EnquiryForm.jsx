@@ -68,7 +68,7 @@ const EnquiryForm = () => {
         dispatch(
           showMessage({
             variant: "error",
-            message: "Somthing Went Wrong, Please Try Again",
+            message: t("TryAgain"),
           })
         );
       });
@@ -79,14 +79,14 @@ const EnquiryForm = () => {
       dispatch(
         showMessage({
           variant: "success",
-          message: "Thank you for your Enquiry",
+          message: t("EnquiryThanks"),
         })
       );
     if (!isLoading && isError)
       dispatch(
         showMessage({
           variant: "error",
-          message: "Somthing Went Wrong, Please Try Again",
+          message: t("TryAgain"),
         })
       );
   }, [isSuccess, isError]);

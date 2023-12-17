@@ -16,9 +16,7 @@ const HomeAddresses = () => {
     </div>
   ) : isError ? (
     <div className="my-24 flex flex-col justify-center items-center relative">
-      <p className="text-med font-bold">
-        Somthing went wrong, Please reload the page!
-      </p>
+      <p className="text-med font-bold">{t("ErrorPleaseReload")}</p>
     </div>
   ) : (
     isSuccess &&

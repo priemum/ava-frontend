@@ -2,9 +2,10 @@ import React from "react";
 import ArticleList from "./components/ArticleList";
 import Head from "../../components/Layout/PageContainer/Head";
 import PageHeader from "../../components/UI/PageHeader";
-import { data } from "../../data/articlesData";
 import SearchArticle from "./components/SearchArticle";
+import { useTranslation } from "react-i18next";
 const ArticlesPage = () => {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col justify-center items-center">
       <Head
@@ -15,7 +16,7 @@ const ArticlesPage = () => {
         }
         canonicalLink={"/articles"}
       />
-      <PageHeader text={data.headerTitle} />
+      <PageHeader text={t("ArticleHeader")} />
       <SearchArticle />
       <ArticleList />
     </div>

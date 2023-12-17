@@ -124,7 +124,15 @@ const ListingForm = () => {
         setImages([]);
         setListWithUs_Translation([]);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        dispatch(
+          showMessage({
+            variant: "error",
+            message: t("TryAgain"),
+          })
+        );
+      });
   }
 
   useEffect(() => {
@@ -132,14 +140,14 @@ const ListingForm = () => {
       dispatch(
         showMessage({
           variant: "success",
-          message: "Thank you for your Listing With Us",
+          message: t("ListingThanks"),
         })
       );
     if (!isLoading && isError)
       dispatch(
         showMessage({
           variant: "error",
-          message: "Somthing Went Wrong, Please Try Again",
+          message: t("TryAgain"),
         })
       );
   }, [isSuccess, isError]);
@@ -166,7 +174,7 @@ const ListingForm = () => {
   return (
     <>
       <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-4 md:p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[1000px]">
-        <p className="text-smaller"> Property Information</p>
+        <p className="text-smaller"> {t("PropertyInformation")} </p>
         <div className="space-y-4">
           <div className="space-y-1">
             <p className="text-tiny">{t("Purpose")} </p>
@@ -308,7 +316,7 @@ const ListingForm = () => {
           <div className="w-full flex items-center gap-x-6">
             <Button
               textColor={"text-primary"}
-              text={"Upload Photos"}
+              text={t("UploadPhoto")}
               bgColor={"bg-secondary"}
               customStyle={"py-2 px-4"}
               borderRadius={6}
@@ -335,7 +343,7 @@ const ListingForm = () => {
                 className="text-center cursor-pointer flex items-center gap-x-1"
               >
                 <DeleteAllIcon className="text-med" />
-                <p className="text-smaller">Delete All</p>
+                <p className="text-smaller">{t("DeleteAll")} </p>
               </div>
             )}
           </div>

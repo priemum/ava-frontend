@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Header from "./components/Header/Header";
-// import Properties from "./components/Properties";
 import { Helmet } from "react-helmet";
 import HomeFilter from "./components/Filter/Filter";
 import HomeProperties from "./components/Properties";

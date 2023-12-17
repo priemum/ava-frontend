@@ -26,7 +26,7 @@ const CurrencySettings = () => {
     </div>
   ) : currenciesIsError ? (
     <div className="flex justify-center items-center h-full">
-      <p className="text-smaller"> {t("IsErrorMessage")} </p>
+      <p className="text-smaller"> {t("ErrorPleaseReload")} </p>
     </div>
   ) : (
     currenciesIsSuccess && (

@@ -1,12 +1,13 @@
 import React from "react";
 import { API_BASE_URL } from "../../../constants";
-// import pattern from "../../../assets/images/AmenityPattern.png";
 import AmenityIcon from "../../../assets/icons/AmenityIcon.svg";
 import { showModal } from "../../../redux/modal.slice";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const Amenities = ({ data }) => {
   const dispatch = useDispatch();
+  const { i18n, t } = useTranslation();
   const showAmenitiesModal = () => {
     dispatch(
       showModal({
@@ -20,7 +21,7 @@ const Amenities = ({ data }) => {
                   icon={item.Image.URL}
                   name={
                     item.Aminities_Translation.find(
-                      (x) => x.Language.Code == "En"
+                      (x) => x.Language.Code.toLowerCase() == i18n.language
                     ).Name
                   }
                 />
@@ -52,7 +53,7 @@ const Amenities = ({ data }) => {
             <p className="text-tiny sm:text-smaller font-bold">{"+ " + data}</p>
           )}
           <p className="text-tiny sm:text-smaller">
-            {!count ? name : "Find More"}
+            {!count ? name : t("FindMore")}
           </p>
         </div>
 
@@ -76,7 +77,7 @@ const Amenities = ({ data }) => {
       <div className="flex items-center self-start  flex-1">
         <img src={AmenityIcon} alt="property Icon" />
         <p className="text-small md:text-med font-bold">
-          Advantages and services
+          {t("AdvantagesServices")}
         </p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 max-lg:place-items-center">
@@ -88,7 +89,7 @@ const Amenities = ({ data }) => {
                 icon={item.Image.URL}
                 name={
                   item.Aminities_Translation.find(
-                    (x) => x.Language.Code == "En"
+                    (x) => x.Language.Code.toLowerCase() == i18n.language
                   ).Name
                 }
                 count={index > 3}

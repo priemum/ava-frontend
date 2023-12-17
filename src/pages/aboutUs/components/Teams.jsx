@@ -9,7 +9,9 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import { useLazyGetUsersByTeamIdQuery } from "../../../redux/users/usersSlice";
 import { API_BASE_URL } from "../../../constants";
 import Loader from "../../../components/UI/Loader";
+import { useTranslation } from "react-i18next";
 const Teams = () => {
+  const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [userIndex, setUserIndex] = useState(0);
   const [selectedTeamId, setSelectedTeamId] = useState("");
@@ -48,9 +50,7 @@ const Teams = () => {
     </div>
   ) : teamsIsError ? (
     <div className="my-2 flex flex-col justify-center items-center relative">
-      <p className="text-med font-bold">
-        Somthing went wrong, Please reload the page!
-      </p>
+      <p className="text-med font-bold">{t("ErrorPleaseReload")}</p>
     </div>
   ) : (
     teamsIsSuccess &&
@@ -58,14 +58,9 @@ const Teams = () => {
       <div className="overflow-x-hidden grid md:grid-cols-3 gap-8 px-[5%]">
         <div className="col-span-1 flex flex-col justify-center items-start">
           <p className="text-big lg:text-[60px] font-bold md:w-[85%]">
-            Find out who is behind AVA realestate
+            {t("TeamTitle")}
           </p>
-          <p className="text-smaller text-gray-600">
-            Lorem ipsum dolor sit amet . The graphic and typographic operators
-            know this well, in reality all the professions dealing with the
-            universe of communication have a stable relationship Lorem ipsum
-            dolor sit amet .
-          </p>
+          <p className="text-smaller text-gray-600">{t("TeamSubTitle")}.</p>
         </div>
         <div className="col-span-2 space-y-4 max-md:w-[90vw]">
           <div>
@@ -136,11 +131,11 @@ const Teams = () => {
             )}
             {usersIsLoading || usersIsFetching ? (
               <div className="flex justify-center items-center my-24 text-smaller md:text-small font-bold text-center w-full">
-                Loading Members
+                {t("Loading")}
               </div>
             ) : usersIsSuccess && teamUsers.count == 0 ? (
               <div className="flex justify-center items-center my-24 text-smaller md:text-small font-bold text-center w-full">
-                No Members To View
+                {t("NoMembers")}
               </div>
             ) : (
               usersIsSuccess && (

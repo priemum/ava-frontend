@@ -28,16 +28,14 @@ const Announcements = () => {
     };
   });
 
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   return isLoading || isFetching ? (
     <div className="my-24 flex flex-col justify-center items-center relative">
       <Loader />
     </div>
   ) : isError ? (
     <div className="my-24 flex flex-col justify-center items-center relative">
-      <p className="text-med font-bold">
-        Somthing went wrong, Please reload the page!
-      </p>
+      <p className="text-med font-bold">{t("ErrorPleaseReload")}</p>
     </div>
   ) : (
     isSuccess &&
@@ -109,7 +107,7 @@ const Announcements = () => {
                     </p>
                     <Button
                       bgColor={"bg-buttonGrad"}
-                      text={"More Details"}
+                      text={t("MoreDetails")}
                       textColor={"text-primary text-tiny md:text-smaller"}
                       customStyle={"p-4"}
                       w={"200px"}
@@ -119,7 +117,7 @@ const Announcements = () => {
                   </div>
                   <div className="h-full w-full relative">
                     <div
-                      className={` h-[270px] w-[300px] sm:h-[300px] sm:w-[450px] md:h-[250px] md:w-[350px]  lg:h-[300px] lg:w-[450px] xl:h-[450px] xl:w-[600px] absolute top-0 md:top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md ease-out duration-1000  ${
+                      className={` h-[270px] w-[300px] sm:h-[300px] sm:w-[450px] md:h-[250px] md:w-[350px] lg:h-[300px] lg:w-[450px] xl:h-[450px] xl:w-[600px] absolute top-0 md:top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md ease-out duration-1000  ${
                         index == currentSlide ? "opacity-100" : "opacity-0"
                       }`}
                       style={{

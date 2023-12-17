@@ -13,7 +13,7 @@ const ArticleList = () => {
     getActiveArticles,
     { data, isLoading, isFetching, isSuccess, isError },
   ] = useLazyGetActiveArticlesQuery();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
     if (search) {
@@ -32,13 +32,11 @@ const ArticleList = () => {
     </div>
   ) : isError ? (
     <div className="my-44 flex flex-col justify-center items-center relative">
-      <p className="text-med font-bold">
-        Somthing went wrong, Please reload the page!
-      </p>
+      <p className="text-med font-bold">{t("ErrorPleaseReload")}</p>
     </div>
   ) : isSuccess && data.count == 0 ? (
     <div className="my-44 flex flex-col justify-center items-center relative">
-      <p className="text-med font-bold">There Are No Articles Yet!</p>
+      <p className="text-med font-bold">{t("NoArticles")}</p>
     </div>
   ) : (
     isSuccess &&
