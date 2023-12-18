@@ -128,6 +128,10 @@ i18n.use(initReactI18next).init({
         OfficeAddress:
           "Office 609, Clover Bay Tower - 6a Marasi Dr - Business Bay - Dubai",
         AvaEmail: "info@avarealestate.ae",
+        SocialMedia: "Social Media",
+        PrivacyPolicy: " Privacy Policy",
+        TermsConditions: "Terms & Conditions",
+        SiteMap: "Site Map",
       },
     },
     en: {
@@ -253,6 +257,10 @@ i18n.use(initReactI18next).init({
         OfficeAddress:
           "Office 609, Clover Bay Tower - 6a Marasi Dr - Business Bay - Dubai",
         AvaEmail: "info@avarealestate.ae",
+        SocialMedia: "Social Media",
+        PrivacyPolicy: " Privacy Policy",
+        TermsConditions: "Terms & Conditions",
+        SiteMap: "Site Map",
       },
     },
   },

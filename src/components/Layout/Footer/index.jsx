@@ -9,7 +9,9 @@ import {
 } from "react-icons/fa";
 import { MdLocationOn, MdEmail, MdPhone } from "react-icons/md";
 import colors from "../../../settings";
+import { useTranslation } from "react-i18next";
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <div
       style={{
@@ -23,18 +25,15 @@ const Footer = () => {
           <div className="max-md:w-[80%] text-base md:text-lg text-white space-y-3 flex flex-col">
             <div className="flex-1 space-y-3">
               <p className="text-start text-smaller font-semibold py-3">
-                Contact Us
+                {t("ContactUs")}
               </p>
               <div className="flex gap-x-3 items-center">
                 <MdLocationOn size={24} />
-                <p className="text-tiny flex-1">
-                  609, Clover Bay, Business Bay, Ava real estate, Dubai,
-                  United Arab Emirates
-                </p>
+                <p className="text-tiny flex-1">{t("OfficeAddress")}</p>
               </div>
               <div className="flex gap-x-3 items-center">
                 <MdEmail size={24} />
-                <p className="text-tiny flex-1">info@avarealestate.ae</p>
+                <p className="text-tiny flex-1">{t("AvaEmail")} </p>
               </div>
               <div className="flex gap-x-3 items-center">
                 <MdPhone size={24} />
@@ -49,7 +48,7 @@ const Footer = () => {
           <div className="text-base w-[80%] lg:w-[50%] text-white max-md:py-4 space-y-3 flex flex-col">
             <div className="flex-1 space-y-3">
               <p className="text-start text-smaller font-semibold py-3">
-                Social Media
+                {t("SocialMedia")}
               </p>
               <div className="flex justify-between px-4 text-2xl">
                 <a
@@ -95,25 +94,25 @@ const Footer = () => {
                 className="text-white max-lg:py-4 text-center md:text-start"
                 href="/privacy-policy"
               >
-                Privacy Policy
+                {t("PrivacyPolicy")}
               </a>
               <a
                 className="text-white max-lg:py-4 text-center md:text-start"
                 href="/privacy-policy"
               >
-                Terms & Conditions
+                {t("TermsConditions")}
               </a>
               <a
                 className="text-white max-lg:py-4 text-center md:text-start"
                 href="/about-us"
               >
-                About Us
+                {t("AboutUs")}
               </a>
               <a
                 className="text-white max-lg:py-4 text-center md:text-start"
                 href="/privacy-policy"
               >
-                Site Map
+                {t("SiteMap")}
               </a>
             </div>
           </div>
