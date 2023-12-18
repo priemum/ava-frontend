@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 const CustomInput = ({
   icon,
   placeholder,
@@ -23,9 +24,10 @@ const CustomInput = ({
   textAreaRows,
   inputLabel,
   keepOnSelect,
+  translatedOptions,
 }) => {
   const [selectStatus, setSelectStatus] = useState(false);
-
+  const { i18n } = useTranslation();
   const ref = useRef(null);
 
   const handleClickOutside = (event) => {
@@ -113,6 +115,20 @@ const CustomInput = ({
                       }}
                     >
                       {item}
+                    </p>
+                  );
+                })
+              : translatedOptions
+              ? translatedOptions.map((item, index) => {
+                  return (
+                    <p
+                      key={index}
+                      className="text-tiny hover:bg-secondary/50 rounded-md p-2 transition-all duration-300"
+                      onClick={() => {
+                        setState({ ...state, [name]: item.value });
+                      }}
+                    >
+                      {item.lng[i18n.language]}
                     </p>
                   );
                 })

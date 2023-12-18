@@ -1,19 +1,19 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { MdLocationOn, MdPhone, MdEmail } from "react-icons/md";
 
 const ContactInfo = () => {
+  const { t } = useTranslation();
   return (
     <div className="text-white space-y-8 text-smaller font-semibold">
-      <p className="text-bold text-big font-bold">Contact Information </p>
+      <p className="text-bold text-big font-bold">{t("ContactInformation")}</p>
       <div className="flex items-center gap-x-4">
         <MdLocationOn size={24} />
-        <p>
-          Office 609, Clover Bay Tower - 6a Marasi Dr - Business Bay - Dubai
-        </p>
+        <p>{t("OfficeAddress")}</p>
       </div>
       <div className="flex items-center gap-x-4">
         <MdEmail size={24} />
-        <p> info@avarealestate.ae</p>
+        <p> {t("AvaEmail")} </p>
       </div>
       <div className="flex items-center gap-x-4">
         <MdPhone size={24} />

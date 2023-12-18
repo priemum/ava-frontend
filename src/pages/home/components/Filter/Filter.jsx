@@ -90,7 +90,7 @@ const HomeFilter = () => {
             containerStyle={"!w-[300px]"}
             readOnly
             value={
-              form.purpose +
+              Purpose.find((x) => x.value == form.purpose).lng[i18n.language] +
               `${
                 form.rentFrequency.length !== 0 ||
                 form.completionStatus.length !== 0
@@ -98,8 +98,11 @@ const HomeFilter = () => {
                   : ""
               }` +
               (form.purpose == "Rent"
-                ? form.rentFrequency
-                : form.completionStatus)
+                ? RentFrequency.find((x) => x.value == form.rentFrequency).lng[
+                    i18n.language
+                  ]
+                : CompletionStatus.find((x) => x.value == form.completionStatus)
+                    .lng[i18n.language])
             }
             select
             otherOptions={
@@ -111,20 +114,20 @@ const HomeFilter = () => {
                         <React.Fragment key={index}>
                           <div
                             className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
-                              form.purpose == item
+                              form.purpose == item.value
                                 ? "bg-secondary text-primary"
                                 : "bg-transparent text-white"
                             }`}
                             onClick={() =>
                               setForm({
                                 ...form,
-                                purpose: item,
+                                purpose: item.value,
                                 rentFrequency: "",
                                 completionStatus: "",
                               })
                             }
                           >
-                            {item}
+                            {item.lng[i18n.language]}
                           </div>
                           {index !== Purpose.length - 1 && (
                             <div className="h-10 w-1 bg-white/50" />
@@ -139,20 +142,23 @@ const HomeFilter = () => {
                         <div
                           key={index}
                           className={`h-10 w-32 border-[1px] border-secondary ${
-                            form.rentFrequency == item ||
-                            form.completionStatus == item
+                            form.rentFrequency == item.value ||
+                            form.completionStatus == item.value
                               ? "text-primary bg-secondary"
                               : "text-secondary bg-transparent"
                           } flex justify-center items-center text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
                           onClick={() => {
                             if (form.purpose == "Rent") {
-                              setForm({ ...form, rentFrequency: item });
+                              setForm({ ...form, rentFrequency: item.value });
                             } else if (form.purpose == "Buy") {
-                              setForm({ ...form, completionStatus: item });
+                              setForm({
+                                ...form,
+                                completionStatus: item.value,
+                              });
                             }
                           }}
                         >
-                          {item}
+                          {item.lng[i18n.language]}
                         </div>
                       );
                     })}

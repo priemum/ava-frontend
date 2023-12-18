@@ -204,21 +204,21 @@ const Filter = ({ containerStyle }) => {
                 <React.Fragment key={index}>
                   <div
                     className={`w-full h-14 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
-                      form.purpose == item
+                      form.purpose == item.value
                         ? "bg-secondary text-primary"
                         : "bg-transparent text-primary"
                     }`}
                     onClick={() => {
                       let tempForm = {
                         ...form,
-                        purpose: item,
+                        purpose: item.value,
                         rentFrequency: "",
                         completionStatus: "",
                       };
                       setForm(tempForm);
                     }}
                   >
-                    {item}
+                    {item.lng[i18n.language]}
                   </div>
                   {Purpose.length - 1 !== index && (
                     <div className="h-10 w-1 bg-secondary" />
@@ -233,19 +233,20 @@ const Filter = ({ containerStyle }) => {
                 <div
                   key={index}
                   className={`h-14 w-full border-[1px] border-secondary ${
-                    form.rentFrequency == item || form.completionStatus == item
+                    form.rentFrequency == item.value ||
+                    form.completionStatus == item.value
                       ? "text-primary bg-secondary"
                       : "text-secondary bg-transparent"
                   } flex justify-center items-center text-tiny 2xl:text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
                   onClick={() => {
                     if (form.purpose == "Rent") {
-                      setForm({ ...form, rentFrequency: item });
+                      setForm({ ...form, rentFrequency: item.value });
                     } else if (form.purpose == "Buy") {
-                      setForm({ ...form, completionStatus: item });
+                      setForm({ ...form, completionStatus: item.value });
                     }
                   }}
                 >
-                  {item}
+                  {item.lng[i18n.language]}
                 </div>
               );
             })}

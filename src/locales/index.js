@@ -121,6 +121,13 @@ i18n.use(initReactI18next).init({
         Currency: " تعديل العملة",
         AriaUnit: "تعديل المساحة",
         Units: "الوحدات",
+        ListingTitle: "Share Your Apartment For Sale/Rent With Us",
+        ContactUsTitle: "We Are Happy To Hear From You",
+        EnquiryTitle: "Make A Request For The Apartment You Desire",
+        ContactInformation: "Contact Information",
+        OfficeAddress:
+          "Office 609, Clover Bay Tower - 6a Marasi Dr - Business Bay - Dubai",
+        AvaEmail: "info@avarealestate.ae",
       },
     },
     en: {
@@ -239,6 +246,13 @@ i18n.use(initReactI18next).init({
         Currency: "Currency",
         AriaUnit: "Area Unit",
         Units: "Units",
+        ListingTitle: "Share Your Apartment For Sale/Rent With Us",
+        ContactUsTitle: "We Are Happy To Hear From You",
+        EnquiryTitle: "Make A Request For The Apartment You Desire",
+        ContactInformation: "Contact Information",
+        OfficeAddress:
+          "Office 609, Clover Bay Tower - 6a Marasi Dr - Business Bay - Dubai",
+        AvaEmail: "info@avarealestate.ae",
       },
     },
   },

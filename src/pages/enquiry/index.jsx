@@ -2,7 +2,9 @@ import React from "react";
 import backImage from "../../assets/images/home/330.webp";
 import GradientText from "../../components/UI/GradientText";
 import EnquiryForm from "./components/EnquiryForm";
+import { useTranslation } from "react-i18next";
 const EnquiryPage = () => {
+  const { t } = useTranslation();
   return (
     <div
       style={{ backgroundImage: `url(${backImage})` }}
@@ -10,7 +12,7 @@ const EnquiryPage = () => {
     >
       <div className="bg-primary/80 h-full min-h-screen flex flex-col justify-center items-center space-y-12 py-12">
         <GradientText
-          text={"Make A Request For The Apartment You Desire"}
+          text={t("EnquiryTitle")}
           customStyle={
             "text-med md:text-[60px] font-bold text-center drop-shadow-2xl w-3/5"
           }

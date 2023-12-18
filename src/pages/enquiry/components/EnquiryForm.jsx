@@ -49,10 +49,10 @@ const EnquiryForm = () => {
   useEffect(() => {
     if (values.Purpose == "Rent") {
       setTypeOptions(RentFrequency);
-      setValues({ ...values, Type: RentFrequency[0] });
+      setValues({ ...values, Type: RentFrequency[0].value });
     } else {
       setTypeOptions(CompletionStatus);
-      setValues({ ...values, Type: CompletionStatus[0] });
+      setValues({ ...values, Type: CompletionStatus[0].value });
     }
   }, [values.Purpose]);
   function submit(e) {
@@ -104,16 +104,18 @@ const EnquiryForm = () => {
                   <React.Fragment key={index}>
                     <div
                       className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
-                        values.Purpose == item
+                        values.Purpose == item.value
                           ? "bg-secondary text-primary"
                           : "bg-transparent text-white"
                       }`}
-                      onClick={() => setValues({ ...values, Purpose: item })}
+                      onClick={() =>
+                        setValues({ ...values, Purpose: item.value })
+                      }
                     >
-                      {item}
+                      {item.lng[i18n.language]}
                     </div>
                     {index !== Purpose.length - 1 && (
-                      <div className="h-10 w-1 bg-white/50" />
+                      <div key={item.value} className="h-10 w-1 bg-white/50" />
                     )}
                   </React.Fragment>
                 );
@@ -121,10 +123,14 @@ const EnquiryForm = () => {
             </div>
           </div>
           <CustomInput
-            value={values.Type}
+            value={
+              typeOptions.find((x) => x.value == values.Type)?.lng[
+                i18n.language
+              ]
+            }
             name={"Type"}
             inputType="text"
-            options={typeOptions}
+            translatedOptions={typeOptions}
             setState={setValues}
             state={values}
             reverseIcon
@@ -256,16 +262,18 @@ const EnquiryForm = () => {
                   <React.Fragment key={index}>
                     <div
                       className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
-                        values.Gender == item
+                        values.Gender == item.value
                           ? "bg-secondary text-primary"
                           : "bg-transparent text-white"
                       }`}
-                      onClick={() => setValues({ ...values, Gender: item })}
+                      onClick={() =>
+                        setValues({ ...values, Gender: item.value })
+                      }
                     >
-                      {item}
+                      {item.lng[i18n.language]}
                     </div>
                     {index !== Gender.length - 1 && (
-                      <div className="h-10 w-1 bg-white/50" />
+                      <div key={item.value} className="h-10 w-1 bg-white/50" />
                     )}
                   </React.Fragment>
                 );

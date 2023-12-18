@@ -41,6 +41,7 @@ const PropertyCard = ({ data }) => {
   const currentUnit = useSelector(selectCurrentUnit);
   const currentCurrency = useSelector(selectCurrentCurrency);
   const [showDetails, setShowDetails] = useState(false);
+
   const [priceSymbol, setPriceSymbol] = useState(
     currentCurrency.Currency_Translation.find(
       (x) => x.Language.Code.toLowerCase() == i18n.language
