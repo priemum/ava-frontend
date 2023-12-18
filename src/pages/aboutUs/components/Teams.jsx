@@ -109,7 +109,7 @@ const Teams = () => {
             </Slider>
           </div>
           <div className="overflow-x-hidden px-5 relative h-[500px] flex justify-start items-center">
-            {usersIsSuccess && teamUsers?.count > 0 && (
+            {usersIsSuccess && teamUsers?.count > 1 && (
               <>
                 <div
                   className="absolute cursor-pointer z-40 left-[305px] sm:left-[405px] top-1/2 -translate-y-1/2 rounded-md bg-gray-300 backdrop-blur-[21px] shadow-lg"
