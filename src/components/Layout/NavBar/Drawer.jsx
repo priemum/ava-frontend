@@ -30,10 +30,7 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
         }
       >
         <article className="relative w-full pb-10 flex flex-col justify-start items-center space-y-6 overflow-y-scroll h-full bg-primary/50 backdrop-blur-[21px]">
-          <header
-            dir={i18n.language == "ar" ? "ltr" : "rtl"}
-            className="p-4 font-bold w-full flex justify-between items-center"
-          >
+          <header className="p-4 font-bold w-full flex justify-between items-center">
             <MdClose
               onClick={() => {
                 setIsOpen(false);
