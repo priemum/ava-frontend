@@ -90,7 +90,7 @@ const HomeFilter = () => {
             containerStyle={"!w-[300px]"}
             readOnly
             value={
-              Purpose.find((x) => x.value == form.purpose).lng[i18n.language] +
+              Purpose.find((x) => x.value == form.purpose)?.lng[i18n.language] +
               `${
                 form.rentFrequency.length !== 0 ||
                 form.completionStatus.length !== 0
@@ -98,11 +98,11 @@ const HomeFilter = () => {
                   : ""
               }` +
               (form.purpose == "Rent"
-                ? RentFrequency.find((x) => x.value == form.rentFrequency).lng[
+                ? RentFrequency.find((x) => x.value == form.rentFrequency)?.lng[
                     i18n.language
                   ]
                 : CompletionStatus.find((x) => x.value == form.completionStatus)
-                    .lng[i18n.language])
+                    ?.lng[i18n.language])
             }
             select
             otherOptions={
@@ -127,7 +127,7 @@ const HomeFilter = () => {
                               })
                             }
                           >
-                            {item.lng[i18n.language]}
+                            {item?.lng[i18n.language]}
                           </div>
                           {index !== Purpose.length - 1 && (
                             <div className="h-10 w-1 bg-white/50" />
@@ -158,7 +158,7 @@ const HomeFilter = () => {
                             }
                           }}
                         >
-                          {item.lng[i18n.language]}
+                          {item?.lng[i18n.language]}
                         </div>
                       );
                     })}

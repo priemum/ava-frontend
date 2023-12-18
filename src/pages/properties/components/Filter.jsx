@@ -218,7 +218,7 @@ const Filter = ({ containerStyle }) => {
                       setForm(tempForm);
                     }}
                   >
-                    {item.lng[i18n.language]}
+                    {item?.lng[i18n.language]}
                   </div>
                   {Purpose.length - 1 !== index && (
                     <div className="h-10 w-1 bg-secondary" />
@@ -246,7 +246,7 @@ const Filter = ({ containerStyle }) => {
                     }
                   }}
                 >
-                  {item.lng[i18n.language]}
+                  {item?.lng[i18n.language]}
                 </div>
               );
             })}
