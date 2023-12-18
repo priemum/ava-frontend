@@ -9,7 +9,9 @@ import Location from "./components/Location";
 import MemberCard from "./components/MemberCard";
 import MissionCard from "./components/MissionCard";
 import Teams from "./components/Teams";
+import { useTranslation } from "react-i18next";
 const AboutUsPage = () => {
+  const { i18n } = useTranslation();
   return (
     <div>
       <Head
@@ -22,7 +24,7 @@ const AboutUsPage = () => {
         }
         canonicalLink={"/about-us"}
       />
-      <PageHeader text={data.headerTitle} />
+      <PageHeader text={data.headerTitle[i18n.language]} />
       <div className="max-md:flex max-md:flex-col max-md:justify-center max-md:items-center md:grid md:grid-cols-12 gap-7 mt-20 max-md:px-[5%] ">
         <div className="col-span-5 w-[85%] md:w-[90%] 2xl:w-[80%] relative place-self-center">
           <div
@@ -44,8 +46,8 @@ const AboutUsPage = () => {
             className=" h-[200px] w-[80%] backdrop-blur-[15px] absolute z-20 -bottom-[10%] left-[10%] flex justify-center items-center rounded-md"
           >
             <div className="text-small text-white font-semibold px-2">
-              <p>Our goal is to provide</p>
-              <p>best offers for homes in Dubai</p>
+              <p> {data.Goals[i18n.language]}</p>
+              <p>{data.GoalsSub[i18n.language]}</p>
             </div>
             <div className="w-[60px] h-[60px] bg-primary rounded-md -mt-52 flex justify-center items-center absolute right-2 ">
               <img src={aboutIcon} alt="About Us" />
@@ -53,16 +55,18 @@ const AboutUsPage = () => {
           </div>
         </div>
         <div className="col-span-7 space-y-4 max-md:mt-7">
-          <p className="text-bigger font-bold"> {data.mission.title} </p>
-          <p>{data.mission.description}</p>
+          <p className="text-bigger font-bold">
+            {data.mission.title[i18n.language]}
+          </p>
+          <p>{data.mission.description[i18n.language]}</p>
           <div className="md:grid md:grid-cols-2 md:gap-7 max-md:space-y-7">
             {data.mission.items.map((item, index) => {
               return (
                 <MissionCard
                   key={index}
-                  title={item.title}
+                  title={item.title[i18n.language]}
                   icon={item.icon}
-                  text={item.description}
+                  text={item.description[i18n.language]}
                 />
               );
             })}
@@ -71,11 +75,13 @@ const AboutUsPage = () => {
       </div>
       <div className="max-md:flex max-md:flex-col max-md:justify-center max-md:items-center md:grid md:grid-cols-12 gap-7 mt-20 max-md:px-[5%] ">
         <div className="col-span-6 md:w-[80%] relative place-self-center space-y-4">
-          <p className="text-bigger font-bold"> {data.vision.title} </p>
-          <p className="text-small">{data.vision.description}</p>
+          <p className="text-bigger font-bold">
+            {data.vision.title[i18n.language]}
+          </p>
+          <p className="text-small">{data.vision.description[i18n.language]}</p>
           <ul className="list-disc ml-7 space-y-14 marker:text-primary list-outside pt-12">
             {data.vision.items.map((item, index) => {
-              return <li key={index}>{item.text}</li>;
+              return <li key={index}>{item.text[i18n.language]}</li>;
             })}
           </ul>
         </div>
@@ -88,7 +94,7 @@ const AboutUsPage = () => {
             }}
           >
             <p className="text-white text-small font-semibold text-center">
-              There is a new way to search for a house
+              {data.searchSlogan[i18n.language]}
             </p>
 
             <img src={Logo} alt="Logo" className="h-[135px] w-[185px]" />
@@ -122,9 +128,9 @@ const AboutUsPage = () => {
             <MemberCard
               key={index}
               image={item.image}
-              name={item.name}
-              title={item.title}
-              description={item.description}
+              name={item.name[i18n.language]}
+              title={item.title[i18n.language]}
+              description={item.description[i18n.language]}
               flip={index % 2 !== 0}
             />
           );

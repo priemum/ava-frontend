@@ -7,8 +7,11 @@ import Modal from "../../UI/Modal/Modal";
 import GalleryModal from "../../UI/GalleryModal";
 import MessageBox from "../../UI/Message";
 import SettingsModal from "../NavBar/SettingsModal";
+import { useGetLNGQuery } from "../../../redux/languages/languagesSlice";
+import { useTranslation } from "react-i18next";
 const PageLayout = ({ children }) => {
   const { width } = useWindowDimensions();
+  const { i18n } = useTranslation();
   const [w, setW] = useState(width);
 
   useEffect(() => {
@@ -17,8 +20,17 @@ const PageLayout = ({ children }) => {
     }
     setW(width);
   }, [width]);
+  const { data, isSuccess } = useGetLNGQuery();
   return (
-    <div className="flex flex-col justify-center items-center relative">
+    <div
+      className="flex flex-col justify-center items-center relative"
+      dir={
+        isSuccess
+          ? data.normalData.find((x) => x.Code.toLowerCase() == i18n.language)
+              .Direction
+          : "ltr"
+      }
+    >
       <MessageBox />
       <NavBar />
       <div className="min-h-screen w-full max-w-[1920px]">{children}</div>
