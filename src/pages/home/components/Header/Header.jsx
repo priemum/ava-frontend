@@ -5,7 +5,7 @@ const Header = () => {
   const [scrollY, setScrollY] = useState(0);
   useEffect(() => {
     const handleScroll = () => {
-      let tempScroll = window.scrollY < 1000 ? window.scrollY : 0;
+      let tempScroll = window.scrollY > 50 ? 300 : 0;
       setScrollY(tempScroll);
     };
     window.addEventListener("scroll", handleScroll);
@@ -14,7 +14,7 @@ const Header = () => {
     };
   });
   return (
-    <div className="w-full h-[110vh]">
+    <div className="w-full h-[110vh] scroll-smooth">
       <div
         style={{
           backgroundImage: `url(${dubai})`,
@@ -22,9 +22,9 @@ const Header = () => {
         className="overflow-hidden bg-no-repeat bg-center bg-cover h-[110vh] flex justify-center items-center bg-fixed -z-20 absolute top-0 left-0 w-screen"
       >
         <div
-          className={`text-white/80 text-[75px] sm:text-[140px] md:text-[170px] lg:text-[200px] font-bold fixed top-1/3 left-1/3 leading-none transition-all duration-500 -z-10 !ease-out`}
+          className={`text-white/80 text-[75px] sm:text-[140px] md:text-[170px] lg:text-[200px] font-bold fixed top-1/3 left-1/2 leading-none -z-10 !ease-linear transition-all duration-300`}
           style={{
-            transform: "translate(0%, " + scrollY + "px)",
+            transform: "translate(-50%, " + scrollY + "%)",
           }}
         >
           <p>DUBAI</p>

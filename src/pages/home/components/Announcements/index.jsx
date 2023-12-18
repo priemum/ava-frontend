@@ -11,15 +11,18 @@ const Announcements = () => {
   const { data, isLoading, isFetching, isSuccess, isError } =
     useGetActiveAnnouncementsQuery();
   const [scrollY, setScrollY] = useState(0);
+  const [roteteY, setRotateY] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef();
   const compRef = useRef();
   useEffect(() => {
     const handleScroll = () => {
-      if (compRef.current.getBoundingClientRect().top > 400) {
-        setScrollY(2000);
+      if (compRef.current.getBoundingClientRect().top > 600) {
+        setScrollY(350);
+        setRotateY(25);
       } else {
-        setScrollY(300);
+        setScrollY(50);
+        setRotateY(2);
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -62,7 +65,7 @@ const Announcements = () => {
                     <div
                       onClick={() => sliderRef.current.slickGoTo(index)}
                       key={item}
-                      className={`w-7 h-7 rounded-full bg-white/50 backdrop-blur-[21px] cursor-pointer transition-all duration-500`}
+                      className={`w-7 h-7 rounded-full bg-white/50 backdrop-blur-[21px] cursor-pointer transition-all duration-300`}
                     />
                   </div>
                 );
@@ -117,12 +120,12 @@ const Announcements = () => {
                   </div>
                   <div className="h-full w-full relative">
                     <div
-                      className={` h-[270px] w-[300px] sm:h-[300px] sm:w-[450px] md:h-[250px] md:w-[350px] lg:h-[300px] lg:w-[450px] xl:h-[450px] xl:w-[600px] absolute top-0 md:top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md ease-out duration-1000  ${
+                      className={` h-[270px] w-[300px] sm:h-[300px] sm:w-[450px] md:h-[250px] md:w-[350px] lg:h-[300px] lg:w-[450px] xl:h-[450px] xl:w-[600px] absolute top-0 md:top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md !ease-in-out duration-700 transition-all  ${
                         index == currentSlide ? "opacity-100" : "opacity-0"
                       }`}
                       style={{
-                        rotate: -scrollY / 50 + "deg",
-                        transform: "translate(" + -scrollY * 0.135 + "%, -50%)",
+                        rotate: -roteteY + "deg",
+                        transform: "translate(" + -scrollY + "%, -50%)",
                       }}
                     >
                       <LazyImage
