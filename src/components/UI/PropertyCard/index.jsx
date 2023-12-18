@@ -15,6 +15,7 @@ import {
   selectCurrentCurrency,
   selectCurrentUnit,
 } from "../../../redux/websiteSettings.slice";
+import { useGetLNGQuery } from "../../../redux/languages/languagesSlice";
 function SampleNextArrow({ onClick }) {
   return (
     <div
@@ -41,12 +42,12 @@ const PropertyCard = ({ data }) => {
   const currentUnit = useSelector(selectCurrentUnit);
   const currentCurrency = useSelector(selectCurrentCurrency);
   const [showDetails, setShowDetails] = useState(false);
-
   const [priceSymbol, setPriceSymbol] = useState(
     currentCurrency.Currency_Translation.find(
       (x) => x.Language.Code.toLowerCase() == i18n.language
     ).Symbol
   );
+  const { data: lngs, isSuccess } = useGetLNGQuery();
 
   const [lower, setLower] = useState({});
   const [higher, setHigher] = useState({});
@@ -219,7 +220,13 @@ const PropertyCard = ({ data }) => {
               }
             </div>
             <div
-              className="bg-buttonGrad rounded-md p-1 cursor-pointer flex items-center gap-x-2 shadow-md absolute right-4"
+              className={`bg-buttonGrad rounded-md p-1 cursor-pointer flex items-center gap-x-2 shadow-md absolute ${
+                lngs?.normalData.find(
+                  (x) => x.Code.toLowerCase() == i18n.language
+                ).Direction == "rtl"
+                  ? "left-4"
+                  : "right-4"
+              } `}
               onClick={() => {
                 setShowDetails(!showDetails);
               }}

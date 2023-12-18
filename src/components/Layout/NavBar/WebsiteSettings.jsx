@@ -5,9 +5,10 @@ import { showSettingsModal } from "../../../redux/modal.slice";
 import { useDispatch } from "react-redux";
 import CurrencySettings from "./CurrencySettings";
 import UnitSettings from "./UnitSettings";
+import { useGetLNGQuery } from "../../../redux/languages/languagesSlice";
 
 export default function WebsiteSettings() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -24,6 +25,7 @@ export default function WebsiteSettings() {
     };
   }, []);
 
+  const { data, isSuccess } = useGetLNGQuery();
   return (
     <div className="rounded-md">
       <div className="relative">
@@ -38,9 +40,12 @@ export default function WebsiteSettings() {
         <div
           ref={ref}
           onClick={() => setOpen(false)}
-          className={`${
-            open ? "scale-100" : "scale-0"
-          } absolute z-10 top-10 -left-32 origin-top-right bg-primary/20 rounded-lg shadow-2xl drop-shadow-2xl backdrop-blur-[50px] transition-all duration-300 p-4 space-y-2 text-white text-smaller w-40`}
+          className={`${open ? "scale-100" : "scale-0"} absolute z-10 top-10  ${
+            data?.normalData.find((x) => x.Code.toLowerCase() == i18n.language)
+              .Direction == "rtl"
+              ? "-right-32 origin-top-left"
+              : "-left-32 origin-top-right"
+          }   bg-primary/20 rounded-lg shadow-2xl drop-shadow-2xl backdrop-blur-[50px] transition-all duration-300 p-4 space-y-2 text-white text-smaller w-40`}
         >
           <div
             className="flex justify-start items-center cursor-pointer"
