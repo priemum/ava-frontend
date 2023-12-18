@@ -34,7 +34,7 @@ const CurrencySettings = () => {
         <p className="text-med text-white font-bold px-8 py-2">
           {t("Currency")}
         </p>
-        <div className="flex flex-col justify-center items-start h-full p-8 space-y-4">
+        <div className="flex flex-col justify-start items-center h-full p-8 space-y-4">
           <CustomInput
             readOnly
             containerStyle={"!border-primary !border-[1px]"}
