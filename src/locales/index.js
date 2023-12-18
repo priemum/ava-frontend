@@ -128,7 +128,7 @@ i18n.use(initReactI18next).init({
 				OfficeAddress:
 					"مكتب رقم 609 - مبنى كلوفر باي - شارع 6أ د. مراسي - الخليج التجاري - دبي",
 				AvaEmail: "info@avarealestate.ae",
-				SocialMedia: "وسائط التواصل الاجتماعي",
+				SocialMedia: "وسائل التواصل الاجتماعي",
 				PrivacyPolicy: " سياسة الخصوصية",
 				TermsConditions: "البنود و الشروط",
 				SiteMap: "خريطة الموقع",
