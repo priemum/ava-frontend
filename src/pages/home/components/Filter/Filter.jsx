@@ -100,9 +100,9 @@ const HomeFilter = () => {
               (form.purpose == "Rent"
                 ? RentFrequency.find((x) => x.value == form.rentFrequency)?.lng[
                     i18n.language
-                  ]
+                  ] ?? ""
                 : CompletionStatus.find((x) => x.value == form.completionStatus)
-                    ?.lng[i18n.language])
+                    ?.lng[i18n.language] ?? "")
             }
             select
             otherOptions={
