@@ -13,7 +13,7 @@ const Location = () => {
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
       ></iframe>
-      <div className="bg-white/70 backdrop-blur-[2px] hover:bg-white transition-all duration-500 shadow-lg rounded-md absolute top-1/2 -translate-y-1/2 right-[5%] md:w-1/4 !z-50 p-8 xl:p-12 space-y-8 ">
+      <div className="max-md:hidden bg-white/70 backdrop-blur-[2px] hover:bg-white transition-all duration-500 shadow-lg rounded-md absolute top-1/2 -translate-y-1/2 right-[5%] md:w-1/4 !z-50 p-8 xl:p-12 space-y-8 ">
         <GradientText
           text={"You can find us at"}
           customStyle={"font-bold text-med"}

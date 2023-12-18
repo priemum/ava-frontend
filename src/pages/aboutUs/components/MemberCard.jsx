@@ -25,10 +25,12 @@ const MemberCard = ({ name, image, description, title, flip }) => {
           className={`drop-shadow-2xl max-md:col-span-2 h-[500px] lg:h-[650px] rounded-md bg-white p-1 max-md:-mt-20 md:-translate-y-20`}
         />
 
-        <div dir="ltr" className="p-12 text-white max-md:col-span-2 ">
+        <div dir="ltr" className="p-6 sm:p-12 text-white max-md:col-span-2">
           <p className="text-secondary font-semibold text-big">{name} </p>
-          <p className="text-small">{title} </p>
-          <p className="py-2 text-smaller font-light">{description} </p>
+          <p className="text-smaller sm:text-small">{title} </p>
+          <p className="py-2 text-tiny sm:text-smaller font-light">
+            {description}
+          </p>
         </div>
       </div>
     </div>

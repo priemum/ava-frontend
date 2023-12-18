@@ -50,17 +50,21 @@ const Teams = () => {
     </div>
   ) : teamsIsError ? (
     <div className="my-2 flex flex-col justify-center items-center relative">
-      <p className="text-med font-bold">{t("ErrorPleaseReload")}</p>
+      <p className="text-smaller md:text-med font-bold">
+        {t("ErrorPleaseReload")}
+      </p>
     </div>
   ) : (
     teamsIsSuccess &&
     teams.count !== 0 && (
       <div className="overflow-x-hidden grid md:grid-cols-3 gap-8 px-[5%]">
         <div className="col-span-1 flex flex-col justify-center items-start">
-          <p className="text-big lg:text-[60px] font-bold md:w-[85%]">
+          <p className="text-med sm:text-big lg:text-[60px] font-bold md:w-[85%]">
             {t("TeamTitle")}
           </p>
-          <p className="text-smaller text-gray-600">{t("TeamSubTitle")}.</p>
+          <p className="text-tiny sm:text-smaller text-gray-600">
+            {t("TeamSubTitle")}.
+          </p>
         </div>
         <div className="col-span-2 space-y-4 max-md:w-[90vw]">
           <div>
@@ -88,7 +92,7 @@ const Teams = () => {
                         currentSlide == index
                           ? "bg-buttonGrad !text-primary"
                           : "bg-primary/50 text-white"
-                      } cursor-pointer transition-all bg-primary/50 text-white duration-500 rounded-md`}
+                      } cursor-pointer transition-all bg-primary/50 text-white duration-500 rounded-md text-[12px] md:text-smaller`}
                       onClick={() => {
                         sliderRef.current.slickGoTo(index);
                         setCurrentSlide(index);
@@ -108,7 +112,7 @@ const Teams = () => {
             {usersIsSuccess && teamUsers?.count > 0 && (
               <>
                 <div
-                  className="absolute cursor-pointer z-40 left-[405px] top-1/2 -translate-y-1/2 rounded-md bg-gray-300 backdrop-blur-[21px] shadow-lg"
+                  className="absolute cursor-pointer z-40 left-[305px] sm:left-[405px] top-1/2 -translate-y-1/2 rounded-md bg-gray-300 backdrop-blur-[21px] shadow-lg"
                   onClick={() =>
                     setUserIndex(
                       userIndex + 1 < teamUsers.count
@@ -139,12 +143,12 @@ const Teams = () => {
               </div>
             ) : (
               usersIsSuccess && (
-                <div className="flex flex-col justify-start items-center relative !w-[400px] min-w-[350px] h-[500px]">
+                <div className="flex flex-col justify-start items-center relative !w-[300px] sm:!w-[400px]] sm:min-w-[350px] h-[500px]">
                   {teamUsers.ids.map((item, index) => {
                     return (
                       <div
                         key={index}
-                        className={`absolute !w-[400px] min-w-[400px] rounded-md transition-all duration-500 top-1/2 -translate-y-1/2 left-0 ${
+                        className={`absolute !w-[300px] sm:!w-[400px] sm:min-w-[400px] rounded-md transition-all duration-500 top-1/2 -translate-y-1/2 left-0 ${
                           index == userIndex
                             ? "opacity-100 !h-[450px] z-30 left-0 "
                             : index == userIndex + 1
