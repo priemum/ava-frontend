@@ -6,8 +6,8 @@ export const Gender = [
 	{ value: "Female", lng: { en: "Female", ar: "انثى" } },
 ];
 export const Purpose = [
-	{ value: "Rent", lng: { en: "Rent", ar: "إيجار" } },
-	{ value: "Buy", lng: { en: "Buy", ar: "شراء" } },
+	{ value: "Rent", lng: { en: "Rent", ar: "للايجار" } },
+	{ value: "Buy", lng: { en: "Buy", ar: "للبيع" } },
 ];
 export const RentFrequency = [
 	{ value: "Yearly", lng: { en: "Yearly", ar: "سنوي" } },

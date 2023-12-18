@@ -115,7 +115,7 @@ i18n.use(initReactI18next).init({
 					"شكرا لإضافة عقاركم معنا, سنقوم بالرد عليكم بأقرب وقت ممكن",
 				UploadPhoto: "تحميل الصور",
 				DeleteAll: "حذف جميع الصور",
-				HomePropertiesTitle: "شراء عقار في دبي",
+				HomePropertiesTitle: "أحدث العقارات المضافة",
 				Addresses: "أهم العقارات حسب المنطقة",
 				SeeMore: "المزيد",
 				Currency: " تعديل العملة",
