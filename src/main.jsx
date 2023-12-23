@@ -9,11 +9,13 @@ import "./locales/index.js";
 import Loader from "./components/UI/Loader/index.jsx";
 import { HelmetProvider } from "react-helmet-async";
 import MetaPixel from "./utils/meta/metaPixel.jsx";
+import TiktokAds from "./utils/tiktok/tiktok.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
 	//   <React.StrictMode>
 	<HelmetProvider>
 		<Provider store={store}>
 			<MetaPixel />
+			<TiktokAds />
 			<Router>
 				<Suspense fallback={<Loader />}>
 					<App />
