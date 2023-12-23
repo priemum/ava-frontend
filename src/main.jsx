@@ -8,16 +8,18 @@ import "./index.css";
 import "./locales/index.js";
 import Loader from "./components/UI/Loader/index.jsx";
 import { HelmetProvider } from "react-helmet-async";
+import MetaPixel from "./utils/meta/metaPixel.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
-  //   <React.StrictMode>
-  <HelmetProvider>
-    <Provider store={store}>
-      <Router>
-        <Suspense fallback={<Loader />}>
-          <App />
-        </Suspense>
-      </Router>
-    </Provider>
-  </HelmetProvider>
-  //   </React.StrictMode>
+	//   <React.StrictMode>
+	<HelmetProvider>
+		<Provider store={store}>
+			<MetaPixel />
+			<Router>
+				<Suspense fallback={<Loader />}>
+					<App />
+				</Suspense>
+			</Router>
+		</Provider>
+	</HelmetProvider>,
+	//   </React.StrictMode>
 );
