@@ -6,38 +6,40 @@ import HomeProperties from "./components/Properties";
 import Announcements from "./components/Announcements";
 import HomeAddresses from "./components/Addresses";
 const HomePage = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
-  return (
-    <div className="relative overflow-x-hidden">
-      <Helmet>
-        <html lang="en" />
-        <meta charset="UTF-8" />
-        <meta name="title" content="Ava Real Estate" />
-        <meta
-          name="description"
-          content="Explore premium properties in Dubai with AVA Real Estate, your trusted brokerage agency. Discover exquisite homes, apartments, and commercial spaces for buy or rent. Our expert agents ensure a seamless real estate experience, guiding you through the vibrant Dubai market."
-        />
-        <meta
-          name="keywords"
-          content="Dubai Real Estate, Brokerage Agency, Property Listings, Homes for Sale, Apartments for Rent, Commercial Spaces, Expert Agents, Dubai Property Market, AVA Real Estate Dubai, offplan, Dubai properties, properties for sale Dubai, apartements for sale duabi, best real estate agency, buy apartment in dubai, buy home in dubai, buy home with installment, home investment, invest in properties Dubai"
-        />
-        <link
-          rel="icon"
-          type="image/svg+xml"
-          href="./src/assets/logos/AVA-Logo.svg"
-        />
-        <title>AVA REAL ESTATE</title>
-      </Helmet>
-      <Header />
-      <HomeFilter />
-      <HomeProperties />
-      <Announcements />
-      <HomeAddresses />
-    </div>
-  );
+	return (
+		<div className='relative overflow-x-hidden'>
+			<Helmet>
+				<html lang='en' />
+				<meta charset='UTF-8' />
+				<meta name='title' content='Ava Real Estate' />
+				<meta
+					name='description'
+					content='Explore premium properties in Dubai with AVA Real Estate, your trusted brokerage agency. Discover exquisite homes, apartments, and commercial spaces for buy or rent. Our expert agents ensure a seamless real estate experience, guiding you through the vibrant Dubai market.'
+				/>
+				<meta
+					name='keywords'
+					content='Dubai Real Estate, Brokerage Agency, Property Listings, Homes for Sale, Apartments for Rent, Commercial Spaces, Expert Agents, Dubai Property Market, AVA Real Estate Dubai, offplan, Dubai properties, properties for sale Dubai, apartements for sale duabi, best real estate agency, buy apartment in dubai, buy home in dubai, buy home with installment, home investment, invest in properties Dubai'
+				/>
+				<link
+					rel='icon'
+					type='image/svg+xml'
+					href='./src/assets/logos/AVA-Logo.svg'
+				/>
+				<title>AVA REAL ESTATE</title>
+				<link rel='canonical' href='/' data-rh='true' />
+			</Helmet>
+
+			<Header />
+			<HomeFilter />
+			<HomeProperties />
+			<Announcements />
+			<HomeAddresses />
+		</div>
+	);
 };
 
 export default HomePage;
