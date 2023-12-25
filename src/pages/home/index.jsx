@@ -30,7 +30,7 @@ const HomePage = () => {
 					href='./src/assets/logos/AVA-Logo.svg'
 				/>
 				<title>AVA REAL ESTATE</title>
-				<link rel='canonical' href='/' data-rh='true' />
+				<link rel='canonical' href='https://avarealestate.ae' data-rh='true' />
 			</Helmet>
 
 			<Header />
