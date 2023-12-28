@@ -77,7 +77,14 @@ const Announcements = () => {
             ref={sliderRef}
             slidesToScroll={1}
             slidesToShow={1}
+            infinite={true}
             arrows={false}
+            touchMove={true}
+            pauseOnDotsHover={false}
+            pauseOnFocus={false}
+            pauseOnHover={false}
+            autoplay={true}
+            autoplaySpeed={5000}
             className="!w-full !h-[85vh] md:!h-[600px]"
             beforeChange={(prev, next) => {
               setCurrentSlide(next);
