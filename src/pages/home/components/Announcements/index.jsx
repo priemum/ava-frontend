@@ -84,7 +84,7 @@ const Announcements = () => {
             pauseOnFocus={false}
             pauseOnHover={false}
             autoplay={true}
-            autoplaySpeed={5000}
+            autoplaySpeed={7000}
             className="!w-full !h-[85vh] md:!h-[600px]"
             beforeChange={(prev, next) => {
               setCurrentSlide(next);
@@ -123,6 +123,13 @@ const Announcements = () => {
                       w={"200px"}
                       h={"45px"}
                       borderRadius={4}
+                      onClick={() => {
+                        window.open(
+                          data.entities[item].Link,
+                          "_blank",
+                          "noopener,noreferrer"
+                        );
+                      }}
                     />
                   </div>
                   <div className="h-full w-full relative">
