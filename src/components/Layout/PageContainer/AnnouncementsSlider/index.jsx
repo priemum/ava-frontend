@@ -3,7 +3,7 @@ import { useGetActiveAnnouncementsQuery } from "../../../../redux/announcements/
 import LazyImage from "../../../UI/LazyImage";
 import Button from "../../../UI/Button";
 import { API_BASE_URL } from "../../../../constants";
-
+import colors from "../../../../settings";
 import Slider from "react-slick";
 import { useTranslation } from "react-i18next";
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
@@ -11,7 +11,7 @@ const AnnouncementsSlider = () => {
   const { data: announcements, isSuccess: announcementsIsSuccess } =
     useGetActiveAnnouncementsQuery();
   const { i18n, t } = useTranslation();
-  const [expandAnnouncement, setExpandAnnouncement] = useState(false);
+  const [expandAnnouncement, setExpandAnnouncement] = useState();
   return (
     announcementsIsSuccess && (
       <Slider
@@ -21,7 +21,7 @@ const AnnouncementsSlider = () => {
         className="h-[80vh] md:h-[60vh] w-[90vw] overflow-hidden"
         responsive={[
           {
-            breakpoint: 1920,
+            breakpoint: 2000,
             settings: {
               slidesToShow: announcements.count >= 3 ? 3 : announcements.count,
             },
@@ -50,23 +50,50 @@ const AnnouncementsSlider = () => {
                     skelatonStyle={"h-[60vh] w-full"}
                     imgStyle={"h-[60vh] w-full object-cover object-center"}
                   />
-
+                  <Button
+                    bgColor={"bg-primary/50 backdrop-blur-[21px]"}
+                    text={t("MoreDetails")}
+                    textColor={"text-white text-tiny md:text-smaller"}
+                    customStyle={
+                      "p-4 absolute top-1 right-2 shadow-2xl drop-shadow-2xl animate-pulse hover:animate-none"
+                    }
+                    w={"180px"}
+                    h={"45px"}
+                    borderRadius={4}
+                    borderColor={colors.secondary}
+                    onClick={() => {
+                      window.open(
+                        announcements.entities[item].Link,
+                        "_blank",
+                        "noopener,noreferrer"
+                      );
+                    }}
+                  />
                   <div
                     className={`absolute ${
-                      expandAnnouncement ? "bottom-0" : "-bottom-[38vh]"
-                    }  left-0 transition-all duration-500 bg-primary/40 backdrop-blur-[21px] h-[52vh] overflow-y-scroll w-full`}
+                      expandAnnouncement == item
+                        ? "bottom-0"
+                        : "-bottom-[calc(50vh-1rem)]"
+                    }  left-0 transition-all duration-500 bg-primary/40 backdrop-blur-[21px] h-[53vh] overflow-y-auto w-full flex flex-col space-y-2 px-4 pb-4 pt-2`}
                   >
                     <div
-                      className="w-full h-[2vh] flex justify-center items-start"
-                      onClick={() => setExpandAnnouncement(!expandAnnouncement)}
+                      className="w-1/2 self-center h-[3vh] flex justify-center items-start cursor-pointer bg-secondary rounded-full shadow-md drop-shadow-md"
+                      onClick={() => {
+                        setExpandAnnouncement(
+                          expandAnnouncement == item ? "" : item
+                        );
+                      }}
                     >
-                      {expandAnnouncement ? (
-                        <MdExpandMore className="text-med text-white" />
+                      {expandAnnouncement == item ? (
+                        <MdExpandMore className="text-[3vh] text-primary scale-150" />
                       ) : (
-                        <MdExpandLess className="text-med text-white" />
+                        <MdExpandLess className="text-[3vh] text-primary scale-150" />
                       )}
                     </div>
-                    <div className="space-y-2 p-4 flex flex-col h-[50vh]">
+                    <div className="">
+                      {/* <p className="text-tiny underline text-white h-[3vh]">
+                        {t("MoreDetails")}
+                      </p> */}
                       <p className="text-white font-semibold text-smaller sm:text-small h-[10vh]">
                         {
                           announcements.entities[
@@ -78,6 +105,7 @@ const AnnouncementsSlider = () => {
                           ).Title
                         }
                       </p>
+
                       <p className="text-white text-tiny md:text-smaller flex-1">
                         {
                           announcements.entities[
@@ -89,22 +117,6 @@ const AnnouncementsSlider = () => {
                           ).Description
                         }
                       </p>
-                      <Button
-                        bgColor={"bg-buttonGrad"}
-                        text={t("MoreDetails")}
-                        textColor={"text-primary text-tiny md:text-smaller"}
-                        customStyle={"p-4"}
-                        w={"200px"}
-                        h={"45px"}
-                        borderRadius={4}
-                        onClick={() => {
-                          window.open(
-                            announcements.entities[item].Link,
-                            "_blank",
-                            "noopener,noreferrer"
-                          );
-                        }}
-                      />
                     </div>
                   </div>
                 </div>

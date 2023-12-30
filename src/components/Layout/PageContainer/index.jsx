@@ -13,6 +13,7 @@ import { showAnnouncementModal } from "../../../redux/modal.slice";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import AnnouncementsSlider from "./AnnouncementsSlider";
+import { useGetActiveAnnouncementsQuery } from "../../../redux/announcements/announcementsSlice";
 const PageLayout = ({ children }) => {
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation();
@@ -25,6 +26,7 @@ const PageLayout = ({ children }) => {
     setW(width);
   }, [width]);
   const { data, isSuccess } = useGetLNGQuery();
+  const { isSuccess: announcementIsSuccess } = useGetActiveAnnouncementsQuery();
 
   const showAnnouncement = (initialSlide) => {
     dispatch(
@@ -34,10 +36,11 @@ const PageLayout = ({ children }) => {
     );
   };
   useEffect(() => {
-    showAnnouncement();
-    // setTimeout(() => {
-    // }, 1000);
-  }, []);
+    if (announcementIsSuccess)
+      setTimeout(() => {
+        showAnnouncement();
+      }, 1000);
+  }, [announcementIsSuccess]);
   return (
     <div
       className="flex flex-col justify-center items-center relative"
