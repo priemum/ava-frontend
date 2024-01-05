@@ -39,7 +39,7 @@ const PageLayout = ({ children }) => {
     if (announcementIsSuccess)
       setTimeout(() => {
         showAnnouncement();
-      }, 1000);
+      }, 10000);
   }, [announcementIsSuccess]);
   return (
     <div
