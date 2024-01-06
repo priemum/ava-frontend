@@ -38,7 +38,9 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
                 setCurrentSlide(index);
               }}
             >
-              {item.Bedrooms + "  " + t("Bedrooms")}
+              {item.Bedrooms == 0
+                ? t("Studio")
+                : item.Bedrooms + "  " + t("Bedrooms")}
             </div>
           );
         })}
