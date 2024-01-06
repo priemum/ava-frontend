@@ -48,7 +48,7 @@ const Prices = ({ data, currentSlide }) => {
           (data.propertyUnits[currentSlide].Price *
             currentCurrency.conversionRate) /
             (data.propertyUnits[currentSlide].Size * currentUnit.conversionRate)
-        )}
+        ) + ` ${priceSymbol}`}
       </div>
       <p className="text-[#878787]"> {t("EstimatedRent")} </p>
       <div className="text-primary text-med flex items-center gap-x-3">
