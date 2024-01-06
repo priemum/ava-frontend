@@ -133,6 +133,7 @@ i18n.use(initReactI18next).init({
         TermsConditions: "البنود و الشروط",
         SiteMap: "خريطة الموقع",
         Studio: "استوديو",
+        EstimatedRent: "متوسط سعر الإيجار",
       },
     },
     en: {
@@ -263,6 +264,7 @@ i18n.use(initReactI18next).init({
         TermsConditions: "Terms & Conditions",
         SiteMap: "Site Map",
         Studio: "Studio",
+        EstimatedRent: "Estimated Rent",
       },
     },
   },

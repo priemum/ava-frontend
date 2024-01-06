@@ -50,6 +50,14 @@ const Prices = ({ data, currentSlide }) => {
             (data.propertyUnits[currentSlide].Size * currentUnit.conversionRate)
         )}
       </div>
+      <p className="text-[#878787]"> {t("EstimatedRent")} </p>
+      <div className="text-primary text-med flex items-center gap-x-3">
+        <FaCoins size={24} />
+        {numberWithComma(
+          data.propertyUnits[currentSlide].EstimatedRent *
+            currentCurrency.conversionRate
+        ) + ` ${priceSymbol}`}
+      </div>
     </div>
   );
 };
