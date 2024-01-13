@@ -66,7 +66,7 @@ const Announcements = () => {
                       <div
                         onClick={() => sliderRef.current.slickGoTo(index)}
                         key={item}
-                        className={`w-7 h-7 rounded-full bg-white/50 backdrop-blur-[21px] cursor-pointer transition-all duration-300`}
+                        className={`w-7 h-7 rounded-full bg-white/50 backdrop-blur-sm cursor-pointer transition-all duration-300`}
                       />
                     </div>
                   );

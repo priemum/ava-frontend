@@ -28,7 +28,7 @@ export default function Modal() {
     <div
       className={`${
         open ? "scale-100" : "scale-0"
-      } transition-all duration-500 justify-center items-center flex fixed inset-0 z-40 outline-none focus:outline-none w-full bg-primary/50 backdrop-blur-[21px]`}
+      } transition-all duration-500 justify-center items-center flex fixed inset-0 z-40 outline-none focus:outline-none w-full bg-primary/50 backdrop-blur-sm`}
     >
       <div
         ref={ref}
@@ -40,7 +40,7 @@ export default function Modal() {
           }}
           className={`cursor-pointer font-bold self-center text-white hover:scale-125 hover:rotate-180 absolute ${
             i18n.language == "en" ? "right-5" : "left-5"
-          }  top-2 sm:max-md:top-8 md:top-3 transition-all duration-500 z-30 backdrop-blur-[200px] rounded-full shadow-2xl drop-shadow-2xl`}
+          }  top-2 sm:max-md:top-8 md:top-3 transition-all duration-500 z-30 backdrop-blur-md rounded-full shadow-2xl drop-shadow-2xl`}
         >
           <MdClose size={50} className="text-white" />
         </div>

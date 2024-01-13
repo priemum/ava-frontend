@@ -8,7 +8,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 function SampleNextArrow({ onClick }) {
   return (
     <div
-      className="absolute cursor-pointer z-10 right-3 top-1/2 rounded-full bg-primary/20 backdrop-blur-[21px]"
+      className="absolute cursor-pointer z-10 right-3 top-1/2 rounded-full bg-primary/20 backdrop-blur-sm"
       onClick={onClick}
     >
       <FaAngleRight className="text-white" size={35} />
@@ -18,7 +18,7 @@ function SampleNextArrow({ onClick }) {
 function SamplePrevArrow({ onClick }) {
   return (
     <div
-      className="absolute cursor-pointer z-10 left-3 top-1/2 rounded-full bg-primary/20 backdrop-blur-[21px]"
+      className="absolute cursor-pointer z-10 left-3 top-1/2 rounded-full bg-primary/20 backdrop-blur-sm"
       onClick={onClick}
     >
       <FaAngleLeft className="text-white" size={35} />

@@ -79,7 +79,7 @@ const HomeFilter = () => {
   return (
     <div className="h-[600px] sm:h-[400px] xl:h-[310px] -mt-[295px] w-full relative">
       <div
-        className="flex justify-center items-center text-white z-30 backdrop-blur-[3px] absolute w-screen max-w-[1920px] left-0 h-full"
+        className="flex justify-center items-center text-white z-30 backdrop-blur-sm absolute w-screen max-w-[1920px] left-0 h-full"
         style={{
           background: "linear-gradient(0deg, #FFF 25%, transparent 100%)",
         }}
@@ -108,7 +108,7 @@ const HomeFilter = () => {
             otherOptions={
               <div className="flex flex-col space-y-2">
                 <React.Fragment>
-                  <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 backdrop-blur-[21px]">
+                  <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 backdrop-blur-sm">
                     {Purpose.map((item, index) => {
                       return (
                         <React.Fragment key={index}>
@@ -202,7 +202,7 @@ const HomeFilter = () => {
                     </div>
                   ) : categoriesIsSuccess && categories.count !== 0 ? (
                     <React.Fragment>
-                      <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 backdrop-blur-[21px]">
+                      <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 backdrop-blur-sm">
                         {categories.ids.map((item, index) => {
                           if (categories.entities[item].ParentID == null)
                             return (

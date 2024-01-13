@@ -166,8 +166,8 @@ const JobForm = ({ title, id }) => {
             outlineOffset: "0px",
             boxShadow: "none",
           }}
-          dropdownClass="!bg-primary/70 !backdrop-blur-[21px] !text-secondary"
-          searchClass="!bg-primary/70 !backdrop-blur-[21px] !text-secondary"
+          dropdownClass="!bg-primary/70 !backdrop-blur-sm !text-secondary"
+          searchClass="!bg-primary/70 !backdrop-blur-sm !text-secondary"
           inputStyle={{
             direction: "ltr",
             outline: "none",

@@ -93,7 +93,7 @@ const EnquiryForm = () => {
 
   return (
     <div className="w-full flex max-lg:flex-col justify-center items-center gap-12">
-      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-4 md:p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[700px]">
+      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-4 md:p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[700px]">
         <p className="text-smaller"> {t("PropertyInformation")} </p>
         <div className="space-y-4">
           <div className="space-y-1">
@@ -179,7 +179,7 @@ const EnquiryForm = () => {
           />
         </div>
       </div>
-      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-4 md:p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[700px] flex flex-col">
+      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-4 md:p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[700px] flex flex-col">
         <p className="text-smaller"> {t("PersonalInformation")}</p>
         <div className="space-y-4 flex-1">
           <CustomInput
@@ -244,8 +244,8 @@ const EnquiryForm = () => {
               outlineOffset: "0px",
               boxShadow: "none",
             }}
-            dropdownClass="!bg-primary/70 !backdrop-blur-[21px] !text-secondary"
-            searchClass="!bg-primary/70 !backdrop-blur-[21px] !text-secondary"
+            dropdownClass="!bg-primary/70 !backdrop-blur-sm !text-secondary"
+            searchClass="!bg-primary/70 !backdrop-blur-sm !text-secondary"
             inputStyle={{
               direction: "ltr",
               outline: "none",

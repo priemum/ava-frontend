@@ -112,7 +112,7 @@ const Teams = () => {
             {usersIsSuccess && teamUsers?.count > 1 && (
               <>
                 <div
-                  className="absolute cursor-pointer z-40 left-[305px] sm:left-[405px] top-1/2 -translate-y-1/2 rounded-md bg-gray-300 backdrop-blur-[21px] shadow-lg"
+                  className="absolute cursor-pointer z-40 left-[305px] sm:left-[405px] top-1/2 -translate-y-1/2 rounded-md bg-gray-300 backdrop-blur-sm shadow-lg"
                   onClick={() =>
                     setUserIndex(
                       userIndex + 1 < teamUsers.count
@@ -124,7 +124,7 @@ const Teams = () => {
                   <FaAngleRight className="text-primary" size={30} />
                 </div>
                 <div
-                  className="absolute cursor-pointer z-40 left-1 top-1/2 -translate-y-1/2 rounded-md bg-gray-300 backdrop-blur-[21px] shadow-lg"
+                  className="absolute cursor-pointer z-40 left-1 top-1/2 -translate-y-1/2 rounded-md bg-gray-300 backdrop-blur-sm shadow-lg"
                   onClick={() =>
                     setUserIndex(userIndex - 1 > 0 ? userIndex - 1 : 0)
                   }
@@ -169,7 +169,7 @@ const Teams = () => {
                           alt={"Member" + index}
                           className="rounded-md w-full h-full object-cover object-center"
                         />
-                        <div className="absolute bg-fifth/20 backdrop-blur-[21px] w-full h-1/4 bottom-0 left-0 rounded-b-md p-4">
+                        <div className="absolute bg-fifth/20 backdrop-blur-sm w-full h-1/4 bottom-0 left-0 rounded-b-md p-4">
                           <p className="text-white font-bold text-smaller">
                             {teamUsers.entities[item].Name}
                           </p>

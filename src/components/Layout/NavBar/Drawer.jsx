@@ -9,7 +9,7 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
       className={
         ` fixed overflow-hidden z-50 bg-black/50 bg-opacity-50 inset-0 transform ease-out ` +
         (isOpen
-          ? ` transition-opacity opacity-100 duration-300 ${
+          ? ` transition-opacity opacity-100 duration-500 ${
               i18n.language == "en" ? "translate-x-0" : "-translate-x-0"
             } `
           : ` ${
@@ -21,7 +21,7 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
         className={
           ` w-screen ${
             i18n.language == "ar" ? "right-0" : "left-0"
-          } absolute h-full shadow-xl duration-300 ease-out transition-all transform  ` +
+          } absolute h-full shadow-xl duration-500 ease-out transition-all transform  ` +
           (isOpen
             ? ` ${i18n.language == "ar" ? "translate-x-0" : "-translate-x-0"}  `
             : ` ${
@@ -29,7 +29,7 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
               }  `)
         }
       >
-        <article className="relative w-full pb-10 flex flex-col justify-start items-center space-y-6 overflow-y-scroll h-full bg-primary/50 backdrop-blur-[21px]">
+        <article className="relative w-full pb-10 flex flex-col justify-start items-center space-y-6 overflow-y-scroll h-full bg-primary/50 backdrop-blur-sm">
           <header className="p-4 font-bold w-full flex justify-between items-center">
             <MdClose
               onClick={() => {

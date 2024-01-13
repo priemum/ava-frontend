@@ -19,7 +19,7 @@ import { useGetLNGQuery } from "../../../redux/languages/languagesSlice";
 function SampleNextArrow({ onClick }) {
   return (
     <div
-      className="absolute cursor-pointer z-10 right-3 top-[45%] rounded-full bg-primary/20 backdrop-blur-[21px]"
+      className="absolute cursor-pointer z-10 right-3 top-[45%] rounded-full bg-primary/20 backdrop-blur-sm"
       onClick={onClick}
     >
       <FaAngleRight className="text-white" size={35} />
@@ -29,7 +29,7 @@ function SampleNextArrow({ onClick }) {
 function SamplePrevArrow({ onClick }) {
   return (
     <div
-      className="absolute cursor-pointer z-10 left-3 top-[45%] rounded-full bg-primary/20 backdrop-blur-[21px]"
+      className="absolute cursor-pointer z-10 left-3 top-[45%] rounded-full bg-primary/20 backdrop-blur-sm"
       onClick={onClick}
     >
       <FaAngleLeft className="text-white" size={35} />
@@ -107,7 +107,7 @@ const PropertyCard = ({ data }) => {
           <div
             className={`absolute ${
               showDetails ? "bottom-0" : "-bottom-[110px]"
-            } left-0 w-full h-1/2 z-20 bg-primary/40 backdrop-blur-[21px] text-white p-4 transition-all duration-500`}
+            } left-0 w-full h-1/2 z-20 bg-primary/40 backdrop-blur-sm text-white p-4 transition-all duration-500`}
           >
             <div className="flex items-center justify-between -mt-10 h-1/5 overflow-hidden">
               <div className="bg-secondary min-w-[150px] p-2 rounded-md text-black text-smaller flex items-center gap-x-3">
@@ -208,10 +208,10 @@ const PropertyCard = ({ data }) => {
             </div>
           </div>
           <div className="absolute top-0 left-0 w-full h-[10%] px-4 pt-5 flex items-center text-white gap-x-4">
-            <div className="bg-primary/30 backdrop-blur-[21px] p-2 rounded-md shadow-md">
+            <div className="bg-primary/30 backdrop-blur-sm p-2 rounded-md shadow-md">
               {data.Purpose}
             </div>
-            <div className="bg-primary/30 backdrop-blur-[21px] p-2 rounded-md shadow-md">
+            <div className="bg-primary/30 backdrop-blur-sm p-2 rounded-md shadow-md">
               {
                 data.Category.Category_Translation.find(
                   (x) =>

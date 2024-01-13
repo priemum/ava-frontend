@@ -60,7 +60,7 @@ const Amenities = ({ data }) => {
         <div
           className={`absolute w-full h-full left-0 top-0 rounded-xl z-10 ${
             popUp ? "bg-white/50" : "bg-primary/10"
-          } backdrop-blur-[21px] shadow-lg drop-shadow-lg`}
+          } backdrop-blur-sm shadow-lg drop-shadow-lg`}
         >
           {/* <div
             style={{

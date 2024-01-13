@@ -31,7 +31,7 @@ const AboutUsPage = () => {
             style={{
               background: "rgba(111, 111, 111, 0.24)",
             }}
-            className="h-[140px] w-[140px] rounded-md rounded-tr-full backdrop-blur-[15px] absolute -right-[10%] -top-[10%]"
+            className="h-[140px] w-[140px] rounded-md rounded-tr-full backdrop-blur-sm absolute -right-[10%] -top-[10%]"
           />
           <img
             src={data.mission.image}
@@ -43,7 +43,7 @@ const AboutUsPage = () => {
               background:
                 "linear-gradient(225deg, rgba(98, 98, 98, 0.24) 0%, rgba(98, 98, 98, 0.03) 100%)",
             }}
-            className=" h-[200px] w-[80%] backdrop-blur-[15px] absolute z-20 -bottom-[10%] left-[10%] flex justify-center items-center rounded-md"
+            className=" h-[200px] w-[80%] backdrop-blur-sm absolute z-20 -bottom-[10%] left-[10%] flex justify-center items-center rounded-md"
           >
             <div className="text-small text-white font-semibold px-2">
               <p> {data.Goals[i18n.language]}</p>
@@ -87,7 +87,7 @@ const AboutUsPage = () => {
         </div>
         <div className="col-span-6 md:w-[80%] place-items-center space-y-7 relative">
           <div
-            className="h-[550px] lg:h-[630px] max-xl:w-[240px] xl:w-[300px] 2xl:w-[390px] flex-shrink-0 rounded-lg backdrop-blur-[15px] absolute max-xl:right-0 xl:right-2 2xl:right-8 top-[4%] lg:top-[7%] flex flex-col justify-between items-center px-10 py-16"
+            className="h-[550px] lg:h-[630px] max-xl:w-[240px] xl:w-[300px] 2xl:w-[390px] flex-shrink-0 rounded-lg backdrop-blur-sm absolute max-xl:right-0 xl:right-2 2xl:right-8 top-[4%] lg:top-[7%] flex flex-col justify-between items-center px-10 py-16"
             style={{
               background:
                 "linear-gradient(225deg, rgba(98, 98, 98, 0.24) 0%, rgba(98, 98, 98, 0.03) 100%)",

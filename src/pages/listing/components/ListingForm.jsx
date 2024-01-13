@@ -173,7 +173,7 @@ const ListingForm = () => {
 
   return (
     <>
-      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-4 md:p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[1000px]">
+      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-4 md:p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[1000px]">
         <p className="text-smaller"> {t("PropertyInformation")} </p>
         <div className="space-y-4">
           <div className="space-y-1">
@@ -318,7 +318,7 @@ const ListingForm = () => {
         </div>
       </div>
       <div className="w-[90%] lg:w-[40%] 2xl:w-[35%] space-y-8 h-[1000px]">
-        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 h-[40%] w-full flex flex-col overflow-x-hidden overflow-y-auto">
+        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 h-[40%] w-full flex flex-col overflow-x-hidden overflow-y-auto">
           <div className="w-full flex items-center gap-x-6">
             <Button
               textColor={"text-primary"}
@@ -374,7 +374,7 @@ const ListingForm = () => {
                       alt={"Guest Property Image" + i}
                     />
                     <div
-                      className="text-center cursor-pointer flex items-center gap-x-1 absolute top-0 left-0 bg-primary/40 backdrop-blur-[21px] shadow-md rounded-br-md p-1"
+                      className="text-center cursor-pointer flex items-center gap-x-1 absolute top-0 left-0 bg-primary/40 backdrop-blur-sm shadow-md rounded-br-md p-1"
                       onClick={() => {
                         let tempUrls = imageURL;
                         let newTempUrls = tempUrls.filter(
@@ -397,7 +397,7 @@ const ListingForm = () => {
             </Slider>
           )}
         </div>
-        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-[21px] p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-full h-[57%] flex flex-col overflow-x-hidden overflow-y-auto">
+        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-full h-[57%] flex flex-col overflow-x-hidden overflow-y-auto">
           <p className="text-smaller"> {t("PersonalInformation")} </p>
           <div className="space-y-4 flex-1">
             <CustomInput
@@ -462,8 +462,8 @@ const ListingForm = () => {
                 outlineOffset: "0px",
                 boxShadow: "none",
               }}
-              dropdownClass="!bg-primary/70 !backdrop-blur-[21px] !text-secondary"
-              searchClass="!bg-primary/70 !backdrop-blur-[21px] !text-secondary"
+              dropdownClass="!bg-primary/70 !backdrop-blur-sm !text-secondary"
+              searchClass="!bg-primary/70 !backdrop-blur-sm !text-secondary"
               inputStyle={{
                 direction: "ltr",
                 outline: "none",

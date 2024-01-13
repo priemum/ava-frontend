@@ -33,7 +33,7 @@ export default function SettingsModal() {
       >
         <div
           ref={ref}
-          className="rounded-xl shadow-xl relative flex flex-col z-50 outline-none focus:outline-none overflow-hidden bg-fifth/40 backdrop-blur-[21px] border-[1px] border-white/40 h-full max-h-[50vh] max-w-[90vw] md:max-h-[30vh] w-full md:max-w-[30vw]"
+          className="rounded-xl shadow-xl relative flex flex-col z-50 outline-none focus:outline-none overflow-hidden bg-fifth/40 backdrop-blur-sm border-[1px] border-white/40 h-full max-h-[50vh] max-w-[90vw] md:max-h-[30vh] w-full md:max-w-[30vw]"
         >
           <div
             onClick={() => {
