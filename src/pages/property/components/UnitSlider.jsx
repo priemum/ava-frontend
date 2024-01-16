@@ -27,6 +27,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
         {data.map((item, index) => {
           return (
             <div
+              dir="ltr"
               key={index}
               className={`max-w-[98%] py-1 px-2 text-center font-semibold backdrop-blur-sm ${
                 currentSlide == index
@@ -39,7 +40,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
               }}
             >
               {item.Bedrooms == 0
-                ? t("Studio")
+                ? "std"
                 : item.Bedrooms + "  " + t("Bedrooms")}
             </div>
           );

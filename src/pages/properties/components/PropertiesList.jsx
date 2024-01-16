@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useGetActivePropertiesMutation } from "../../../redux/properties/propertiesSlice";
+import {
+  useGetActiveFilteredPropertiesMutation,
+  useLazyGetActivePropertiesQuery,
+} from "../../../redux/properties/propertiesSlice";
 import Loader from "../../../components/UI/Loader";
 import PropertyCard from "../../../components/UI/PropertyCard";
 import { useParams } from "react-router-dom";
@@ -26,9 +29,21 @@ const PropertiesList = () => {
   const [
     getActiveProperties,
     { data, isLoading, isFetching, isSuccess, isError },
-  ] = useGetActivePropertiesMutation();
-
-  const { t, i18n } = useTranslation();
+  ] = useLazyGetActivePropertiesQuery();
+  const [
+    getActiveFilteredProperties,
+    {
+      data: filteredData,
+      isLoading: filteredIsLoading,
+      isSuccess: filteredIsSuccess,
+      isError: filteredIsError,
+    },
+  ] = useGetActiveFilteredPropertiesMutation();
+  const [properties, setProperties] = useState({
+    ids: [],
+    entities: [],
+  });
+  const { t } = useTranslation();
   useEffect(() => {
     if (search) {
       getActiveProperties({
@@ -50,7 +65,7 @@ const PropertiesList = () => {
       Bathrooms ||
       Addresses
     ) {
-      getActiveProperties({
+      getActiveFilteredProperties({
         page: currentPage,
         limit: itemsPerPage,
         form: {
@@ -117,31 +132,74 @@ const PropertiesList = () => {
     Bathrooms,
     Addresses,
   ]);
-  return isLoading || isFetching ? (
+  useEffect(() => {
+    if (search) {
+      isSuccess && setProperties(data);
+    }
+    if (
+      PriceMin ||
+      PriceMax ||
+      AreaMin ||
+      AreaMax ||
+      purpose ||
+      rentFrequency ||
+      completionStatus ||
+      Bedrooms ||
+      parentCategory ||
+      CategoryID ||
+      Bathrooms ||
+      Addresses
+    ) {
+      filteredIsSuccess && setProperties(filteredData);
+    } else {
+      isSuccess && setProperties(data);
+    }
+  }, [
+    isSuccess,
+    filteredIsSuccess,
+    search,
+    itemsPerPage,
+    currentPage,
+    PriceMin,
+    PriceMax,
+    AreaMin,
+    AreaMax,
+    purpose,
+    rentFrequency,
+    completionStatus,
+    Bedrooms,
+    parentCategory,
+    CategoryID,
+    Bathrooms,
+    Addresses,
+  ]);
+  return isLoading || isFetching || filteredIsLoading ? (
     <div className="relative h-screen">
       <Loader />
     </div>
-  ) : isError ? (
+  ) : isError || filteredIsError ? (
     <div className="h-screen flex justify-center items-center">
       <p className="font-bold text-med">{t("ErrorPleaseReload")}</p>
     </div>
-  ) : isSuccess && data.count == 0 ? (
+  ) : (isSuccess || filteredIsSuccess) && properties.ids.length == 0 ? (
     <div className="h-screen flex justify-center items-center">
       <p className="font-bold text-med">{t("NoProperties")} </p>
     </div>
   ) : (
-    isSuccess &&
-    data.count !== 0 && (
+    (isSuccess || filteredIsSuccess) &&
+    properties.ids.length !== 0 && (
       <>
         <div className="p-4 lg:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 min-h-screen w-full">
-          {data.ids.map((item, index) => {
-            return <PropertyCard data={data.entities[item]} key={index} />;
+          {properties.ids.map((item, index) => {
+            return (
+              <PropertyCard data={properties.entities[item]} key={index} />
+            );
           })}
         </div>
         <div className="flex justify-center items-center">
           <Pagination
             currentPage={currentPage}
-            totalCount={data.count}
+            totalCount={properties.ids.length}
             pageSize={itemsPerPage}
             onPageChange={(page) => setCurrentPage(page)}
           />

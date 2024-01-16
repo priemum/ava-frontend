@@ -3,23 +3,22 @@ import { useTranslation } from "react-i18next";
 import propertyIcon from "../../../../assets/icons/property-icon.svg";
 import PropertyCard from "../../../../components/UI/PropertyCard";
 import Slider from "react-slick";
-import { useGetActivePropertiesMutation } from "../../../../redux/properties/propertiesSlice";
+import {
+  useGetActivePropertiesQuery,
+  useLazyGetActivePropertiesQuery,
+} from "../../../../redux/properties/propertiesSlice";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import Loader from "../../../../components/UI/Loader";
 const HomeProperties = () => {
   const { t, i18n } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef();
-  const [
-    getActiveProperties,
-    { data, isLoading, isFetching, isSuccess, isError },
-  ] = useGetActivePropertiesMutation();
-  useEffect(() => {
-    getActiveProperties({
+  const { data, isLoading, isFetching, isSuccess, isError } =
+    useGetActivePropertiesQuery({
       page: 0,
       limit: 9,
     });
-  }, []);
+
   return (
     <div className="mt-20 flex flex-col justify-center items-center px-[5%]">
       <div className="flex w-full">

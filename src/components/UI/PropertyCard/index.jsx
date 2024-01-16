@@ -19,7 +19,7 @@ import { useGetLNGQuery } from "../../../redux/languages/languagesSlice";
 import { SampleNextArrow, SamplePrevArrow } from "../SliderArrows";
 
 const PropertyCard = ({ data }) => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const navigate = useNavigate();
   const currentUnit = useSelector(selectCurrentUnit);
   const currentCurrency = useSelector(selectCurrentCurrency);
@@ -58,13 +58,14 @@ const PropertyCard = ({ data }) => {
     isSuccess && (
       <div className="flex flex-col items-center justify-center">
         <div
-          className={`h-[550px] w-[95%] relative overflow-hidden rounded-md group shadow-lg drop-shadow-md`}
+          className={`h-[550px] w-[95%] max-w-[450px] relative overflow-hidden rounded-md group shadow-lg drop-shadow-md`}
         >
           <Slider
             slidesToScroll={1}
             slidesToShow={1}
             dots={false}
             arrows={true}
+            lazyLoad="ondemand"
             className="!h-[550px] w-full"
             nextArrow={<SampleNextArrow />}
             prevArrow={<SamplePrevArrow />}
@@ -90,10 +91,13 @@ const PropertyCard = ({ data }) => {
           <div
             className={`absolute ${
               showDetails ? "bottom-0" : "-bottom-[110px]"
-            } left-0 w-full h-1/2 z-20 bg-primary/40 backdrop-blur-sm text-white p-4 transition-all duration-500`}
+            } left-0 w-full h-[275px] z-20 bg-primary/40 backdrop-blur-sm text-white p-2 md:p-4 transition-all duration-500`}
           >
-            <div className="flex items-center justify-between -mt-10 h-1/5 overflow-hidden">
-              <div className="bg-secondary min-w-[150px] p-2 rounded-md text-black text-tiny md:text-smaller flex items-center gap-x-3">
+            <div className="flex items-center justify-between -mt-10 h-[55px] overflow-hidden">
+              <div
+                dir="ltr"
+                className="bg-secondary min-w-[150px] p-2 rounded-md text-black text-tiny md:text-smaller flex items-center gap-x-3"
+              >
                 <FaCoins size={20} />
                 {lower.Price == higher.Price
                   ? numberWithComma(
@@ -119,7 +123,7 @@ const PropertyCard = ({ data }) => {
                 <MdArrowOutward size={24} />
               </div>
             </div>
-            <div className="h-3/5 flex justify-start items-center">
+            <div className="h-[130px] flex justify-start items-center">
               <p className="text-smaller md:text-small font-bold mt-3 line-clamp-2">
                 {
                   data.Property_Translation.find(
@@ -130,7 +134,7 @@ const PropertyCard = ({ data }) => {
                 }
               </p>
             </div>
-            <div className="pb-2 pt-5 flex justify-evenly items-center font-bold h-2/5">
+            <div className="pb-2 pt-5 flex justify-evenly items-center font-bold h-[115px]">
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
                   <p className="text-tiny md:text-[18px]">
@@ -144,14 +148,20 @@ const PropertyCard = ({ data }) => {
                     alt="bath-icon"
                   />
                 </div>
-                <p className="font-normal text-[12px] md:text-tiny">Baths</p>
+                <p className="font-normal text-[12px] md:text-tiny">
+                  {t("Bathrooms")}
+                </p>
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
                   <p className="text-tiny md:text-[18px]">
                     {lower.Bedrooms == higher.Bedrooms
-                      ? lower.Bedrooms
-                      : lower.Bedrooms + " - " + higher.Bedrooms}
+                      ? lower.Bedrooms == 0
+                        ? "std"
+                        : lower.Bedrooms
+                      : (lower.Bedrooms == 0 ? "std" : lower.Bedrooms) +
+                        " - " +
+                        higher.Bedrooms}
                   </p>
                   <img
                     src={bedroom}
@@ -159,7 +169,9 @@ const PropertyCard = ({ data }) => {
                     alt="bedroom-icon"
                   />
                 </div>
-                <p className="font-normal text-[12px] md:text-tiny">Bedrooms</p>
+                <p className="font-normal text-[12px] md:text-tiny">
+                  {t("Bedrooms")}
+                </p>
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
@@ -190,7 +202,7 @@ const PropertyCard = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="absolute top-0 left-0 w-full h-[10%] px-4 pt-5 flex items-center text-white gap-x-4">
+          <div className="absolute top-0 left-0 w-full h-[55px] px-4 pt-5 flex items-center text-white gap-x-4">
             <div className="bg-primary/30 backdrop-blur-sm p-2 rounded-md shadow-md">
               {data.Purpose}
             </div>
@@ -215,7 +227,6 @@ const PropertyCard = ({ data }) => {
               }}
             >
               <MdInfoOutline size={30} className="text-primary" />
-              {/* <p className="text-primary font-semibold">Info</p> */}
             </div>
           </div>
         </div>

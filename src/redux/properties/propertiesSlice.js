@@ -2,27 +2,29 @@ import { createEntityAdapter } from "@reduxjs/toolkit";
 import { apiSlice } from "../api/apiSlice";
 
 const propertiesActiveAdapter = createEntityAdapter();
+const propertiesActiveFilteredAdapter = createEntityAdapter();
 
 const initialActiveState = propertiesActiveAdapter.getInitialState({
   count: "",
   normalData: [],
 });
+const initialActiveFilteredState =
+  propertiesActiveFilteredAdapter.getInitialState({
+    count: "",
+    normalData: [],
+  });
 
 export const propertiesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getActiveProperties: builder.mutation({
+    getActiveProperties: builder.query({
       query: (args) => ({
         url: `/${
           args?.searchTerm
             ? `property/search/${args.searchTerm}`
-            : args?.filter
-            ? `property/filter`
             : `property-active`
         }?page=${args?.page ? args.page : ""}&limit=${
           args?.limit ? args.limit : ""
         } `,
-        method: args.filter ? "POST" : "GET",
-        body: args.filter && args.form,
       }),
       transformResponse: (responseData) => {
         initialActiveState.count = responseData.count;
@@ -38,6 +40,29 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
         ...result.ids.map((id) => ({ type: "Properties", id })),
       ],
     }),
+
+    getActiveFilteredProperties: builder.mutation({
+      query: (args) => ({
+        url: `/property/filter?page=${args?.page ? args.page : ""}&limit=${
+          args?.limit ? args.limit : ""
+        } `,
+        method: "POST",
+        body: args.form,
+      }),
+      transformResponse: (responseData) => {
+        initialActiveFilteredState.count = responseData.count;
+        initialActiveFilteredState.normalData = responseData.Properties;
+        const loadedFilteredProperties = responseData.Properties;
+        return propertiesActiveFilteredAdapter.setAll(
+          initialActiveState,
+          loadedFilteredProperties
+        );
+      },
+      providesTags: (result, error, arg) => [
+        { type: "FilteredProperties", id: "LIST" },
+        ...result.ids.map((id) => ({ type: "FilteredProperties", id })),
+      ],
+    }),
     getPropertyById: builder.query({
       query: (args) => `/property/${args.id}`,
       providesTags: (result, error, args) => [
@@ -49,6 +74,8 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useLazyGetPropertyByIdQuery,
-  useGetActivePropertiesMutation,
+  useGetActiveFilteredPropertiesMutation,
+  useLazyGetActivePropertiesQuery,
+  useGetActivePropertiesQuery,
   useGetPropertyByIdQuery,
 } = propertiesApiSlice;
