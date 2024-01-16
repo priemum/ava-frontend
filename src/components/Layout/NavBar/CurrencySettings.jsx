@@ -37,8 +37,8 @@ const CurrencySettings = () => {
         <div className="flex flex-col justify-start items-center h-full p-8 space-y-4">
           <CustomInput
             readOnly
-            containerStyle={"!border-primary !border-[1px]"}
-            customStyle={"!text-primary font-semibold"}
+            containerStyle={"!border-white/50 !border-[1px]"}
+            customStyle={"!text-white font-semibold"}
             value={
               currentCurrency?.Currency_Translation?.find(
                 (x) => x.Language.Code.toLowerCase() == i18n.language
@@ -49,7 +49,7 @@ const CurrencySettings = () => {
               return (
                 <p
                   key={index}
-                  className="text-tiny hover:bg-secondary/50 rounded-md p-2 transition-all duration-300"
+                  className="text-tiny hover:bg-secondary/50 rounded-md p-2 transition-all duration-300 text-white"
                   onClick={() => {
                     dispatch(setCurrencyCR(currencies.entities[item]));
                   }}
@@ -62,7 +62,7 @@ const CurrencySettings = () => {
                 </p>
               );
             })}
-            icon={<MdExpandMore size={24} />}
+            icon={<MdExpandMore size={24} className="text-white" />}
             reverseIcon
           />
         </div>

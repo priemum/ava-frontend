@@ -35,8 +35,8 @@ const UnitSettings = () => {
         <div className="flex flex-col justify-start items-center h-full p-8 space-y-4">
           <CustomInput
             readOnly
-            containerStyle={"!border-primary !border-[1px]"}
-            customStyle={"!text-primary font-semibold"}
+            containerStyle={"!border-white/50 !border-[1px]"}
+            customStyle={"!text-white font-semibold"}
             value={
               currentUnit?.Unit_Translation?.find(
                 (x) => x.Language.Code.toLowerCase() == i18n.language
@@ -60,7 +60,7 @@ const UnitSettings = () => {
                 </p>
               );
             })}
-            icon={<MdExpandMore size={24} />}
+            icon={<MdExpandMore size={24} className="text-white" />}
             reverseIcon
           />
         </div>

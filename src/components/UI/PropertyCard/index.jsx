@@ -3,7 +3,7 @@ import { API_BASE_URL } from "../../../constants";
 import { useTranslation } from "react-i18next";
 import Slider from "react-slick";
 import { MdArrowOutward, MdInfoOutline } from "react-icons/md";
-import { FaCoins, FaAngleRight, FaAngleLeft } from "react-icons/fa";
+import { FaCoins } from "react-icons/fa";
 import bath from "../../../assets/icons/bath.svg";
 import bedroom from "../../../assets/icons/bedroom.svg";
 import squareft from "../../../assets/icons/squareft.svg";
@@ -16,26 +16,8 @@ import {
   selectCurrentUnit,
 } from "../../../redux/websiteSettings.slice";
 import { useGetLNGQuery } from "../../../redux/languages/languagesSlice";
-function SampleNextArrow({ onClick }) {
-  return (
-    <div
-      className="absolute cursor-pointer z-10 right-3 top-[45%] rounded-full bg-primary/20 backdrop-blur-sm"
-      onClick={onClick}
-    >
-      <FaAngleRight className="text-white" size={35} />
-    </div>
-  );
-}
-function SamplePrevArrow({ onClick }) {
-  return (
-    <div
-      className="absolute cursor-pointer z-10 left-3 top-[45%] rounded-full bg-primary/20 backdrop-blur-sm"
-      onClick={onClick}
-    >
-      <FaAngleLeft className="text-white" size={35} />
-    </div>
-  );
-}
+import { SampleNextArrow, SamplePrevArrow } from "../SliderArrows";
+
 const PropertyCard = ({ data }) => {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
@@ -72,7 +54,8 @@ const PropertyCard = ({ data }) => {
 
   return (
     Object.keys(lower).length !== 0 &&
-    Object.keys(higher).length !== 0 && (
+    Object.keys(higher).length !== 0 &&
+    isSuccess && (
       <div className="flex flex-col items-center justify-center">
         <div
           className={`h-[550px] w-[95%] relative overflow-hidden rounded-md group shadow-lg drop-shadow-md`}
@@ -110,7 +93,7 @@ const PropertyCard = ({ data }) => {
             } left-0 w-full h-1/2 z-20 bg-primary/40 backdrop-blur-sm text-white p-4 transition-all duration-500`}
           >
             <div className="flex items-center justify-between -mt-10 h-1/5 overflow-hidden">
-              <div className="bg-secondary min-w-[150px] p-2 rounded-md text-black text-smaller flex items-center gap-x-3">
+              <div className="bg-secondary min-w-[150px] p-2 rounded-md text-black text-tiny md:text-smaller flex items-center gap-x-3">
                 <FaCoins size={20} />
                 {lower.Price == higher.Price
                   ? numberWithComma(
@@ -137,7 +120,7 @@ const PropertyCard = ({ data }) => {
               </div>
             </div>
             <div className="h-3/5 flex justify-start items-center">
-              <p className="text-small font-bold mt-3">
+              <p className="text-smaller md:text-small font-bold mt-3 line-clamp-2">
                 {
                   data.Property_Translation.find(
                     (x) =>
@@ -147,10 +130,10 @@ const PropertyCard = ({ data }) => {
                 }
               </p>
             </div>
-            <div className="pb-2 pt-5 flex justify-evenly items-center font-bold text-smaller h-2/5">
+            <div className="pb-2 pt-5 flex justify-evenly items-center font-bold h-2/5">
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
-                  <p className="text-tiny md:text-smaller">
+                  <p className="text-tiny md:text-[18px]">
                     {lower.Bathrooms == higher.Bathrooms
                       ? lower.Bathrooms
                       : lower.Bathrooms + " - " + higher.Bathrooms}
@@ -165,7 +148,7 @@ const PropertyCard = ({ data }) => {
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
-                  <p className="text-tiny md:text-smaller">
+                  <p className="text-tiny md:text-[18px]">
                     {lower.Bedrooms == higher.Bedrooms
                       ? lower.Bedrooms
                       : lower.Bedrooms + " - " + higher.Bedrooms}
@@ -180,7 +163,7 @@ const PropertyCard = ({ data }) => {
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
-                  <p className="text-tiny lg:text-smaller">
+                  <p className="text-tiny md:text-[18px]">
                     {lower.Size == higher.Size
                       ? numberWithComma(lower.Size * currentUnit.conversionRate)
                       : numberWithComma(
