@@ -24,6 +24,7 @@ export const apiSlice = createApi({
     "Listings",
     "Languages",
     "generalData",
+    "FilteredProperties",
   ],
   endpoints: (builder) => ({}),
 });

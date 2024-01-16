@@ -42,7 +42,7 @@ const PropertyCard = ({ data }) => {
     );
     setLower(low);
     setHigher(high);
-  }, [data]);
+  }, []);
 
   useEffect(() => {
     setPriceSymbol(

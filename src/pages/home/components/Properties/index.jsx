@@ -1,12 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import propertyIcon from "../../../../assets/icons/property-icon.svg";
 import PropertyCard from "../../../../components/UI/PropertyCard";
 import Slider from "react-slick";
-import {
-  useGetActivePropertiesQuery,
-  useLazyGetActivePropertiesQuery,
-} from "../../../../redux/properties/propertiesSlice";
+import { useGetActivePropertiesQuery } from "../../../../redux/properties/propertiesSlice";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import Loader from "../../../../components/UI/Loader";
 const HomeProperties = () => {
