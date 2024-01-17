@@ -244,7 +244,7 @@ i18n.use(initReactI18next).init({
         PersonalInformation: "Personal Information",
         FeedbackThanks: "Thank you for your Feedback",
         ListingThanks: "Thank you for your Listing With Us",
-        UploadPhoto: "Upload Photo",
+        UploadPhoto: "Upload Photos",
         DeleteAll: "Delete All",
         HomePropertiesTitle: "Buying Properties in Dubai",
         Addresses: "Addresses",

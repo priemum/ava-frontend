@@ -26,7 +26,8 @@ const PageLayout = ({ children }) => {
     setW(width);
   }, [width]);
   const { data, isSuccess } = useGetLNGQuery();
-  const { isSuccess: announcementIsSuccess } = useGetActiveAnnouncementsQuery();
+  const { data: announcements, isSuccess: announcementIsSuccess } =
+    useGetActiveAnnouncementsQuery();
 
   const showAnnouncement = (initialSlide) => {
     dispatch(
@@ -39,7 +40,7 @@ const PageLayout = ({ children }) => {
     if (announcementIsSuccess)
       setTimeout(() => {
         showAnnouncement();
-      }, 10000);
+      }, 20000);
   }, [announcementIsSuccess]);
   return (
     <div

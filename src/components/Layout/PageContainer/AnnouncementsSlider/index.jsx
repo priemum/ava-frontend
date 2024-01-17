@@ -13,7 +13,8 @@ const AnnouncementsSlider = () => {
   const { i18n, t } = useTranslation();
   const [expandAnnouncement, setExpandAnnouncement] = useState();
   return (
-    announcementsIsSuccess && (
+    announcementsIsSuccess &&
+    announcements.ids.length !== 0 && (
       <Slider
         slidesToScroll={1}
         slidesToShow={announcements.count >= 4 ? 4 : announcements.count}

@@ -29,7 +29,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
             <div
               dir="ltr"
               key={index}
-              className={`max-w-[98%] py-1 px-2 text-center font-semibold backdrop-blur-sm ${
+              className={`max-w-[98%] py-1 px-2 text-center font-semibold ${
                 currentSlide == index
                   ? "bg-secondary text-primary"
                   : "bg-primary/50 text-white shadow-2xl"
