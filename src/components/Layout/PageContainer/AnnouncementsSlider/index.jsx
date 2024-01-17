@@ -40,7 +40,7 @@ const AnnouncementsSlider = () => {
         ]}
       >
         {announcements.ids.map((item, index) => {
-          if (announcements.entities[item].Type == "Normal")
+          if (announcements.entities[item].Type == "PopUp")
             return (
               <div key={index} className="!flex !justify-center !items-center">
                 <div

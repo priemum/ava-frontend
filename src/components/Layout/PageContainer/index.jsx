@@ -37,10 +37,10 @@ const PageLayout = ({ children }) => {
     );
   };
   useEffect(() => {
-    if (announcementIsSuccess)
+    if (announcementIsSuccess && announcements?.PopUp.length !== 0)
       setTimeout(() => {
         showAnnouncement();
-      }, 20000);
+      }, 100);
   }, [announcementIsSuccess]);
   return (
     <div

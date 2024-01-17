@@ -6,6 +6,8 @@ const announcementsAdapter = createEntityAdapter();
 const initialState = announcementsAdapter.getInitialState({
   count: "",
   activeCount: "",
+  PopUp: [],
+  Normal: [],
 });
 
 export const announcementsApiSlice = apiSlice.injectEndpoints({
@@ -17,7 +19,10 @@ export const announcementsApiSlice = apiSlice.injectEndpoints({
       }),
       transformResponse: (responseData) => {
         initialState.count = responseData.count;
-        initialState.normalData = responseData.Announcement;
+        const p = responseData.Announcement.filter((x) => x.Type == "PopUp");
+        const n = responseData.Announcement.filter((x) => x.Type == "Normal");
+        initialState.PopUp = p;
+        initialState.Normal = n;
         const loadedArticles = responseData.Announcement;
         return announcementsAdapter.setAll(initialState, loadedArticles);
       },
