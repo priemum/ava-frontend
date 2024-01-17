@@ -40,7 +40,7 @@ const PageLayout = ({ children }) => {
     if (announcementIsSuccess && announcements?.PopUp.length !== 0)
       setTimeout(() => {
         showAnnouncement();
-      }, 100);
+      }, 20000);
   }, [announcementIsSuccess]);
   return (
     <div
