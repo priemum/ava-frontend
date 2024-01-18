@@ -5,15 +5,19 @@ import {
   APIProvider,
   Map,
   AdvancedMarker,
+  useMapsLibrary,
+  useMap,
   // Marker,
   // InfoWindow,
   // ControlPosition,
   // MapControl,
   // useMarkerRef,
 } from "@vis.gl/react-google-maps";
+import Directions from "./Directions";
 
 const Location = ({ data }) => {
   const { t, i18n } = useTranslation();
+  const [endDirection, setEndDirection] = useState({ lat: "", lng: "" });
   return (
     data?.Latitude &&
     data?.Longitude && (
@@ -25,28 +29,26 @@ const Location = ({ data }) => {
           </p>
         </div>
         <div className="h-[600px] rounded-md overflow-hidden">
-          <APIProvider apiKey={import.meta.env.VITE_GOOGLE_API_KEY}>
+          <APIProvider apiKey={import.meta.env.VITE_GOOGLE_API_KEY ?? ""}>
             <Map
-              zoom={13}
+              zoom={14}
               center={{ lat: data?.Latitude, lng: data?.Longitude }}
               gestureHandling={"greedy"}
               disableDefaultUI={true}
-              mapId={import.meta.env.VITE_GOOGLE_MAP_ID}
+              mapId={import.meta.env.VITE_GOOGLE_MAP_ID ?? ""}
             >
-              <AdvancedMarker
-                position={{ lat: data?.Latitude, lng: data?.Longitude }}
-              />
-
-              {/* <InfoWindow
-                position={{ lat: data?.Latitude, lng: data?.Longitude }}
-              >
-                {
-                  data.Property_Translation.find(
-                    (x) => x.Language.Code.toLowerCase() == i18n.language
-                  ).Name
-                }
-              </InfoWindow>
-               */}
+              {endDirection.lat !== "" && endDirection.lng !== "" ? (
+                <Directions
+                  startLng={data.Longitude}
+                  startLat={data.Latitude}
+                  endLng={endDirection.lng}
+                  endLat={endDirection.lat}
+                />
+              ) : (
+                <AdvancedMarker
+                  position={{ lat: data?.Latitude, lng: data?.Longitude }}
+                />
+              )}
             </Map>
           </APIProvider>
         </div>
