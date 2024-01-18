@@ -192,7 +192,9 @@ const ListingForm = () => {
                         setValues({ ...values, Purpose: item.value })
                       }
                     >
-                      {item.lng[i18n.language]}
+                      {item.lng[i18n.language] == "Buy"
+                        ? "Sell"
+                        : item.lng[i18n.language]}
                     </div>
                     {index !== Gender.length - 1 && (
                       <div key={item.value} className="h-10 w-1 bg-white/50" />

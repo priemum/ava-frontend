@@ -1,36 +1,57 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import locationIcon from "../../../assets/icons/pro-location-icon.svg";
 import { useTranslation } from "react-i18next";
+import {
+  APIProvider,
+  Map,
+  AdvancedMarker,
+  // Marker,
+  // InfoWindow,
+  // ControlPosition,
+  // MapControl,
+  // useMarkerRef,
+} from "@vis.gl/react-google-maps";
 
 const Location = ({ data }) => {
-  const { t } = useTranslation();
-  const [cordination, setCordination] = useState({ lat: "", lng: "" });
-  useEffect(() => {
-    const lat = data?.Latitude;
-    const lon = data?.Longitude;
-    setCordination({ lat: lat, lng: lon });
-  }, [data]);
-  useEffect(() => {
-    const iframeData = document.getElementById("iframeId");
-    iframeData.src = `https://maps.google.com/maps?q=${cordination.lat},${cordination.lng}&hl=es;&output=embed`;
-  });
+  const { t, i18n } = useTranslation();
   return (
-    <div className="mt-12">
-      <div className="flex items-center self-start flex-1">
-        <img src={locationIcon} alt="property Icon" />
-        <p className="text-small sm:text-med font-bold">{t("Location")}</p>
+    data?.Latitude &&
+    data?.Longitude && (
+      <div className="mt-12">
+        <div className="flex items-center self-start flex-1">
+          <img src={locationIcon} alt="property Icon" />
+          <p className="text-small sm:text-med font-bold">
+            {t("LocationAndNearby")}
+          </p>
+        </div>
+        <div className="h-[600px] rounded-md overflow-hidden">
+          <APIProvider apiKey={import.meta.env.VITE_GOOGLE_API_KEY}>
+            <Map
+              zoom={13}
+              center={{ lat: data?.Latitude, lng: data?.Longitude }}
+              gestureHandling={"greedy"}
+              disableDefaultUI={true}
+              mapId={import.meta.env.VITE_GOOGLE_MAP_ID}
+            >
+              <AdvancedMarker
+                position={{ lat: data?.Latitude, lng: data?.Longitude }}
+              />
+
+              {/* <InfoWindow
+                position={{ lat: data?.Latitude, lng: data?.Longitude }}
+              >
+                {
+                  data.Property_Translation.find(
+                    (x) => x.Language.Code.toLowerCase() == i18n.language
+                  ).Name
+                }
+              </InfoWindow>
+               */}
+            </Map>
+          </APIProvider>
+        </div>
       </div>
-      <iframe
-        title="Property Map Location"
-        id="iframeId"
-        height="600px"
-        width="100%"
-        className="rounded-xl shadow-md"
-        sandbox="allow-scripts allow-same-origin allow-presentation"
-        loading="lazy"
-        // src={mapUrl}
-      ></iframe>
-    </div>
+    )
   );
 };
 
