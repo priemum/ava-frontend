@@ -71,7 +71,7 @@ export default function Dropdown() {
                       <MdRadioButtonUnchecked size={24} />
                     )}
                   </div>
-                  <p>{data.entities[item].Name}</p>
+                  <p className="font-semibold">{data.entities[item].Name}</p>
                 </div>
               );
             })

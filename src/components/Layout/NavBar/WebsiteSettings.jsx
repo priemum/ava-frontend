@@ -57,7 +57,7 @@ export default function WebsiteSettings() {
               );
             }}
           >
-            <p>{t("Currency")}</p>
+            <p className="font-semibold">{t("Currency")}</p>
           </div>
 
           <div
@@ -70,7 +70,7 @@ export default function WebsiteSettings() {
               );
             }}
           >
-            <p>{t("AriaUnit")}</p>
+            <p className="font-semibold">{t("AriaUnit")}</p>
           </div>
         </div>
       </div>
