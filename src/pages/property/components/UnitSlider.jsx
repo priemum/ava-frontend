@@ -12,7 +12,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
   const currentUnit = useSelector(selectCurrentUnit);
   const { i18n, t } = useTranslation();
   return (
-    <div className="mt-6 p-4 lg:p-8 bg-white rounded-xl shadow-xl w-[95%] sm:w-[80%]">
+    <div className="mt-6 p-4 lg:p-8 bg-white rounded-xl shadow-xl w-[95%] max-sm:max-w-[95vw] sm:w-[80%]">
       <Slider
         dots={false}
         arrows={true}
