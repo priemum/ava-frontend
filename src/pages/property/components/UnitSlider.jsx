@@ -12,14 +12,14 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
   const currentUnit = useSelector(selectCurrentUnit);
   const { i18n, t } = useTranslation();
   return (
-    <div className="mt-6 p-4 lg:p-8 bg-white rounded-xl shadow-xl w-[95%] max-sm:max-w-[95vw] sm:w-[80%]">
+    <div className="mt-6 p-4 lg:p-8 bg-white rounded-xl w-[95%] sm:w-[80%] shadow-xl overflow-hidden">
       <Slider
         dots={false}
         arrows={true}
         infinite={false}
-        slidesToShow={data.length ?? 4}
+        slidesToShow={data.length ?? 2}
         slidesToScroll={1}
-        className={`overflow-hidden h-full w-full ${
+        className={`overflow-hidden h-full w-full max-md:max-w-[300px] ${
           data.length < 2 && "hidden"
         }`}
         initialSlide={currentSlide}
@@ -29,7 +29,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
             <div
               dir="ltr"
               key={index}
-              className={`max-w-[98%] py-1 px-2 text-center font-semibold ${
+              className={`max-w-[95%] w-full py-1 px-2 text-center font-semibold ${
                 currentSlide == index
                   ? "bg-secondary text-primary"
                   : "bg-primary/50 text-white shadow-2xl"
@@ -54,12 +54,12 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
         arrows={false}
         initialSlide={currentSlide}
         infinite={false}
-        className="h-full w-full mt-6"
+        className="h-full w-full max-md:max-w-[300px] mt-6"
         beforeChange={(prev, next) => setCurrentSlide(next)}
       >
         {data.map((item, index) => {
           return (
-            <div className="p-6 !grid !grid-cols-3" key={index}>
+            <div className="p-6 !grid !grid-cols-3 !w-[95%]" key={index}>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
                   <p className="font-bold">{item.Bathrooms}</p>

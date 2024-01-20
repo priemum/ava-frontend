@@ -135,6 +135,7 @@ i18n.use(initReactI18next).init({
         Studio: "استوديو",
         LocationAndNearby: "الموقع و ما حوله",
         EstimatedRent: "متوسط سعر الإيجار",
+        searchPlace: "ابحث عن عنوان",
       },
     },
     en: {
@@ -267,6 +268,7 @@ i18n.use(initReactI18next).init({
         Studio: "Studio",
         LocationAndNearby: "Location & Nearby",
         EstimatedRent: "Estimated Rent",
+        searchPlace: "Search For A Place",
       },
     },
   },

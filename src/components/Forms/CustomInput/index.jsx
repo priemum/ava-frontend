@@ -25,6 +25,7 @@ const CustomInput = ({
   inputLabel,
   keepOnSelect,
   translatedOptions,
+  inputRef,
 }) => {
   const [selectStatus, setSelectStatus] = useState(false);
   const { i18n } = useTranslation();
@@ -82,6 +83,7 @@ const CustomInput = ({
           />
         ) : (
           <input
+            ref={inputRef}
             type={type}
             className={`bg-transparent py-1 px-2 w-full outline-none placeholder:text-white ${customStyle} ${
               select && "cursor-pointer"

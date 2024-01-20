@@ -14,9 +14,10 @@ import {
   // useMarkerRef,
 } from "@vis.gl/react-google-maps";
 import Directions from "./Directions";
+import LocationSearchBar from "./LocationSearchBar";
 
 const Location = ({ data }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [endDirection, setEndDirection] = useState({ lat: "", lng: "" });
   return (
     data?.Latitude &&
@@ -28,7 +29,10 @@ const Location = ({ data }) => {
             {t("LocationAndNearby")}
           </p>
         </div>
-        <div className="h-[600px] rounded-md overflow-hidden">
+        <div className="p-2 md:p-4 bg-white rounded-md shadow-lg my-3">
+          <LocationSearchBar setEndDirection={setEndDirection} />
+        </div>
+        <div className="h-[600px] rounded-md overflow-hidden relative">
           <APIProvider apiKey={import.meta.env.VITE_GOOGLE_API_KEY ?? ""}>
             <Map
               zoom={14}

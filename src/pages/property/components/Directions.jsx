@@ -15,7 +15,7 @@ const Directions = ({ startLng, startLat, endLng, endLat }) => {
     if (!routesLibrary || !map) return;
     setDirectionsService(new routesLibrary.DirectionsService());
     setDirectionsRenderer(new routesLibrary.DirectionsRenderer({ map }));
-  }, [routesLibrary, map]);
+  }, [routesLibrary, map, endLat, endLng]);
 
   // Use directions service
   useEffect(() => {
@@ -34,7 +34,7 @@ const Directions = ({ startLng, startLat, endLng, endLat }) => {
       });
 
     return () => directionsRenderer.setMap(null);
-  }, [directionsService, directionsRenderer]);
+  }, [directionsService, directionsRenderer, endLat, endLng]);
 
   // Update direction route
   useEffect(() => {
