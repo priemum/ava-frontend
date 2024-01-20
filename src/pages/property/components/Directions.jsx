@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
-const Directions = ({ startLng, startLat, endLng, endLat }) => {
+import {
+  useMap,
+  useMapsLibrary,
+  useAutocomplete,
+} from "@vis.gl/react-google-maps";
+const Directions = ({ startLng, startLat, endLng, endLat, setRouteData }) => {
   const map = useMap();
   const routesLibrary = useMapsLibrary("routes");
   const [directionsService, setDirectionsService] = useState();
@@ -31,6 +35,7 @@ const Directions = ({ startLng, startLat, endLng, endLat }) => {
       .then((response) => {
         directionsRenderer.setDirections(response);
         setRoutes(response.routes);
+        setRouteData(response.routes[0].legs[0]);
       });
 
     return () => directionsRenderer.setMap(null);
