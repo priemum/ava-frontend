@@ -51,7 +51,7 @@ const PaymentPlan = ({ data, unitPrice }) => {
 
       <div className="text-start w-full text-smaller space-y-6">
         <p className="col-span-full font-bold">{t("Installments")} </p>
-        <div className="max-w-[calc(100vw-4rem)] overflow-auto">
+        <div className="max-w-[calc(100vw-4.5rem)] overflow-auto">
           <table className="w-full">
             <tbody>
               <tr className="border-black/30 border-y-[2px] text-tiny md:text-smaller text-center">

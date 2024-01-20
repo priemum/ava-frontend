@@ -45,6 +45,7 @@ const Location = ({ data }) => {
                 gestureHandling={"greedy"}
                 disableDefaultUI={true}
                 mapId={import.meta.env.VITE_GOOGLE_MAP_ID ?? ""}
+                scrollwheel={false}
               >
                 {endDirection.lat !== "" && endDirection.lng !== "" ? (
                   <Directions

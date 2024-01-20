@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  useMap,
-  useMapsLibrary,
-  useAutocomplete,
-} from "@vis.gl/react-google-maps";
+import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
 const Directions = ({ startLng, startLat, endLng, endLat, setRouteData }) => {
   const map = useMap();
   const routesLibrary = useMapsLibrary("routes");

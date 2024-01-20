@@ -30,17 +30,17 @@ const LocationInfoNav = ({ setEndDirection, routeData, setRouteData }) => {
     });
   }, []);
   return (
-    <div className="flex items-center gap-x-5">
+    <div className="flex max-md:flex-col max-md:space-y-3 items-center gap-x-5">
       <CustomInput
         inputRef={inputRef}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder={t("searchPlace")}
         customStyle={"!text-white placeholder:text-white"}
-        containerStyle={"!bg-primary/80  w-full max-w-[300px]"}
+        containerStyle={"!bg-primary/60 w-full md:max-w-[300px]"}
       />
       <Button
-        bgColor={"bg-secondary"}
+        bgColor={`bg-secondary ${searchTerm == "" && "hidden"}`}
         borderRadius={200}
         text={t("Clear")}
         disabled={searchTerm == ""}
@@ -49,17 +49,17 @@ const LocationInfoNav = ({ setEndDirection, routeData, setRouteData }) => {
           setEndDirection({ lng: "", lat: "" });
           setRouteData({});
         }}
-        customStyle={"px-5"}
+        customStyle={"px-5 max-md:w-full"}
       />
       {Object.keys(routeData).length !== 0 && (
-        <>
+        <div className="flex items-center gap-x-4">
           <p className="font-semibold text-smaller md:text-small">
             {routeData.distance.text}
           </p>
           <p className="font-semibold text-smaller md:text-small">
             {routeData.duration.text}
           </p>
-        </>
+        </div>
       )}
     </div>
   );
