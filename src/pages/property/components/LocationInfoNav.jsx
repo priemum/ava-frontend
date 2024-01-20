@@ -19,7 +19,6 @@ const LocationInfoNav = ({ setEndDirection, routeData, setRouteData }) => {
     );
     autoCompleteRef.current.addListener("place_changed", async function () {
       const place = await autoCompleteRef.current.getPlace();
-      console.log({ place });
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
       setEndDirection({
@@ -29,6 +28,7 @@ const LocationInfoNav = ({ setEndDirection, routeData, setRouteData }) => {
       setSearchTerm(place.name);
     });
   }, []);
+
   return (
     <div className="flex max-md:flex-col max-md:space-y-3 items-center gap-x-5">
       <CustomInput
