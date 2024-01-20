@@ -1,18 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import locationIcon from "../../../assets/icons/pro-location-icon.svg";
 import { useTranslation } from "react-i18next";
-import {
-  APIProvider,
-  Map,
-  AdvancedMarker,
-  useMapsLibrary,
-  useMap,
-  // Marker,
-  // InfoWindow,
-  // ControlPosition,
-  // MapControl,
-  // useMarkerRef,
-} from "@vis.gl/react-google-maps";
+import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
 import Directions from "./Directions";
 import LocationInfoNav from "./LocationInfoNav";
 
@@ -20,48 +9,7 @@ const Location = ({ data }) => {
   const { t } = useTranslation();
   const [endDirection, setEndDirection] = useState({ lat: "", lng: "" });
   const [routeData, setRouteData] = useState({});
-  useEffect(() => {
-    if (data.Longitude && data.Latitude) {
-      const url =
-        "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
-        data.Latitude +
-        `,` +
-        data.Longitude +
-        "&radius=" +
-        1500 +
-        "&type=" +
-        "atm" +
-        "&key=" +
-        import.meta.env.VITE_GOOGLE_API_KEY;
-      fetch(url)
-        .then((res) => {
-          console.log(res.json());
-          return res.json();
-        })
-        // .then((res) => {
-        //   for (let googlePlace of res.results) {
-        //     var places = [];
-        //     var place = {};
-        //     var myLat = googlePlace.geometry.location.lat;
-        //     var myLong = googlePlace.geometry.location.lng;
-        //     var coordinate = {
-        //       latitude: myLat,
-        //       longitude: myLong,
-        //     };
-        //     place[`placeTypes`] = googlePlace.types;
-        //     place[`coordinate`] = coordinate;
-        //     place[`placeId`] = googlePlace.place_id;
-        //     place[`placeName`] = googlePlace.name;
-        //     places.push(place);
-        //   }
-        //   // Show all the places around 4 km from San Francisco.
-        //   console.log(places.map((nearbyPlaces) => nearbyPlaces.placeName));
-        // })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [data.Longitude, data.Latitude]);
+
   return (
     data?.Latitude &&
     data?.Longitude && (
