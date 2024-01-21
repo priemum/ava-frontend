@@ -136,6 +136,7 @@ i18n.use(initReactI18next).init({
         LocationAndNearby: "الموقع و ما حوله",
         EstimatedRent: "متوسط سعر الإيجار",
         searchPlace: "ابحث عن عنوان",
+        PickNearby: "اختر نوع المكان القريب",
       },
     },
     en: {
@@ -269,6 +270,7 @@ i18n.use(initReactI18next).init({
         LocationAndNearby: "Location & Nearby",
         EstimatedRent: "Estimated Rent",
         searchPlace: "Search For A Place",
+        PickNearby: "Pick A Nearby Type",
       },
     },
   },

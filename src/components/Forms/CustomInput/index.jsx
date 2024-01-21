@@ -16,6 +16,7 @@ const CustomInput = ({
   select,
   setState,
   state,
+  singleState,
   containerStyle,
   noInput,
   error,
@@ -113,7 +114,9 @@ const CustomInput = ({
                       key={index}
                       className="text-tiny hover:bg-secondary/50 rounded-md p-2 transition-all duration-300"
                       onClick={() => {
-                        setState({ ...state, [name]: item });
+                        singleState
+                          ? setState(item)
+                          : setState({ ...state, [name]: item });
                       }}
                     >
                       {item}
@@ -127,7 +130,9 @@ const CustomInput = ({
                       key={index}
                       className="text-tiny hover:bg-secondary/50 rounded-md p-2 transition-all duration-300"
                       onClick={() => {
-                        setState({ ...state, [name]: item.value });
+                        singleState
+                          ? setState(item.value)
+                          : setState({ ...state, [name]: item.value });
                       }}
                     >
                       {item.lng[i18n.language]}
