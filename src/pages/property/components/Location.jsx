@@ -6,10 +6,11 @@ import {
   Map,
   AdvancedMarker,
   Marker,
+  Pin,
 } from "@vis.gl/react-google-maps";
 import Directions from "./Directions";
 import LocationInfoNav from "./LocationInfoNav";
-
+import colors from "../../../settings";
 const Location = ({ data }) => {
   const { t } = useTranslation();
   const [endDirection, setEndDirection] = useState({ lat: "", lng: "" });
@@ -51,15 +52,26 @@ const Location = ({ data }) => {
                 mapId={import.meta.env.VITE_GOOGLE_MAP_ID ?? ""}
               >
                 {nearbyLocations.length !== 0 ? (
-                  nearbyLocations.map((location) => (
-                    <Marker
-                      key={location.place_id}
-                      position={{
-                        lat: location.geometry.location.lat(),
-                        lng: location.geometry.location.lng(),
-                      }}
-                    />
-                  ))
+                  <>
+                    <AdvancedMarker
+                      position={{ lat: data?.Latitude, lng: data?.Longitude }}
+                    >
+                      <Pin
+                        background={colors.secondary}
+                        glyphColor={colors.primary}
+                        borderColor={colors.primary}
+                      />
+                    </AdvancedMarker>
+                    {nearbyLocations.map((location) => (
+                      <Marker
+                        key={location.place_id}
+                        position={{
+                          lat: location.geometry.location.lat(),
+                          lng: location.geometry.location.lng(),
+                        }}
+                      />
+                    ))}
+                  </>
                 ) : endDirection.lat !== "" && endDirection.lng !== "" ? (
                   <Directions
                     startLng={data.Longitude}
@@ -71,7 +83,13 @@ const Location = ({ data }) => {
                 ) : (
                   <AdvancedMarker
                     position={{ lat: data?.Latitude, lng: data?.Longitude }}
-                  />
+                  >
+                    <Pin
+                      background={colors.secondary}
+                      glyphColor={colors.primary}
+                      borderColor={colors.primary}
+                    />
+                  </AdvancedMarker>
                 )}
               </Map>
             </APIProvider>

@@ -32,6 +32,7 @@ const LocationInfoNav = ({
       const place = await autoCompleteRef.current.getPlace();
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
+      setNearbyLocations([]);
       setEndDirection({
         lng: lng,
         lat: lat,
@@ -56,6 +57,8 @@ const LocationInfoNav = ({
 
       service.nearbySearch(request, (results, status) => {
         if (status === map.places.PlacesServiceStatus.OK) {
+          setEndDirection({ lng: "", lat: "" });
+          setSearchTerm("");
           setNearbyLocations(results);
         }
       });
