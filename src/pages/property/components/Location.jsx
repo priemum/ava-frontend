@@ -18,8 +18,6 @@ const Location = ({ data }) => {
   const [nearbyLocations, setNearbyLocations] = useState([]);
   const [nearbyType, setNearbyType] = useState("");
 
-  // performNearbySearch();
-
   return (
     data?.Latitude &&
     data?.Longitude && (
