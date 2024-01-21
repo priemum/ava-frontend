@@ -28,7 +28,7 @@ const Location = ({ data }) => {
             {t("LocationAndNearby")}
           </p>
         </div>
-        <div className="p-2 md:p-4 bg-white rounded-md  space-y-3 md:space-y-4">
+        <div className="p-2 md:p-4 bg-white rounded-md space-y-3 md:space-y-4">
           <LocationInfoNav
             setEndDirection={setEndDirection}
             routeData={routeData}
