@@ -12,14 +12,14 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
   const currentUnit = useSelector(selectCurrentUnit);
   const { i18n, t } = useTranslation();
   return (
-    <div className="mt-6 p-4 lg:p-8 bg-white rounded-xl w-[95%] sm:w-[80%] shadow-xl overflow-hidden">
+    <div className="mt-6 p-4 lg:p-8 bg-white rounded-xl w-[95%] md:w-[80%] shadow-xl overflow-hidden flex flex-col items-center justify-center">
       <Slider
         dots={false}
         arrows={true}
         infinite={false}
         slidesToShow={data.length ?? 2}
         slidesToScroll={1}
-        className={`overflow-hidden h-full w-full max-md:max-w-[300px] ${
+        className={`overflow-hidden h-full w-full max-md:max-w-[300px] md:max-lg:w-[500px] ${
           data.length < 2 && "hidden"
         }`}
         initialSlide={currentSlide}
@@ -54,7 +54,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
         arrows={false}
         initialSlide={currentSlide}
         infinite={false}
-        className="h-full w-full max-md:max-w-[300px] mt-6"
+        className="h-full w-full max-md:max-w-[300px] md:max-lg:w-[500px] mt-6"
         beforeChange={(prev, next) => setCurrentSlide(next)}
       >
         {data.map((item, index) => {
