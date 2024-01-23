@@ -79,14 +79,9 @@ const HomeFilter = () => {
     }
   }, [generalDataIsSuccess]);
   return (
-    <div className="h-[600px] sm:h-[400px] xl:h-[310px] -mt-[295px] w-full relative">
-      <div
-        className="flex justify-center items-center text-white z-30 backdrop-blur-sm absolute w-screen max-w-[1920px] left-0 h-full"
-        style={{
-          background: "linear-gradient(0deg, #FFF 25%, transparent 100%)",
-        }}
-      >
-        <div className="bg-primary/40 w-[90%] md:w-[85%] lg:w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10 max-w-[1920px] h-full">
+    <div className="h-[600px] sm:h-[400px] xl:h-[310px] -mt-[400px] sm:-mt-[250px] xl:-mt-[310px] w-full relative ">
+      <div className="flex justify-center items-center text-white z-30 backdrop-blur-sm absolute w-screen max-w-[1920px] left-0 bottom-0 h-full bg-gradient-to-t max-xl:via-white xl:via-[#fff]/60 from-[#fff] to-transparent">
+        <div className="bg-primary/40 w-full md:w-[85%] lg:w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10 max-w-[1920px] h-full">
           <CustomInput
             keepOnSelect
             containerStyle={"!w-[300px] "}
