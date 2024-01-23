@@ -11,6 +11,9 @@ const AddressesPage = () => {
     useGetActiveAddressQuery();
   const { t, i18n } = useTranslation();
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
   return isLoading || isFetching ? (
     <div className="my-44 flex flex-col justify-center items-center relative">
       <Loader />
