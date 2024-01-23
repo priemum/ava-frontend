@@ -55,18 +55,16 @@ const NavBar = () => {
         }`}
         style={{
           background:
-            header === "white" ||
-            location.pathname == "/properties" ||
-            location.pathname ==
-              `/property/${sessionStorage.getItem("propertyId")}` ||
-            location.pathname ==
-              `/properties/${sessionStorage.getItem("filter")}` ||
-            location.pathname ==
-              `/properties/${sessionStorage.getItem("search")}` ||
-            location.pathname ==
-              `/addresses/${sessionStorage.getItem("addressId")}`
-              ? colors.primary
-              : "transparent",
+            header !== "white" &&
+            (location.pathname == "/" ||
+              location.pathname == "/about-us" ||
+              location.pathname == "/articles" ||
+              location.pathname == "/jobs" ||
+              location.pathname == "/list-with-us" ||
+              location.pathname == "/contact" ||
+              location.pathname == "/enquiry")
+              ? "transparent"
+              : colors.primary,
         }}
       >
         <div
