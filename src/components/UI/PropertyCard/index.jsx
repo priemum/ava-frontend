@@ -17,6 +17,7 @@ import {
 } from "../../../redux/websiteSettings.slice";
 import { useGetLNGQuery } from "../../../redux/languages/languagesSlice";
 import { SampleNextArrow, SamplePrevArrow } from "../SliderArrows";
+import { formatCash } from "../../../helpers/formatCash";
 
 const PropertyCard = ({ data }) => {
   const { i18n, t } = useTranslation();
@@ -100,17 +101,12 @@ const PropertyCard = ({ data }) => {
               >
                 <FaCoins size={20} />
                 {lower.Price == higher.Price
-                  ? numberWithComma(
-                      lower.Price * currentCurrency.conversionRate
-                    ) + ` ${priceSymbol}`
-                  : numberWithComma(
-                      lower.Price * currentCurrency.conversionRate
-                    ) +
+                  ? formatCash(lower.Price * currentCurrency.conversionRate) +
+                    ` ${priceSymbol}`
+                  : formatCash(lower.Price * currentCurrency.conversionRate) +
                     ` ${priceSymbol}` +
                     " - " +
-                    numberWithComma(
-                      higher.Price * currentCurrency.conversionRate
-                    ) +
+                    formatCash(higher.Price * currentCurrency.conversionRate) +
                     ` ${priceSymbol}`}
               </div>
               <div

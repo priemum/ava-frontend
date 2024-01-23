@@ -49,11 +49,11 @@ const AddressesPage = () => {
   }, [addressId]);
 
   return isLoading || isFetching ? (
-    <div className="my-44 flex flex-col justify-center items-center relative">
+    <div className="h-screen flex flex-col justify-center items-center relative">
       <Loader />
     </div>
   ) : isError ? (
-    <div className="my-24 flex flex-col justify-center items-center relative text-center">
+    <div className="h-screen flex flex-col justify-center items-center relative text-center">
       <p className="text-med font-bold">{t("ErrorPleaseReload")}</p>
     </div>
   ) : (

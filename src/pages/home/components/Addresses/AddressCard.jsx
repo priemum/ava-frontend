@@ -37,7 +37,7 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
           </div>
         )}
         <div className="absolute bottom-6 left-6 ">
-          <p className="font-bold text-med text-white drop-shadow-2xl w-[80%]">
+          <p className="font-bold text-med text-white drop-shadow-2xl w-[280px] sm:w-[300px]">
             {Name}
           </p>
         </div>
