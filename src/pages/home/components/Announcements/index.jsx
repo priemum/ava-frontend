@@ -79,6 +79,7 @@ const Announcements = () => {
             slidesToScroll={1}
             slidesToShow={1}
             infinite={true}
+            lazyLoad="ondemand"
             arrows={false}
             touchMove={true}
             pauseOnDotsHover={false}

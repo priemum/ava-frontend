@@ -40,6 +40,7 @@ const ImageSlider = ({ data }) => {
             arrows={true}
             infinite={true}
             initialSlide={initialSlide}
+            lazyLoad="ondemand"
             className="h-[80vh] w-[90vw] overflow-hidden"
             nextArrow={<SampleNextArrow />}
             prevArrow={<SamplePrevArrow />}
@@ -69,6 +70,7 @@ const ImageSlider = ({ data }) => {
         slidesToShow={1}
         dots={false}
         arrows={true}
+        lazyLoad="ondemand"
         infinite={true}
         className="h-[516px] w-full overflow-hidden p-4 md:hidden"
         nextArrow={<SampleNextArrow />}

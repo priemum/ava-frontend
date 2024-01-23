@@ -17,6 +17,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
         dots={false}
         arrows={true}
         infinite={false}
+        lazyLoad="ondemand"
         slidesToShow={data.length ?? 2}
         slidesToScroll={1}
         className={`overflow-hidden h-full w-full max-md:max-w-[300px] md:max-lg:w-[500px] ${
@@ -52,6 +53,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
         touchMove={false}
         swipe={false}
         arrows={false}
+        lazyLoad="ondemand"
         initialSlide={currentSlide}
         infinite={false}
         className="h-full w-full max-md:max-w-[300px] md:max-lg:w-[500px] mt-6"

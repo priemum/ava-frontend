@@ -63,6 +63,7 @@ const HomeProperties = () => {
           <Slider
             ref={sliderRef}
             slidesToScroll={1}
+            lazyLoad="ondemand"
             slidesToShow={data.ids.length >= 4 ? 4 : data.ids.length}
             arrows={false}
             dots={false}

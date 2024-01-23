@@ -56,6 +56,7 @@ const HomeAddresses = () => {
           slidesToShow={2}
           arrows={false}
           dots={true}
+          lazyLoad="ondemand"
           className="w-full lg:hidden"
           responsive={[
             {

@@ -73,6 +73,7 @@ const Teams = () => {
               dots={false}
               arrows={true}
               infinite={false}
+              lazyLoad="ondemand"
               // touchMove={false}
               slidesToShow={teams.count < 4 ? teams.count : 4}
               slidesToScroll={1}

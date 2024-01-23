@@ -20,6 +20,7 @@ const AnnouncementsSlider = () => {
         slidesToShow={announcements.count >= 4 ? 4 : announcements.count}
         dots={true}
         className="h-[80vh] md:h-[60vh] w-[90vw] overflow-hidden"
+        lazyLoad="ondemand"
         responsive={[
           {
             breakpoint: 2000,
