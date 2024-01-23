@@ -44,7 +44,6 @@ const RegisterForm = () => {
         setValues(defaultFormState);
       })
       .catch((error) => {
-        console.log(error);
         dispatch(
           showMessage({
             variant: "error",

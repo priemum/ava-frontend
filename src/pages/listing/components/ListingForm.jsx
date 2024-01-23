@@ -125,7 +125,6 @@ const ListingForm = () => {
         setListWithUs_Translation([]);
       })
       .catch((error) => {
-        console.log(error);
         dispatch(
           showMessage({
             variant: "error",

@@ -24,7 +24,6 @@ const PropertiesList = () => {
     Bathrooms,
     Addresses,
   } = useParams();
-  console.log(Addresses);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
   const [
