@@ -155,7 +155,6 @@ const Filter = ({ containerStyle }) => {
           disabled={searchTerm.replace(/ /g, "") == ""}
           className="bg-secondary w-full text-primary font-semibold rounded-md px-8 py-2 disabled:bg-gray-500"
           onClick={() => {
-            sessionStorage.setItem("search", searchTerm);
             navigate(`/properties/${searchTerm}`);
           }}
         >
@@ -486,7 +485,6 @@ const Filter = ({ containerStyle }) => {
             }/${form.Bathrooms.length == 0 ? "all" : form.Bathrooms}/${
               form.Addresses.length == 0 ? "all" : form.Addresses
             }`;
-            sessionStorage.setItem("filter", filterUrl);
             navigate(`/properties/${filterUrl}`);
           }}
         >

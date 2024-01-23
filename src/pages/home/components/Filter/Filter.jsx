@@ -537,7 +537,6 @@ const HomeFilter = () => {
                 }/${form.Bathrooms.length == 0 ? "all" : form.Bathrooms}/${
                   form.Addresses.length == 0 ? "all" : form.Addresses
                 }`;
-                sessionStorage.setItem("filter", filterUrl);
                 navigate(`/properties/${filterUrl}`);
               }}
               className=" w-full max-sm:py-2 bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider"

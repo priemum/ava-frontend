@@ -46,14 +46,12 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
             if (Places > 0) {
               if (addressId) navigate(`/addresses/${id}`);
               else navigate(`addresses/${id}`);
-              sessionStorage.setItem("addressId", id);
             } else {
               const filterUrl = `${generalData.MinPrice}/${
                 generalData.MaxPrice
               }/${generalData.MinSize}/${
                 generalData.MaxSize
               }/all/all/all/all/all/all/all/${[id]}`;
-              sessionStorage.setItem("filter", filterUrl);
               navigate(`/properties/${filterUrl}`);
             }
           }}
