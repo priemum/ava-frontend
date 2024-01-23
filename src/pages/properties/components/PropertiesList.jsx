@@ -182,11 +182,11 @@ const PropertiesList = () => {
       <Loader />
     </div>
   ) : isError || filteredIsError ? (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center text-center">
       <p className="font-bold text-med">{t("ErrorPleaseReload")}</p>
     </div>
   ) : (isSuccess || filteredIsSuccess) && properties.ids.length == 0 ? (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center text-center">
       <p className="font-bold text-med">{t("NoProperties")} </p>
     </div>
   ) : (
