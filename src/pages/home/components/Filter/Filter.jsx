@@ -20,7 +20,7 @@ import { useGetGeneralDataQuery } from "../../../../redux/generalData/generalDat
 const defaultFormState = {
   Addresses: [],
   CategoryID: "",
-  purpose: "Rent",
+  purpose: "all",
   rentFrequency: "",
   completionStatus: "",
   Bedrooms: [],
@@ -57,7 +57,7 @@ const HomeFilter = () => {
   } = useGetGeneralDataQuery();
   useEffect(() => {
     if (categoriesIsSuccess && categories.count !== 0) {
-      setParentType(categories.parentCategories[0].id);
+      setParentType("all");
     }
   }, [categoriesIsSuccess]);
   const [rent_buy, setRent_buy] = useState(RentFrequency);
@@ -66,6 +66,8 @@ const HomeFilter = () => {
       setRent_buy(RentFrequency);
     } else if (form.purpose == "Buy") {
       setRent_buy(CompletionStatus);
+    } else {
+      setRent_buy([]);
     }
   }, [form.purpose]);
   useEffect(() => {
@@ -87,28 +89,54 @@ const HomeFilter = () => {
         <div className="bg-primary/40 w-[90%] md:w-[85%] lg:w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10 max-w-[1920px] h-full">
           <CustomInput
             keepOnSelect
-            containerStyle={"!w-[300px]"}
+            containerStyle={"!w-[300px] "}
+            customStyle={"capitalize"}
             readOnly
             value={
-              Purpose.find((x) => x.value == form.purpose)?.lng[i18n.language] +
-              `${
-                form.rentFrequency.length !== 0 ||
-                form.completionStatus.length !== 0
-                  ? " / "
-                  : ""
-              }` +
-              (form.purpose == "Rent"
-                ? RentFrequency.find((x) => x.value == form.rentFrequency)?.lng[
+              form.purpose == "all"
+                ? t("Purpose") + ":  " + t("all")
+                : t("Purpose") +
+                  ":  " +
+                  Purpose.find((x) => x.value == form.purpose)?.lng[
                     i18n.language
-                  ] ?? ""
-                : CompletionStatus.find((x) => x.value == form.completionStatus)
-                    ?.lng[i18n.language] ?? "")
+                  ] +
+                  `${
+                    form.rentFrequency.length !== 0 ||
+                    form.completionStatus.length !== 0
+                      ? " / "
+                      : ""
+                  }` +
+                  (form.purpose == "Rent"
+                    ? RentFrequency.find((x) => x.value == form.rentFrequency)
+                        ?.lng[i18n.language] ?? ""
+                    : CompletionStatus.find(
+                        (x) => x.value == form.completionStatus
+                      )?.lng[i18n.language] ?? "")
             }
             select
             otherOptions={
               <div className="flex flex-col space-y-2">
                 <React.Fragment>
                   <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 backdrop-blur-sm">
+                    <div
+                      className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 capitalize ${
+                        form.purpose == "all"
+                          ? "bg-secondary text-primary"
+                          : "bg-transparent text-white"
+                      }`}
+                      onClick={() =>
+                        setForm({
+                          ...form,
+                          purpose: "all",
+                          rentFrequency: "",
+                          completionStatus: "",
+                        })
+                      }
+                    >
+                      {t("all")}
+                    </div>
+                    <div className="h-10 w-1 bg-white/50" />
+
                     {Purpose.map((item, index) => {
                       return (
                         <React.Fragment key={index}>
@@ -175,22 +203,26 @@ const HomeFilter = () => {
             <CustomInput
               keepOnSelect
               readOnly
-              customStyle={"!text-primary font-semibold"}
+              customStyle={"!text-primary font-semibold capitalize"}
               value={
                 categoriesIsLoading || categoriesIsFetching
                   ? t("Loading")
                   : categoriesIsSuccess && categories.count !== 0
-                  ? t("Category") +
-                    ": " +
-                    categories.entities[parentType]?.Category_Translation.find(
-                      (x) => x.Language.Code.toLowerCase() == i18n.language
-                    ).Name +
-                    `${form.CategoryID.length !== 0 ? " / " : ""}` +
-                    (categories.entities[
-                      form.CategoryID
-                    ]?.Category_Translation.find(
-                      (x) => x.Language.Code.toLowerCase() == i18n.language
-                    ).Name ?? "")
+                  ? parentType == "all"
+                    ? t("Category") + ": " + t("all")
+                    : t("Category") +
+                      ": " +
+                      categories.entities[
+                        parentType
+                      ]?.Category_Translation.find(
+                        (x) => x.Language.Code.toLowerCase() == i18n.language
+                      ).Name +
+                      `${form.CategoryID.length !== 0 ? " / " : ""}` +
+                      (categories.entities[
+                        form.CategoryID
+                      ]?.Category_Translation.find(
+                        (x) => x.Language.Code.toLowerCase() == i18n.language
+                      ).Name ?? "")
                   : t("NoCategories")
               }
               select
@@ -203,6 +235,21 @@ const HomeFilter = () => {
                   ) : categoriesIsSuccess && categories.count !== 0 ? (
                     <React.Fragment>
                       <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 backdrop-blur-sm">
+                        <div
+                          className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 capitalize ${
+                            parentType == "all"
+                              ? "bg-secondary text-primary"
+                              : "bg-transparent text-white"
+                          }`}
+                          onClick={() => {
+                            setParentType("all");
+                            setForm({ ...form, CategoryID: "" });
+                          }}
+                        >
+                          {t("all")}
+                        </div>
+                        <div className="h-10 w-1 bg-white/50" />
+
                         {categories.ids.map((item, index) => {
                           if (categories.entities[item].ParentID == null)
                             return (

@@ -44,7 +44,9 @@ const HomeAddresses = () => {
                   Latitude={data.entities[item].Latitude}
                   Longitude={data.entities[item].Longitude}
                   Image={data.entities[item].Image.URL}
-                  Places={data.entities[item].Addresses.length}
+                  Places={data.entities[item]._count.Addresses}
+                  Properties={data.entities[item]._count.Property}
+                  id={item}
                 />
               );
           })}

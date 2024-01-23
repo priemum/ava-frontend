@@ -26,8 +26,27 @@ export const addressApiSlice = apiSlice.injectEndpoints({
         ...result.ids.map((id) => ({ type: "Addresses", id })),
       ],
     }),
+    getActiveAddressByParentId: builder.query({
+      query: (args) => ({
+        url: `/address-active/sub-address/${args.id}`,
+        method: "GET",
+      }),
+      transformResponse: (responseData) => {
+        initialActiveState.count = responseData?.count;
+        initialActiveState.normalData = responseData.Address;
+        const loaded = responseData.Address;
+        return addressActiveAdapter.setAll(initialActiveState, loaded);
+      },
+      // providesTags: (result, error, arg) => [
+      //   { type: "SubAddresses", id: "LIST" },
+      //   ...result.ids.map((id) => ({ type: "SubAddresses", id })),
+      // ],
+    }),
   }),
 });
 
-export const { useGetActiveAddressQuery, useLazyGetActiveAddressQuery } =
-  addressApiSlice;
+export const {
+  useGetActiveAddressQuery,
+  useLazyGetActiveAddressQuery,
+  useGetActiveAddressByParentIdQuery,
+} = addressApiSlice;

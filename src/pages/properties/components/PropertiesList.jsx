@@ -24,6 +24,7 @@ const PropertiesList = () => {
     Bathrooms,
     Addresses,
   } = useParams();
+  console.log(Addresses);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
   const [
@@ -70,15 +71,17 @@ const PropertiesList = () => {
         limit: itemsPerPage,
         form: {
           Addresses:
-            Addresses == "all" || Array.isArray(Addresses) == false
+            Addresses == "all"
               ? []
-              : Addresses,
+              : Addresses.split(",").map(function (x) {
+                  return x;
+                }),
           CategoryID:
             CategoryID == "all" || typeof CategoryID !== "string"
               ? ""
               : CategoryID,
           purpose:
-            purpose == "all" || typeof purpose !== "string" ? "Rent" : purpose,
+            purpose == "all" || typeof purpose !== "string" ? "" : purpose,
           rentFrequency:
             rentFrequency == "all" || typeof rentFrequency !== "string"
               ? ""
@@ -88,13 +91,14 @@ const PropertiesList = () => {
               ? ""
               : completionStatus,
           Bedrooms:
-            Bedrooms == "all" || Array.isArray(Bedrooms) == false
+            Bedrooms == "all"
               ? [1, 2, 3, 4, 5, 6]
               : Bedrooms.split(",").map(function (x) {
                   return parseInt(x, 10);
                 }),
+
           Bathrooms:
-            Bathrooms == "all" || Array.isArray(Bathrooms) == false
+            Bathrooms == "all"
               ? [1, 2, 3, 4, 5, 6]
               : Bathrooms.split(",").map(function (x) {
                   return parseInt(x, 10);

@@ -11,7 +11,7 @@ import { useGetGeneralDataQuery } from "../../../redux/generalData/generalDataSl
 const defaultFormState = {
   Addresses: [],
   CategoryID: "",
-  purpose: "Rent",
+  purpose: "all",
   rentFrequency: "",
   completionStatus: "",
   Bedrooms: [],
@@ -57,7 +57,7 @@ const Filter = ({ containerStyle }) => {
       Addresses == "all" || Array.isArray(Addresses) == false ? [] : Addresses,
     CategoryID:
       CategoryID == "all" || typeof CategoryID !== "string" ? "" : CategoryID,
-    purpose: purpose == "all" || typeof purpose !== "string" ? "Rent" : purpose,
+    purpose: purpose == "all" || typeof purpose !== "string" ? "all" : purpose,
     rentFrequency:
       rentFrequency == "all" || typeof rentFrequency !== "string"
         ? ""
@@ -122,7 +122,7 @@ const Filter = ({ containerStyle }) => {
       if (parentCategory) {
         setParentType(parentCategory);
       } else {
-        setParentType(categories.parentCategories[0].id);
+        setParentType("all");
       }
     }
   }, [categoriesIsSuccess]);
@@ -133,6 +133,8 @@ const Filter = ({ containerStyle }) => {
       setRent_buy(RentFrequency);
     } else if (form.purpose == "Buy") {
       setRent_buy(CompletionStatus);
+    } else {
+      setRent_buy([]);
     }
   }, [form.purpose]);
 
@@ -199,6 +201,27 @@ const Filter = ({ containerStyle }) => {
       <div className="flex flex-col p-8 space-y-2">
         <React.Fragment>
           <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
+            <div
+              className={`w-full h-14 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 capitalize ${
+                form.purpose == "all"
+                  ? "bg-secondary text-primary"
+                  : "bg-transparent text-primary"
+              }`}
+              onClick={() => {
+                let tempForm = {
+                  ...form,
+                  purpose: "all",
+                  rentFrequency: "",
+                  completionStatus: "",
+                };
+                setRent_buy([]);
+                setForm(tempForm);
+              }}
+            >
+              {t("all")}
+            </div>
+            <div className="h-10 w-1 bg-secondary" />
+
             {Purpose.map((item, index) => {
               return (
                 <React.Fragment key={index}>
@@ -227,30 +250,32 @@ const Filter = ({ containerStyle }) => {
               );
             })}
           </div>
-          <div className="grid grid-cols-2 place-items-center gap-4">
-            {rent_buy.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className={`h-14 w-full border-[1px] border-secondary ${
-                    form.rentFrequency == item.value ||
-                    form.completionStatus == item.value
-                      ? "text-primary bg-secondary"
-                      : "text-secondary bg-transparent"
-                  } flex justify-center items-center text-tiny 2xl:text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
-                  onClick={() => {
-                    if (form.purpose == "Rent") {
-                      setForm({ ...form, rentFrequency: item.value });
-                    } else if (form.purpose == "Buy") {
-                      setForm({ ...form, completionStatus: item.value });
-                    }
-                  }}
-                >
-                  {item?.lng[i18n.language]}
-                </div>
-              );
-            })}
-          </div>
+          {rent_buy.length !== 0 && (
+            <div className="grid grid-cols-2 place-items-center gap-4">
+              {rent_buy.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={`h-14 w-full border-[1px] border-secondary ${
+                      form.rentFrequency == item.value ||
+                      form.completionStatus == item.value
+                        ? "text-primary bg-secondary"
+                        : "text-secondary bg-transparent"
+                    } flex justify-center items-center text-tiny 2xl:text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
+                    onClick={() => {
+                      if (form.purpose == "Rent") {
+                        setForm({ ...form, rentFrequency: item.value });
+                      } else if (form.purpose == "Buy") {
+                        setForm({ ...form, completionStatus: item.value });
+                      }
+                    }}
+                  >
+                    {item?.lng[i18n.language]}
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </React.Fragment>
       </div>
       <div className="h-px w-full bg-primary/20" />
@@ -305,6 +330,20 @@ const Filter = ({ containerStyle }) => {
           categories.count !== 0 && (
             <React.Fragment>
               <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
+                <div
+                  className={`w-full h-14 rounded-md text-tiny flex justify-center capitalize items-center text-center cursor-pointer transition-all duration-300 ${
+                    parentType == "all"
+                      ? "bg-secondary text-primary"
+                      : "bg-transparent text-primary"
+                  }`}
+                  onClick={() => {
+                    setParentType("all");
+                    setForm({ ...form, CategoryID: "" });
+                  }}
+                >
+                  {t("all")}
+                </div>
+                <div className="h-10 w-1 bg-secondary" />
                 {categories.ids.map((item, index) => {
                   if (categories.entities[item].ParentID == null)
                     return (

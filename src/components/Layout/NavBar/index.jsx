@@ -62,7 +62,9 @@ const NavBar = () => {
             location.pathname ==
               `/properties/${sessionStorage.getItem("filter")}` ||
             location.pathname ==
-              `/properties/${sessionStorage.getItem("search")}`
+              `/properties/${sessionStorage.getItem("search")}` ||
+            location.pathname ==
+              `/addresses/${sessionStorage.getItem("addressId")}`
               ? colors.primary
               : "transparent",
         }}

@@ -47,6 +47,10 @@ export const publicRoutes = [
     element: lazy(() => import("../pages/property/index.jsx")),
   },
   {
+    path: "/addresses/:addressId",
+    element: lazy(() => import("../pages/addresses/index.jsx")),
+  },
+  {
     path: "/privacy-policy",
     element: lazy(() => import("../pages/privacy/index.jsx")),
   },
