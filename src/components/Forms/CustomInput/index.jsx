@@ -105,7 +105,7 @@ const CustomInput = ({
             ref={ref}
             className={`${
               selectStatus ? "scale-100" : "scale-0"
-            } z-30 transition-all duration-300 origin-top absolute left-0 top-14 rounded-md shadow-2xl drop-shadow-2xl bg-primary/70 backdrop-blur-sm text-white w-full p-2`}
+            } z-30 transition-all duration-300 origin-top absolute left-0 top-14 rounded-md shadow-2xl drop-shadow-2xl bg-primary/70 backdrop-blur-sm text-white w-full p-2 max-h-[300px] overflow-y-auto`}
           >
             {options
               ? options.map((item, index) => {

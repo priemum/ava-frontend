@@ -17,8 +17,9 @@ import {
   selectCurrentUnit,
 } from "../../../../redux/websiteSettings.slice";
 import { useGetGeneralDataQuery } from "../../../../redux/generalData/generalDataSlice";
+import { useGetActiveAddressQuery } from "../../../../redux/addresses/addressesSlice";
 const defaultFormState = {
-  Addresses: [],
+  Addresses: "",
   CategoryID: "",
   purpose: "all",
   rentFrequency: "",
@@ -55,6 +56,12 @@ const HomeFilter = () => {
     isSuccess: generalDataIsSuccess,
     isError: generalDataIsError,
   } = useGetGeneralDataQuery();
+  const {
+    data: addresses,
+    isLoading: addressesIsLoading,
+    isFetching: addressesIsFetching,
+    isSuccess: addressesIsSuccess,
+  } = useGetActiveAddressQuery();
   useEffect(() => {
     if (categoriesIsSuccess && categories.count !== 0) {
       setParentType("all");
@@ -81,118 +88,150 @@ const HomeFilter = () => {
   return (
     <div className="h-[600px] sm:h-[400px] xl:h-[310px] -mt-[400px] sm:-mt-[250px] xl:-mt-[310px] w-full relative ">
       <div className="flex justify-center items-center text-white z-30 backdrop-blur-sm absolute w-screen max-w-[1920px] left-0 bottom-0 h-full bg-gradient-to-t max-xl:via-white xl:via-[#fff]/60 from-[#fff] to-transparent">
-        <div className="bg-primary/40 w-full md:w-[85%] lg:w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10 max-w-[1920px] h-full">
-          <CustomInput
-            keepOnSelect
-            containerStyle={"!w-[300px] "}
-            customStyle={"capitalize"}
-            readOnly
-            value={
-              form.purpose == "all"
-                ? t("Purpose") + ":  " + t("all")
-                : t("Purpose") +
-                  ":  " +
-                  Purpose.find((x) => x.value == form.purpose)?.lng[
-                    i18n.language
-                  ] +
-                  `${
-                    form.rentFrequency.length !== 0 ||
-                    form.completionStatus.length !== 0
-                      ? " / "
-                      : ""
-                  }` +
-                  (form.purpose == "Rent"
-                    ? RentFrequency.find((x) => x.value == form.rentFrequency)
-                        ?.lng[i18n.language] ?? ""
-                    : CompletionStatus.find(
-                        (x) => x.value == form.completionStatus
-                      )?.lng[i18n.language] ?? "")
-            }
-            select
-            otherOptions={
-              <div className="flex flex-col space-y-2">
-                <React.Fragment>
-                  <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 backdrop-blur-sm">
-                    <div
-                      className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 capitalize ${
-                        form.purpose == "all"
-                          ? "bg-secondary text-primary"
-                          : "bg-transparent text-white"
-                      }`}
-                      onClick={() =>
-                        setForm({
-                          ...form,
-                          purpose: "all",
-                          rentFrequency: "",
-                          completionStatus: "",
-                        })
-                      }
-                    >
-                      {t("all")}
-                    </div>
-                    <div className="h-10 w-1 bg-white/50" />
+        <div className="bg-primary/40 w-[95%] md:w-[85%] lg:w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10 max-w-[1920px] h-full">
+          <div className="flex items-center justify-between max-sm:flex-col">
+            <CustomInput
+              keepOnSelect
+              containerStyle={"!w-[300px] "}
+              customStyle={"capitalize"}
+              readOnly
+              value={
+                form.purpose == "all"
+                  ? t("Purpose") + ":  " + t("all")
+                  : t("Purpose") +
+                    ":  " +
+                    Purpose.find((x) => x.value == form.purpose)?.lng[
+                      i18n.language
+                    ] +
+                    `${
+                      form.rentFrequency.length !== 0 ||
+                      form.completionStatus.length !== 0
+                        ? " / "
+                        : ""
+                    }` +
+                    (form.purpose == "Rent"
+                      ? RentFrequency.find((x) => x.value == form.rentFrequency)
+                          ?.lng[i18n.language] ?? ""
+                      : CompletionStatus.find(
+                          (x) => x.value == form.completionStatus
+                        )?.lng[i18n.language] ?? "")
+              }
+              select
+              otherOptions={
+                <div className="flex flex-col space-y-2">
+                  <React.Fragment>
+                    <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 backdrop-blur-sm">
+                      <div
+                        className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 capitalize ${
+                          form.purpose == "all"
+                            ? "bg-secondary text-primary"
+                            : "bg-transparent text-white"
+                        }`}
+                        onClick={() =>
+                          setForm({
+                            ...form,
+                            purpose: "all",
+                            rentFrequency: "",
+                            completionStatus: "",
+                          })
+                        }
+                      >
+                        {t("all")}
+                      </div>
+                      <div className="h-10 w-1 bg-white/50" />
 
-                    {Purpose.map((item, index) => {
-                      return (
-                        <React.Fragment key={index}>
+                      {Purpose.map((item, index) => {
+                        return (
+                          <React.Fragment key={index}>
+                            <div
+                              className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                                form.purpose == item.value
+                                  ? "bg-secondary text-primary"
+                                  : "bg-transparent text-white"
+                              }`}
+                              onClick={() =>
+                                setForm({
+                                  ...form,
+                                  purpose: item.value,
+                                  rentFrequency: "",
+                                  completionStatus: "",
+                                })
+                              }
+                            >
+                              {item?.lng[i18n.language]}
+                            </div>
+                            {index !== Purpose.length - 1 && (
+                              <div className="h-10 w-1 bg-white/50" />
+                            )}
+                          </React.Fragment>
+                        );
+                      })}
+                    </div>
+                    <div className="grid grid-cols-2 place-items-center gap-4">
+                      {rent_buy.map((item, index) => {
+                        return (
                           <div
-                            className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
-                              form.purpose == item.value
-                                ? "bg-secondary text-primary"
-                                : "bg-transparent text-white"
-                            }`}
-                            onClick={() =>
-                              setForm({
-                                ...form,
-                                purpose: item.value,
-                                rentFrequency: "",
-                                completionStatus: "",
-                              })
-                            }
+                            key={index}
+                            className={`h-10 w-32 border-[1px] border-secondary ${
+                              form.rentFrequency == item.value ||
+                              form.completionStatus == item.value
+                                ? "text-primary bg-secondary"
+                                : "text-secondary bg-transparent"
+                            } flex justify-center items-center text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
+                            onClick={() => {
+                              if (form.purpose == "Rent") {
+                                setForm({ ...form, rentFrequency: item.value });
+                              } else if (form.purpose == "Buy") {
+                                setForm({
+                                  ...form,
+                                  completionStatus: item.value,
+                                });
+                              }
+                            }}
                           >
                             {item?.lng[i18n.language]}
                           </div>
-                          {index !== Purpose.length - 1 && (
-                            <div className="h-10 w-1 bg-white/50" />
-                          )}
-                        </React.Fragment>
-                      );
-                    })}
-                  </div>
-                  <div className="grid grid-cols-2 place-items-center gap-4">
-                    {rent_buy.map((item, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className={`h-10 w-32 border-[1px] border-secondary ${
-                            form.rentFrequency == item.value ||
-                            form.completionStatus == item.value
-                              ? "text-primary bg-secondary"
-                              : "text-secondary bg-transparent"
-                          } flex justify-center items-center text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
-                          onClick={() => {
-                            if (form.purpose == "Rent") {
-                              setForm({ ...form, rentFrequency: item.value });
-                            } else if (form.purpose == "Buy") {
-                              setForm({
-                                ...form,
-                                completionStatus: item.value,
-                              });
-                            }
-                          }}
-                        >
-                          {item?.lng[i18n.language]}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </React.Fragment>
-              </div>
-            }
-            noInput
-            icon={<MdExpandMore size={24} />}
-            reverseIcon
-          />
+                        );
+                      })}
+                    </div>
+                  </React.Fragment>
+                </div>
+              }
+              noInput
+              icon={<MdExpandMore size={24} />}
+              reverseIcon
+            />
+            <button
+              onClick={() => {
+                setForm({
+                  ...form,
+                  PriceMax: priceMax,
+                  PriceMin: priceMin,
+                  AreaMin: areaMin,
+                  AreaMax: areaMax,
+                });
+                const filterUrl = `${priceMin}/${priceMax}/${areaMin}/${areaMax}/${
+                  form.purpose
+                }/${
+                  form.rentFrequency.length == 0 ? "all" : form.rentFrequency
+                }/${
+                  form.completionStatus.length == 0
+                    ? "all"
+                    : form.completionStatus
+                }/${
+                  form.Bedrooms.length == 0 ? "all" : form.Bedrooms
+                }/${parentType}/${
+                  form.CategoryID.length == 0 ? "all" : form.CategoryID
+                }/${form.Bathrooms.length == 0 ? "all" : form.Bathrooms}/${
+                  form.Addresses.length == 0 ? "all" : form.Addresses
+                }`;
+                navigate(`/properties/${filterUrl}`);
+              }}
+              className=" w-[270px] h-[50px] max-sm:py-2 bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider max-md:hidden"
+            >
+              {t("Find")}
+            </button>
+          </div>
           <div className="bg-white/80 h-1 w-full gap-x-2 self-center flex my-3" />
           <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8">
             <CustomInput
@@ -508,6 +547,46 @@ const HomeFilter = () => {
                   reverseIcon
                 />
               )}
+            {addressesIsSuccess && (
+              <CustomInput
+                readOnly
+                customStyle={
+                  "!text-primary placeholder:text-primary font-semibold"
+                }
+                placeholder={t("SelectAddress")}
+                icon={<MdExpandMore size={24} />}
+                value={
+                  form.Addresses.length !== 0
+                    ? t("Location") +
+                      ": " +
+                      addresses.entities[
+                        form.Addresses
+                      ]?.Address_Translation.find(
+                        (x) => x.Language.Code.toLowerCase() == i18n.language
+                      ).Name
+                    : ""
+                }
+                otherOptions={addresses.ids.map((item, index) => {
+                  if (addresses.entities[item]._count.Property !== 0)
+                    return (
+                      <p
+                        key={index}
+                        onClick={() => setForm({ ...form, Addresses: item })}
+                        className="text-tiny hover:bg-secondary/50 rounded-md p-2 transition-all duration-300"
+                      >
+                        {
+                          addresses.entities[item].Address_Translation.find(
+                            (x) =>
+                              x.Language.Code.toLowerCase() == i18n.language
+                          ).Name
+                        }
+                      </p>
+                    );
+                })}
+                select
+                reverseIcon
+              />
+            )}
             <button
               onClick={() => {
                 setForm({
@@ -534,7 +613,7 @@ const HomeFilter = () => {
                 }`;
                 navigate(`/properties/${filterUrl}`);
               }}
-              className=" w-full max-sm:py-2 bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider"
+              className=" w-full max-sm:py-2 bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider md:hidden"
             >
               {t("Find")}
             </button>
