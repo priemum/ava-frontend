@@ -41,6 +41,8 @@ const HomeFilter = () => {
   const [areaMin, setAreaMin] = useState();
   const [priceMax, setPriceMax] = useState();
   const [areaMax, setAreaMax] = useState();
+  const [addressSearchTerm, setAddressSearchTerm] = useState("");
+
   const rooms = [1, 2, 3, 4, 5, 6];
   const [form, setForm] = useState(defaultFormState);
   const {
@@ -87,7 +89,7 @@ const HomeFilter = () => {
   }, [generalDataIsSuccess]);
   return (
     <div className="h-[600px] sm:h-[400px] xl:h-[310px] -mt-[400px] sm:-mt-[250px] xl:-mt-[310px] w-full relative ">
-      <div className="flex justify-center items-center text-white z-30 backdrop-blur-sm absolute w-screen max-w-[1920px] left-0 bottom-0 h-full bg-gradient-to-t max-xl:via-white xl:via-[#fff]/60 from-[#fff] to-transparent">
+      <div className="flex justify-center items-center text-white z-30 backdrop-blur-sm absolute w-screen max-w-[1920px] left-0 bottom-0 h-full bg-gradient-to-t max-xl:via-white xl:via-[#fff]/50 from-[#fff] to-transparent">
         <div className="bg-primary/40 w-[95%] md:w-[85%] lg:w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10 max-w-[1920px] h-full">
           <div className="flex items-center justify-between max-sm:flex-col">
             <CustomInput
@@ -224,7 +226,7 @@ const HomeFilter = () => {
                   form.CategoryID.length == 0 ? "all" : form.CategoryID
                 }/${form.Bathrooms.length == 0 ? "all" : form.Bathrooms}/${
                   form.Addresses.length == 0 ? "all" : form.Addresses
-                }`;
+                }/0/100/0/100/false`;
                 navigate(`/properties/${filterUrl}`);
               }}
               className=" w-[270px] h-[50px] max-sm:py-2 bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider max-md:hidden"
@@ -237,7 +239,7 @@ const HomeFilter = () => {
             <CustomInput
               keepOnSelect
               readOnly
-              customStyle={"!text-primary font-semibold capitalize"}
+              customStyle={"!text-white font-semibold capitalize"}
               value={
                 categoriesIsLoading || categoriesIsFetching
                   ? t("Loading")
@@ -358,7 +360,7 @@ const HomeFilter = () => {
             <CustomInput
               keepOnSelect
               readOnly
-              customStyle={"!text-primary font-semibold"}
+              customStyle={"!text-white font-semibold capitalize"}
               value={
                 t("Bedrooms") +
                 ": " +
@@ -417,7 +419,7 @@ const HomeFilter = () => {
             <CustomInput
               keepOnSelect
               readOnly
-              customStyle={"!text-primary font-semibold"}
+              customStyle={"!text-white font-semibold capitalize"}
               value={
                 t("Bathrooms") +
                 ": " +
@@ -481,7 +483,7 @@ const HomeFilter = () => {
                 <CustomInput
                   keepOnSelect
                   readOnly
-                  customStyle={"!text-primary font-semibold"}
+                  customStyle={"!text-white font-semibold capitalize"}
                   placeholder={t("BathroomsNumber")}
                   value={
                     t("Price") +
@@ -518,7 +520,7 @@ const HomeFilter = () => {
                 <CustomInput
                   keepOnSelect
                   readOnly
-                  customStyle={"!text-primary font-semibold"}
+                  customStyle={"!text-white font-semibold capitalize"}
                   placeholder={t("Size")}
                   value={
                     t("Size") +
@@ -550,9 +552,8 @@ const HomeFilter = () => {
             {addressesIsSuccess && (
               <CustomInput
                 readOnly
-                customStyle={
-                  "!text-primary placeholder:text-primary font-semibold"
-                }
+                state={form}
+                customStyle={"!text-white placeholder:text-white font-semibold"}
                 placeholder={t("SelectAddress")}
                 icon={<MdExpandMore size={24} />}
                 value={
@@ -566,23 +567,51 @@ const HomeFilter = () => {
                       ).Name
                     : ""
                 }
-                otherOptions={addresses.ids.map((item, index) => {
-                  if (addresses.entities[item]._count.Property !== 0)
-                    return (
-                      <p
-                        key={index}
-                        onClick={() => setForm({ ...form, Addresses: item })}
-                        className="text-tiny hover:bg-secondary/50 rounded-md p-2 transition-all duration-300"
-                      >
-                        {
-                          addresses.entities[item].Address_Translation.find(
-                            (x) =>
-                              x.Language.Code.toLowerCase() == i18n.language
-                          ).Name
-                        }
-                      </p>
-                    );
-                })}
+                otherOptions={
+                  <div>
+                    <input
+                      type="text"
+                      placeholder={t("AddressSearch")}
+                      className="bg-transparent text-white w-full border-2 border-white rounded-md py-1 px-2 placeholder:text-white outline-none"
+                      value={addressSearchTerm}
+                      onChange={(e) => setAddressSearchTerm(e.target.value)}
+                    />
+                    {addresses.ids.map((item, index) => {
+                      if (addresses.entities[item]._count.Property !== 0)
+                        if (
+                          addresses?.entities[item]?.Address_Translation.find(
+                            (x) => x.Language.Code == "En"
+                          )
+                            ?.Name.toLowerCase()
+                            .includes(addressSearchTerm.toLowerCase()) ||
+                          addresses?.entities[item]?.Address_Translation.find(
+                            (x) => x.Language.Code == "Ar"
+                          )
+                            ?.Name.toLowerCase()
+                            .includes(addressSearchTerm.toLowerCase())
+                        )
+                          return (
+                            <p
+                              key={index}
+                              onClick={() => {
+                                setForm({ ...form, Addresses: item });
+                              }}
+                              className="text-tiny hover:bg-secondary/50 rounded-md p-2 transition-all duration-300"
+                            >
+                              {
+                                addresses.entities[
+                                  item
+                                ].Address_Translation.find(
+                                  (x) =>
+                                    x.Language.Code.toLowerCase() ==
+                                    i18n.language
+                                ).Name
+                              }
+                            </p>
+                          );
+                    })}
+                  </div>
+                }
                 select
                 reverseIcon
               />
@@ -610,10 +639,10 @@ const HomeFilter = () => {
                   form.CategoryID.length == 0 ? "all" : form.CategoryID
                 }/${form.Bathrooms.length == 0 ? "all" : form.Bathrooms}/${
                   form.Addresses.length == 0 ? "all" : form.Addresses
-                }`;
+                }/0/100/0/100/false`;
                 navigate(`/properties/${filterUrl}`);
               }}
-              className=" w-full max-sm:py-2 bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider md:hidden"
+              className="w-full max-sm:py-2 bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider md:hidden"
             >
               {t("Find")}
             </button>

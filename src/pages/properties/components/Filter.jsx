@@ -7,9 +7,10 @@ import { Purpose, RentFrequency, CompletionStatus } from "../../../constants";
 import { MdSearch } from "react-icons/md";
 import CustomInput from "../../../components/Forms/CustomInput";
 import { useGetGeneralDataQuery } from "../../../redux/generalData/generalDataSlice";
-
+import { useGetActiveAddressQuery } from "../../../redux/addresses/addressesSlice";
+import { MdExpandMore } from "react-icons/md";
 const defaultFormState = {
-  Addresses: [],
+  Addresses: "",
   CategoryID: "",
   purpose: "all",
   rentFrequency: "",
@@ -20,6 +21,11 @@ const defaultFormState = {
   PriceMax: 1000000,
   AreaMin: 100,
   AreaMax: 2000,
+  DownPayemntMin: 0,
+  DownPayemntMax: 100,
+  InstallmentMin: 0,
+  InstallmentMax: 100,
+  Posthandover: false,
 };
 const Filter = ({ containerStyle }) => {
   const {
@@ -36,6 +42,11 @@ const Filter = ({ containerStyle }) => {
     CategoryID,
     Bathrooms,
     Addresses,
+    DownPayemntMin,
+    DownPayemntMax,
+    InstallmentMin,
+    InstallmentMax,
+    Posthandover,
   } = useParams();
   const rooms = [1, 2, 3, 4, 5, 6];
   const [searchTerm, setSearchTerm] = useState(search ?? "");
@@ -44,6 +55,11 @@ const Filter = ({ containerStyle }) => {
   const [priceMax, setPriceMax] = useState();
   const [areaMax, setAreaMax] = useState();
   const [parentType, setParentType] = useState();
+  const [DPMIN, setDPMIN] = useState(0);
+  const [DPMAX, setDPMAX] = useState(100);
+  const [ISMIN, setISMIN] = useState(0);
+  const [ISMAX, setISMAX] = useState(100);
+  const [addressSearchTerm, setAddressSearchTerm] = useState("");
   const {
     data: generalData,
     isLoading: generalDataIsLoading,
@@ -51,7 +67,12 @@ const Filter = ({ containerStyle }) => {
     isSuccess: generalDataIsSuccess,
     isError: generalDataIsError,
   } = useGetGeneralDataQuery();
-
+  const {
+    data: addresses,
+    isLoading: addressesIsLoading,
+    isFetching: addressesIsFetching,
+    isSuccess: addressesIsSuccess,
+  } = useGetActiveAddressQuery();
   const [form, setForm] = useState({
     Addresses:
       Addresses == "all" || Array.isArray(Addresses) == false ? [] : Addresses,
@@ -92,6 +113,11 @@ const Filter = ({ containerStyle }) => {
     PriceMax: priceMax,
     AreaMin: areaMin,
     AreaMax: areaMax,
+    DownPayemntMin: DownPayemntMin ?? 0,
+    DownPayemntMax: DownPayemntMax ?? 100,
+    InstallmentMin: InstallmentMin ?? 0,
+    InstallmentMax: InstallmentMax ?? 100,
+    Posthandover: Posthandover ? Posthandover === "true" : false,
   });
   useEffect(() => {
     if (generalDataIsSuccess) {
@@ -161,6 +187,73 @@ const Filter = ({ containerStyle }) => {
           {t("Search")}
         </button>
       </div>
+      <div className="h-px w-full bg-primary/20" />
+      <div className="flex flex-col space-y-2 p-8">
+        {addressesIsSuccess && (
+          <CustomInput
+            readOnly
+            state={form}
+            containerStyle={"!z-50 !bg-primary/50"}
+            customStyle={"!text-white placeholder:text-white font-semibold"}
+            placeholder={t("SelectAddress")}
+            icon={<MdExpandMore size={24} className="text-white" />}
+            value={
+              form.Addresses.length !== 0
+                ? t("Location") +
+                  ": " +
+                  addresses.entities[form.Addresses]?.Address_Translation.find(
+                    (x) => x.Language.Code.toLowerCase() == i18n.language
+                  ).Name
+                : ""
+            }
+            otherOptions={
+              <div>
+                <input
+                  type="text"
+                  placeholder={t("AddressSearch")}
+                  className="bg-transparent text-white w-full border-2 border-white rounded-md py-1 px-2 my-1 placeholder:text-white outline-none"
+                  value={addressSearchTerm}
+                  onChange={(e) => setAddressSearchTerm(e.target.value)}
+                />
+                {addresses.ids.map((item, index) => {
+                  if (addresses.entities[item]._count.Property !== 0)
+                    if (
+                      addresses?.entities[item]?.Address_Translation.find(
+                        (x) => x.Language.Code == "En"
+                      )
+                        ?.Name.toLowerCase()
+                        .includes(addressSearchTerm.toLowerCase()) ||
+                      addresses?.entities[item]?.Address_Translation.find(
+                        (x) => x.Language.Code == "Ar"
+                      )
+                        ?.Name.toLowerCase()
+                        .includes(addressSearchTerm.toLowerCase())
+                    )
+                      return (
+                        <p
+                          key={index}
+                          onClick={() => {
+                            setForm({ ...form, Addresses: item });
+                          }}
+                          className="text-tiny hover:bg-secondary/50 rounded-md p-2 transition-all duration-300"
+                        >
+                          {
+                            addresses.entities[item].Address_Translation.find(
+                              (x) =>
+                                x.Language.Code.toLowerCase() == i18n.language
+                            ).Name
+                          }
+                        </p>
+                      );
+                })}
+              </div>
+            }
+            select
+            reverseIcon
+          />
+        )}
+      </div>
+
       <div className="h-px w-full bg-primary/20" />
       {generalDataIsLoading || generalDataIsFetching ? (
         <div className="text-center text-smaller font-bold p-8 flex flex-col">
@@ -440,7 +533,85 @@ const Filter = ({ containerStyle }) => {
           })}
         </div>
       </div>
-      <div className="w-[calc(100%)] sticky bottom-0 bg-white p-4 shadow-top-shadow flex gap-x-2">
+
+      <div className="h-px w-full bg-primary/20" />
+      <div className="flex flex-col p-8 space-y-2">
+        <p className="font-semibold text-tiny 2xl:text-smaller">
+          {t("Posthandover")}:
+        </p>
+        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
+          {[
+            {
+              value: false,
+              lng: {
+                ar: "لا",
+                en: "No",
+              },
+            },
+            {
+              value: true,
+              lng: {
+                ar: "نعم",
+                en: "Yes",
+              },
+            },
+          ].map((item, index) => {
+            return (
+              <React.Fragment key={index}>
+                <div
+                  className={`w-full h-14 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                    form.Posthandover == item.value
+                      ? "bg-secondary text-primary"
+                      : "bg-transparent text-primary"
+                  }`}
+                  onClick={() => {
+                    let tempForm = {
+                      ...form,
+                      Posthandover: item.value,
+                    };
+                    setForm(tempForm);
+                  }}
+                >
+                  {item?.lng[i18n.language]}
+                </div>
+                {Purpose.length - 1 !== index && (
+                  <div className="h-10 w-1 bg-secondary" />
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="h-px w-full bg-primary/20" />
+
+      <div className="flex flex-col p-8 space-y-2">
+        <p className="font-semibold text-tiny 2xl:text-smaller">
+          {t("Installments")}: %
+        </p>
+        <MultiRangeSlider
+          max={100}
+          min={0}
+          maxVal={ISMAX}
+          minVal={ISMIN}
+          setMaxVal={setISMAX}
+          setMinVal={setISMIN}
+        />
+        <p className="font-semibold text-tiny 2xl:text-smaller pt-12">
+          {t("DownPayment")}:
+        </p>
+        <MultiRangeSlider
+          max={100}
+          min={0}
+          maxVal={DPMAX}
+          minVal={DPMIN}
+          setMaxVal={setDPMAX}
+          setMinVal={setDPMIN}
+        />
+      </div>
+
+      <div className="h-12 w-full bg-transparent" />
+      <div className="w-[calc(100%)] sticky bottom-0 bg-white p-4 shadow-top-shadow flex gap-x-2 z-40">
         <button
           className="w-full p-2 rounded-md shadow-sm bg-secondary font-semibold disabled:bg-gray-500"
           onClick={() => {
@@ -484,7 +655,7 @@ const Filter = ({ containerStyle }) => {
               form.CategoryID.length == 0 ? "all" : form.CategoryID
             }/${form.Bathrooms.length == 0 ? "all" : form.Bathrooms}/${
               form.Addresses.length == 0 ? "all" : form.Addresses
-            }`;
+            }/${DPMIN}/${DPMAX}/${ISMIN}/${ISMAX}/${form.Posthandover}`;
             navigate(`/properties/${filterUrl}`);
           }}
         >

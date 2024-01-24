@@ -39,7 +39,7 @@ export const publicRoutes = [
     element: PropertiesPage,
   },
   {
-    path: "/properties/:PriceMin/:PriceMax/:AreaMin/:AreaMax/:purpose/:rentFrequency/:completionStatus/:Bedrooms/:parentCategory/:CategoryID/:Bathrooms/:Addresses",
+    path: "/properties/:PriceMin/:PriceMax/:AreaMin/:AreaMax/:purpose/:rentFrequency/:completionStatus/:Bedrooms/:parentCategory/:CategoryID/:Bathrooms/:Addresses/:DownPayemntMin/:DownPayemntMax/:InstallmentMin/:InstallmentMax/:Posthandover",
     element: PropertiesPage,
   },
   {

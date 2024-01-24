@@ -23,6 +23,11 @@ const PropertiesList = () => {
     CategoryID,
     Bathrooms,
     Addresses,
+    DownPayemntMin,
+    DownPayemntMax,
+    InstallmentMin,
+    InstallmentMax,
+    Posthandover,
   } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
@@ -52,18 +57,20 @@ const PropertiesList = () => {
         searchTerm: search,
       });
     } else if (
-      PriceMin ||
-      PriceMax ||
-      AreaMin ||
-      AreaMax ||
-      purpose ||
-      rentFrequency ||
-      completionStatus ||
-      Bedrooms ||
-      parentCategory ||
-      CategoryID ||
-      Bathrooms ||
-      Addresses
+      (PriceMin ||
+        PriceMax ||
+        AreaMin ||
+        AreaMax ||
+        purpose ||
+        rentFrequency ||
+        completionStatus ||
+        Bedrooms ||
+        parentCategory ||
+        CategoryID ||
+        Bathrooms ||
+        Addresses ||
+        DownPayemntMin,
+      DownPayemntMax || InstallmentMin || InstallmentMax || Posthandover)
     ) {
       getActiveFilteredProperties({
         page: currentPage,
@@ -102,13 +109,18 @@ const PropertiesList = () => {
               : Bathrooms.split(",").map(function (x) {
                   return parseInt(x, 10);
                 }),
-          PriceMin: PriceMin ? parseInt(PriceMin) : 20000,
-          PriceMax: PriceMax ? parseInt(PriceMax) : 1000000,
-          AreaMin: AreaMin ? parseInt(AreaMin) : 100,
-          AreaMax: AreaMax ? parseInt(AreaMax) : 2000,
+          PriceMin: PriceMin ? parseInt(PriceMin) : 0,
+          PriceMax: PriceMax ? parseInt(PriceMax) : 9999999999,
+          AreaMin: AreaMin ? parseInt(AreaMin) : 0,
+          AreaMax: AreaMax ? parseInt(AreaMax) : 9999999,
           // BalconySizeMax: 1000000,
           // BalconySizeMin: 0,
           EstimatedRent: 0,
+          DownPayemntMin: DownPayemntMin ? parseInt(DownPayemntMin) : 0,
+          DownPayemntMax: DownPayemntMax ? parseInt(DownPayemntMax) : 100,
+          InstallmentMin: InstallmentMin ? parseInt(InstallmentMin) : 0,
+          InstallmentMax: InstallmentMax ? parseInt(InstallmentMax) : 100,
+          Posthandover: Posthandover ? Posthandover === "true" : false,
         },
         filter: true,
       });

@@ -138,6 +138,7 @@ i18n.use(initReactI18next).init({
         searchPlace: "ابحث عن عنوان",
         PickNearby: "اختر نوع المكان القريب",
         SelectAddress: "اختر عنوان",
+        AddressSearch: "ابحث عن عنوان",
       },
     },
     en: {
@@ -273,6 +274,7 @@ i18n.use(initReactI18next).init({
         searchPlace: "Search For A Place",
         PickNearby: "Pick A Nearby Type",
         SelectAddress: "Select an Address",
+        AddressSearch: "Search for an address",
       },
     },
   },

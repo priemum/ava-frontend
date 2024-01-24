@@ -31,7 +31,6 @@ const CustomInput = ({
   const [selectStatus, setSelectStatus] = useState(false);
   const { i18n } = useTranslation();
   const ref = useRef(null);
-
   const handleClickOutside = (event) => {
     if (ref.current && !ref.current.contains(event.target)) {
       setSelectStatus(false);
@@ -43,6 +42,9 @@ const CustomInput = ({
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, []);
+  useEffect(() => {
+    if (!keepOnSelect) setSelectStatus(false);
+  }, [state]);
   return (
     <>
       {inputLabel && (
@@ -57,12 +59,17 @@ const CustomInput = ({
             error
               ? "border-red-500 border-[2px]"
               : "border-white border-b-[1px]"
-          } bg-white/20 rounded-md`
-        }  px-4 py-3 flex w-full items-center relative ${containerStyle}  ${
+          } bg-primary/40 rounded-md`
+        }  px-4 py-3 flex w-full items-center relative ${containerStyle} ${
           reverseIcon && "flex-row-reverse"
         } ${select && "cursor-pointer"}`}
         onClick={() => {
-          !keepOnSelect && setSelectStatus(!selectStatus);
+          // if (selectStatus) {
+          //   !keepOnSelect && setSelectStatus(false);
+          // } else {
+          //   setSelectStatus(!selectStatus);
+          // }
+          setSelectStatus(true);
         }}
       >
         {icon}
@@ -78,9 +85,6 @@ const CustomInput = ({
             }`}
             rows={textAreaRows ?? 15}
             readOnly={readOnly}
-            onClick={() => {
-              setSelectStatus(!selectStatus);
-            }}
           />
         ) : (
           <input
@@ -95,9 +99,6 @@ const CustomInput = ({
             id={id}
             value={value ?? ""}
             readOnly={readOnly}
-            onClick={() => {
-              setSelectStatus(!selectStatus);
-            }}
           />
         )}
         {select && (
@@ -105,7 +106,7 @@ const CustomInput = ({
             ref={ref}
             className={`${
               selectStatus ? "scale-100" : "scale-0"
-            } z-30 transition-all duration-300 origin-top absolute left-0 top-14 rounded-md shadow-2xl drop-shadow-2xl bg-primary/70 backdrop-blur-sm text-white w-full p-2 max-h-[300px] overflow-y-auto`}
+            } z-30 transition-all duration-300 origin-top absolute left-0 top-14 rounded-md shadow-2xl drop-shadow-2xl bg-primary/60 backdrop-blur-sm text-white w-full p-2 max-h-[300px] overflow-y-auto`}
           >
             {options
               ? options.map((item, index) => {
