@@ -17,7 +17,7 @@ const ArticleCard = ({
   const { t } = useTranslation();
   return (
     <div
-      className="w-[90%] rounded-md group bg-primary/10 backdrop-blur-sm shadow-md"
+      className="w-[90%] rounded-md group bg-primary/10 shadow-md"
       onClick={() => {
         navigate(`/article/${id}`);
         localStorage.setItem("slug", id);
@@ -29,7 +29,7 @@ const ArticleCard = ({
           alt="Article Image"
           className="w-full h-full rounded-md object-cover object-center"
         />
-        <div className="bg-primary/20 w-full absolute bottom-0 left-0 transition-all duration-500 backdrop-blur-sm p-3">
+        <div className="bg-primary/60 w-full absolute bottom-0 left-0 transition-all duration-500 p-3">
           <div className="flex justify-start items-center gap-x-3 h-[60px]">
             <div className="flex items-center gap-x-3 flex-1">
               <img

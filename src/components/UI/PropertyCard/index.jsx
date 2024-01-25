@@ -92,7 +92,7 @@ const PropertyCard = ({ data }) => {
           <div
             className={`absolute ${
               showDetails ? "bottom-0" : "-bottom-[110px]"
-            } left-0 w-full h-[275px] z-20 bg-primary/40 backdrop-blur-sm text-white p-2 md:p-4 transition-all duration-500`}
+            } left-0 w-full h-[275px] z-20 bg-primary/60 text-white p-2 md:p-4 transition-all duration-500`}
           >
             <div className="flex items-center justify-between -mt-10 h-[55px] overflow-hidden">
               <div
@@ -198,10 +198,10 @@ const PropertyCard = ({ data }) => {
             </div>
           </div>
           <div className="absolute top-0 left-0 w-full h-[55px] px-4 pt-5 flex items-center text-white gap-x-4">
-            <div className="bg-primary/30 backdrop-blur-sm p-2 rounded-md shadow-md">
+            <div className="bg-primary/60 p-2 rounded-md shadow-md">
               {data.Purpose}
             </div>
-            <div className="bg-primary/30 backdrop-blur-sm p-2 rounded-md shadow-md">
+            <div className="bg-primary/60 p-2 rounded-md shadow-md">
               {
                 data.Category.Category_Translation.find(
                   (x) =>

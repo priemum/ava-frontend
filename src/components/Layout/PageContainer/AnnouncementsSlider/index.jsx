@@ -53,7 +53,7 @@ const AnnouncementsSlider = () => {
                     imgStyle={"h-[60vh] w-full object-fit object-center"}
                   />
                   <Button
-                    bgColor={"bg-primary/50 backdrop-blur-sm"}
+                    bgColor={"bg-primary/80"}
                     text={t("MoreDetails")}
                     textColor={"text-white text-tiny md:text-smaller"}
                     customStyle={
@@ -76,7 +76,7 @@ const AnnouncementsSlider = () => {
                       expandAnnouncement == item
                         ? "bottom-0"
                         : "-bottom-[calc(50vh-1rem)]"
-                    }  left-0 transition-all duration-500 bg-primary/40 backdrop-blur-sm h-[53vh] overflow-y-auto w-full flex flex-col space-y-2 px-4 pb-4 pt-2`}
+                    }  left-0 transition-all duration-500 bg-primary/80 h-[53vh] overflow-y-auto w-full flex flex-col space-y-2 px-4 pb-4 pt-2`}
                   >
                     <div
                       className="w-1/2 self-center h-[3vh] flex justify-center items-start cursor-pointer bg-secondary rounded-full shadow-md drop-shadow-md"

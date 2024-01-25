@@ -125,7 +125,7 @@ const RegisterForm = () => {
           Boolean(errors.PhoneNo)
             ? "!border-[1px] border-red-500"
             : "!border-b-[1px] border-white"
-        } px-1 flex bg-white/20 rounded-md !outline-none`}
+        } px-1 flex bg-primary/50 rounded-md !outline-none`}
         inputClass={`!bg-transparent !text-white !w-full !text-lg !h-full !border-none ${
           i18n.language == "en" ? "px-0" : "mx-10"
         } !outline-none`}
@@ -136,8 +136,8 @@ const RegisterForm = () => {
           outlineOffset: "0px",
           boxShadow: "none",
         }}
-        dropdownClass="!bg-primary/70 !backdrop-blur-sm !text-secondary"
-        searchClass="!bg-primary/70 !backdrop-blur-sm !text-secondary"
+        dropdownClass="!bg-primary/90 !text-secondary"
+        searchClass="!bg-primary/90 !text-secondary"
         inputStyle={{
           direction: "ltr",
           outline: "none",

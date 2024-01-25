@@ -47,7 +47,7 @@ export default function Dropdown() {
               .Direction == "rtl"
               ? "-right-32 origin-top-left"
               : "-left-32 origin-top-right"
-          }  bg-primary/20 rounded-lg shadow-2xl drop-shadow-2xl backdrop-blur-sm transition-all duration-300 p-4 space-y-2 text-white text-smaller w-40`}
+          }  bg-primary/80 rounded-lg shadow-2xl drop-shadow-2xl transition-all duration-300 p-4 space-y-2 text-white text-smaller w-40`}
         >
           {isLoading || isFetching ? (
             <div className="flex justify-start items-center">

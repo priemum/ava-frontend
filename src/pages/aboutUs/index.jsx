@@ -136,7 +136,9 @@ const AboutUsPage = () => {
           );
         })}
       </div>
-      <Teams />
+      <div dir="ltr">
+        <Teams />
+      </div>
       <Location />
     </div>
   );
