@@ -146,6 +146,11 @@ const PropertiesList = () => {
     CategoryID,
     Bathrooms,
     Addresses,
+    Posthandover,
+    InstallmentMin,
+    InstallmentMax,
+    DownPayemntMin,
+    DownPayemntMax,
   ]);
   useEffect(() => {
     if (search) {

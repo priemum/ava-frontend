@@ -621,7 +621,7 @@ const Filter = ({ containerStyle }) => {
           disabled={
             form.Addresses.length == 0 &&
             form.CategoryID == "" &&
-            form.purpose == "Rent" &&
+            form.purpose == "all" &&
             form.rentFrequency == "" &&
             form.completionStatus == "" &&
             form.Bedrooms.length == 0 &&
@@ -630,7 +630,11 @@ const Filter = ({ containerStyle }) => {
             form.PriceMax == generalData?.MaxPrice &&
             form.AreaMin == generalData?.MinSize &&
             form.AreaMax == generalData?.MaxSize &&
-            !PriceMax
+            form.Posthandover == false &&
+            form.InstallmentMin == 0 &&
+            form.InstallmentMax == 100 &&
+            form.DownPayemntMin == 0 &&
+            form.DownPayemntMax == 100
           }
         >
           {t("Clear")}
@@ -644,6 +648,10 @@ const Filter = ({ containerStyle }) => {
               PriceMin: priceMin,
               AreaMin: areaMin,
               AreaMax: areaMax,
+              InstallmentMin: ISMIN,
+              InstallmentMax: ISMAX,
+              DownPayemntMin: DPMIN,
+              DownPayemntMax: DPMAX,
             });
             const filterUrl = `${priceMin}/${priceMax}/${areaMin}/${areaMax}/${
               form.purpose
