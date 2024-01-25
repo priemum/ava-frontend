@@ -70,7 +70,7 @@ const PaymentPlan = ({ data, unitPrice }) => {
             isOpen ? "max-h-[1000px]" : "max-h-[0px]"
           } `}
         >
-          <table className="w-full ">
+          <table className="w-full">
             <tbody>
               <tr className="border-black/30 border-y-[2px] text-tiny md:text-smaller text-center">
                 {/* <th className="p-4 border-black/30 border-y-2">Number</th> */}
