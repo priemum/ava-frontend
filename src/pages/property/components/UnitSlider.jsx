@@ -76,7 +76,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
                   {item.Bedrooms == 0 ? (
                     ""
                   ) : (
-                    <p className="font-bold"> item.Bedrooms</p>
+                    <p className="font-bold"> {item.Bedrooms}</p>
                   )}
 
                   <img src={bedroom} className="w-6 h-6" alt="bedroom-icon" />
