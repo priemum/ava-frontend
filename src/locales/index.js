@@ -139,6 +139,8 @@ i18n.use(initReactI18next).init({
         PickNearby: "اختر نوع المكان القريب",
         SelectAddress: "اختر عنوان",
         AddressSearch: "ابحث عن عنوان",
+        ShowMore: "اعرض المزيد",
+        ShowLess: "اعرض القليل",
       },
     },
     en: {
@@ -275,6 +277,8 @@ i18n.use(initReactI18next).init({
         PickNearby: "Pick A Nearby Type",
         SelectAddress: "Select an Address",
         AddressSearch: "Search for an address",
+        ShowMore: "Show More",
+        ShowLess: "Show Less",
       },
     },
   },

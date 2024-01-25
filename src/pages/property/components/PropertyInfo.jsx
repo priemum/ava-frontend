@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import propertyInfoIcon from "../../../assets/icons/property-info-icon.svg";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const PropertyInfo = ({ data }) => {
   const { i18n, t } = useTranslation();
+  const [descShowMore, setDescShowMore] = useState(false);
   return (
     <div className="my-12">
       <div className="flex items-center self-start flex-1">
@@ -14,16 +15,28 @@ const PropertyInfo = ({ data }) => {
       </div>
 
       <div className="rounded-xl bg-white p-4 lg:p-8 flex flex-col justify-start items-center">
-        <ReactQuill
-          value={
-            data?.Property_Translation.find(
-              (x) =>
-                x.Language.Code.toLowerCase() == i18n.language.toLowerCase()
-            ).Description
-          }
-          readOnly={true}
-          theme={"bubble"}
-        />
+        <div
+          className={`transition-all duration-300 overflow-hidden ${
+            descShowMore ? "max-h-[3000px]" : "max-h-[100px]"
+          }`}
+        >
+          <ReactQuill
+            value={
+              data?.Property_Translation.find(
+                (x) =>
+                  x.Language.Code.toLowerCase() == i18n.language.toLowerCase()
+              ).Description
+            }
+            readOnly={true}
+            theme={"bubble"}
+          />
+        </div>
+        <p
+          className="cursor-pointer px-3 py-1 self-start bg-buttonGrad font-bold rounded-md"
+          onClick={() => setDescShowMore(!descShowMore)}
+        >
+          {descShowMore ? t("ShowLess") : t("ShowMore")}
+        </p>
         <div className="h-px bg-[#CFCFCF] w-[95%] my-8" />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-start w-full text-smaller">
           <p className="col-span-full font-bold">{t("PropertyInformation")}</p>
