@@ -73,11 +73,16 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
-                  <p className="font-bold">{item.Bedrooms}</p>
+                  {item.Bedrooms == 0 ? (
+                    ""
+                  ) : (
+                    <p className="font-bold"> item.Bedrooms</p>
+                  )}
+
                   <img src={bedroom} className="w-6 h-6" alt="bedroom-icon" />
                 </div>
                 <p className="font-normal text-[12px] md:text-tiny">
-                  {t("Bedrooms")}
+                  {item.Bedrooms == 0 ? "std" : t("Bedrooms")}
                 </p>
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">
