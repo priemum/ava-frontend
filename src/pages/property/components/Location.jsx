@@ -7,6 +7,8 @@ import {
   AdvancedMarker,
   Marker,
   Pin,
+  MapControl,
+  ControlPosition,
 } from "@vis.gl/react-google-maps";
 import Directions from "./Directions";
 import LocationInfoNav from "./LocationInfoNav";
@@ -47,8 +49,11 @@ const Location = ({ data }) => {
                 center={{ lat: data?.Latitude, lng: data?.Longitude }}
                 gestureHandling={"greedy"}
                 disableDefaultUI={true}
+                scrollwheel={false}
+                zoomControl
                 mapId={import.meta.env.VITE_GOOGLE_MAP_ID ?? ""}
               >
+                <MapControl position={ControlPosition.TOP_LEFT}>\</MapControl>
                 {nearbyLocations.length !== 0 ? (
                   <>
                     <AdvancedMarker
