@@ -67,7 +67,7 @@ const PaymentPlan = ({ data, unitPrice }) => {
         </div>
         <div
           className={`max-w-[calc(100vw-4.5rem)] overflow-auto transition-all duration-300 h-full ${
-            isOpen ? "max-h-[1000px] x" : "max-h-[0px]"
+            isOpen ? "max-h-[1000px]" : "max-h-[0px]"
           } `}
         >
           <table className="w-full ">
