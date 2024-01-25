@@ -51,7 +51,7 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
                 generalData.MaxPrice
               }/${generalData.MinSize}/${
                 generalData.MaxSize
-              }/all/all/all/all/all/all/all/${[id]}`;
+              }/all/all/all/all/all/all/all/${[id]}/0/100/0/100/false`;
               navigate(`/properties/${filterUrl}`);
             }
           }}

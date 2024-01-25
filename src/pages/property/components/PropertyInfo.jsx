@@ -32,7 +32,7 @@ const PropertyInfo = ({ data }) => {
           />
         </div>
         <p
-          className="cursor-pointer px-3 py-1 bg-buttonGrad font-bold rounded-md"
+          className="cursor-pointer px-3 py-1 bg-buttonGrad font-bold rounded-md text-[14px] md:text-tiny"
           onClick={() => setDescShowMore(!descShowMore)}
         >
           {descShowMore ? t("ShowLess") : t("ShowMore")}
