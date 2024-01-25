@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { MdExpandLess, MdExpandMore } from "react-icons/md";
 
 const PaymentPlan = ({ data, unitPrice }) => {
   const { t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="mb-12 rounded-xl bg-white p-4 lg:p-8 flex flex-col justify-start items-center">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-start w-full text-smaller">
@@ -50,22 +52,38 @@ const PaymentPlan = ({ data, unitPrice }) => {
       <div className="h-px bg-[#CFCFCF] w-[95%] my-8" />
 
       <div className="text-start w-full text-smaller space-y-6">
-        <p className="col-span-full font-bold">{t("Installments")} </p>
-        <div className="max-w-[calc(100vw-4.5rem)] overflow-auto">
-          <table className="w-full">
+        <div
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+          className="cursor-pointer flex justify-start items-center gap-x-3"
+        >
+          <p className="col-span-full font-bold">{t("Installments")}</p>
+          {isOpen ? (
+            <MdExpandLess className="text-small" />
+          ) : (
+            <MdExpandMore className="text-small" />
+          )}
+        </div>
+        <div
+          className={`max-w-[calc(100vw-4.5rem)] overflow-auto transition-all duration-300 h-full ${
+            isOpen ? "max-h-[1000px]" : "max-h-[1px]"
+          } `}
+        >
+          <table className="w-full ">
             <tbody>
               <tr className="border-black/30 border-y-[2px] text-tiny md:text-smaller text-center">
                 {/* <th className="p-4 border-black/30 border-y-2">Number</th> */}
-                <th className="p-2 lg:p-4 border-black/30 border-y-[2px]">
+                <th className="p-2 lg:p-4 border-black/30 border-y-[2px] sticky -top-1 bg-white">
                   {t("Description")}
                 </th>
-                <th className="p-2 lg:p-4 border-black/30 border-y-[2px]">
+                <th className="p-2 lg:p-4 border-black/30 border-y-[2px] sticky -top-1 bg-white">
                   {t("PercentageOfPayment")}
                 </th>
-                <th className="p-2 lg:p-4 border-black/30 border-y-[2px]">
+                <th className="p-2 lg:p-4 border-black/30 border-y-[2px] sticky -top-1 bg-white">
                   {t("Amount")}
                 </th>
-                <th className="p-2 lg:p-4 border-black/30 border-y-[2px]">
+                <th className="p-2 lg:p-4 border-black/30 border-y-[2px] sticky -top-1 bg-white">
                   {t("Date")}
                 </th>
               </tr>
