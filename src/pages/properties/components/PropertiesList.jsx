@@ -57,71 +57,85 @@ const PropertiesList = () => {
         searchTerm: search,
       });
     } else if (
-      (PriceMin ||
-        PriceMax ||
-        AreaMin ||
-        AreaMax ||
-        purpose ||
-        rentFrequency ||
-        completionStatus ||
-        Bedrooms ||
-        parentCategory ||
-        CategoryID ||
-        Bathrooms ||
-        Addresses ||
-        DownPayemntMin,
-      DownPayemntMax || InstallmentMin || InstallmentMax || Posthandover)
+      PriceMin ||
+      PriceMax ||
+      AreaMin ||
+      AreaMax ||
+      purpose ||
+      rentFrequency ||
+      completionStatus ||
+      Bedrooms ||
+      parentCategory ||
+      CategoryID ||
+      Bathrooms ||
+      Addresses ||
+      DownPayemntMin ||
+      DownPayemntMax ||
+      InstallmentMin ||
+      InstallmentMax ||
+      Posthandover
     ) {
+      const DPtMin = DownPayemntMin && parseInt(DownPayemntMin);
+      const DPtMax = DownPayemntMax && parseInt(DownPayemntMax);
+      const INSTMin = InstallmentMin && parseInt(InstallmentMin);
+      const INSTMax = InstallmentMax && parseInt(InstallmentMax);
+      let form = {
+        Addresses:
+          Addresses == "all"
+            ? []
+            : Addresses.split(",").map(function (x) {
+                return x;
+              }),
+        CategoryID:
+          CategoryID == "all" || typeof CategoryID !== "string"
+            ? ""
+            : CategoryID,
+        purpose: purpose == "all" || typeof purpose !== "string" ? "" : purpose,
+        rentFrequency:
+          rentFrequency == "all" || typeof rentFrequency !== "string"
+            ? ""
+            : rentFrequency,
+        completionStatus:
+          completionStatus == "all" || typeof completionStatus !== "string"
+            ? ""
+            : completionStatus,
+        Bedrooms:
+          Bedrooms == "all"
+            ? [1, 2, 3, 4, 5, 6]
+            : Bedrooms.split(",").map(function (x) {
+                return parseInt(x, 10);
+              }),
+        Bathrooms:
+          Bathrooms == "all"
+            ? [1, 2, 3, 4, 5, 6]
+            : Bathrooms.split(",").map(function (x) {
+                return parseInt(x, 10);
+              }),
+        PriceMin: PriceMin ? parseInt(PriceMin) : 0,
+        PriceMax: PriceMax ? parseInt(PriceMax) : 9999999999,
+        AreaMin: AreaMin ? parseInt(AreaMin) : 0,
+        AreaMax: AreaMax ? parseInt(AreaMax) : 9999999,
+        // BalconySizeMax: 1000000,
+        // BalconySizeMin: 0,
+        EstimatedRent: 0,
+        Posthandover: Posthandover ? Posthandover === "true" : false,
+      };
+      if (DPtMin !== 0) {
+        form = { ...form, DownPayemntMin: DPtMin };
+      }
+      if (DPtMax !== 100) {
+        form = { ...form, DownPayemntMax: DPtMax };
+      }
+      if (INSTMin !== 0) {
+        form = { ...form, InstallmentMin: INSTMin };
+      }
+      if (INSTMax !== 100) {
+        form = { ...form, InstallmentMax: INSTMax };
+      }
       getActiveFilteredProperties({
         page: currentPage,
         limit: itemsPerPage,
-        form: {
-          Addresses:
-            Addresses == "all"
-              ? []
-              : Addresses.split(",").map(function (x) {
-                  return x;
-                }),
-          CategoryID:
-            CategoryID == "all" || typeof CategoryID !== "string"
-              ? ""
-              : CategoryID,
-          purpose:
-            purpose == "all" || typeof purpose !== "string" ? "" : purpose,
-          rentFrequency:
-            rentFrequency == "all" || typeof rentFrequency !== "string"
-              ? ""
-              : rentFrequency,
-          completionStatus:
-            completionStatus == "all" || typeof completionStatus !== "string"
-              ? ""
-              : completionStatus,
-          Bedrooms:
-            Bedrooms == "all"
-              ? [1, 2, 3, 4, 5, 6]
-              : Bedrooms.split(",").map(function (x) {
-                  return parseInt(x, 10);
-                }),
-
-          Bathrooms:
-            Bathrooms == "all"
-              ? [1, 2, 3, 4, 5, 6]
-              : Bathrooms.split(",").map(function (x) {
-                  return parseInt(x, 10);
-                }),
-          PriceMin: PriceMin ? parseInt(PriceMin) : 0,
-          PriceMax: PriceMax ? parseInt(PriceMax) : 9999999999,
-          AreaMin: AreaMin ? parseInt(AreaMin) : 0,
-          AreaMax: AreaMax ? parseInt(AreaMax) : 9999999,
-          // BalconySizeMax: 1000000,
-          // BalconySizeMin: 0,
-          EstimatedRent: 0,
-          DownPayemntMin: DownPayemntMin ? parseInt(DownPayemntMin) : 0,
-          DownPayemntMax: DownPayemntMax ? parseInt(DownPayemntMax) : 100,
-          InstallmentMin: InstallmentMin ? parseInt(InstallmentMin) : 0,
-          InstallmentMax: InstallmentMax ? parseInt(InstallmentMax) : 100,
-          Posthandover: Posthandover ? Posthandover === "true" : false,
-        },
+        form: form,
         filter: true,
       });
     } else {
