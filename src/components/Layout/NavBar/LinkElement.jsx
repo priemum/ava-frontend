@@ -18,7 +18,7 @@ const LinkElement = ({ name, link, styled, onClick, drop }) => {
     >
       <p
         className={`px-1 cursor-pointer font-bold ${
-          drop ? "text-small 2xl:text-med" : "text-med 2xl:text-big "
+          drop ? "text-smaller 2xl:text-small" : "text-small 2xl:text-med "
         } ${styled}`}
       >
         {name}

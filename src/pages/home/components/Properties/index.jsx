@@ -17,7 +17,7 @@ const HomeProperties = () => {
     });
 
   return (
-    <div className="mt-20 flex flex-col justify-center items-center px-[5%]">
+    <div className="mt-10 flex flex-col justify-center items-center px-[5%]">
       <div className="flex w-full">
         <div className="flex items-center self-start flex-1">
           <img src={propertyIcon} alt="property Icon" />
@@ -68,6 +68,8 @@ const HomeProperties = () => {
             arrows={false}
             dots={false}
             className="w-full"
+            autoplay
+            autoplaySpeed={3000}
             beforeChange={(prev, next) => setCurrentSlide(next)}
             responsive={[
               {

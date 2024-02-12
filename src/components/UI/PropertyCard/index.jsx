@@ -59,7 +59,7 @@ const PropertyCard = ({ data }) => {
     isSuccess && (
       <div className="flex flex-col items-center justify-center">
         <div
-          className={`h-[550px] w-[95%] max-w-[450px] relative overflow-hidden rounded-md group shadow-lg drop-shadow-md`}
+          className={`h-[450px] w-[95%] max-w-[450px] relative overflow-hidden rounded-md group shadow-lg drop-shadow-md`}
         >
           <Slider
             slidesToScroll={1}
@@ -67,7 +67,7 @@ const PropertyCard = ({ data }) => {
             dots={false}
             arrows={true}
             lazyLoad="ondemand"
-            className="!h-[550px] w-full"
+            className="!h-[450px] w-full"
             nextArrow={<SampleNextArrow />}
             prevArrow={<SamplePrevArrow />}
           >
@@ -81,23 +81,22 @@ const PropertyCard = ({ data }) => {
                       (x) => x.Language.Code == i18n.language
                     )?.Name + index
                   }`}
-                  divStyle={"h-[550px] w-full"}
-                  imgStyle={"h-[550px] w-full object-cover object-center"}
-                  skelatonStyle={"h-[550px] w-full"}
-                  className="h-[550px] w-full object-cover object-center"
+                  divStyle={"h-[450px] w-full"}
+                  imgStyle={"h-[450px] w-full object-cover object-center"}
+                  skelatonStyle={"h-[450px] w-full"}
                 />
               );
             })}
           </Slider>
           <div
             className={`absolute ${
-              showDetails ? "bottom-0" : "-bottom-[110px]"
-            } left-0 w-full h-[275px] z-20 bg-primary/60 text-white p-2 md:p-4 transition-all duration-500`}
+              showDetails ? "bottom-0" : "-bottom-[80px]"
+            } left-0 w-full h-[175px] z-20 bg-primary/60 text-white p-2 md:p-4 transition-all duration-500`}
           >
-            <div className="flex items-center justify-between -mt-10 h-[55px] overflow-hidden">
+            <div className="flex items-center justify-between -mt-10 h-[40px] overflow-hidden">
               <div
                 dir="ltr"
-                className="bg-secondary min-w-[150px] p-2 rounded-md text-black text-tiny md:text-smaller flex items-center gap-x-3"
+                className="bg-secondary min-w-[150px] p-2 rounded-md text-black text-tiny md:text-[18px] flex items-center gap-x-3"
               >
                 <FaCoins size={20} />
                 {lower.Price == higher.Price
@@ -118,8 +117,8 @@ const PropertyCard = ({ data }) => {
                 <MdArrowOutward size={24} />
               </div>
             </div>
-            <div className="h-[130px] flex justify-start items-center">
-              <p className="text-smaller md:text-small font-bold mt-3 line-clamp-2">
+            <div className="h-[80px] flex justify-start items-start">
+              <p className="text-tiny md:text-smaller font-bold mt-3 line-clamp-2">
                 {
                   data.Property_Translation.find(
                     (x) =>
@@ -129,7 +128,7 @@ const PropertyCard = ({ data }) => {
                 }
               </p>
             </div>
-            <div className="pb-2 pt-5 flex justify-evenly items-center font-bold h-[115px]">
+            <div className="pb-2 pt-5 flex justify-evenly items-center font-bold h-[55px]">
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
                   <p className="text-tiny md:text-[18px]">

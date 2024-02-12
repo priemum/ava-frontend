@@ -88,7 +88,7 @@ const HomeFilter = () => {
     }
   }, [generalDataIsSuccess]);
   return (
-    <div className="h-[600px] sm:h-[400px] xl:h-[310px] -mt-[400px] sm:-mt-[250px] xl:-mt-[310px] w-full relative ">
+    <div className="h-[600px] sm:h-[370px] xl:h-[290px] -mt-[200px] sm:-mt-[200px] xl:-mt-[290px] w-full relative ">
       <div className="flex justify-center items-center text-white z-30 backdrop-blur-sm absolute w-screen max-w-[1920px] left-0 bottom-0 h-full bg-gradient-to-t max-xl:via-white xl:via-[#fff]/50 from-[#fff] to-transparent">
         <div className="bg-primary/40 w-[95%] md:w-[85%] lg:w-3/4 rounded-md shadow-lg drop-shadow-lg flex flex-col p-10 max-w-[1920px] h-full">
           <div className="flex items-center justify-between max-sm:flex-col">

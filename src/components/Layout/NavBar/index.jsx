@@ -111,16 +111,16 @@ const NavBar = () => {
             <React.Fragment key={i}>
               <button
                 key={e.link}
-                className="flex gap-x-1 items-center px-1 cursor-pointer font-bold text-white text-med 2xl:text-big hover:text-secondary transition-all duration-300 "
+                className="flex gap-x-1 items-center px-1 cursor-pointer font-bold text-white text-small 2xl:text-med hover:text-secondary transition-all duration-300 "
                 onClick={() =>
                   setDropDownSelect({ open: !dropDownSelect.open, id: e.id })
                 }
               >
                 {t(e.name)}
                 {dropDownSelect.open ? (
-                  <MdExpandLess className="text-med 2xl:text-big translate-y-2" />
+                  <MdExpandLess className="text-small 2xl:text-med translate-y-1" />
                 ) : (
-                  <MdExpandMore className="text-med 2xl:text-big translate-y-2" />
+                  <MdExpandMore className="text-small 2xl:text-med translate-y-1" />
                 )}
               </button>
 

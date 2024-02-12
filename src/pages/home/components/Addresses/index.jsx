@@ -25,7 +25,9 @@ const HomeAddresses = () => {
         <div className="flex w-full">
           <div className="flex items-center self-start flex-1">
             <img src={addressesIcon} alt="property Icon" />
-            <p className="text-small md:text-med font-bold">{t("Addresses")}</p>
+            <p className="text-small md:text-med font-bold">
+              {t("HomeAddresses")}
+            </p>
           </div>
         </div>
         <div className="max-lg:hidden grid md:grid-cols-2 xl:grid-cols-3 place-items-center gap-7">
