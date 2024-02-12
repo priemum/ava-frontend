@@ -638,6 +638,14 @@ const Filter = ({ containerStyle }) => {
           className="w-full p-2 rounded-md shadow-sm bg-secondary font-semibold disabled:bg-gray-500"
           onClick={() => {
             setPaymentPlanStatus(false);
+            setDPMAX(100);
+            setDPMIN(0);
+            setISMAX(100);
+            setISMIN(0);
+            setAreaMin(generalData?.MinSize);
+            setAreaMax(generalData?.MaxSize);
+            setPriceMax(generalData?.MaxPrice);
+            setPriceMin(generalData?.MinPrice);
             setForm(defaultFormState);
             navigate("/properties");
           }}
