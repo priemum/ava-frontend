@@ -17,7 +17,7 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
   } = useGetGeneralDataQuery();
   return (
     generalDataIsSuccess && (
-      <div className="w-[300px] h-[400px] sm:h-[450px] sm:w-[350px] 2xl:h-[500px] 2xl:w-[420px] relative rounded-md  group">
+      <div className="w-[300px] h-[400px] sm:h-[450px] sm:w-[350px] relative rounded-md  group">
         <div className="w-full h-full overflow-hidden rounded-md">
           <img
             src={API_BASE_URL + Image}
@@ -55,10 +55,10 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
               navigate(`/properties/${filterUrl}/false`);
             }
           }}
-          className="w-20 h-20 2xl:w-24 2xl:h-24 bg-primary/30 backdrop-blur-sm text-white absolute -right-3 -bottom-3 2xl:-right-4 2xl:-bottom-4 rounded-md flex flex-col gap-y-2 justify-center items-center cursor-pointer"
+          className="w-20 h-20  bg-primary/30 backdrop-blur-sm text-white absolute -right-3 -bottom-3  rounded-md flex flex-col gap-y-2 justify-center items-center cursor-pointer"
         >
           <MdArrowOutward size={24} />
-          <p> {t("SeeMore")}</p>
+          <p className="text-[14px]"> {t("SeeMore")}</p>
         </div>
       </div>
     )

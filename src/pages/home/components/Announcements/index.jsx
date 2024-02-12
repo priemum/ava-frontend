@@ -22,7 +22,7 @@ const Announcements = () => {
         setRotateY(25);
       } else {
         setScrollY(50);
-        setRotateY(2);
+        setRotateY(4);
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -51,7 +51,7 @@ const Announcements = () => {
           className="rounded-md relative"
         >
           {data.count > 1 && (
-            <div className="absolute h-9 flex justify-center items-center left-12 bottom-5 md:bottom-12 gap-x-8">
+            <div className="absolute h-9 flex justify-center items-center left-12 bottom-5  gap-x-8">
               {data.ids.map((item, index) => {
                 if (data.entities[item].Type == "Normal")
                   return (
@@ -87,7 +87,7 @@ const Announcements = () => {
             pauseOnHover={false}
             autoplay={true}
             autoplaySpeed={7000}
-            className="!w-full !h-[85vh] md:!h-[600px]"
+            className="!w-full !h-[85vh] md:!h-[450px]"
             beforeChange={(prev, next) => {
               setCurrentSlide(next);
             }}
@@ -97,10 +97,10 @@ const Announcements = () => {
                 return (
                   <div
                     key={index}
-                    className="w-full h-[85vh] md:h-[600px] !grid md:!grid-cols-2"
+                    className="w-full h-[85vh] md:h-[450px] !grid md:!grid-cols-2"
                   >
-                    <div className="p-4 md:p-8 xl:px-12 2xl:px-16 space-y-7 flex flex-col md:justify-center items-center md:items-start h-full w-full">
-                      <p className="text-white font-bold text-med md:text-big">
+                    <div className="p-4 md:p-8 xl:px-12 2xl:px-16 space-y-7 flex flex-col md:justify-start items-center md:items-start h-full w-full">
+                      <p className="text-white font-bold text-small md:text-med">
                         {
                           data.entities[item].Announcements_Translation.find(
                             (x) =>
@@ -109,7 +109,7 @@ const Announcements = () => {
                           ).Title
                         }
                       </p>
-                      <p className="text-white font-medium text-smaller max-md:text-center md:text-small">
+                      <p className="text-white font-medium text-tiny max-md:text-center md:text-[18px]">
                         {
                           data.entities[item].Announcements_Translation.find(
                             (x) =>
@@ -121,10 +121,10 @@ const Announcements = () => {
                       <Button
                         bgColor={"bg-buttonGrad"}
                         text={t("MoreDetails")}
-                        textColor={"text-primary text-tiny md:text-smaller"}
+                        textColor={"text-primary text-tiny"}
                         customStyle={"p-4"}
-                        w={"200px"}
-                        h={"45px"}
+                        w={"170px"}
+                        h={"35px"}
                         borderRadius={4}
                         onClick={() => {
                           window.open(
@@ -137,7 +137,7 @@ const Announcements = () => {
                     </div>
                     <div className="h-full w-full relative">
                       <div
-                        className={` h-[270px] w-[300px] sm:h-[300px] sm:w-[450px] md:h-[250px] md:w-[350px] lg:h-[300px] lg:w-[450px] xl:h-[450px] xl:w-[600px] absolute top-0 md:top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md !ease-in-out duration-700 transition-all  ${
+                        className={` h-[270px] w-[300px] sm:h-[300px] sm:w-[450px] md:h-[250px] md:w-[350px] lg:h-[300px] lg:w-[450px] xl:h-[350px] absolute top-0 md:top-1/2 left-1/2 p-1 bg-white origin-bottom-left rounded-md !ease-in-out duration-700 transition-all  ${
                           index == currentSlide ? "opacity-100" : "opacity-0"
                         }`}
                         style={{

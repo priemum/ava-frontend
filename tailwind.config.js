@@ -13,7 +13,7 @@ export default {
         mobileHuge: "60px",
         bigger: "70px",
         big: "45px",
-        med: "30px",
+        med: "27px",
         small: "23px",
         smaller: "20px",
         tiny: "16px",
