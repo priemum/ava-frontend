@@ -131,6 +131,7 @@ const PropertiesList = () => {
         form = {
           ...form,
           Posthandover: Posthandover ? Posthandover === "true" : false,
+          PaymentPlan: true,
         };
       }
 
