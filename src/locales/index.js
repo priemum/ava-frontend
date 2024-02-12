@@ -141,6 +141,7 @@ i18n.use(initReactI18next).init({
         AddressSearch: "ابحث عن عنوان",
         ShowMore: "اعرض كل النص",
         ShowLess: "اعرض القليل",
+        SearchByPaymentPlan: "البحث عن طريق خطة الدفع",
       },
     },
     en: {
@@ -279,6 +280,7 @@ i18n.use(initReactI18next).init({
         AddressSearch: "Search for an address",
         ShowMore: "Show Full description",
         ShowLess: "Show Less",
+        SearchByPaymentPlan: "Search by payment plan",
       },
     },
   },

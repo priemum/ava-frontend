@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import MultiRangeSlider from "../../../components/Forms/MultiRangeSlider";
 import { useGetActiveCategoryQuery } from "../../../redux/categories/categoriesSlice";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Purpose, RentFrequency, CompletionStatus } from "../../../constants";
-import { MdSearch } from "react-icons/md";
+import { MdExpandLess, MdSearch } from "react-icons/md";
 import CustomInput from "../../../components/Forms/CustomInput";
 import { useGetGeneralDataQuery } from "../../../redux/generalData/generalDataSlice";
 import { useGetActiveAddressQuery } from "../../../redux/addresses/addressesSlice";
@@ -60,6 +60,7 @@ const Filter = ({ containerStyle }) => {
   const [ISMIN, setISMIN] = useState(0);
   const [ISMAX, setISMAX] = useState(100);
   const [addressSearchTerm, setAddressSearchTerm] = useState("");
+  const [paymentPlanStatus, setPaymentPlanStatus] = useState(false);
   const {
     data: generalData,
     isLoading: generalDataIsLoading,
@@ -73,6 +74,7 @@ const Filter = ({ containerStyle }) => {
     isFetching: addressesIsFetching,
     isSuccess: addressesIsSuccess,
   } = useGetActiveAddressQuery();
+  const location = useLocation();
   const [form, setForm] = useState({
     Addresses:
       Addresses == "all" || Array.isArray(Addresses) == false ? [] : Addresses,
@@ -535,86 +537,107 @@ const Filter = ({ containerStyle }) => {
       </div>
 
       <div className="h-px w-full bg-primary/20" />
-      <div className="flex flex-col p-8 space-y-2">
+
+      <div
+        onClick={() => {
+          setPaymentPlanStatus(!paymentPlanStatus);
+        }}
+        className="cursor-pointer flex justify-center items-center gap-x-3 p-8"
+      >
         <p className="font-semibold text-tiny 2xl:text-smaller">
-          {t("Posthandover")}:
+          {t("SearchByPaymentPlan")}
         </p>
-        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
-          {[
-            {
-              value: false,
-              lng: {
-                ar: "لا",
-                en: "No",
+        {paymentPlanStatus ? (
+          <MdExpandLess className="text-small" />
+        ) : (
+          <MdExpandMore className="text-small" />
+        )}
+      </div>
+      {!paymentPlanStatus && <div className="h-px w-full bg-primary/20" />}
+      <div
+        className={`max-w-[calc(100vw-4.5rem)] overflow-auto transition-all duration-100 h-full ${
+          paymentPlanStatus ? "max-h-[400px]" : "max-h-[0px]"
+        } `}
+      >
+        <div className="flex flex-col p-8 space-y-2">
+          <p className="font-semibold text-tiny 2xl:text-smaller">
+            {t("Posthandover")}:
+          </p>
+          <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
+            {[
+              {
+                value: false,
+                lng: {
+                  ar: "لا",
+                  en: "No",
+                },
               },
-            },
-            {
-              value: true,
-              lng: {
-                ar: "نعم",
-                en: "Yes",
+              {
+                value: true,
+                lng: {
+                  ar: "نعم",
+                  en: "Yes",
+                },
               },
-            },
-          ].map((item, index) => {
-            return (
-              <React.Fragment key={index}>
-                <div
-                  className={`w-full h-14 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
-                    form.Posthandover == item.value
-                      ? "bg-secondary text-primary"
-                      : "bg-transparent text-primary"
-                  }`}
-                  onClick={() => {
-                    let tempForm = {
-                      ...form,
-                      Posthandover: item.value,
-                    };
-                    setForm(tempForm);
-                  }}
-                >
-                  {item?.lng[i18n.language]}
-                </div>
-                {Purpose.length - 1 !== index && (
-                  <div className="h-10 w-1 bg-secondary" />
-                )}
-              </React.Fragment>
-            );
-          })}
+            ].map((item, index) => {
+              return (
+                <React.Fragment key={index}>
+                  <div
+                    className={`w-full h-14 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                      form.Posthandover == item.value
+                        ? "bg-secondary text-primary"
+                        : "bg-transparent text-primary"
+                    }`}
+                    onClick={() => {
+                      let tempForm = {
+                        ...form,
+                        Posthandover: item.value,
+                      };
+                      setForm(tempForm);
+                    }}
+                  >
+                    {item?.lng[i18n.language]}
+                  </div>
+                  {1 !== index && <div className="h-10 w-1 bg-secondary" />}
+                </React.Fragment>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* <div className="h-px w-full bg-primary/20" /> */}
+
+        <div className="flex flex-col p-8 space-y-2">
+          <p className="font-semibold text-tiny 2xl:text-smaller">
+            {t("Installments")}: %
+          </p>
+          <MultiRangeSlider
+            max={100}
+            min={0}
+            maxVal={ISMAX}
+            minVal={ISMIN}
+            setMaxVal={setISMAX}
+            setMinVal={setISMIN}
+          />
+          <p className="font-semibold text-tiny 2xl:text-smaller pt-12">
+            {t("DownPayment")}:
+          </p>
+          <MultiRangeSlider
+            max={100}
+            min={0}
+            maxVal={DPMAX}
+            minVal={DPMIN}
+            setMaxVal={setDPMAX}
+            setMinVal={setDPMIN}
+          />
         </div>
       </div>
-
-      <div className="h-px w-full bg-primary/20" />
-
-      <div className="flex flex-col p-8 space-y-2">
-        <p className="font-semibold text-tiny 2xl:text-smaller">
-          {t("Installments")}: %
-        </p>
-        <MultiRangeSlider
-          max={100}
-          min={0}
-          maxVal={ISMAX}
-          minVal={ISMIN}
-          setMaxVal={setISMAX}
-          setMinVal={setISMIN}
-        />
-        <p className="font-semibold text-tiny 2xl:text-smaller pt-12">
-          {t("DownPayment")}:
-        </p>
-        <MultiRangeSlider
-          max={100}
-          min={0}
-          maxVal={DPMAX}
-          minVal={DPMIN}
-          setMaxVal={setDPMAX}
-          setMinVal={setDPMIN}
-        />
-      </div>
-
       <div className="h-12 w-full bg-transparent" />
       <div className="w-[calc(100%)] sticky bottom-0 bg-white p-4 shadow-top-shadow flex gap-x-2 z-40">
         <button
           className="w-full p-2 rounded-md shadow-sm bg-secondary font-semibold disabled:bg-gray-500"
           onClick={() => {
+            setPaymentPlanStatus(false);
             setForm(defaultFormState);
             navigate("/properties");
           }}
@@ -634,7 +657,8 @@ const Filter = ({ containerStyle }) => {
             form.InstallmentMin == 0 &&
             form.InstallmentMax == 100 &&
             form.DownPayemntMin == 0 &&
-            form.DownPayemntMax == 100
+            form.DownPayemntMax == 100 &&
+            paymentPlanStatus == false
           }
         >
           {t("Clear")}
@@ -664,7 +688,7 @@ const Filter = ({ containerStyle }) => {
             }/${form.Bathrooms.length == 0 ? "all" : form.Bathrooms}/${
               form.Addresses.length == 0 ? "all" : form.Addresses
             }/${DPMIN}/${DPMAX}/${ISMIN}/${ISMAX}/${form.Posthandover}`;
-            navigate(`/properties/${filterUrl}`);
+            navigate(`/properties/${filterUrl}/${paymentPlanStatus}`);
           }}
         >
           {t("Filter")}

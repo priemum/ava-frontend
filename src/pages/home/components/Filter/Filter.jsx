@@ -226,7 +226,7 @@ const HomeFilter = () => {
                   form.CategoryID.length == 0 ? "all" : form.CategoryID
                 }/${form.Bathrooms.length == 0 ? "all" : form.Bathrooms}/${
                   form.Addresses.length == 0 ? "all" : form.Addresses
-                }/0/100/0/100/false`;
+                }/0/100/0/100/false/false`;
                 navigate(`/properties/${filterUrl}`);
               }}
               className=" w-[270px] h-[50px] max-sm:py-2 bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider max-md:hidden"
@@ -639,7 +639,7 @@ const HomeFilter = () => {
                   form.CategoryID.length == 0 ? "all" : form.CategoryID
                 }/${form.Bathrooms.length == 0 ? "all" : form.Bathrooms}/${
                   form.Addresses.length == 0 ? "all" : form.Addresses
-                }/0/100/0/100/false`;
+                }/0/100/0/100/false/false`;
                 navigate(`/properties/${filterUrl}`);
               }}
               className="w-full max-sm:py-2 bg-buttonGrad rounded-md text-primary font-bold text-smaller tracking-wider md:hidden"

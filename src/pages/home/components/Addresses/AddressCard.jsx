@@ -52,7 +52,7 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
               }/${generalData.MinSize}/${
                 generalData.MaxSize
               }/all/all/all/all/all/all/all/${[id]}/0/100/0/100/false`;
-              navigate(`/properties/${filterUrl}`);
+              navigate(`/properties/${filterUrl}/false`);
             }
           }}
           className="w-20 h-20 2xl:w-24 2xl:h-24 bg-primary/30 backdrop-blur-sm text-white absolute -right-3 -bottom-3 2xl:-right-4 2xl:-bottom-4 rounded-md flex flex-col gap-y-2 justify-center items-center cursor-pointer"

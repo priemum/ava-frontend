@@ -28,6 +28,7 @@ const PropertiesList = () => {
     InstallmentMin,
     InstallmentMax,
     Posthandover,
+    PaymentPlan,
   } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
@@ -120,16 +121,16 @@ const PropertiesList = () => {
         EstimatedRent: 0,
         Posthandover: Posthandover ? Posthandover === "true" : false,
       };
-      if (DPtMin !== 0) {
+      if (DPtMin !== 0 && PaymentPlan) {
         form = { ...form, DownPayemntMin: DPtMin };
       }
-      if (DPtMax !== 100) {
+      if (DPtMax !== 100 && PaymentPlan) {
         form = { ...form, DownPayemntMax: DPtMax };
       }
-      if (INSTMin !== 0) {
+      if (INSTMin !== 0 && PaymentPlan) {
         form = { ...form, InstallmentMin: INSTMin };
       }
-      if (INSTMax !== 100) {
+      if (INSTMax !== 100 && PaymentPlan) {
         form = { ...form, InstallmentMax: INSTMax };
       }
       getActiveFilteredProperties({
