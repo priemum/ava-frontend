@@ -119,20 +119,21 @@ const PropertiesList = () => {
         // BalconySizeMax: 1000000,
         // BalconySizeMin: 0,
         EstimatedRent: 0,
-        Posthandover: Posthandover ? Posthandover === "true" : false,
       };
-      if (DPtMin !== 0 && PaymentPlan) {
-        form = { ...form, DownPayemntMin: DPtMin };
+      if ((DPtMin !== 0 || DPtMax !== 100) && PaymentPlan) {
+        form = { ...form, DownPayemntMin: DPtMin, DownPayemntMax: DPtMax };
       }
-      if (DPtMax !== 100 && PaymentPlan) {
-        form = { ...form, DownPayemntMax: DPtMax };
+
+      if ((INSTMin !== 0 || INSTMax !== 100) && PaymentPlan) {
+        form = { ...form, InstallmentMin: INSTMin, InstallmentMax: INSTMax };
       }
-      if (INSTMin !== 0 && PaymentPlan) {
-        form = { ...form, InstallmentMin: INSTMin };
+      if (PaymentPlan) {
+        form = {
+          ...form,
+          Posthandover: Posthandover ? Posthandover === "true" : false,
+        };
       }
-      if (INSTMax !== 100 && PaymentPlan) {
-        form = { ...form, InstallmentMax: INSTMax };
-      }
+
       getActiveFilteredProperties({
         page: currentPage,
         limit: itemsPerPage,
