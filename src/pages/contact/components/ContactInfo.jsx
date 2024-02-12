@@ -5,8 +5,8 @@ import { MdLocationOn, MdPhone, MdEmail } from "react-icons/md";
 const ContactInfo = () => {
   const { t } = useTranslation();
   return (
-    <div className="text-white space-y-8 text-smaller font-semibold">
-      <p className="text-bold text-big font-bold">{t("ContactInformation")}</p>
+    <div className="text-white space-y-8 text-tiny 2xl:text-smaller font-semibold">
+      <p className="text-bold text-med font-bold">{t("ContactInformation")}</p>
       <div className="flex items-center gap-x-4">
         <MdLocationOn size={24} />
         <p>{t("OfficeAddress")}</p>

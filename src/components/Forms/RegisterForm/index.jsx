@@ -75,6 +75,7 @@ const RegisterForm = () => {
       <CustomInput
         icon={<MdPerson className="text-white text-med" />}
         placeholder={t("formFullName")}
+        containerStyle={"bg-white/20"}
         type="text"
         name="FullName"
         id="FullName"
@@ -86,6 +87,7 @@ const RegisterForm = () => {
       <CustomInput
         icon={<MdMail className="text-white text-med" />}
         placeholder={t("formEmail")}
+        containerStyle={"bg-white/20"}
         type="email"
         name="Email"
         id="Email"
@@ -125,7 +127,7 @@ const RegisterForm = () => {
           Boolean(errors.PhoneNo)
             ? "!border-[1px] border-red-500"
             : "!border-b-[1px] border-white"
-        } px-1 flex bg-primary/50 rounded-md !outline-none`}
+        } px-1 flex bg-white/20 rounded-md !outline-none`}
         inputClass={`!bg-transparent !text-white !w-full !text-lg !h-full !border-none ${
           i18n.language == "en" ? "px-0" : "mx-10"
         } !outline-none`}
@@ -172,6 +174,7 @@ const RegisterForm = () => {
       </div>
       <CustomInput
         placeholder={t("Subject")}
+        containerStyle={"bg-white/20"}
         type="text"
         name="Subject"
         id="Subject"
@@ -181,6 +184,7 @@ const RegisterForm = () => {
       />
       <CustomInput
         placeholder={t("Message")}
+        containerStyle={"bg-white/20"}
         name="Message"
         id="Message"
         value={values.Message}

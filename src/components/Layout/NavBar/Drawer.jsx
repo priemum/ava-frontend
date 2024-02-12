@@ -55,7 +55,7 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
                 alt="LOGO"
               />
             </header>
-            <div className="w-full h-16 f" />
+            <div className="w-full h-[10vh] " />
 
             {children}
           </article>

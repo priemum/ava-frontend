@@ -14,7 +14,7 @@ const ListingPage = () => {
         <GradientText
           text={t("ListingTitle")}
           customStyle={
-            "text-med md:text-[60px] font-bold text-center drop-shadow-2xl w-4/5 md:w-3/5 "
+            "text-[37px] 2xl:text-big font-bold text-center drop-shadow-2xl w-4/5 md:w-3/5 "
           }
         />
         <div className="w-full flex max-lg:flex-col justify-center items-center gap-8">

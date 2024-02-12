@@ -87,7 +87,7 @@ const MultiRangeSlider = ({
         <div
           className={`absolute ${
             textColor ?? "text-primary"
-          } text-tiny mt-5 left-[6px]`}
+          } text-[14px] mt-5 left-[6px]`}
         >
           {price
             ? numberWithComma(minVal * currentCurrency.conversionRate)
@@ -98,7 +98,7 @@ const MultiRangeSlider = ({
         <div
           className={`absolute ${
             textColor ?? "text-primary"
-          } text-tiny mt-5 -right-1`}
+          } text-[14px] mt-5 -right-1`}
         >
           {price
             ? numberWithComma(maxVal * currentCurrency.conversionRate)

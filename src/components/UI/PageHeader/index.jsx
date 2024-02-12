@@ -18,7 +18,7 @@ const PageHeader = ({ text }) => {
           <GradientText
             text={text}
             customStyle={
-              "text-center text-big 2xl:text-bigger font-bold text-primary w-[90%] md:w-[50%]"
+              "text-center text-[37px] 2xl:text-big font-bold text-primary w-[90%] md:w-[50%]"
             }
             header
           />

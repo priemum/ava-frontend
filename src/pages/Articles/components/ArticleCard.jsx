@@ -23,7 +23,7 @@ const ArticleCard = ({
         localStorage.setItem("slug", id);
       }}
     >
-      <div className="relative h-[400px] w-full overflow-hidden">
+      <div className="relative h-[350px] w-full overflow-hidden">
         <img
           src={API_BASE_URL + Image}
           alt="Article Image"
@@ -37,22 +37,22 @@ const ArticleCard = ({
                 className="w-16 h-16 object-cover object-top rounded-md"
                 alt="Article Card"
               />
-              <p className="text-white text-smaller ">{AuthorName}</p>
+              <p className="text-white text-tiny ">{AuthorName}</p>
             </div>
-            <p className="font-normal text-smaller drop-shadow-xl text-third h-[30px]">
+            <p className="font-normal text-tiny drop-shadow-xl text-third h-[30px]">
               {MinRead + " " + t("MinRead")}
             </p>
           </div>
         </div>
       </div>
       <div className="p-5 lg:p-8 space-y-1 h-[250px] flex flex-col">
-        <p className="font-bold text-small">{Title}</p>
+        <p className="font-bold text-smaller">{Title}</p>
         <div className="flex-1">
           <p className="line-clamp-2 text-tiny ">{Caption}</p>
         </div>
-        <div className="flex items-center text-smaller !mt-4 gap-x-1">
+        <div className="flex items-center text-tiny !mt-4 gap-x-1">
           <p>{t("ReadMore")}</p>
-          <MdArrowOutward size={24} />
+          <MdArrowOutward size={20} />
         </div>
       </div>
     </div>

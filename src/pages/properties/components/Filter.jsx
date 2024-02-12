@@ -177,9 +177,20 @@ const Filter = ({ containerStyle }) => {
           placeholder={t("SearchForProperty")}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          icon={<MdSearch className="text-small text-primary" />}
+          reverseIcon
+          icon={
+            <button
+              disabled={searchTerm.replace(/ /g, "") == ""}
+              className="bg-secondary text-white font-semibold rounded-md p-1 disabled:bg-gray-500 cursor-pointer"
+              onClick={() => {
+                navigate(`/properties/${searchTerm}`);
+              }}
+            >
+              <MdSearch className="text-small" />
+            </button>
+          }
         />
-        <button
+        {/* <button
           disabled={searchTerm.replace(/ /g, "") == ""}
           className="bg-secondary w-full text-primary font-semibold rounded-md px-8 py-2 disabled:bg-gray-500"
           onClick={() => {
@@ -187,7 +198,7 @@ const Filter = ({ containerStyle }) => {
           }}
         >
           {t("Search")}
-        </button>
+        </button> */}
       </div>
       <div className="h-px w-full bg-primary/20" />
       <div className="flex flex-col space-y-2 p-8">
@@ -264,9 +275,7 @@ const Filter = ({ containerStyle }) => {
       ) : (
         generalDataIsSuccess && (
           <div className="flex flex-col p-8 space-y-2">
-            <p className="font-semibold text-tiny 2xl:text-smaller">
-              {t("Price")}:
-            </p>
+            <p className="font-semibold text-tiny ">{t("Price")}:</p>
             <MultiRangeSlider
               max={generalData.MaxPrice}
               min={generalData.MinPrice}
@@ -276,9 +285,7 @@ const Filter = ({ containerStyle }) => {
               setMinVal={setPriceMin}
               price
             />
-            <p className="font-semibold text-tiny 2xl:text-smaller pt-12">
-              {t("Size")}:
-            </p>
+            <p className="font-semibold text-tiny  pt-12">{t("Size")}:</p>
             <MultiRangeSlider
               max={generalData.MaxSize}
               min={generalData.MinSize}
@@ -296,7 +303,7 @@ const Filter = ({ containerStyle }) => {
         <React.Fragment>
           <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
             <div
-              className={`w-full h-14 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 capitalize ${
+              className={`w-full h-10 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 capitalize ${
                 form.purpose == "all"
                   ? "bg-secondary text-primary"
                   : "bg-transparent text-primary"
@@ -320,7 +327,7 @@ const Filter = ({ containerStyle }) => {
               return (
                 <React.Fragment key={index}>
                   <div
-                    className={`w-full h-14 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                    className={`w-full h-10 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
                       form.purpose == item.value
                         ? "bg-secondary text-primary"
                         : "bg-transparent text-primary"
@@ -350,12 +357,12 @@ const Filter = ({ containerStyle }) => {
                 return (
                   <div
                     key={index}
-                    className={`h-14 w-full border-[1px] border-secondary ${
+                    className={`h-10 w-full border-[1px] border-secondary ${
                       form.rentFrequency == item.value ||
                       form.completionStatus == item.value
                         ? "text-primary bg-secondary"
                         : "text-secondary bg-transparent"
-                    } flex justify-center items-center text-tiny 2xl:text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
+                    } flex justify-center items-center text-tiny 2xl:text-[18px] p-3 rounded-md cursor-pointer transition-all duration-300`}
                     onClick={() => {
                       if (form.purpose == "Rent") {
                         setForm({ ...form, rentFrequency: item.value });
@@ -374,14 +381,14 @@ const Filter = ({ containerStyle }) => {
       </div>
       <div className="h-px w-full bg-primary/20" />
       <div className="flex flex-col p-8 space-y-2">
-        <p className="font-semibold text-smaller">{t("Bedrooms")}:</p>
-        <div className="grid grid-cols-4 2xl:grid-cols-5 gap-4">
+        <p className="font-semibold text-tiny">{t("Bedrooms")}:</p>
+        <div className="grid grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3">
           <div
-            className={`h-10 w-10 border-[1px] border-secondary ${
+            className={`h-8 w-8 border-[1px] border-secondary ${
               form.Bedrooms.length == 0
                 ? "text-primary bg-secondary"
                 : "text-secondary bg-transparent"
-            } flex justify-center items-center text-smaller p-3 rounded-md cursor-pointer font-bold transition-all duration-300`}
+            } flex justify-center items-center text-tiny p-3 rounded-md cursor-pointer font-bold transition-all duration-300`}
             onClick={() => {
               setForm({ ...form, Bedrooms: [] });
             }}
@@ -392,11 +399,11 @@ const Filter = ({ containerStyle }) => {
             return (
               <div
                 key={index}
-                className={`h-10 w-10 border-[1px] border-secondary ${
+                className={`h-8 w-8 border-[1px] border-secondary ${
                   form.Bedrooms.includes(item)
                     ? "text-primary bg-secondary"
                     : "text-secondary bg-transparent"
-                } flex justify-center items-center text-smaller p-3 rounded-md cursor-pointer font-bold transition-all duration-300`}
+                } flex justify-center items-center text-tiny p-3 rounded-md cursor-pointer font-bold transition-all duration-300`}
                 onClick={() => {
                   let brooms = form.Bedrooms;
                   if (form.Bedrooms.includes(item)) {
@@ -425,7 +432,7 @@ const Filter = ({ containerStyle }) => {
             <React.Fragment>
               <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
                 <div
-                  className={`w-full h-14 rounded-md text-tiny flex justify-center capitalize items-center text-center cursor-pointer transition-all duration-300 ${
+                  className={`w-full h-10 rounded-md text-tiny flex justify-center capitalize items-center text-center cursor-pointer transition-all duration-300 ${
                     parentType == "all"
                       ? "bg-secondary text-primary"
                       : "bg-transparent text-primary"
@@ -443,7 +450,7 @@ const Filter = ({ containerStyle }) => {
                     return (
                       <React.Fragment key={index}>
                         <div
-                          className={`w-full h-14 rounded-md text-tiny flex justify-center items-center text-center cursor-pointer transition-all duration-300 ${
+                          className={`w-full h-10 rounded-md text-tiny flex justify-center items-center text-center cursor-pointer transition-all duration-300 ${
                             parentType == item
                               ? "bg-secondary text-primary"
                               : "bg-transparent text-primary"
@@ -473,11 +480,11 @@ const Filter = ({ containerStyle }) => {
                     return (
                       <div
                         key={index}
-                        className={`h-16 w-full border-[1px] border-secondary ${
+                        className={`h-12 w-full border-[1px] border-secondary ${
                           form.CategoryID == item
                             ? "text-primary bg-secondary"
                             : "text-secondary bg-transparent"
-                        } flex justify-center items-center text-center text-tiny 2xl:text-smaller p-3 rounded-md cursor-pointer transition-all duration-300`}
+                        } flex justify-center items-center text-center text-tiny p-3 rounded-md cursor-pointer transition-all duration-300`}
                         onClick={() => setForm({ ...form, CategoryID: item })}
                       >
                         {
@@ -496,14 +503,14 @@ const Filter = ({ containerStyle }) => {
       </div>
       <div className="h-px w-full bg-primary/20" />
       <div className="flex flex-col p-8 space-y-2">
-        <p className="font-semibold text-smaller">{t("Bathrooms")}:</p>
-        <div className="grid grid-cols-4 2xl:grid-cols-5 gap-4">
+        <p className="font-semibold text-tiny">{t("Bathrooms")}:</p>
+        <div className="grid grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3">
           <div
-            className={`h-10 w-10 border-[1px] border-secondary ${
+            className={`h-8 w-8 border-[1px] border-secondary ${
               form.Bathrooms.length == 0
                 ? "text-primary bg-secondary"
                 : "text-secondary bg-transparent"
-            } flex justify-center items-center text-smaller p-3 rounded-md cursor-pointer font-bold transition-all duration-300`}
+            } flex justify-center items-center text-tiny p-3 rounded-md cursor-pointer font-bold transition-all duration-300`}
             onClick={() => {
               setForm({ ...form, Bathrooms: [] });
             }}
@@ -514,11 +521,11 @@ const Filter = ({ containerStyle }) => {
             return (
               <div
                 key={index}
-                className={`h-10 w-10 border-[1px] border-secondary ${
+                className={`h-8 w-8 border-[1px] border-secondary ${
                   form.Bathrooms.includes(item)
                     ? "text-primary bg-secondary"
                     : "text-secondary bg-transparent"
-                } flex justify-center items-center text-smaller p-3 rounded-md cursor-pointer font-bold transition-all duration-300`}
+                } flex justify-center items-center text-tiny p-3 rounded-md cursor-pointer font-bold transition-all duration-300`}
                 onClick={() => {
                   let brooms = form.Bathrooms;
                   if (form.Bathrooms.includes(item)) {
@@ -544,25 +551,21 @@ const Filter = ({ containerStyle }) => {
         }}
         className="cursor-pointer flex justify-center items-center gap-x-3 p-8"
       >
-        <p className="font-semibold text-tiny 2xl:text-smaller">
-          {t("SearchByPaymentPlan")}
-        </p>
+        <p className="font-semibold text-tiny ">{t("SearchByPaymentPlan")}</p>
         {paymentPlanStatus ? (
           <MdExpandLess className="text-small" />
         ) : (
           <MdExpandMore className="text-small" />
         )}
       </div>
-      {!paymentPlanStatus && <div className="h-px w-full bg-primary/20" />}
+      <div className="h-px w-full bg-primary/20" />
       <div
-        className={`max-w-[calc(100vw-4.5rem)] overflow-auto transition-all duration-100 h-full ${
-          paymentPlanStatus ? "max-h-[400px]" : "max-h-[0px]"
+        className={`overflow-auto transition-all duration-100 h-full ${
+          paymentPlanStatus ? "max-h-[320px]" : "max-h-[0px]"
         } `}
       >
-        <div className="flex flex-col p-8 space-y-2">
-          <p className="font-semibold text-tiny 2xl:text-smaller">
-            {t("Posthandover")}:
-          </p>
+        <div className="flex flex-col p-8 space-y-3">
+          <p className="font-semibold text-tiny">{t("Posthandover")}:</p>
           <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
             {[
               {
@@ -583,7 +586,7 @@ const Filter = ({ containerStyle }) => {
               return (
                 <React.Fragment key={index}>
                   <div
-                    className={`w-full h-14 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                    className={`w-full h-10 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
                       form.Posthandover == item.value
                         ? "bg-secondary text-primary"
                         : "bg-transparent text-primary"
@@ -603,14 +606,7 @@ const Filter = ({ containerStyle }) => {
               );
             })}
           </div>
-        </div>
-
-        {/* <div className="h-px w-full bg-primary/20" /> */}
-
-        <div className="flex flex-col p-8 space-y-2">
-          <p className="font-semibold text-tiny 2xl:text-smaller">
-            {t("Installments")}: %
-          </p>
+          <p className="font-semibold text-tiny ">{t("Installments")}: %</p>
           <MultiRangeSlider
             max={100}
             min={0}
@@ -619,9 +615,7 @@ const Filter = ({ containerStyle }) => {
             setMaxVal={setISMAX}
             setMinVal={setISMIN}
           />
-          <p className="font-semibold text-tiny 2xl:text-smaller pt-12">
-            {t("DownPayment")}:
-          </p>
+          <p className="font-semibold text-tiny pt-12">{t("DownPayment")}:</p>
           <MultiRangeSlider
             max={100}
             min={0}

@@ -10,16 +10,17 @@ const ContactPage = () => {
     <div>
       <PageHeader text={t("ContactUsTitle")} />
       <div className="flex flex-col justify-center items-center pb-12">
-        <div className="w-[90%] bg-primary/40 backdrop-blur-sm h-full shadow-lg -mt-[15vh] rounded-md grid md:grid-cols-2 gap-12 place-items-center p-4 md:p-8 space-y-12 border-[1px] border-white/80 border-r-white/70 border-b-white/70">
+        <div className="w-[90%] bg-primary/60 backdrop-blur-sm h-full shadow-lg -mt-[15vh] rounded-md grid md:grid-cols-2 gap-12 place-items-center p-4 md:p-8 space-y-12 border-[1px] border-white/80 border-r-white/70 border-b-white/70">
           <div className="w-full">
             <RegisterForm />
           </div>
-          <div className="w-full h-full">
+          <div className="w-full h-full space-y-6">
             <ContactInfo />
-          </div>
-          <div className="col-span-full w-full h-[50vh]">
             <ContactMap />
           </div>
+          {/* <div className="col-span-full w-full">
+            <ContactMap />
+          </div> */}
         </div>
       </div>
     </div>
