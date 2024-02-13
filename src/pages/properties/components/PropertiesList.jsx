@@ -127,7 +127,7 @@ const PropertiesList = () => {
       if ((INSTMin !== 0 || INSTMax !== 100) && PaymentPlan) {
         form = { ...form, InstallmentMin: INSTMin, InstallmentMax: INSTMax };
       }
-      if (PaymentPlan) {
+      if (PaymentPlan === "true") {
         form = {
           ...form,
           Posthandover: Posthandover ? Posthandover === "true" : false,
@@ -168,6 +168,7 @@ const PropertiesList = () => {
     InstallmentMax,
     DownPayemntMin,
     DownPayemntMax,
+    PaymentPlan,
   ]);
   useEffect(() => {
     if (search) {
@@ -209,6 +210,7 @@ const PropertiesList = () => {
     CategoryID,
     Bathrooms,
     Addresses,
+    PaymentPlan,
   ]);
   return isLoading || isFetching || filteredIsLoading ? (
     <div className="relative h-screen">
