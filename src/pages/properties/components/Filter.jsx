@@ -218,10 +218,10 @@ const Filter = ({ containerStyle }) => {
       <div className="h-px w-full bg-primary/20" />
       <div
         className={`overflow-auto transition-all duration-100 h-full ${
-          paymentPlanStatus ? "max-h-[330px]" : "max-h-[0px]"
+          paymentPlanStatus ? "max-h-[380px]" : "max-h-[0px]"
         } `}
       >
-        <div className="flex flex-col px-8 py-12 space-y-3">
+        <div className="flex flex-col px-8 pt-8 pb-20 space-y-3">
           <p className="font-semibold text-tiny">{t("Posthandover")}:</p>
           <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
             {[

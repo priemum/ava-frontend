@@ -6,6 +6,7 @@ import {
   selectCurrentCurrency,
   selectCurrentUnit,
 } from "../../../redux/websiteSettings.slice";
+import CustomInput from "../CustomInput";
 
 const MultiRangeSlider = ({
   min,
@@ -89,9 +90,10 @@ const MultiRangeSlider = ({
             textColor ?? "text-primary"
           } text-[14px] mt-5 left-[6px]`}
         >
-          {/* <input
+          <CustomInput
             type="number"
-            value={maxVal}
+            containerStyle={"max-w-[95px] bg-primary/60 text-white !p-0"}
+            value={minVal}
             onChange={(e) => {
               const val = e.target.value;
 
@@ -106,23 +108,42 @@ const MultiRangeSlider = ({
                 minValRef.current = val;
               }
             }}
-          /> */}
-          {price
+          />
+          {/* {price
             ? numberWithComma(minVal * currentCurrency.conversionRate)
             : unit
             ? numberWithComma(minVal * currentUnit.conversionRate)
-            : minVal}
+            : minVal} */}
         </div>
         <div
           className={`absolute ${
             textColor ?? "text-primary"
           } text-[14px] mt-5 -right-1`}
         >
-          {price
+          <CustomInput
+            type="number"
+            containerStyle={"max-w-[95px] bg-primary/60 text-white !p-0"}
+            value={maxVal}
+            onChange={(e) => {
+              const val = e.target.value;
+
+              if (val > max) {
+                setMaxVal(max - 1);
+                maxValRef.current = max - 1;
+              } else if (val < min) {
+                setMaxVal(min - 1);
+                maxValRef.current = min - 1;
+              } else {
+                setMaxVal(val);
+                maxValRef.current = val;
+              }
+            }}
+          />
+          {/* {price
             ? numberWithComma(maxVal * currentCurrency.conversionRate)
             : unit
             ? numberWithComma(maxVal * currentUnit.conversionRate)
-            : maxVal}
+            : maxVal} */}
         </div>
       </div>
     </div>
