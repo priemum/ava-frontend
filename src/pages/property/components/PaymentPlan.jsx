@@ -54,7 +54,8 @@ const PaymentPlan = ({ data, unitPrice }) => {
       <div className="h-px bg-[#CFCFCF] w-[95%] my-8" />
 
       <div className="text-start w-full text-smaller space-y-6">
-        <div
+        <p className="col-span-full font-bold">{t("Installments")}</p>
+        {/* <div
           onClick={() => {
             setIsOpen(!isOpen);
           }}
@@ -66,10 +67,10 @@ const PaymentPlan = ({ data, unitPrice }) => {
           ) : (
             <MdExpandMore className="text-small" />
           )}
-        </div>
+        </div> */}
         <div
-          className={`max-w-[calc(100vw-4.5rem)] overflow-auto transition-all duration-300 h-full ${
-            isOpen ? "max-h-[1000px]" : "max-h-[0px]"
+          className={`max-w-[calc(100vw-4.5rem)] overflow-hidden transition-all duration-300 h-full ${
+            isOpen ? "max-h-[3000px]" : " min-h-0 max-h-[290px]"
           } `}
         >
           <table className="w-full">
@@ -125,6 +126,25 @@ const PaymentPlan = ({ data, unitPrice }) => {
               })}
             </tbody>
           </table>
+        </div>
+        <div className="flex justify-center items-center">
+          <button
+            className="cursor-pointer px-3 py-1 bg-buttonGrad font-bold rounded-md text-[14px] md:text-tiny my-2 text-center"
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+          >
+            {isOpen ? (
+              <div className="flex gap-x-1">
+                {t("ExpandLess")}
+                <MdExpandLess className="text-small" />
+              </div>
+            ) : (
+              <div className="flex gap-x-1">
+                {t("ExpandMore")} <MdExpandMore className="text-small" />
+              </div>
+            )}
+          </button>
         </div>
       </div>
     </div>

@@ -144,6 +144,8 @@ i18n.use(initReactI18next).init({
         SearchByPaymentPlan: "البحث عن طريق خطة الدفع",
         HomeAddresses: "عقارات حسب الموقع",
         Payment: "الدفعة",
+        ExpandMore: "اعرض اكثر",
+        ExpandLess: "اعرض اقل",
       },
     },
     en: {
@@ -285,6 +287,8 @@ i18n.use(initReactI18next).init({
         SearchByPaymentPlan: "Search by payment plan",
         HomeAddresses: "Properties By Addresses",
         Payment: "Payment",
+        ExpandMore: "Expand More",
+        ExpandLess: "Expand Less",
       },
     },
   },
