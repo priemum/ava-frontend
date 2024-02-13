@@ -106,7 +106,7 @@ export const data = {
     {
       image: kasra,
       name: { en: "Kasra Malakouti", ar: "كسرى ملكوتي" },
-      title: { en: "DIRECTOR", ar: "مدير" },
+      title: { en: "Managing Director", ar: "مدير عام" },
       description: {
         en: `Introducing Kasra Malakouti, the co-founder and esteemed Managing Director at AVA Real Estate. With a proven track record in strategic leadership, Kasra has played a pivotal role in steering the company towards success.
 Prior to his role as Managing Director, he excelled in key positions within several companies, showcasing his exceptional management skills and forward-thinking approach.
@@ -123,7 +123,7 @@ Experience the impact of strategic leadership with Kasra Malakouti at the helm o
       name: { en: "Maryam Pourgolam", ar: "مريم بورغلام" },
       title: { en: "CHIEF EXECUTIVE OFFICER", ar: "المدير التنفيذي" },
       description: {
-        en: `Meet Maryam Pourgholam, the founde4 and driving force behind AVA Real Estate as its dynamic Chief Executive Officer (CEO). A sales enthusiast from an early age, Maryam’s journey in Real Estate industry began since 2015.
+        en: `Meet Maryam Pourgholam, the founder and driving force behind AVA Real Estate as its dynamic Chief Executive Officer (CEO). A sales enthusiast from an early age, Maryam’s journey in Real Estate industry began since 2015.
 Maryam stellar career at Previous Companies showcased her strategic acumen, leading to her appointment as CEO at AVA Real Estate.
 Since taking the helm, Maryam has steered the company to unprecedented heights, her commitment to fostering a culture of sales techniques and inclusiveness has led to the advancement of Ava Real Estate.
 Beyond her corporate success, Maryam champions diversity in sales and mentors emerging realtors. Her vision for AVA Real Estate is to be the industry leader, redefining the landscape of property investment, and client satisfaction. 

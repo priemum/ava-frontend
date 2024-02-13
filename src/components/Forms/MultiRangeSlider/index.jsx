@@ -62,7 +62,7 @@ const MultiRangeSlider = ({
           setMinVal(value);
           minValRef.current = value;
         }}
-        className="thumb z-30"
+        className="thumb z-20"
         style={{ zIndex: minVal > max - 100 && "5" }}
       />
       <input
@@ -75,20 +75,38 @@ const MultiRangeSlider = ({
           setMaxVal(value);
           maxValRef.current = value;
         }}
-        className="thumb z-40"
+        className="thumb z-20"
       />
 
       <div className="relative w-[200px]">
         <div className="absolute rounded-sm h-[5px] z-10 bg-[#ced4da] w-full" />
         <div
           ref={range}
-          className="absolute rounded-sm h-[5px] bg-secondary z-20"
+          className="absolute rounded-sm h-[5px] bg-secondary z-10"
         />
         <div
           className={`absolute ${
             textColor ?? "text-primary"
           } text-[14px] mt-5 left-[6px]`}
         >
+          {/* <input
+            type="number"
+            value={maxVal}
+            onChange={(e) => {
+              const val = e.target.value;
+
+              if (val > max) {
+                setMinVal(max);
+                minValRef.current = max;
+              } else if (val < min) {
+                setMinVal(min);
+                minValRef.current = min;
+              } else {
+                setMinVal(val);
+                minValRef.current = val;
+              }
+            }}
+          /> */}
           {price
             ? numberWithComma(minVal * currentCurrency.conversionRate)
             : unit

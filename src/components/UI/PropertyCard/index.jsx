@@ -151,9 +151,9 @@ const PropertyCard = ({ data }) => {
                   <p className="text-tiny md:text-[18px]">
                     {lower.Bedrooms == higher.Bedrooms
                       ? lower.Bedrooms == 0
-                        ? "std"
+                        ? t("Studio")
                         : lower.Bedrooms
-                      : (lower.Bedrooms == 0 ? "std" : lower.Bedrooms) +
+                      : (lower.Bedrooms == 0 ? t("Studio") : lower.Bedrooms) +
                         " - " +
                         higher.Bedrooms}
                   </p>

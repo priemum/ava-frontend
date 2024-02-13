@@ -41,7 +41,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
               }}
             >
               {item.Bedrooms == 0
-                ? "std"
+                ? t("Studio")
                 : item.Bedrooms + "  " + t("Bedrooms")}
             </div>
           );
@@ -82,7 +82,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
                   <img src={bedroom} className="w-6 h-6" alt="bedroom-icon" />
                 </div>
                 <p className="font-normal text-[12px] md:text-tiny">
-                  {item.Bedrooms == 0 ? "std" : t("Bedrooms")}
+                  {item.Bedrooms == 0 ? t("Studio") : t("Bedrooms")}
                 </p>
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">

@@ -168,7 +168,7 @@ const Filter = ({ containerStyle }) => {
 
   return (
     <div
-      className={`m-8 rounded-lg shadow-md ${containerStyle} bg-white h-[88vh] w-[calc(100%-4rem)] overflow-y-auto relative`}
+      className={`m-8 rounded-lg shadow-md ${containerStyle} bg-white h-full w-[calc(100%-4rem)] overflow-y-auto relative`}
     >
       <div className="flex flex-col space-y-2 p-8">
         <CustomInput
@@ -201,12 +201,95 @@ const Filter = ({ containerStyle }) => {
         </button> */}
       </div>
       <div className="h-px w-full bg-primary/20" />
+
+      <div
+        onClick={() => {
+          setPaymentPlanStatus(!paymentPlanStatus);
+        }}
+        className="cursor-pointer flex justify-center items-center gap-x-3 p-8"
+      >
+        <p className="font-semibold text-tiny ">{t("SearchByPaymentPlan")}</p>
+        {paymentPlanStatus ? (
+          <MdExpandLess className="text-small" />
+        ) : (
+          <MdExpandMore className="text-small" />
+        )}
+      </div>
+      <div className="h-px w-full bg-primary/20" />
+      <div
+        className={`overflow-auto transition-all duration-100 h-full ${
+          paymentPlanStatus ? "max-h-[330px]" : "max-h-[0px]"
+        } `}
+      >
+        <div className="flex flex-col px-8 py-12 space-y-3">
+          <p className="font-semibold text-tiny">{t("Posthandover")}:</p>
+          <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
+            {[
+              {
+                value: false,
+                lng: {
+                  ar: "لا",
+                  en: "No",
+                },
+              },
+              {
+                value: true,
+                lng: {
+                  ar: "نعم",
+                  en: "Yes",
+                },
+              },
+            ].map((item, index) => {
+              return (
+                <React.Fragment key={index}>
+                  <div
+                    className={`w-full h-10 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                      form.Posthandover == item.value
+                        ? "bg-secondary text-primary"
+                        : "bg-transparent text-primary"
+                    }`}
+                    onClick={() => {
+                      let tempForm = {
+                        ...form,
+                        Posthandover: item.value,
+                      };
+                      setForm(tempForm);
+                    }}
+                  >
+                    {item?.lng[i18n.language]}
+                  </div>
+                  {1 !== index && <div className="h-10 w-1 bg-secondary" />}
+                </React.Fragment>
+              );
+            })}
+          </div>
+          <p className="font-semibold text-tiny ">{t("Installments")}: %</p>
+          <MultiRangeSlider
+            max={100}
+            min={0}
+            maxVal={ISMAX}
+            minVal={ISMIN}
+            setMaxVal={setISMAX}
+            setMinVal={setISMIN}
+          />
+          <p className="font-semibold text-tiny pt-12">{t("DownPayment")}:</p>
+          <MultiRangeSlider
+            max={100}
+            min={0}
+            maxVal={DPMAX}
+            minVal={DPMIN}
+            setMaxVal={setDPMAX}
+            setMinVal={setDPMIN}
+          />
+        </div>
+      </div>
+      <div className="h-px w-full bg-primary/20" />
       <div className="flex flex-col space-y-2 p-8">
         {addressesIsSuccess && (
           <CustomInput
             readOnly
             state={form}
-            containerStyle={"!z-50 !bg-primary/50"}
+            containerStyle={"!z-30 !bg-primary/50"}
             customStyle={"!text-white placeholder:text-white font-semibold"}
             placeholder={t("SelectAddress")}
             icon={<MdExpandMore size={24} className="text-white" />}
@@ -382,7 +465,7 @@ const Filter = ({ containerStyle }) => {
       <div className="h-px w-full bg-primary/20" />
       <div className="flex flex-col p-8 space-y-2">
         <p className="font-semibold text-tiny">{t("Bedrooms")}:</p>
-        <div className="grid grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3">
+        <div className="grid grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3 place-items-center">
           <div
             className={`h-8 w-8 border-[1px] border-secondary ${
               form.Bedrooms.length == 0
@@ -394,6 +477,24 @@ const Filter = ({ containerStyle }) => {
             }}
           >
             {t("All")}
+          </div>
+          <div
+            className={`h-8 w-full max-w-[6rem] border-[1px] border-secondary col-span-2 ${
+              form.Bedrooms.includes(0)
+                ? "text-primary bg-secondary"
+                : "text-secondary bg-transparent"
+            } flex justify-center items-center text-tiny p-3 rounded-md cursor-pointer font-bold transition-all duration-300`}
+            onClick={() => {
+              let brooms = form.Bedrooms;
+              if (form.Bedrooms.includes(0)) {
+                brooms = brooms.filter((x) => x !== 0);
+              } else {
+                brooms = [...brooms, 0];
+              }
+              setForm({ ...form, Bedrooms: brooms });
+            }}
+          >
+            {t("Studio")}
           </div>
           {rooms.map((item, index) => {
             return (
@@ -543,89 +644,6 @@ const Filter = ({ containerStyle }) => {
         </div>
       </div>
 
-      <div className="h-px w-full bg-primary/20" />
-
-      <div
-        onClick={() => {
-          setPaymentPlanStatus(!paymentPlanStatus);
-        }}
-        className="cursor-pointer flex justify-center items-center gap-x-3 p-8"
-      >
-        <p className="font-semibold text-tiny ">{t("SearchByPaymentPlan")}</p>
-        {paymentPlanStatus ? (
-          <MdExpandLess className="text-small" />
-        ) : (
-          <MdExpandMore className="text-small" />
-        )}
-      </div>
-      <div className="h-px w-full bg-primary/20" />
-      <div
-        className={`overflow-auto transition-all duration-100 h-full ${
-          paymentPlanStatus ? "max-h-[320px]" : "max-h-[0px]"
-        } `}
-      >
-        <div className="flex flex-col p-8 space-y-3">
-          <p className="font-semibold text-tiny">{t("Posthandover")}:</p>
-          <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
-            {[
-              {
-                value: false,
-                lng: {
-                  ar: "لا",
-                  en: "No",
-                },
-              },
-              {
-                value: true,
-                lng: {
-                  ar: "نعم",
-                  en: "Yes",
-                },
-              },
-            ].map((item, index) => {
-              return (
-                <React.Fragment key={index}>
-                  <div
-                    className={`w-full h-10 rounded-md text-tiny flex justify-center items-center cursor-pointer transition-all duration-300 ${
-                      form.Posthandover == item.value
-                        ? "bg-secondary text-primary"
-                        : "bg-transparent text-primary"
-                    }`}
-                    onClick={() => {
-                      let tempForm = {
-                        ...form,
-                        Posthandover: item.value,
-                      };
-                      setForm(tempForm);
-                    }}
-                  >
-                    {item?.lng[i18n.language]}
-                  </div>
-                  {1 !== index && <div className="h-10 w-1 bg-secondary" />}
-                </React.Fragment>
-              );
-            })}
-          </div>
-          <p className="font-semibold text-tiny ">{t("Installments")}: %</p>
-          <MultiRangeSlider
-            max={100}
-            min={0}
-            maxVal={ISMAX}
-            minVal={ISMIN}
-            setMaxVal={setISMAX}
-            setMinVal={setISMIN}
-          />
-          <p className="font-semibold text-tiny pt-12">{t("DownPayment")}:</p>
-          <MultiRangeSlider
-            max={100}
-            min={0}
-            maxVal={DPMAX}
-            minVal={DPMIN}
-            setMaxVal={setDPMAX}
-            setMinVal={setDPMIN}
-          />
-        </div>
-      </div>
       <div className="h-12 w-full bg-transparent" />
       <div className="w-[calc(100%)] sticky bottom-0 bg-white p-4 shadow-top-shadow flex gap-x-2 z-40">
         <button

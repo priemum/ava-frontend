@@ -226,7 +226,7 @@ const PropertiesList = () => {
     (isSuccess || filteredIsSuccess) &&
     properties.ids.length !== 0 && (
       <>
-        <div className="p-4 lg:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 min-h-screen w-full">
+        <div className="p-4 lg:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full w-full">
           {properties.ids.map((item, index) => {
             return (
               <PropertyCard data={properties.entities[item]} key={index} />
