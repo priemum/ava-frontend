@@ -8,43 +8,45 @@ const PaymentPlan = ({ data, unitPrice }) => {
   return (
     <div className="mb-12 rounded-xl bg-white p-4 lg:p-8 flex flex-col justify-start items-center">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-start w-full text-smaller">
-        <p className="col-span-full font-bold">{t("PaymentPlan")}</p>
+        <p className="col-span-full font-bold text-smaller">
+          {t("PaymentPlan")}
+        </p>
 
-        <p>
+        <p className="text-tiny">
           <span className="text-[#6A6A6A]">{t("DownPayment")}:</span>
           {data.DownPayemnt}
         </p>
-        <p>
+        <p className="text-tiny">
           <span className="text-[#6A6A6A]">{t("DuringConstructionM")}:</span>
           {data.DuringConstructionMonths}
         </p>
-        <p>
+        <p className="text-tiny">
           <span className="text-[#6A6A6A]">
             {t("DuringConstructionPercentage")}:
           </span>
           {data.DuringConstructionPercentage}
         </p>
-        <p>
+        <p className="text-tiny">
           <span className="text-[#6A6A6A]">{t("HandoverDate")}: </span>
           {data.HandoverDate.split("T")[0]}
         </p>
-        <p>
+        <p className="text-tiny">
           <span className="text-[#6A6A6A]">{t("OnHandoverPercentage")}: </span>
           {data.OnHandoverPercentage}
         </p>
-        <p>
+        <p className="text-tiny">
           <span className="text-[#6A6A6A]">{t("Posthandover")}: </span>
           {data.Posthandover ? "YES" : "NO"}
         </p>
-        <p>
+        <p className="text-tiny">
           <span className="text-[#6A6A6A]">{t("NoOfPosthandoverMonths")}:</span>
           {data.Posthandover ? data.NoOfPosthandoverMonths : "-"}
         </p>
-        <p>
+        <p className="text-tiny">
           <span className="text-[#6A6A6A]">{t("PosthandoverPercentage")}:</span>
           {data.Posthandover ? data.PosthandoverPercentage : "-"}
         </p>
-        <p>
+        <p className="text-tiny">
           <span className="text-[#6A6A6A]">{t("TotalInstallments")}: </span>
           {data.TotalMonths}
         </p>
@@ -72,18 +74,18 @@ const PaymentPlan = ({ data, unitPrice }) => {
         >
           <table className="w-full">
             <tbody>
-              <tr className="border-black/30 border-y-[2px] text-tiny md:text-smaller text-center">
+              <tr className="border-black/30 border-y-[2px] text-tiny text-center ">
                 {/* <th className="p-4 border-black/30 border-y-2">Number</th> */}
-                <th className="p-2 lg:p-4 border-black/30 border-y-[2px] sticky -top-1 bg-white">
+                <th className="p-2 lg:p-4 border-black/30 border-y-[2px] sticky -top-1 backdrop-blur-sm">
                   {t("Description")}
                 </th>
-                <th className="p-2 lg:p-4 border-black/30 border-y-[2px] sticky -top-1 bg-white">
-                  {t("PercentageOfPayment")}
+                <th className="p-2 lg:p-4 border-black/30 border-y-[2px] sticky -top-1 backdrop-blur-sm">
+                  {t("Payment")} %
                 </th>
-                <th className="p-2 lg:p-4 border-black/30 border-y-[2px] sticky -top-1 bg-white">
+                <th className="p-2 lg:p-4 border-black/30 border-y-[2px] sticky -top-1 backdrop-blur-sm">
                   {t("Amount")}
                 </th>
-                <th className="p-2 lg:p-4 border-black/30 border-y-[2px] sticky -top-1 bg-white">
+                <th className="p-2 lg:p-4 border-black/30 border-y-[2px] sticky -top-1 backdrop-blur-sm">
                   {t("Date")}
                 </th>
               </tr>
@@ -91,7 +93,7 @@ const PaymentPlan = ({ data, unitPrice }) => {
                 return (
                   <tr
                     key={index}
-                    className="border-black/30 border-y-[2px] text-tiny md:text-smaller text-center"
+                    className="border-black/30 border-y-[2px] text-tiny text-center"
                   >
                     {/* <td className="p-4 border-black/30  font-bold">
                     {item.Number}

@@ -25,12 +25,16 @@ const Location = ({ data }) => {
     data?.Longitude && (
       <div className="mt-12">
         <div className="flex items-center self-start flex-1">
-          <img src={locationIcon} alt="property Icon" />
-          <p className="text-small sm:text-med font-bold">
+          <img
+            src={locationIcon}
+            alt="property Icon"
+            className="max-h-20 max-w-20"
+          />
+          <p className="text-smaller sm:text-small font-bold">
             {t("LocationAndNearby")}
           </p>
         </div>
-        <div className="p-2 md:p-4 bg-white rounded-md space-y-3 md:space-y-4">
+        <div className="p-2 bg-white rounded-md space-y-3">
           <LocationInfoNav
             setEndDirection={setEndDirection}
             routeData={routeData}
@@ -40,8 +44,7 @@ const Location = ({ data }) => {
             setNearbyLocations={setNearbyLocations}
             data={data}
           />
-
-          <div className="h-[600px] rounded-md overflow-hidden relative">
+          <div className="h-[550px] rounded-md overflow-hidden relative">
             <APIProvider apiKey={import.meta.env.VITE_GOOGLE_API_KEY ?? ""}>
               <Map
                 id="map"

@@ -10,14 +10,20 @@ const PropertyInfo = ({ data }) => {
   return (
     <div className="my-12">
       <div className="flex items-center self-start flex-1">
-        <img src={propertyInfoIcon} alt="property Icon" />
-        <p className="text-small sm:text-med font-bold">{t("Description")}</p>
+        <img
+          src={propertyInfoIcon}
+          alt="property Icon"
+          className="max-h-20 max-w-20"
+        />
+        <p className="text-smaller sm:text-small font-bold">
+          {t("Description")}
+        </p>
       </div>
 
       <div className="rounded-xl bg-white p-4 lg:p-8 flex flex-col justify-start items-center">
         <div
           className={`transition-all duration-300 overflow-hidden ${
-            descShowMore ? "max-h-[3000px]" : "max-h-[140px]"
+            descShowMore ? "max-h-[3000px]" : "max-h-[125px]"
           }`}
         >
           <ReactQuill
@@ -32,15 +38,17 @@ const PropertyInfo = ({ data }) => {
           />
         </div>
         <p
-          className="cursor-pointer px-3 py-1 bg-buttonGrad font-bold rounded-md text-[14px] md:text-tiny"
+          className="cursor-pointer px-3 py-1 bg-buttonGrad font-bold rounded-md text-[14px] md:text-tiny my-2"
           onClick={() => setDescShowMore(!descShowMore)}
         >
           {descShowMore ? t("ShowLess") : t("ShowMore")}
         </p>
         <div className="h-px bg-[#CFCFCF] w-[95%] my-8" />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-start w-full text-smaller">
-          <p className="col-span-full font-bold">{t("PropertyInformation")}</p>
-          <p className="">
+          <p className="col-span-full font-bold text-smaller">
+            {t("PropertyInformation")}
+          </p>
+          <p className="text-tiny">
             <span className="text-[#6A6A6A]">{t("Type")}: </span>
             {
               data.Category.Category_Translation.find(
@@ -49,7 +57,7 @@ const PropertyInfo = ({ data }) => {
               ).Name
             }
           </p>
-          <p className="">
+          <p className="text-tiny">
             <span className="text-[#6A6A6A]">{t("Address")}: </span>
             {
               data.Address.Address_Translation.find(
@@ -58,30 +66,30 @@ const PropertyInfo = ({ data }) => {
               ).Name
             }
           </p>
-          <p className="">
+          <p className="text-tiny">
             <span className="text-[#6A6A6A]">{t("Furnishing")}: </span>
             {data.FurnishingStatus}
           </p>
-          <p className="">
+          <p className="text-tiny">
             <span className="text-[#6A6A6A]">{t("Purpose")}: </span>
             {data.Purpose}
           </p>
-          <p className="">
+          <p className="text-tiny">
             <span className="text-[#6A6A6A]">{t("AddedOn")}: </span>
             {data.CreatedAt.split("T")[0]}
           </p>
-          <p className="">
+          <p className="text-tiny">
             <span className="text-[#6A6A6A]">{t("Completion")}: </span>
             {data.CompletionStatus}
           </p>
           {data.Purpose == "Rent" && (
-            <p className="">
+            <p className="text-tiny">
               <span className="text-[#6A6A6A]">{t("RentFrequency")}: </span>
               {data.RentFrequency}
             </p>
           )}
           {data.Purpose == "Rent" && (
-            <p className="">
+            <p className="text-tiny">
               <span className="text-[#6A6A6A]">
                 {t("MinimumNumberOfChecks")}:
               </span>
@@ -89,7 +97,7 @@ const PropertyInfo = ({ data }) => {
             </p>
           )}
           {data.Purpose == "Rent" && (
-            <p className="">
+            <p className="text-tiny">
               <span className="text-[#6A6A6A]">
                 {t("MaximumNumberOfChecks")}:
               </span>
@@ -97,19 +105,19 @@ const PropertyInfo = ({ data }) => {
             </p>
           )}
           {data.Handover && (
-            <p className="">
+            <p className="text-tiny">
               <span className="text-[#6A6A6A]">{t("Handover")}: </span>
               {data.Handover}
             </p>
           )}
           {data.VacantStatus && (
-            <p className="">
+            <p className="text-tiny">
               <span className="text-[#6A6A6A]">{t("VacantStatus")}: </span>
               {data.VacantStatus}
             </p>
           )}
           {data.Developer.ViewTag && (
-            <p className="">
+            <p className="text-tiny">
               <span className="text-[#6A6A6A]">{t("Developer")}: </span>
               {
                 data.Developer.Developer_Translation.find(

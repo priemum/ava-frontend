@@ -27,7 +27,7 @@ const Prices = ({ data, currentSlide }) => {
   return (
     <div className="bg-white shadow-xl rounded-xl p-4 space-y-3">
       <p className="text-[#878787]"> {t("PriceOfUnit")} </p>
-      <div className="text-primary text-med flex items-center gap-x-3">
+      <div className="text-primary text-smaller flex items-center gap-x-3">
         <FaCoins size={24} />
         {numberWithComma(
           data.propertyUnits[currentSlide].Price *
@@ -42,7 +42,7 @@ const Prices = ({ data, currentSlide }) => {
             ).Name
           }`}
       </p>
-      <div className="text-primary text-med flex items-center gap-x-3">
+      <div className="text-primary text-smaller flex items-center gap-x-3">
         <FaCoins size={24} />
         {numberWithComma(
           (data.propertyUnits[currentSlide].Price *
@@ -51,7 +51,7 @@ const Prices = ({ data, currentSlide }) => {
         ) + ` ${priceSymbol}`}
       </div>
       <p className="text-[#878787]"> {t("EstimatedRent")} </p>
-      <div className="text-primary text-med flex items-center gap-x-3">
+      <div className="text-primary text-smaller flex items-center gap-x-3">
         <FaCoins size={24} />
         {numberWithComma(
           data.propertyUnits[currentSlide].EstimatedRent *

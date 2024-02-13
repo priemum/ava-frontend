@@ -35,7 +35,7 @@ const Amenities = ({ data }) => {
   const AmenitiesCard = ({ icon, name, count, data, popUp }) => {
     return (
       <div
-        className="w-[150px] h-[150px] sm:w-[210px] sm:h-[210px] flex flex-col justify-center items-center relative rounded-xl cursor-pointer border-[1px]  border-primary"
+        className="w-[150px] h-[150px] sm:w-[175px] sm:h-[175px] flex flex-col justify-center items-center relative rounded-xl cursor-pointer border-[1px]  border-primary"
         onClick={() => {
           showAmenitiesModal();
         }}
@@ -47,14 +47,14 @@ const Amenities = ({ data }) => {
             <img
               src={API_BASE_URL + icon}
               alt={name + "Amenity icon"}
-              className="!w-16 !h-16"
+              className="!w-12 !h-12"
             />
           ) : (
-            <p className="text-tiny sm:text-smaller font-bold">{"+ " + data}</p>
+            <p className="text-tiny font-bold h-12 flex justify-center items-center">
+              {"+ " + data}
+            </p>
           )}
-          <p className="text-tiny sm:text-smaller">
-            {!count ? name : t("FindMore")}
-          </p>
+          <p className="text-tiny">{!count ? name : t("FindMore")}</p>
         </div>
 
         <div
@@ -75,12 +75,16 @@ const Amenities = ({ data }) => {
   return (
     <div className="mt-12">
       <div className="flex items-center self-start  flex-1">
-        <img src={AmenityIcon} alt="property Icon" />
-        <p className="text-small md:text-med font-bold">
+        <img
+          src={AmenityIcon}
+          alt="property Icon"
+          className="max-h-20 max-w-20"
+        />
+        <p className="text-smaller md:text-small font-bold">
           {t("AdvantagesServices")}
         </p>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 max-lg:place-items-center">
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 place-items-center">
         {data.map((item, index) => {
           if (index < 5)
             return (

@@ -87,9 +87,9 @@ const PropertyPage = () => {
         isSuccess && (
           <div className="">
             <ImageSlider data={data.Images} />
-            <div className="grid lg:grid-cols-4 mt-12">
+            <div className="grid lg:grid-cols-4 mt-8">
               <div className="col-span-3 border-r-2 px-4 lg:px-8">
-                <p className="font-bold text-smaller">{addressPaths}</p>
+                <p className="font-bold text-tiny">{addressPaths}</p>
                 <p className="font-bold text-med">
                   {
                     data.Property_Translation.find(

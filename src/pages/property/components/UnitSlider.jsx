@@ -12,7 +12,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
   const currentUnit = useSelector(selectCurrentUnit);
   const { i18n, t } = useTranslation();
   return (
-    <div className="mt-6 p-4 lg:p-8 bg-white rounded-xl max-md:max-w-[300px] md:max-lg:w-[500px] w-[95%] md:w-[80%] shadow-xl overflow-hidden flex flex-col items-center justify-center">
+    <div className="mt-6 p-4 bg-white rounded-xl max-md:max-w-[300px] md:max-lg:w-[500px] w-[95%] md:w-[80%] shadow-xl overflow-hidden flex flex-col items-center justify-center">
       <Slider
         dots={false}
         arrows={true}
@@ -30,7 +30,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
             <div
               dir="ltr"
               key={index}
-              className={`max-w-[95%] w-full py-1 px-2 text-center font-semibold ${
+              className={`max-w-[95%] w-full py-1 px-2 text-center font-semibold text-tiny ${
                 currentSlide == index
                   ? "bg-secondary text-primary"
                   : "bg-primary/50 text-white shadow-2xl"
@@ -61,7 +61,7 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
       >
         {data.map((item, index) => {
           return (
-            <div className="p-6 !grid !grid-cols-3 !w-[95%]" key={index}>
+            <div className="p-2 !grid !grid-cols-3 !w-[95%]" key={index}>
               <div className="flex flex-col items-center justify-center space-y-1">
                 <div className="flex gap-x-2 items-center">
                   <p className="font-bold">{item.Bathrooms}</p>
