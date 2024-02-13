@@ -172,7 +172,7 @@ const ListingForm = () => {
 
   return (
     <>
-      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-4 md:p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[1000px]">
+      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-4 md:p-6 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[850px]">
         <p className="text-smaller"> {t("PropertyInformation")} </p>
         <div className="space-y-4">
           <div className="space-y-1">
@@ -182,7 +182,7 @@ const ListingForm = () => {
                 return (
                   <React.Fragment key={index}>
                     <div
-                      className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                      className={`py-3 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
                         values.Purpose == item.value
                           ? "bg-secondary text-primary"
                           : "bg-transparent text-white"
@@ -318,8 +318,8 @@ const ListingForm = () => {
           </div>
         </div>
       </div>
-      <div className="w-[90%] lg:w-[40%] 2xl:w-[35%] space-y-8 h-[1000px]">
-        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 h-[40%] w-full flex flex-col overflow-x-hidden overflow-y-auto">
+      <div className="w-[90%] lg:w-[40%] 2xl:w-[35%] space-y-6 h-[850px]">
+        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-4 md:p-6 border-[1px] border-t-white/70 border-l-white/70 border-white/40 h-[40%] w-full flex flex-col overflow-x-hidden overflow-y-auto">
           <div className="w-full flex items-center gap-x-6">
             <Button
               textColor={"text-primary"}
@@ -398,7 +398,7 @@ const ListingForm = () => {
             </Slider>
           )}
         </div>
-        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-full h-[57%] flex flex-col overflow-x-hidden overflow-y-auto">
+        <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-4 md:p-6 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-full h-[57%] flex flex-col overflow-x-hidden overflow-y-auto">
           <p className="text-smaller"> {t("PersonalInformation")} </p>
           <div className="space-y-4 flex-1">
             <CustomInput
@@ -480,7 +480,7 @@ const ListingForm = () => {
                     <React.Fragment key={index}>
                       <div
                         key={index}
-                        className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                        className={`py-3 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
                           values.Gender == item.value
                             ? "bg-secondary text-primary"
                             : "bg-transparent text-white"
@@ -503,7 +503,7 @@ const ListingForm = () => {
               </div>
             </div>
             <button
-              className={`bg-buttonGrad text-primary text-small w-full shadow-2xl py-4 disabled:!bg-gray-500 disabled:bg-none disabled:text-white rounded-md ${
+              className={`bg-buttonGrad text-primary text-small w-full shadow-2xl py-3 disabled:!bg-gray-500 disabled:bg-none disabled:text-white rounded-md ${
                 isLoading && "animate-pulse"
               } `}
               onClick={handleSubmit}

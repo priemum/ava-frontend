@@ -91,8 +91,8 @@ const EnquiryForm = () => {
   }, [isSuccess, isError]);
 
   return (
-    <div className="w-full flex max-lg:flex-col justify-center items-center gap-12">
-      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-4 md:p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[700px]">
+    <div className="w-full flex max-lg:flex-col justify-center items-center gap-8">
+      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-4 md:p-6 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[630px]">
         <p className="text-smaller"> {t("PropertyInformation")} </p>
         <div className="space-y-4">
           <div className="space-y-1">
@@ -102,7 +102,7 @@ const EnquiryForm = () => {
                 return (
                   <React.Fragment key={index}>
                     <div
-                      className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                      className={`py-3 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
                         values.Purpose == item.value
                           ? "bg-secondary text-primary"
                           : "bg-transparent text-white"
@@ -178,7 +178,7 @@ const EnquiryForm = () => {
           />
         </div>
       </div>
-      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-4 md:p-8 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[700px] flex flex-col">
+      <div className="bg-fourth/40 space-y-6 text-white rounded-md shadow-lg backdrop-blur-sm p-4 md:p-6 border-[1px] border-t-white/70 border-l-white/70 border-white/40 w-[90%] lg:w-[40%] 2xl:w-[35%] min-h-[630px] flex flex-col">
         <p className="text-smaller"> {t("PersonalInformation")}</p>
         <div className="space-y-4 flex-1">
           <CustomInput
@@ -232,7 +232,7 @@ const EnquiryForm = () => {
               Boolean(errors.PhoneNo)
                 ? "!border-[1px] border-red-500"
                 : "!border-b-[1px] border-white"
-            } px-1 flex bg-white/20 rounded-md !outline-none`}
+            } px-1 flex bg-primary/50 rounded-md !outline-none`}
             inputClass={`!bg-transparent !text-white !w-full !text-lg !h-full !border-none ${
               i18n.language == "en" ? "px-0" : "mx-10"
             } !outline-none`}
@@ -260,7 +260,7 @@ const EnquiryForm = () => {
                 return (
                   <React.Fragment key={index}>
                     <div
-                      className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                      className={`py-3 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
                         values.Gender == item.value
                           ? "bg-secondary text-primary"
                           : "bg-transparent text-white"
@@ -282,7 +282,7 @@ const EnquiryForm = () => {
         </div>
 
         <button
-          className={`bg-buttonGrad text-primary text-small w-full py-4 disabled:!bg-gray-500 disabled:bg-none disabled:text-white rounded-md ${
+          className={`bg-buttonGrad text-primary text-small w-full py-3 disabled:!bg-gray-500 disabled:bg-none disabled:text-white rounded-md ${
             isLoading && "animate-pulse"
           } `}
           onClick={handleSubmit}

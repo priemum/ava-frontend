@@ -155,7 +155,7 @@ const RegisterForm = () => {
             return (
               <React.Fragment key={index}>
                 <div
-                  className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
+                  className={`py-3 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
                     values.Gender == item.value
                       ? "bg-secondary text-primary"
                       : "bg-transparent text-white"
