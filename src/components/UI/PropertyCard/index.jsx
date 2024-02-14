@@ -59,7 +59,7 @@ const PropertyCard = ({ data }) => {
     isSuccess && (
       <div className="flex flex-col items-center justify-center">
         <div
-          className={`h-[450px] w-[95%] max-w-[450px] relative overflow-hidden rounded-md group shadow-lg drop-shadow-md`}
+          className={`h-[450px] w-full max-w-[450px] relative overflow-hidden rounded-md group shadow-lg drop-shadow-md`}
         >
           <Slider
             slidesToScroll={1}
@@ -91,14 +91,14 @@ const PropertyCard = ({ data }) => {
           <div
             className={`absolute ${
               showDetails ? "bottom-0" : "-bottom-[80px]"
-            } left-0 w-full h-[175px] z-20 bg-primary/60 text-white p-2 md:p-4 transition-all duration-500`}
+            } left-0 w-full h-[175px] z-20 bg-primary/60 text-white p-2 md:p-3  transition-all duration-500`}
           >
             <div className="flex items-center justify-between -mt-10 h-[40px] overflow-hidden">
               <div
                 dir="ltr"
-                className="bg-secondary min-w-[150px] p-2 rounded-md text-black text-tiny md:text-[18px] flex items-center gap-x-3"
+                className="bg-secondary min-w-[150px] p-1 rounded-md text-black text-tiny flex items-center gap-x-2"
               >
-                <FaCoins size={20} />
+                <FaCoins size={16} />
                 {lower.Price == higher.Price
                   ? formatCash(lower.Price * currentCurrency.conversionRate) +
                     ` ${priceSymbol}`
@@ -109,12 +109,12 @@ const PropertyCard = ({ data }) => {
                     ` ${priceSymbol}`}
               </div>
               <div
-                className="bg-third p-2 rounded-md text-black text-smaller cursor-pointer"
+                className="bg-third p-2 rounded-md text-black cursor-pointer"
                 onClick={() => {
                   navigate(`/property/${data.id}`);
                 }}
               >
-                <MdArrowOutward size={24} />
+                <MdArrowOutward size={16} />
               </div>
             </div>
             <div className="h-[80px] flex justify-start items-start">
@@ -128,27 +128,21 @@ const PropertyCard = ({ data }) => {
                 }
               </p>
             </div>
-            <div className="pb-2 pt-5 flex justify-evenly items-center font-bold h-[55px]">
+            <div className="pb-2 pt-5 flex justify-evenly items-center font-semibold h-[55px]">
               <div className="flex flex-col items-center justify-center space-y-1">
-                <div className="flex gap-x-2 items-center">
-                  <p className="text-tiny md:text-[18px]">
+                <div className="flex gap-x-1 items-center">
+                  <p className="text-[12px] 2xl:text-tiny">
                     {lower.Bathrooms == higher.Bathrooms
                       ? lower.Bathrooms
                       : lower.Bathrooms + " - " + higher.Bathrooms}
                   </p>
-                  <img
-                    src={bath}
-                    className="w-6 h-6 md:w-8 md:h-8"
-                    alt="bath-icon"
-                  />
+                  <img src={bath} className="w-6 h-6" alt="bath-icon" />
                 </div>
-                <p className="font-normal text-[12px] md:text-tiny">
-                  {t("Bathrooms")}
-                </p>
+                <p className="font-normal text-[12px]">{t("Bathrooms")}</p>
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">
-                <div className="flex gap-x-2 items-center">
-                  <p className="text-tiny md:text-[18px]">
+                <div className="flex gap-x-1 items-center">
+                  <p className="text-[12px] 2xl:text-tiny">
                     {lower.Bedrooms == higher.Bedrooms
                       ? lower.Bedrooms == 0
                         ? t("Studio")
@@ -157,19 +151,13 @@ const PropertyCard = ({ data }) => {
                         " - " +
                         higher.Bedrooms}
                   </p>
-                  <img
-                    src={bedroom}
-                    className="w-6 h-6 md:w-8 md:h-8"
-                    alt="bedroom-icon"
-                  />
+                  <img src={bedroom} className="w-6 h-6" alt="bedroom-icon" />
                 </div>
-                <p className="font-normal text-[12px] md:text-tiny">
-                  {t("Bedrooms")}
-                </p>
+                <p className="font-normal text-[12px]">{t("Bedrooms")}</p>
               </div>
               <div className="flex flex-col items-center justify-center space-y-1">
-                <div className="flex gap-x-2 items-center">
-                  <p className="text-tiny md:text-[18px]">
+                <div className="flex gap-x-1 items-center">
+                  <p className="text-[12px] 2xl:text-tiny">
                     {lower.Size == higher.Size
                       ? numberWithComma(lower.Size * currentUnit.conversionRate)
                       : numberWithComma(
@@ -180,13 +168,9 @@ const PropertyCard = ({ data }) => {
                           higher.Size * currentUnit.conversionRate
                         )}
                   </p>
-                  <img
-                    src={squareft}
-                    className="w-6 h-6 md:w-8 md:h-8"
-                    alt="area-icon"
-                  />
+                  <img src={squareft} className="w-6 h-6 " alt="area-icon" />
                 </div>
-                <p className="font-normal text-[12px] md:text-tiny">
+                <p className="font-normal text-[12px]">
                   {
                     currentUnit.Unit_Translation.find(
                       (x) => x.Language.Code.toLowerCase() == i18n.language
