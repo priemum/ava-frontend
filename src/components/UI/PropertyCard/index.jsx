@@ -66,7 +66,7 @@ const PropertyCard = ({ data }) => {
             slidesToShow={1}
             dots={false}
             arrows={true}
-            lazyLoad="ondemand"
+            lazyLoad="progressive"
             className="!h-[450px] w-full"
             nextArrow={<SampleNextArrow />}
             prevArrow={<SamplePrevArrow />}

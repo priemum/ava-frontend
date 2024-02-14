@@ -7,9 +7,11 @@ import { API_BASE_URL } from "../../../../constants";
 import { useTranslation } from "react-i18next";
 import LazyImage from "../../../../components/UI/LazyImage";
 import Loader from "../../../../components/UI/Loader";
+import { useGetLNGQuery } from "../../../../redux/languages/languagesSlice";
 const Announcements = () => {
   const { data, isLoading, isFetching, isSuccess, isError } =
     useGetActiveAnnouncementsQuery();
+  const { data: lngData, isSuccess: lngIsSuccess } = useGetLNGQuery();
   const [scrollY, setScrollY] = useState(0);
   const [roteteY, setRotateY] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -51,7 +53,16 @@ const Announcements = () => {
           className="rounded-md relative"
         >
           {data.count > 1 && (
-            <div className="absolute h-9 flex justify-center items-center left-12 bottom-5  gap-x-8">
+            <div
+              dir="ltr"
+              className={`absolute h-9 flex justify-center items-center ${
+                lngData.normalData.find(
+                  (x) => x.Code.toLowerCase() == i18n.language
+                ).Direction == "ltr"
+                  ? "left-12"
+                  : "right-12"
+              } bottom-5  gap-x-8`}
+            >
               {data.ids.map((item, index) => {
                 if (data.entities[item].Type == "Normal")
                   return (
@@ -97,6 +108,11 @@ const Announcements = () => {
                 return (
                   <div
                     key={index}
+                    dir={
+                      lngData.normalData.find(
+                        (x) => x.Code.toLowerCase() == i18n.language
+                      ).Direction
+                    }
                     className="w-full h-[85vh] md:h-[450px] !grid md:!grid-cols-2"
                   >
                     <div className="p-4 md:p-8 xl:px-12 2xl:px-16 space-y-7 flex flex-col md:justify-start items-center md:items-start h-full w-full">

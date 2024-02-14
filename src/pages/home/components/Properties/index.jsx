@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import { useGetActivePropertiesQuery } from "../../../../redux/properties/propertiesSlice";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import Loader from "../../../../components/UI/Loader";
+import { useGetLNGQuery } from "../../../../redux/languages/languagesSlice";
 const HomeProperties = () => {
   const { t, i18n } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -15,7 +16,7 @@ const HomeProperties = () => {
       page: 0,
       limit: 9,
     });
-
+  const { data: lngData, isSuccess: lngIsSuccess } = useGetLNGQuery();
   return (
     <div className="mt-10 flex flex-col justify-center items-center px-[5%]">
       <div className="flex w-full">
@@ -26,7 +27,10 @@ const HomeProperties = () => {
           </p>
         </div>
         {isSuccess && data.count > 4 && (
-          <div className="bg-primary/10 rounded-md p-3 flex items-center self-center gap-x-4 max-lg:hidden">
+          <div
+            className="bg-primary/10 rounded-md p-3 flex items-center self-center gap-x-4 max-lg:hidden"
+            dir="ltr"
+          >
             <FaAngleLeft
               onClick={() => {
                 sliderRef.current.slickGoTo(currentSlide - 1);
@@ -63,7 +67,7 @@ const HomeProperties = () => {
           <Slider
             ref={sliderRef}
             slidesToScroll={1}
-            lazyLoad="ondemand"
+            lazyLoad="progressive"
             slidesToShow={data.ids.length >= 4 ? 4 : data.ids.length}
             arrows={false}
             dots={false}
@@ -83,7 +87,18 @@ const HomeProperties = () => {
             ]}
           >
             {data.ids.map((item, index) => {
-              return <PropertyCard key={index} data={data.entities[item]} />;
+              return (
+                <div
+                  className="!w-[95%]"
+                  dir={
+                    lngData.normalData.find(
+                      (x) => x.Code.toLowerCase() == i18n.language
+                    ).Direction
+                  }
+                >
+                  <PropertyCard key={index} data={data.entities[item]} />
+                </div>
+              );
             })}
           </Slider>
         )

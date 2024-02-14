@@ -4,10 +4,13 @@ import { MdArrowOutward } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useGetGeneralDataQuery } from "../../../../redux/generalData/generalDataSlice";
+import { useGetLNGQuery } from "../../../../redux/languages/languagesSlice";
 const AddressCard = ({ Name, Image, Places, Properties, id }) => {
   const navigate = useNavigate();
   const { addressId } = useParams();
   const { t } = useTranslation();
+  const { data, isSuccess } = useGetLNGQuery();
+  const { i18n } = useTranslation();
   const {
     data: generalData,
     isLoading: generalDataIsLoading,
@@ -16,7 +19,8 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
     isError: generalDataIsError,
   } = useGetGeneralDataQuery();
   return (
-    generalDataIsSuccess && (
+    generalDataIsSuccess &&
+    isSuccess && (
       <div className="w-[300px] h-[400px] sm:h-[450px] sm:w-[350px] relative rounded-md  group">
         <div className="w-full h-full overflow-hidden rounded-md">
           <img
@@ -55,7 +59,12 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
               navigate(`/properties/${filterUrl}/false`);
             }
           }}
-          className="w-20 h-20  bg-primary/30 backdrop-blur-sm text-white absolute -right-3 -bottom-3  rounded-md flex flex-col gap-y-2 justify-center items-center cursor-pointer"
+          className={`w-20 h-20  bg-primary/30 backdrop-blur-sm text-white absolute  ${
+            data.normalData.find((x) => x.Code.toLowerCase() == i18n.language)
+              .Direction == "ltr"
+              ? "-right-3"
+              : "-left-3"
+          } -bottom-3  rounded-md flex flex-col gap-y-2 justify-center items-center cursor-pointer`}
         >
           <MdArrowOutward size={24} />
           <p className="text-[14px]"> {t("SeeMore")}</p>
