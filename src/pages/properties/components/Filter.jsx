@@ -402,7 +402,7 @@ const Filter = ({ containerStyle }) => {
                 setForm(tempForm);
               }}
             >
-              {t("all")}
+              {t("All")}
             </div>
             <div className="h-10 w-1 bg-secondary" />
 
@@ -543,7 +543,7 @@ const Filter = ({ containerStyle }) => {
                     setForm({ ...form, CategoryID: "" });
                   }}
                 >
-                  {t("all")}
+                  {t("All")}
                 </div>
                 <div className="h-10 w-1 bg-secondary" />
                 {categories.ids.map((item, index) => {

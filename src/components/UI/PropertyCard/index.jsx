@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { API_BASE_URL } from "../../../constants";
+import { API_BASE_URL, Purpose } from "../../../constants";
 import { useTranslation } from "react-i18next";
 import Slider from "react-slick";
 import { MdArrowOutward, MdInfoOutline } from "react-icons/md";
@@ -182,7 +182,11 @@ const PropertyCard = ({ data }) => {
           </div>
           <div className="absolute top-0 left-0 w-full h-[55px] px-4 pt-5 flex items-center text-white gap-x-4">
             <div className="bg-primary/60 p-2 rounded-md shadow-md">
-              {data.Purpose}
+              {
+                Purpose.find((x) => x.value == data.Purpose).lng[
+                  i18n.language.toLowerCase()
+                ]
+              }
             </div>
             <div className="bg-primary/60 p-2 rounded-md shadow-md">
               {

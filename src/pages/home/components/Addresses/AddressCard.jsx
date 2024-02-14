@@ -32,7 +32,7 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
         <div className="absolute top-0 left-0 h-full w-full bg-primary/30 rounded-md" />
         {Places > 0 && (
           <div className="bg-white shadow-md py-1 px-3 rounded-md absolute top-3 left-3 font-semibold">
-            {Places + " " + t("Place")}
+            {Places + " " + t("Places")}
           </div>
         )}
         {Properties > 0 && (

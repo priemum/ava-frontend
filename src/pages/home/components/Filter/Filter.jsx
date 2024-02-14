@@ -100,7 +100,7 @@ const HomeFilter = () => {
                 readOnly
                 value={
                   form.purpose == "all"
-                    ? t("Purpose") + ":  " + t("all")
+                    ? t("Purpose") + ":  " + t("All")
                     : t("Purpose") +
                       ":  " +
                       Purpose.find((x) => x.value == form.purpose)?.lng[
@@ -140,7 +140,7 @@ const HomeFilter = () => {
                             })
                           }
                         >
-                          {t("all")}
+                          {t("All")}
                         </div>
                         <div className="h-10 w-1 bg-white/50" />
                         {Purpose.map((item, index) => {
@@ -247,7 +247,7 @@ const HomeFilter = () => {
                   ? t("Loading")
                   : categoriesIsSuccess && categories.count !== 0
                   ? parentType == "all"
-                    ? t("Category") + ": " + t("all")
+                    ? t("Category") + ": " + t("All")
                     : t("Category") +
                       ": " +
                       categories.entities[
@@ -284,7 +284,7 @@ const HomeFilter = () => {
                             setForm({ ...form, CategoryID: "" });
                           }}
                         >
-                          {t("all")}
+                          {t("All")}
                         </div>
                         <div className="h-10 w-1 bg-white/50" />
 
