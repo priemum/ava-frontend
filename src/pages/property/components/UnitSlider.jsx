@@ -53,7 +53,6 @@ const UnitSlider = ({ data, currentSlide, setCurrentSlide }) => {
         touchMove={false}
         swipe={false}
         arrows={false}
-        lazyLoad="ondemand"
         initialSlide={currentSlide}
         infinite={false}
         className="h-full w-full max-md:max-w-[300px] md:max-lg:w-[500px] mt-6"
