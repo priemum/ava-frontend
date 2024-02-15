@@ -147,6 +147,8 @@ i18n.use(initReactI18next).init({
         ExpandMore: "اعرض اكثر",
         ExpandLess: "اعرض اقل",
         Places: "مواقع",
+        Locations: "موقع",
+        Amenities: "مرافق و خدمات",
       },
     },
     en: {
@@ -291,6 +293,8 @@ i18n.use(initReactI18next).init({
         ExpandMore: "Expand More",
         ExpandLess: "Expand Less",
         Places: "Places",
+        Locations: "Location",
+        Amenities: "Amenities",
       },
     },
   },

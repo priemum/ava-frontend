@@ -80,9 +80,7 @@ const Amenities = ({ data }) => {
           alt="property Icon"
           className="max-h-20 max-w-20"
         />
-        <p className="text-smaller md:text-small font-bold">
-          {t("AdvantagesServices")}
-        </p>
+        <p className="text-smaller md:text-small font-bold">{t("Amenities")}</p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 place-items-center">
         {data.map((item, index) => {

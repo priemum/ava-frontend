@@ -108,8 +108,8 @@ const PropertyPage = () => {
                     <RegInfo currentSlide={currentSlide} data={data} />
                   </div>
                 </div>
-                <Amenities data={data.Aminities} />
                 <Location data={data} />
+                <Amenities data={data.Aminities} />
                 <PropertyInfo data={data} />
                 {data?.propertyUnits[0]?.Paymentplan.length !== 0 && (
                   <PaymentPlan

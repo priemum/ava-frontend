@@ -23,7 +23,7 @@ const PropertyInfo = ({ data }) => {
       <div className="rounded-xl bg-white p-4 lg:p-8 flex flex-col justify-start items-center">
         <div
           className={`transition-all duration-300 overflow-hidden ${
-            descShowMore ? "max-h-[3000px]" : "max-h-[125px]"
+            descShowMore ? "max-h-[1000px]" : "max-h-[125px]"
           }`}
         >
           <ReactQuill
