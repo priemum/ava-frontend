@@ -48,17 +48,8 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
         {Places > 0 ? (
           <div
             onClick={() => {
-              if (Places > 0) {
-                if (addressId) navigate(`/addresses/${id}`);
-                else navigate(`addresses/${id}`);
-              } else {
-                const filterUrl = `${generalData.MinPrice}/${
-                  generalData.MaxPrice
-                }/${generalData.MinSize}/${
-                  generalData.MaxSize
-                }/all/all/all/all/all/all/all/${[id]}/0/100/0/100/false`;
-                navigate(`/properties/${filterUrl}/false`);
-              }
+              if (addressId) navigate(`/addresses/${id}`);
+              else navigate(`addresses/${id}`);
             }}
             className={`w-20 h-20  bg-primary/30 backdrop-blur-sm text-white absolute  ${
               data.normalData.find((x) => x.Code.toLowerCase() == i18n.language)
@@ -72,19 +63,6 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
           </div>
         ) : (
           <div
-            // onClick={() => {
-            //   if (Places > 0) {
-            //     if (addressId) navigate(`/addresses/${id}`);
-            //     else navigate(`addresses/${id}`);
-            //   } else {
-            //     const filterUrl = `${generalData.MinPrice}/${
-            //       generalData.MaxPrice
-            //     }/${generalData.MinSize}/${
-            //       generalData.MaxSize
-            //     }/all/all/all/all/all/all/all/${[id]}/0/100/0/100/false`;
-            //     navigate(`/properties/${filterUrl}/false`);
-            //   }
-            // }}
             className={`w-[calc(100%+1.5rem)] h-20 bg-primary/30 backdrop-blur-sm text-white absolute  ${
               data.normalData.find((x) => x.Code.toLowerCase() == i18n.language)
                 .Direction == "ltr"
@@ -93,7 +71,7 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
             } -bottom-3  rounded-md flex flex-row p-1 justify-center items-center cursor-pointer`}
           >
             <div
-              className="hover:bg-secondary transition-all duration-300 p-1 rounded-md flex flex-col justify-center items-center w-full h-full"
+              className="hover:bg-primary/50 transition-all duration-300 p-1 rounded-md flex flex-col justify-center items-center w-full h-full"
               onClick={() => {
                 const filterUrl = `${generalData.MinPrice}/${
                   generalData.MaxPrice
@@ -107,7 +85,7 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
               <p className="text-[14px]"> {t("Rent")}</p>
             </div>
             <div
-              className="hover:bg-secondary transition-all duration-300 p-1 rounded-md flex flex-col justify-center items-center w-full h-full"
+              className="hover:bg-primary/50 transition-all duration-300 p-1 rounded-md flex flex-col justify-center items-center w-full h-full"
               onClick={() => {
                 const filterUrl = `${generalData.MinPrice}/${
                   generalData.MaxPrice
@@ -121,7 +99,7 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
               <p className="text-[14px]"> {t("Buy")}</p>
             </div>
             <div
-              className="hover:bg-secondary transition-all duration-300 p-1 rounded-md flex flex-col justify-center items-center w-full h-full"
+              className="hover:bg-primary/50 transition-all duration-300 p-1 rounded-md flex flex-col justify-center items-center w-full h-full"
               onClick={() => {
                 const filterUrl = `${generalData.MinPrice}/${
                   generalData.MaxPrice
