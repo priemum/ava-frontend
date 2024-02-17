@@ -34,30 +34,40 @@ const Prices = ({ data, currentSlide }) => {
             currentCurrency.conversionRate
         ) + ` ${priceSymbol}`}
       </div>
-      <p className="text-[#878787]">
-        {t("PricePer") +
-          ` ${
-            currentUnit.Unit_Translation.find(
-              (x) => x.Language.Code.toLowerCase() == i18n.language
-            ).Name
-          }`}
-      </p>
-      <div className="text-primary text-smaller flex items-center gap-x-3">
-        <FaCoins size={24} />
-        {numberWithComma(
-          (data.propertyUnits[currentSlide].Price *
-            currentCurrency.conversionRate) /
-            (data.propertyUnits[currentSlide].Size * currentUnit.conversionRate)
-        ) + ` ${priceSymbol}`}
-      </div>
-      <p className="text-[#878787]"> {t("EstimatedRent")} </p>
-      <div className="text-primary text-smaller flex items-center gap-x-3">
-        <FaCoins size={24} />
-        {numberWithComma(
-          data.propertyUnits[currentSlide].EstimatedRent *
-            currentCurrency.conversionRate
-        ) + ` ${priceSymbol}`}
-      </div>
+      {data.Purpose == "Buy" && (
+        <>
+          <p className="text-[#878787]">
+            {t("PricePer") +
+              ` ${
+                currentUnit.Unit_Translation.find(
+                  (x) => x.Language.Code.toLowerCase() == i18n.language
+                ).Name
+              }`}
+          </p>
+
+          <div className="text-primary text-smaller flex items-center gap-x-3">
+            <FaCoins size={24} />
+            {numberWithComma(
+              (data.propertyUnits[currentSlide].Price *
+                currentCurrency.conversionRate) /
+                (data.propertyUnits[currentSlide].Size *
+                  currentUnit.conversionRate)
+            ) + ` ${priceSymbol}`}
+          </div>
+        </>
+      )}
+      {data.Purpose == "Buy" && (
+        <>
+          <p className="text-[#878787]"> {t("EstimatedRent")} </p>
+          <div className="text-primary text-smaller flex items-center gap-x-3">
+            <FaCoins size={24} />
+            {numberWithComma(
+              data.propertyUnits[currentSlide].EstimatedRent *
+                currentCurrency.conversionRate
+            ) + ` ${priceSymbol}`}
+          </div>
+        </>
+      )}
     </div>
   );
 };

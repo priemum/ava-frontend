@@ -90,20 +90,18 @@ const PropertyInfo = ({ data }) => {
           )}
           {data.Purpose == "Rent" && (
             <p className="text-tiny">
-              <span className="text-[#6A6A6A]">
-                {t("MinimumNumberOfChecks")}:
-              </span>
-              {data.RentMin}
+              <span className="text-[#6A6A6A]">{t("NumberOfChecks")}:</span>
+              {" " + data.RentMin + " - " + data.RentMax}
             </p>
           )}
-          {data.Purpose == "Rent" && (
+          {/* {data.Purpose == "Rent" && (
             <p className="text-tiny">
               <span className="text-[#6A6A6A]">
                 {t("MaximumNumberOfChecks")}:
               </span>
               {data.RentMax}
             </p>
-          )}
+          )} */}
           {data.Handover && (
             <p className="text-tiny">
               <span className="text-[#6A6A6A]">{t("Handover")}: </span>
