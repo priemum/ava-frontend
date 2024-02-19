@@ -149,6 +149,7 @@ i18n.use(initReactI18next).init({
         Places: "مواقع",
         Locations: "موقع",
         Amenities: "مرافق و خدمات",
+        NumberOfChecks: "عدد الشكات",
       },
     },
     en: {
@@ -295,6 +296,7 @@ i18n.use(initReactI18next).init({
         Places: "Places",
         Locations: "Location",
         Amenities: "Amenities",
+        NumberOfChecks: "Number of cheques",
       },
     },
   },
