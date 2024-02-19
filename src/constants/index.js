@@ -16,13 +16,13 @@ export const RentFrequency = [
   { value: "Daily", lng: { en: "Daily", ar: "يومي" } },
 ];
 export const NearbyTypes = [
-  { value: "atm", lng: { en: "ATMs", ar: "أي تي أم" } },
+  { value: "atm", lng: { en: "ATMs", ar: "صراف آلي" } },
   { value: "bank", lng: { en: "Banks", ar: "بنوك" } },
-  { value: "hospital", lng: { en: "Hospitals", ar: "مستشفياة" } },
+  { value: "hospital", lng: { en: "Hospitals", ar: "مستشفيات" } },
   { value: "school", lng: { en: "Schools", ar: "مدارس" } },
   { value: "cafe", lng: { en: "Cafes", ar: "مقاهي" } },
-  { value: "park", lng: { en: "Parks", ar: "مصفات" } },
-  { value: "shopping_mall", lng: { en: "Shopping Malls", ar: "محلاة تسوق" } },
+  { value: "park", lng: { en: "Parks", ar: "حدائق عامة" } },
+  { value: "shopping_mall", lng: { en: "Shopping Malls", ar: "مراكز تسوق" } },
   { value: "mosque", lng: { en: "Mosques", ar: "جوامع" } },
 ];
 export const CompletionStatus = [
