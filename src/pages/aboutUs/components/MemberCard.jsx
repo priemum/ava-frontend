@@ -31,9 +31,11 @@ const MemberCard = ({ name, image, description, title, flip }) => {
             flip ? "order-1" : "order-2"
           } `}
         >
-          <p className="text-secondary font-semibold text-big">{name} </p>
+          <p className="text-secondary font-semibold text-med md:text-big">
+            {name}{" "}
+          </p>
           <p className="text-smaller sm:text-small">{title} </p>
-          <p className="py-2 text-tiny font-light text-justify">
+          <p className="py-2 text-[14px] md:text-tiny font-light text-justify">
             {description}
           </p>
         </div>
