@@ -49,7 +49,7 @@ const PropertyInfo = ({ data }) => {
             {t("PropertyInformation")}
           </p>
           <p className="text-tiny">
-            <span className="text-[#6A6A6A]">{t("Type")}: </span>
+            <span className="text-[#6A6A6A] px-1">{t("Type")}: </span>
             {
               data.Category.Category_Translation.find(
                 (x) =>
@@ -58,7 +58,7 @@ const PropertyInfo = ({ data }) => {
             }
           </p>
           <p className="text-tiny">
-            <span className="text-[#6A6A6A]">{t("Address")}: </span>
+            <span className="text-[#6A6A6A] px-1">{t("Address")}: </span>
             {
               data.Address.Address_Translation.find(
                 (x) =>
@@ -67,30 +67,34 @@ const PropertyInfo = ({ data }) => {
             }
           </p>
           <p className="text-tiny">
-            <span className="text-[#6A6A6A]">{t("Furnishing")}: </span>
+            <span className="text-[#6A6A6A] px-1">{t("Furnishing")}: </span>
             {data.FurnishingStatus}
           </p>
           <p className="text-tiny">
-            <span className="text-[#6A6A6A]">{t("Purpose")}: </span>
+            <span className="text-[#6A6A6A] px-1">{t("Purpose")}: </span>
             {data.Purpose}
           </p>
           <p className="text-tiny">
-            <span className="text-[#6A6A6A]">{t("AddedOn")}: </span>
+            <span className="text-[#6A6A6A] px-1">{t("AddedOn")}: </span>
             {data.CreatedAt.split("T")[0]}
           </p>
           <p className="text-tiny">
-            <span className="text-[#6A6A6A]">{t("Completion")}: </span>
+            <span className="text-[#6A6A6A] px-1">{t("Completion")}: </span>
             {data.CompletionStatus}
           </p>
           {data.Purpose == "Rent" && (
             <p className="text-tiny">
-              <span className="text-[#6A6A6A]">{t("RentFrequency")}: </span>
+              <span className="text-[#6A6A6A] px-1">
+                {t("RentFrequency")}:{" "}
+              </span>
               {data.RentFrequency}
             </p>
           )}
           {data.Purpose == "Rent" && (
             <p className="text-tiny">
-              <span className="text-[#6A6A6A]">{t("NumberOfChecks")}:</span>
+              <span className="text-[#6A6A6A] px-1">
+                {t("NumberOfChecks")}:
+              </span>
               {" " + data.RentMin + " - " + data.RentMax}
             </p>
           )}
@@ -104,19 +108,19 @@ const PropertyInfo = ({ data }) => {
           )} */}
           {data.Handover && (
             <p className="text-tiny">
-              <span className="text-[#6A6A6A]">{t("Handover")}: </span>
+              <span className="text-[#6A6A6A] px-1">{t("Handover")}: </span>
               {data.Handover}
             </p>
           )}
           {data.VacantStatus && (
             <p className="text-tiny">
-              <span className="text-[#6A6A6A]">{t("VacantStatus")}: </span>
+              <span className="text-[#6A6A6A] px-1">{t("VacantStatus")}: </span>
               {data.VacantStatus}
             </p>
           )}
           {data.Developer.ViewTag && (
             <p className="text-tiny">
-              <span className="text-[#6A6A6A]">{t("Developer")}: </span>
+              <span className="text-[#6A6A6A] px-1">{t("Developer")}: </span>
               {
                 data.Developer.Developer_Translation.find(
                   (x) =>

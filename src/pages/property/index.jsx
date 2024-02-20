@@ -115,6 +115,7 @@ const PropertyPage = () => {
                   <PaymentPlan
                     data={data?.propertyUnits[0]?.Paymentplan[0]}
                     unitPrice={data.propertyUnits[currentSlide].Price}
+                    handover={data.Handover}
                   />
                 )}
               </div>

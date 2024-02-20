@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
 
-const PaymentPlan = ({ data, unitPrice }) => {
+const PaymentPlan = ({ data, unitPrice, handover }) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -13,61 +13,54 @@ const PaymentPlan = ({ data, unitPrice }) => {
         </p>
 
         <p className="text-tiny">
-          <span className="text-[#6A6A6A]">{t("DownPayment")}:</span>
-          {data.DownPayemnt}
+          <span className="text-[#6A6A6A] px-1">{t("DownPayment")}:</span>
+          {data.DownPayemnt + " %"}
         </p>
-        <p className="text-tiny">
+        {/* <p className="text-tiny">
           <span className="text-[#6A6A6A]">{t("DuringConstructionM")}:</span>
           {data.DuringConstructionMonths}
-        </p>
+        </p> */}
         <p className="text-tiny">
-          <span className="text-[#6A6A6A]">
+          <span className="text-[#6A6A6A] px-1">
             {t("DuringConstructionPercentage")}:
           </span>
-          {data.DuringConstructionPercentage}
+          {data.DuringConstructionPercentage + " %"}
         </p>
         <p className="text-tiny">
-          <span className="text-[#6A6A6A]">{t("HandoverDate")}: </span>
-          {data.HandoverDate.split("T")[0]}
+          <span className="text-[#6A6A6A] px-1">{t("HandoverDate")}: </span>
+          {/* {data.HandoverDate.split("T")[0]} */}
+          {handover}
         </p>
         <p className="text-tiny">
-          <span className="text-[#6A6A6A]">{t("OnHandoverPercentage")}: </span>
-          {data.OnHandoverPercentage}
+          <span className="text-[#6A6A6A] px-1">
+            {t("OnHandoverPercentage")}:{" "}
+          </span>
+          {data.OnHandoverPercentage + " %"}
         </p>
         <p className="text-tiny">
-          <span className="text-[#6A6A6A]">{t("Posthandover")}: </span>
+          <span className="text-[#6A6A6A] px-1">{t("Posthandover")}: </span>
           {data.Posthandover ? "YES" : "NO"}
         </p>
-        <p className="text-tiny">
+        {/* <p className="text-tiny">
           <span className="text-[#6A6A6A]">{t("NoOfPosthandoverMonths")}:</span>
           {data.Posthandover ? data.NoOfPosthandoverMonths : "-"}
-        </p>
+        </p> */}
         <p className="text-tiny">
-          <span className="text-[#6A6A6A]">{t("PosthandoverPercentage")}:</span>
-          {data.Posthandover ? data.PosthandoverPercentage : "-"}
+          <span className="text-[#6A6A6A] px-1">
+            {t("PosthandoverPercentage")}:
+          </span>
+          {data.Posthandover ? data.PosthandoverPercentage + " %" : "-"}
         </p>
-        <p className="text-tiny">
+        {/* <p className="text-tiny">
           <span className="text-[#6A6A6A]">{t("TotalInstallments")}: </span>
           {data.TotalMonths}
-        </p>
+        </p> */}
       </div>
       <div className="h-px bg-[#CFCFCF] w-[95%] my-8" />
 
       <div className="text-start w-full text-smaller space-y-6">
         <p className="col-span-full font-bold">{t("Installments")}</p>
-        {/* <div
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
-          className="cursor-pointer flex justify-start items-center gap-x-3"
-        >
-          <p className="col-span-full font-bold">{t("Installments")}</p>
-          {isOpen ? (
-            <MdExpandLess className="text-small" />
-          ) : (
-            <MdExpandMore className="text-small" />
-          )}
-        </div> */}
+
         <div
           className={`max-w-[calc(100vw-4.5rem)] transition-all duration-300 h-full ${
             isOpen
