@@ -174,7 +174,7 @@ i18n.use(initReactI18next).init({
         sending: "Sending...",
         Location: "Location",
         Type: "Type",
-        Bedrooms: "Bedrooms",
+        Bedrooms: "BHK",
         MinPrice: "Minimum Price",
         MaxPrice: "Maximum Price",
         Message: "Message",
