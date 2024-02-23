@@ -72,7 +72,6 @@ const JobForm = ({ title, id }) => {
     formData.append("ArabicLvl", values.ArabicLvl);
     formData.append("jobID", values.jobID);
     formData.append("OtherLanguages", values.OtherLanguages);
-    formData.append("Message", values.Message);
     formData.append("File", file);
     addApplication({ values: formData });
     setValues([]);

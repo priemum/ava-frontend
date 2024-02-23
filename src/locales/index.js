@@ -156,6 +156,7 @@ i18n.use(initReactI18next).init({
         ArabicLvl: "مستوى العربية",
         LinkedInURL: "رابط اللينكد إن",
         MessageToTeam: "رسالة الى فريق التوظيف",
+        OtherLanguages: "لغات اخرى ",
       },
     },
     en: {
@@ -309,6 +310,7 @@ i18n.use(initReactI18next).init({
         ArabicLvl: "Level of Arabic",
         LinkedInURL: "LinkedIn URL",
         MessageToTeam: "Message to the hiring team",
+        OtherLanguages: "Other Languages",
       },
     },
   },
