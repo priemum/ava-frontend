@@ -34,39 +34,46 @@ export const Directions = ["ltr", "rtl"];
 export const Fields = ["Off Plan", "Rent", "Seecondary Market"];
 export const Language_Lvl = [
   {
-    value: "No proficiency",
+    value: "None",
     lng: { en: "No proficiency", ar: "لا يوجد" },
   },
   {
-    value: "Elementary proficiency",
-    lng: { en: "Elementary proficiency", ar: "مبتدئ" },
+    value: "A1",
+    lng: { en: "Beginner", ar: "مبتدئ" },
   },
   {
-    value: "Limited working proficiency",
+    value: "A2",
     lng: {
-      en: "Limited working proficiency",
-      ar: "كفاءة محدودة",
+      en: "Pre-intermediate",
+      ar: "ما قبل المتوسط",
     },
   },
   {
-    value: "Professional working proficiency",
+    value: "B1",
     lng: {
-      en: "Professional working proficiency",
-      ar: "مستوى متقدم",
+      en: "Intermediate",
+      ar: "متوسط",
     },
   },
   {
-    value: "Full professional proficiency",
+    value: "B2",
     lng: {
-      en: "Full professional proficiency",
-      ar: "مستوى عالي",
+      en: "Upper-intermediate",
+      ar: "وسيط ذو مستوي رفيع",
     },
   },
   {
-    value: "Primary fluency / Native",
+    value: "C1",
     lng: {
-      en: "Primary fluency / Native",
-      ar: "اللغة الأصلية / أتحدث بطلاقة عالية",
+      en: "Advanced",
+      ar: "متقدم",
+    },
+  },
+  {
+    value: "C2",
+    lng: {
+      en: "Native or Bilingual",
+      ar: "أصلية أو ثنائية اللغة",
     },
   },
 ];
