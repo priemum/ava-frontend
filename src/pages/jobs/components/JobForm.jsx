@@ -103,6 +103,7 @@ const JobForm = ({ title, id }) => {
         <div className="h-px bg-white/50" />
       </div>
       <CustomInput
+        containerStyle={"bg-primary/90"}
         inputLabel={t("formFullName")}
         placeholder={t("formFullName")}
         type="text"
@@ -112,10 +113,11 @@ const JobForm = ({ title, id }) => {
         error={Boolean(errors?.FullName)}
       />
       <CustomInput
+        containerStyle={"bg-primary/90"}
         inputLabel={t("formEmail")}
         placeholder={t("formEmail")}
         type="Email"
-        name="email"
+        name="ُEmail"
         value={values.Email}
         onChange={handleChange}
         error={Boolean(errors?.Email)}
@@ -155,7 +157,7 @@ const JobForm = ({ title, id }) => {
             Boolean(errors.PhoneNo)
               ? "!border-[1px] border-red-500"
               : "!border-b-[1px] border-white"
-          } px-1 flex bg-white/20 rounded-md !outline-none`}
+          } px-1 flex bg-primary/90 rounded-md !outline-none`}
           inputClass={`!bg-transparent !text-white !w-full !text-lg !h-full !border-none ${
             i18n.language == "en" ? "px-0" : "mx-10"
           } !outline-none`}
@@ -178,6 +180,7 @@ const JobForm = ({ title, id }) => {
       </>
 
       <CustomInput
+        containerStyle={"bg-primary/90"}
         inputLabel={t("YearsOfExperience")}
         placeholder={t("YearsOfExperience")}
         type="number"
@@ -186,7 +189,8 @@ const JobForm = ({ title, id }) => {
         onChange={handleChange}
         error={Boolean(errors?.YearsOfExp)}
       />
-      {/* <CustomInput
+      <CustomInput
+        containerStyle={"bg-primary/90"}
         inputLabel={t("AreaSpecialty")}
         placeholder={t("AreaSpecialty")}
         type="text"
@@ -194,8 +198,7 @@ const JobForm = ({ title, id }) => {
         value={values.area}
         onChange={handleChange}
         error={Boolean(errors?.AreaSpecialty)}
-      /> */}
-      {/* <div /> */}
+      />
 
       {/* <div className="space-y-1">
         <p className="text-tiny">{t("Field")} </p>
@@ -228,7 +231,7 @@ const JobForm = ({ title, id }) => {
       </div> */}
       <div className="space-y-1">
         <p className="text-tiny">{t("Gender")} </p>
-        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2">
+        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-primary/90">
           {Gender.map((item, index) => {
             return (
               <React.Fragment key={index}>
@@ -240,7 +243,7 @@ const JobForm = ({ title, id }) => {
                   }`}
                   onClick={() => setValues({ ...values, Gender: item })}
                 >
-                  {item}
+                  {item.lng[i18n.language]}
                 </div>
                 {index !== Gender.length - 1 && (
                   <div className="h-10 w-1 bg-white/50" />
@@ -251,11 +254,12 @@ const JobForm = ({ title, id }) => {
         </div>
       </div>
       <CustomInput
+        containerStyle={"bg-primary/90"}
         inputLabel={t("EnglishLvl")}
         value={values.EnglishLvl}
         name={"EnglishLvl"}
         inputType="text"
-        options={Language_Lvl}
+        translatedOptions={Language_Lvl}
         setState={setValues}
         state={values}
         reverseIcon
@@ -264,11 +268,12 @@ const JobForm = ({ title, id }) => {
         readOnly
       />
       <CustomInput
+        containerStyle={"bg-primary/90"}
         inputLabel={t("ArabicLvl")}
         value={values.ArabicLvl}
         name={"ArabicLvl"}
         inputType="text"
-        options={Language_Lvl}
+        translatedOptions={Language_Lvl}
         setState={setValues}
         state={values}
         reverseIcon
@@ -278,6 +283,7 @@ const JobForm = ({ title, id }) => {
       />
 
       <CustomInput
+        containerStyle={"bg-primary/90"}
         inputLabel={t("OtherLanguages")}
         placeholder={t("OtherLanguages")}
         type="text"
@@ -287,6 +293,7 @@ const JobForm = ({ title, id }) => {
         error={Boolean(errors?.OtherLanguages)}
       />
       <CustomInput
+        containerStyle={"bg-primary/90"}
         inputLabel={t("LinkedInURL")}
         placeholder={t("LinkedInURL")}
         type="text"
