@@ -44,6 +44,9 @@ const JobForm = ({ title, id }) => {
   const { i18n, t } = useTranslation();
   const [file, setFile] = useState();
 
+  useEffect(() => {
+    setValues({ ...values, jobID: id });
+  }, [id]);
   function onFileChange(e) {
     if (!e.target.files || e.target.files.length === 0) {
       setFile(undefined);
