@@ -98,7 +98,7 @@ const JobForm = ({ title, id }) => {
       className="p-8 w-full space-y-4 bg-transparent rounded-md text-white overflow-y-auto relative my-20"
     >
       <div className=" fixed w-full left-0 top-0 px-4 py-3">
-        <p className="text-med lg:text-big font-bold">
+        <p className="text-med lg:text-[35px] font-bold">
           {title ?? "Appy For The Job"}
         </p>
         <div className="h-px bg-white/50" />
@@ -117,12 +117,13 @@ const JobForm = ({ title, id }) => {
         containerStyle={"bg-primary/70"}
         inputLabel={t("formEmail")}
         placeholder={t("formEmail")}
-        type="Email"
-        name="ُEmail"
+        type="email"
+        name={"Email"}
         value={values.Email}
         onChange={handleChange}
         error={Boolean(errors?.Email)}
       />
+
       <>
         <p className="font-semibold leading-3 translate-y-2 px-1">
           {t("formPhoneNumber")}
@@ -238,11 +239,11 @@ const JobForm = ({ title, id }) => {
               <React.Fragment key={index}>
                 <div
                   className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
-                    values.Gender == item
+                    values.Gender == item.value
                       ? "bg-secondary text-primary"
                       : "bg-transparent text-white"
                   }`}
-                  onClick={() => setValues({ ...values, Gender: item })}
+                  onClick={() => setValues({ ...values, Gender: item.value })}
                 >
                   {item.lng[i18n.language]}
                 </div>
@@ -305,8 +306,8 @@ const JobForm = ({ title, id }) => {
       />
       <CustomInput
         containerStyle={"bg-primary/70"}
-        inputLabel={t("Message")}
-        placeholder={t("Message")}
+        inputLabel={t("MessageToTeam")}
+        placeholder={t("MessageToTeam")}
         type="text"
         name="Message"
         value={values.Message}

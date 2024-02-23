@@ -419,7 +419,10 @@ const useForm = (callback, defaultValues, translation, setTranslation) => {
         item !== "AddressID" &&
         item !== "MetaData" &&
         item !== "IPAddress" &&
-        item !== "Images"
+        item !== "Images" &&
+        item !== "AreaSpecialty" &&
+        item !== "LinkedInURL" &&
+        item !== "OtherLanguages"
       ) {
         theErrors = { ...theErrors, [item]: item + " is required" };
       }
