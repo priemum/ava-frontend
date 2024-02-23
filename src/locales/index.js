@@ -304,7 +304,7 @@ i18n.use(initReactI18next).init({
         Amenities: "Amenities",
         NumberOfChecks: "Number of cheques",
         AreaSpecialty: "Area Specialty",
-        YearsOfExperience: "Years of experience",
+        YearsOfExperience: "Years of experience in real estate",
         EnglishLvl: "Level of English",
         ArabicLvl: "Level of Arabic",
         LinkedInURL: "LinkedIn URL",

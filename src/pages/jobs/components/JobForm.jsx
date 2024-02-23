@@ -22,8 +22,8 @@ let defaultFormState = {
   AreaSpecialty: "",
   LinkedInURL: "",
   Field: "Off Plan",
-  EnglishLvl: "No proficiency",
-  ArabicLvl: "No proficiency",
+  EnglishLvl: "None",
+  ArabicLvl: "None",
   jobID: "",
   OtherLanguages: "",
   File: "",
@@ -261,7 +261,11 @@ const JobForm = ({ title, id }) => {
       <CustomInput
         containerStyle={"bg-primary/70"}
         inputLabel={t("EnglishLvl")}
-        value={values.EnglishLvl}
+        value={
+          Language_Lvl.find((x) => x.value == values.EnglishLvl)?.lng[
+            i18n.language
+          ]
+        }
         name={"EnglishLvl"}
         inputType="text"
         translatedOptions={Language_Lvl}
@@ -275,7 +279,11 @@ const JobForm = ({ title, id }) => {
       <CustomInput
         containerStyle={"bg-primary/70"}
         inputLabel={t("ArabicLvl")}
-        value={values.ArabicLvl}
+        value={
+          Language_Lvl.find((x) => x.value == values.ArabicLvl)?.lng[
+            i18n.language
+          ]
+        }
         name={"ArabicLvl"}
         inputType="text"
         translatedOptions={Language_Lvl}
