@@ -69,6 +69,7 @@ const JobForm = ({ title, id }) => {
     formData.append("ArabicLvl", values.ArabicLvl);
     formData.append("jobID", values.jobID);
     formData.append("OtherLanguages", values.OtherLanguages);
+    formData.append("Message", values.Message);
     formData.append("File", file);
     addApplication({ values: formData });
     setValues([]);
@@ -103,7 +104,7 @@ const JobForm = ({ title, id }) => {
         <div className="h-px bg-white/50" />
       </div>
       <CustomInput
-        containerStyle={"bg-primary/90"}
+        containerStyle={"bg-primary/70"}
         inputLabel={t("formFullName")}
         placeholder={t("formFullName")}
         type="text"
@@ -113,7 +114,7 @@ const JobForm = ({ title, id }) => {
         error={Boolean(errors?.FullName)}
       />
       <CustomInput
-        containerStyle={"bg-primary/90"}
+        containerStyle={"bg-primary/70"}
         inputLabel={t("formEmail")}
         placeholder={t("formEmail")}
         type="Email"
@@ -157,7 +158,7 @@ const JobForm = ({ title, id }) => {
             Boolean(errors.PhoneNo)
               ? "!border-[1px] border-red-500"
               : "!border-b-[1px] border-white"
-          } px-1 flex bg-primary/90 rounded-md !outline-none`}
+          } px-1 flex bg-primary/70 rounded-md !outline-none`}
           inputClass={`!bg-transparent !text-white !w-full !text-lg !h-full !border-none ${
             i18n.language == "en" ? "px-0" : "mx-10"
           } !outline-none`}
@@ -180,7 +181,7 @@ const JobForm = ({ title, id }) => {
       </>
 
       <CustomInput
-        containerStyle={"bg-primary/90"}
+        containerStyle={"bg-primary/70"}
         inputLabel={t("YearsOfExperience")}
         placeholder={t("YearsOfExperience")}
         type="number"
@@ -190,7 +191,7 @@ const JobForm = ({ title, id }) => {
         error={Boolean(errors?.YearsOfExp)}
       />
       <CustomInput
-        containerStyle={"bg-primary/90"}
+        containerStyle={"bg-primary/70"}
         inputLabel={t("AreaSpecialty")}
         placeholder={t("AreaSpecialty")}
         type="text"
@@ -231,7 +232,7 @@ const JobForm = ({ title, id }) => {
       </div> */}
       <div className="space-y-1">
         <p className="text-tiny">{t("Gender")} </p>
-        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-primary/90">
+        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-primary/70">
           {Gender.map((item, index) => {
             return (
               <React.Fragment key={index}>
@@ -254,7 +255,7 @@ const JobForm = ({ title, id }) => {
         </div>
       </div>
       <CustomInput
-        containerStyle={"bg-primary/90"}
+        containerStyle={"bg-primary/70"}
         inputLabel={t("EnglishLvl")}
         value={values.EnglishLvl}
         name={"EnglishLvl"}
@@ -268,7 +269,7 @@ const JobForm = ({ title, id }) => {
         readOnly
       />
       <CustomInput
-        containerStyle={"bg-primary/90"}
+        containerStyle={"bg-primary/70"}
         inputLabel={t("ArabicLvl")}
         value={values.ArabicLvl}
         name={"ArabicLvl"}
@@ -283,7 +284,7 @@ const JobForm = ({ title, id }) => {
       />
 
       <CustomInput
-        containerStyle={"bg-primary/90"}
+        containerStyle={"bg-primary/70"}
         inputLabel={t("OtherLanguages")}
         placeholder={t("OtherLanguages")}
         type="text"
@@ -293,7 +294,7 @@ const JobForm = ({ title, id }) => {
         error={Boolean(errors?.OtherLanguages)}
       />
       <CustomInput
-        containerStyle={"bg-primary/90"}
+        containerStyle={"bg-primary/70"}
         inputLabel={t("LinkedInURL")}
         placeholder={t("LinkedInURL")}
         type="text"
@@ -302,6 +303,19 @@ const JobForm = ({ title, id }) => {
         onChange={handleChange}
         error={Boolean(errors?.LinkedInURL)}
       />
+      <CustomInput
+        containerStyle={"bg-primary/70"}
+        inputLabel={t("Message")}
+        placeholder={t("Message")}
+        type="text"
+        name="Message"
+        value={values.Message}
+        onChange={handleChange}
+        error={Boolean(errors?.Message)}
+        textArea
+        textAreaRows={5}
+      />
+
       <div className="col-span-full flex max-sm:flex-col justify-between items-center fixed py-1 px-4 w-full left-0 bottom-0">
         <div className="md:flex items-center md:gap-4">
           <Button
