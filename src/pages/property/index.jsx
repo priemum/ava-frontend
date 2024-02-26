@@ -29,7 +29,7 @@ const PropertyPage = () => {
   } = useGetActiveAddressQuery();
   let names = [];
   const handleChildren = (parent, name) => {
-    addresses.normalData.map((child) => {
+    addresses?.normalData.map((child) => {
       if (child.addressID !== null) {
         if (parent.id == child.addressID) {
           let newName =
@@ -51,7 +51,7 @@ const PropertyPage = () => {
 
   useEffect(() => {
     if (isSuccess && addressesIsSuccess) {
-      let parents = addresses.normalData.filter((x) => x.addressID == null);
+      let parents = addresses?.normalData.filter((x) => x.addressID == null);
       parents.map((parent) => {
         let name = parent.Address_Translation.find(
           (x) => x.Language.Code.toLowerCase() == i18n.language

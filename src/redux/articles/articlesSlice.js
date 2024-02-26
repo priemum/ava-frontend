@@ -23,7 +23,7 @@ export const articlesApiSlice = apiSlice.injectEndpoints({
       }),
       transformResponse: (responseData) => {
         initialActiveState.count = responseData.count;
-        initialActiveState.normalData = responseData.Articles;
+        initialActiveState?.normalData = responseData.Articles;
         const loadedArticles = responseData.Articles;
         return articlesActiveAdapter.setAll(initialActiveState, loadedArticles);
       },

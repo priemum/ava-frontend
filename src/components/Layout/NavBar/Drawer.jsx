@@ -14,7 +14,7 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
           ` fixed overflow-hidden z-50 bg-black/50 bg-opacity-50 inset-0 transform ease-in-out ` +
           (isOpen
             ? ` transition-opacity opacity-100 duration-500 ${
-                data.normalData.find(
+                data?.normalData?.find(
                   (x) => x.Code.toLowerCase() == i18n.language
                 ).Direction == "ltr"
                   ? "translate-x-0"

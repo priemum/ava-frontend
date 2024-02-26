@@ -43,7 +43,7 @@ export default function Dropdown() {
           ref={ref}
           onClick={() => setOpen(false)}
           className={`${open ? "scale-100" : "scale-0"} absolute z-10 top-10  ${
-            data?.normalData.find((x) => x.Code.toLowerCase() == i18n.language)
+            data?.normalData?.find((x) => x.Code.toLowerCase() == i18n.language)
               .Direction == "rtl"
               ? "-right-32 origin-top-left"
               : "-left-32 origin-top-right"
