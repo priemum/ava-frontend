@@ -419,7 +419,11 @@ const useForm = (callback, defaultValues, translation, setTranslation) => {
         item !== "AddressID" &&
         item !== "MetaData" &&
         item !== "IPAddress" &&
-        item !== "Images"
+        item !== "Images" &&
+        item !== "AreaSpecialty" &&
+        item !== "LinkedInURL" &&
+        item !== "OtherLanguages" &&
+        item !== "File"
       ) {
         theErrors = { ...theErrors, [item]: item + " is required" };
       }
@@ -432,6 +436,8 @@ const useForm = (callback, defaultValues, translation, setTranslation) => {
     ) {
       callback();
     } else {
+      console.log(values);
+      console.log(errors);
       dispatch(
         showMessage({
           message: "Please fill the required fields",

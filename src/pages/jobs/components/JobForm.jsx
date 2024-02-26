@@ -22,8 +22,8 @@ let defaultFormState = {
   AreaSpecialty: "",
   LinkedInURL: "",
   Field: "Off Plan",
-  EnglishLvl: "No proficiency",
-  ArabicLvl: "No proficiency",
+  EnglishLvl: "None",
+  ArabicLvl: "None",
   jobID: "",
   OtherLanguages: "",
   File: "",
@@ -44,6 +44,9 @@ const JobForm = ({ title, id }) => {
   const { i18n, t } = useTranslation();
   const [file, setFile] = useState();
 
+  useEffect(() => {
+    setValues({ ...values, jobID: id });
+  }, [id]);
   function onFileChange(e) {
     if (!e.target.files || e.target.files.length === 0) {
       setFile(undefined);
@@ -97,12 +100,13 @@ const JobForm = ({ title, id }) => {
       className="p-8 w-full space-y-4 bg-transparent rounded-md text-white overflow-y-auto relative my-20"
     >
       <div className=" fixed w-full left-0 top-0 px-4 py-3">
-        <p className="text-med lg:text-big font-bold">
+        <p className="text-med lg:text-[35px] font-bold">
           {title ?? "Appy For The Job"}
         </p>
         <div className="h-px bg-white/50" />
       </div>
       <CustomInput
+        containerStyle={"bg-primary/70"}
         inputLabel={t("formFullName")}
         placeholder={t("formFullName")}
         type="text"
@@ -112,14 +116,16 @@ const JobForm = ({ title, id }) => {
         error={Boolean(errors?.FullName)}
       />
       <CustomInput
+        containerStyle={"bg-primary/70"}
         inputLabel={t("formEmail")}
         placeholder={t("formEmail")}
-        type="Email"
-        name="email"
+        type="email"
+        name={"Email"}
         value={values.Email}
         onChange={handleChange}
         error={Boolean(errors?.Email)}
       />
+
       <>
         <p className="font-semibold leading-3 translate-y-2 px-1">
           {t("formPhoneNumber")}
@@ -155,7 +161,7 @@ const JobForm = ({ title, id }) => {
             Boolean(errors.PhoneNo)
               ? "!border-[1px] border-red-500"
               : "!border-b-[1px] border-white"
-          } px-1 flex bg-white/20 rounded-md !outline-none`}
+          } px-1 flex bg-primary/70 rounded-md !outline-none`}
           inputClass={`!bg-transparent !text-white !w-full !text-lg !h-full !border-none ${
             i18n.language == "en" ? "px-0" : "mx-10"
           } !outline-none`}
@@ -178,6 +184,7 @@ const JobForm = ({ title, id }) => {
       </>
 
       <CustomInput
+        containerStyle={"bg-primary/70"}
         inputLabel={t("YearsOfExperience")}
         placeholder={t("YearsOfExperience")}
         type="number"
@@ -186,7 +193,8 @@ const JobForm = ({ title, id }) => {
         onChange={handleChange}
         error={Boolean(errors?.YearsOfExp)}
       />
-      {/* <CustomInput
+      <CustomInput
+        containerStyle={"bg-primary/70"}
         inputLabel={t("AreaSpecialty")}
         placeholder={t("AreaSpecialty")}
         type="text"
@@ -194,8 +202,7 @@ const JobForm = ({ title, id }) => {
         value={values.area}
         onChange={handleChange}
         error={Boolean(errors?.AreaSpecialty)}
-      /> */}
-      {/* <div /> */}
+      />
 
       {/* <div className="space-y-1">
         <p className="text-tiny">{t("Field")} </p>
@@ -228,19 +235,19 @@ const JobForm = ({ title, id }) => {
       </div> */}
       <div className="space-y-1">
         <p className="text-tiny">{t("Gender")} </p>
-        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2">
+        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-primary/70">
           {Gender.map((item, index) => {
             return (
               <React.Fragment key={index}>
                 <div
                   className={`py-4 rounded-md text-tiny w-full flex justify-center items-center cursor-pointer transition-all duration-300 ${
-                    values.Gender == item
+                    values.Gender == item.value
                       ? "bg-secondary text-primary"
                       : "bg-transparent text-white"
                   }`}
-                  onClick={() => setValues({ ...values, Gender: item })}
+                  onClick={() => setValues({ ...values, Gender: item.value })}
                 >
-                  {item}
+                  {item.lng[i18n.language]}
                 </div>
                 {index !== Gender.length - 1 && (
                   <div className="h-10 w-1 bg-white/50" />
@@ -251,11 +258,16 @@ const JobForm = ({ title, id }) => {
         </div>
       </div>
       <CustomInput
+        containerStyle={"bg-primary/70"}
         inputLabel={t("EnglishLvl")}
-        value={values.EnglishLvl}
+        value={
+          Language_Lvl.find((x) => x.value == values.EnglishLvl)?.lng[
+            i18n.language
+          ]
+        }
         name={"EnglishLvl"}
         inputType="text"
-        options={Language_Lvl}
+        translatedOptions={Language_Lvl}
         setState={setValues}
         state={values}
         reverseIcon
@@ -264,11 +276,16 @@ const JobForm = ({ title, id }) => {
         readOnly
       />
       <CustomInput
+        containerStyle={"bg-primary/70"}
         inputLabel={t("ArabicLvl")}
-        value={values.ArabicLvl}
+        value={
+          Language_Lvl.find((x) => x.value == values.ArabicLvl)?.lng[
+            i18n.language
+          ]
+        }
         name={"ArabicLvl"}
         inputType="text"
-        options={Language_Lvl}
+        translatedOptions={Language_Lvl}
         setState={setValues}
         state={values}
         reverseIcon
@@ -278,6 +295,7 @@ const JobForm = ({ title, id }) => {
       />
 
       <CustomInput
+        containerStyle={"bg-primary/70"}
         inputLabel={t("OtherLanguages")}
         placeholder={t("OtherLanguages")}
         type="text"
@@ -287,6 +305,7 @@ const JobForm = ({ title, id }) => {
         error={Boolean(errors?.OtherLanguages)}
       />
       <CustomInput
+        containerStyle={"bg-primary/70"}
         inputLabel={t("LinkedInURL")}
         placeholder={t("LinkedInURL")}
         type="text"
@@ -295,6 +314,19 @@ const JobForm = ({ title, id }) => {
         onChange={handleChange}
         error={Boolean(errors?.LinkedInURL)}
       />
+      <CustomInput
+        containerStyle={"bg-primary/70"}
+        inputLabel={t("MessageToTeam")}
+        placeholder={t("MessageToTeam")}
+        type="text"
+        name="Message"
+        value={values.Message}
+        onChange={handleChange}
+        error={Boolean(errors?.Message)}
+        textArea
+        textAreaRows={5}
+      />
+
       <div className="col-span-full flex max-sm:flex-col justify-between items-center fixed py-1 px-4 w-full left-0 bottom-0">
         <div className="md:flex items-center md:gap-4">
           <Button

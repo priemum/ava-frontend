@@ -27,7 +27,7 @@ const JobCard = ({
   const dispatch = useDispatch();
   return (
     <div className="bg-primary/10 p-8 rounded-md shadow-md flex justify-start items-start gap-x-4 w-10/12">
-      <div className="w-24 h-24">
+      <div className="w-24 h-24 max-sm:hidden">
         <img
           src={jobIcon}
           className="w-full h-full object-contain"
@@ -35,9 +35,12 @@ const JobCard = ({
         />
       </div>
       <div className="w-full">
-        <div className="flex justify-between items-center relative">
+        <div className="flex max-lg:flex-col justify-between items-center relative">
           <div className="flex flex-col justify-center items-start">
-            <GradientText customStyle={"font-bold text-big"} text={Title} />
+            <GradientText
+              customStyle={"font-bold text-med lg:text-[35px]"}
+              text={Title}
+            />
             <div className="flex max-md:flex-col justify-start md:items-center gap-3 md:gap-5 font-semibold">
               <div className="flex items-center gap-2">
                 <img src={locationIcon} alt="location icon" />
@@ -47,10 +50,10 @@ const JobCard = ({
                 <img src={fulltimeIcon} alt="job icon" />
                 <p>{Type}</p>
               </div>
-              <div className="flex items-center gap-2">
+              {/* <div className="flex items-center gap-2">
                 <img src={medalIcon} alt="hours icon" />
                 <p>{WeekHours + " " + t("WeakHours")}</p>
-              </div>
+              </div> */}
             </div>
           </div>
           {/* {Expired && (
@@ -58,7 +61,7 @@ const JobCard = ({
               <p className="text-red-500 font-bold text-med">EXPIRED</p>
             </div>
           )} */}
-          <div className="flex justify-center items-center gap-x-4">
+          <div className="flex max-sm:flex-col  lg:flex-col lg:justify-center lg:items-center gap-x-4">
             <Button
               borderColor={"border-primary"}
               text={t("MoreDetails")}

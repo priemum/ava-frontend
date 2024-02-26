@@ -43,9 +43,9 @@ const AboutUsPage = () => {
               background:
                 "linear-gradient(225deg, rgba(98, 98, 98, 0.24) 0%, rgba(98, 98, 98, 0.03) 100%)",
             }}
-            className=" h-[200px] w-[80%] backdrop-blur-sm absolute z-20 -bottom-[10%] left-[10%] flex justify-center items-center rounded-md"
+            className=" h-[200px] w-[80%] backdrop-blur-sm absolute z-20 -bottom-[5%] md:-bottom-[10%] left-[10%] flex justify-center items-center rounded-md"
           >
-            <div className="text-small text-white font-semibold px-2">
+            <div className="text-small text-white font-semibold px-2 max-md:text-justify">
               <p> {data.Goals[i18n.language]}</p>
               <p>{data.GoalsSub[i18n.language]}</p>
             </div>
@@ -55,7 +55,7 @@ const AboutUsPage = () => {
           </div>
         </div>
         <div className="col-span-7 space-y-4 max-md:mt-7">
-          <p className="text-bigger font-bold">
+          <p className="text-big md:text-bigger font-bold">
             {data.mission.title[i18n.language]}
           </p>
           <p>{data.mission.description[i18n.language]}</p>
@@ -75,10 +75,12 @@ const AboutUsPage = () => {
       </div>
       <div className="max-md:flex max-md:flex-col max-md:justify-center max-md:items-center md:grid md:grid-cols-12 gap-7 mt-20 max-md:px-[5%] ">
         <div className="col-span-6 md:w-[80%] relative place-self-center space-y-4">
-          <p className="text-bigger font-bold">
+          <p className="text-big md:text-bigger font-bold">
             {data.vision.title[i18n.language]}
           </p>
-          <p className="text-small">{data.vision.description[i18n.language]}</p>
+          <p className="text-smaller md:text-small">
+            {data.vision.description[i18n.language]}
+          </p>
           <ul className="list-disc ml-7 space-y-14 marker:text-primary list-outside pt-12">
             {data.vision.items.map((item, index) => {
               return <li key={index}>{item.text[i18n.language]}</li>;
