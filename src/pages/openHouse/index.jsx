@@ -9,6 +9,9 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import emailjs from "@emailjs/browser";
 import { omit } from "lodash";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { showMessage } from "../../redux/messageAction.slice";
 
 const defaultFormState = {
   Email: "",
@@ -25,6 +28,8 @@ const timeList = [
 ];
 const OpenHousePage = () => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     disabled,
     setErrors,
@@ -65,6 +70,13 @@ const OpenHousePage = () => {
       const result = response.json();
       console.log("Success:", result);
       sendEmail(e);
+      dispatch(
+        showMessage({
+          variant: "success",
+          message: t("SubmitThanks"),
+        })
+      );
+      navigate("/");
     } catch (error) {
       console.error("Error here:", error);
     }

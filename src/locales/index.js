@@ -165,6 +165,7 @@ i18n.use(initReactI18next).init({
         SelectAgent: "اختر عميل",
         SelectTime: "اختر وقت",
         Submit: "ارسال",
+        SubmitThanks: "شكرا لك على الارسال",
       },
     },
     en: {
@@ -327,6 +328,7 @@ i18n.use(initReactI18next).init({
         SelectAgent: "Select Agent",
         SelectTime: "Select Time",
         Submit: "Submit",
+        SubmitThanks: "Thank you for submitting!",
       },
     },
   },
