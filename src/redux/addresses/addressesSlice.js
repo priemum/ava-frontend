@@ -17,7 +17,7 @@ export const addressApiSlice = apiSlice.injectEndpoints({
       }),
       transformResponse: (responseData) => {
         initialActiveState.count = responseData?.count;
-        initialActiveState.normalData = responseData.Address;
+        initialActiveState?.normalData = responseData.Address;
         const loaded = responseData.Address;
         return addressActiveAdapter.setAll(initialActiveState, loaded);
       },

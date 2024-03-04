@@ -56,7 +56,7 @@ const Announcements = () => {
             <div
               dir="ltr"
               className={`absolute h-9 flex justify-center items-center ${
-                lngData.normalData.find(
+                lngData?.normalData.find(
                   (x) => x.Code.toLowerCase() == i18n.language
                 ).Direction == "ltr"
                   ? "left-12"
@@ -109,7 +109,7 @@ const Announcements = () => {
                   <div
                     key={index}
                     dir={
-                      lngData.normalData.find(
+                      lngData?.normalData.find(
                         (x) => x.Code.toLowerCase() == i18n.language
                       ).Direction
                     }

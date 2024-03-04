@@ -154,7 +154,7 @@ const ListingForm = () => {
   useEffect(() => {
     if (lngisSuccess) {
       let translations = [];
-      lngs.normalData.map((item) => {
+      lngs?.normalData.map((item) => {
         translations.push({
           languagesID: item.id,
           Language: {

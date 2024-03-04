@@ -52,8 +52,9 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
               else navigate(`addresses/${id}`);
             }}
             className={`w-20 h-20  bg-primary/30 backdrop-blur-sm text-white absolute  ${
-              data.normalData.find((x) => x.Code.toLowerCase() == i18n.language)
-                .Direction == "ltr"
+              data?.normalData.find(
+                (x) => x.Code.toLowerCase() == i18n.language
+              ).Direction == "ltr"
                 ? "-right-3"
                 : "-left-3"
             } -bottom-3  rounded-md flex flex-col p-1 justify-center items-center cursor-pointer`}
@@ -64,8 +65,9 @@ const AddressCard = ({ Name, Image, Places, Properties, id }) => {
         ) : (
           <div
             className={`w-[calc(100%+1.5rem)] h-20 bg-primary/30 backdrop-blur-sm text-white absolute  ${
-              data.normalData.find((x) => x.Code.toLowerCase() == i18n.language)
-                .Direction == "ltr"
+              data?.normalData.find(
+                (x) => x.Code.toLowerCase() == i18n.language
+              ).Direction == "ltr"
                 ? "-right-3"
                 : "-left-3"
             } -bottom-3  rounded-md flex flex-row p-1 justify-center items-center cursor-pointer`}

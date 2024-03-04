@@ -47,7 +47,7 @@ const PageLayout = ({ children }) => {
       className="flex flex-col justify-center items-center relative"
       dir={
         isSuccess
-          ? data.normalData.find((x) => x.Code.toLowerCase() == i18n.language)
+          ? data?.normalData.find((x) => x.Code.toLowerCase() == i18n.language)
               .Direction
           : "ltr"
       }

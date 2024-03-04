@@ -91,7 +91,7 @@ const HomeProperties = () => {
                 <div
                   className="!w-[95%]"
                   dir={
-                    lngData.normalData.find(
+                    lngData?.normalData.find(
                       (x) => x.Code.toLowerCase() == i18n.language
                     ).Direction
                   }
