@@ -71,7 +71,7 @@ const OpenHousePage = () => {
   }
   return (
     <div
-      className="h-screen w-full bg-center bg-cover bg-no-repeat flex flex-col justify-start items-center pt-24 max-lg:space-y-7 lg:space-y-4"
+      className="h-full min-h-screen w-full bg-center bg-cover bg-no-repeat flex flex-col justify-start items-center pt-24 max-lg:space-y-7 lg:space-y-4 max-lg:pb-24"
       style={{
         backgroundImage: `url(${BGBACK})`,
       }}
