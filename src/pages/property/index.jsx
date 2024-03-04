@@ -75,7 +75,7 @@ const PropertyPage = () => {
   }, [isSuccess, addressesIsSuccess]);
   return (
     <div className="pt-24 bg-[#F6F6F6] min-h-screen h-full">
-      {isLoading || isFetching ? (
+      {isLoading || isFetching || addressesIsLoading || addressesIsFetching ? (
         <div className="relative h-screen">
           <Loader />
         </div>
