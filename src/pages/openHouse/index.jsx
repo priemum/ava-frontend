@@ -92,7 +92,7 @@ const OpenHousePage = () => {
         <div className="space-y-3 relative">
           <CustomInput
             inputLabel={t("formFullName")}
-            containerStyle={"bg-white/0 border-black !rounded-none"}
+            containerStyle={"bg-white/0 !border-b-black !rounded-none"}
             type="text"
             name="FullName"
             id="FullName"
@@ -105,7 +105,7 @@ const OpenHousePage = () => {
         <div className="space-y-3 relative">
           <CustomInput
             inputLabel={t("formLastName")}
-            containerStyle={"bg-white/0 border-black !rounded-none"}
+            containerStyle={"bg-white/0 !border-b-black !rounded-none"}
             type="text"
             name="LastName"
             id="LastName"
@@ -173,7 +173,7 @@ const OpenHousePage = () => {
         <div className="space-y-3 relative">
           <CustomInput
             inputLabel={t("formEmail")}
-            containerStyle={"bg-white/0 border-black !rounded-none"}
+            containerStyle={"bg-white/0 !border-b-black !rounded-none"}
             type="email"
             name="Email"
             id="Email"
@@ -186,7 +186,7 @@ const OpenHousePage = () => {
           <CustomInput
             inputLabel={t("yourAgent")}
             placeholder={t("SelectOne")}
-            containerStyle={"bg-white/0 border-black !rounded-none"}
+            containerStyle={"bg-white/0 !border-b-black !rounded-none"}
             customStyle={"placeholder:text-black"}
             type="text"
             name="Agent"
@@ -207,7 +207,7 @@ const OpenHousePage = () => {
           <CustomInput
             inputLabel={t("PreferredTime")}
             placeholder={t("SelectOne")}
-            containerStyle={"bg-white/0 border-black !rounded-none"}
+            containerStyle={"bg-white/0 !border-b-black !rounded-none"}
             customStyle={"placeholder:text-black"}
             type="text"
             name="PreferredTime"
