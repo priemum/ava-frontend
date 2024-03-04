@@ -164,6 +164,7 @@ i18n.use(initReactI18next).init({
         SelectOne: "اختر واحد",
         SelectAgent: "اختر عميل",
         SelectTime: "اختر وقت",
+        Submit: "ارسال",
       },
     },
     en: {
@@ -325,6 +326,7 @@ i18n.use(initReactI18next).init({
         SelectOne: "Select one",
         SelectAgent: "Select Agent",
         SelectTime: "Select Time",
+        Submit: "Submit",
       },
     },
   },
