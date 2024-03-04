@@ -8,6 +8,7 @@ import { MdExpandMore } from "react-icons/md";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import emailjs from "@emailjs/browser";
+import { omit } from "lodash";
 
 const defaultFormState = {
   Email: "",
