@@ -162,6 +162,8 @@ i18n.use(initReactI18next).init({
         yourAgent: "العميل",
         formLastName: "الاسم الاخير",
         SelectOne: "اختر واحد",
+        SelectAgent: "اختر عميل",
+        SelectTime: "اختر وقت",
       },
     },
     en: {
@@ -321,6 +323,8 @@ i18n.use(initReactI18next).init({
         yourAgent: "Your Agent",
         formLastName: "Last Name",
         SelectOne: "Select one",
+        SelectAgent: "Select Agent",
+        SelectTime: "Select Time",
       },
     },
   },
