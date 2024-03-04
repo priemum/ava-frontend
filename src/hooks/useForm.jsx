@@ -423,6 +423,8 @@ const useForm = (callback, defaultValues, translation, setTranslation) => {
         item !== "AreaSpecialty" &&
         item !== "LinkedInURL" &&
         item !== "OtherLanguages" &&
+        item !== "PreferredTime" &&
+        item !== "Agent" &&
         item !== "File"
       ) {
         theErrors = { ...theErrors, [item]: item + " is required" };

@@ -42,7 +42,6 @@ const OpenHousePage = () => {
   const form = useRef();
 
   const sendEmail = (e) => {
-    e.preventDefault();
     emailjs
       .sendForm(
         "service_b8ayq22",
@@ -68,7 +67,7 @@ const OpenHousePage = () => {
         "Content-Type": "multipart/form-data",
       });
       const result = response.json();
-      console.log("Success:", result);
+      // console.log("Success:", result);
       sendEmail(e);
       dispatch(
         showMessage({
