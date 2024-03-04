@@ -57,7 +57,7 @@ const CustomInput = ({
           !noInput &&
           `${
             error
-              ? "border-red-500 border-[2px]"
+              ? "!border-red-500 !border-[2px]"
               : "border-white border-b-[1px]"
           } bg-primary/40 rounded-md`
         }  px-4 py-2 flex w-full items-center relative ${containerStyle} ${

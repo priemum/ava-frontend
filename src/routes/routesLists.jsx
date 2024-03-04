@@ -66,7 +66,10 @@ export const publicRoutes = [
     path: "/enquiry",
     element: lazy(() => import("../pages/enquiry/index.jsx")),
   },
-
+  {
+    path: "/open-house",
+    element: lazy(() => import("../pages/openHouse/index.jsx")),
+  },
   {
     path: "/404",
     element: lazy(() => import("../components/UI/404NotFound/index.jsx")),
