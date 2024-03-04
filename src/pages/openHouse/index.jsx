@@ -12,7 +12,6 @@ import emailjs from "@emailjs/browser";
 const defaultFormState = {
   Email: "",
   FullName: "",
-  LastName: "",
   PhoneNo: "",
   Agent: "",
   PreferredTime: "",
@@ -99,19 +98,6 @@ const OpenHousePage = () => {
             value={values.FullName}
             onChange={handleChange}
             error={Boolean(errors?.FullName)}
-          />
-        </div>
-
-        <div className="space-y-3 relative">
-          <CustomInput
-            inputLabel={t("formLastName")}
-            containerStyle={"bg-white/0 !border-b-black !rounded-none !py-3"}
-            type="text"
-            name="LastName"
-            id="LastName"
-            value={values.LastName}
-            onChange={handleChange}
-            error={Boolean(errors?.LastName)}
           />
         </div>
         <div className="space-y-3 relative">
