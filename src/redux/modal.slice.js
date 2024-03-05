@@ -9,6 +9,8 @@ const initialState = {
   settingsData: null,
   announcementModal: false,
   announcementData: null,
+  filterModal: false,
+  filterData: null,
 };
 const modalSlice = createSlice({
   name: "modal",
@@ -46,6 +48,14 @@ const modalSlice = createSlice({
       state.settingsModal = false;
       state.settingsData = null;
     },
+    showFilterModal: (state, action) => {
+      state.filterModal = true;
+      state.filterData = action.payload;
+    },
+    hideFilterModal: (state, action) => {
+      state.filterModal = false;
+      state.filterData = null;
+    },
   },
 });
 
@@ -58,6 +68,8 @@ export const {
   hideSettingsModal,
   showAnnouncementModal,
   hideAnnouncementModal,
+  showFilterModal,
+  hideFilterModal,
 } = modalSlice.actions;
 export const selectModal = (state) => state.modal;
 export const selectState = (state) => state.modal.open;
@@ -65,10 +77,12 @@ export const selectGalleryModalState = (state) => state.modal.galleryModal;
 export const selectSettingsModalState = (state) => state.modal.settingsModal;
 export const selectAnnouncementModalState = (state) =>
   state.modal.announcementModal;
+export const selectFilterModalState = (state) => state.modal.filterModal;
 export const selectModalData = (state) => state.modal.data;
 export const selectGalleryModalData = (state) => state.modal.galleryData;
 export const selectSettingsModalData = (state) => state.modal.settingsData;
 export const selectAnnouncementModalData = (state) =>
   state.modal.announcementData;
+export const selectFilterModalData = (state) => state.modal.filterData;
 
 export default modalSlice.reducer;

@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import AnnouncementsSlider from "./AnnouncementsSlider";
 import { useGetActiveAnnouncementsQuery } from "../../../redux/announcements/announcementsSlice";
+import FilterModal from "../../UI/FilterModal/FilterModal";
 const PageLayout = ({ children }) => {
   const { width } = useWindowDimensions();
   const { i18n, t } = useTranslation();
@@ -60,6 +61,7 @@ const PageLayout = ({ children }) => {
       <GalleryModal />
       <SettingsModal />
       <AnnouncementsModal />
+      <FilterModal />
       <div
         className="fixed bottom-3 md:bottom-5 right-3 md:right-5 bg-[#25D366]/80 text-white p-3 rounded-full cursor-pointer z-40"
         onClick={(e) => {

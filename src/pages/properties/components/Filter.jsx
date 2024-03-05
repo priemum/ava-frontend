@@ -168,9 +168,9 @@ const Filter = ({ containerStyle }) => {
 
   return (
     <div
-      className={`m-8 rounded-lg shadow-md ${containerStyle} bg-white h-full w-[calc(100%-4rem)] overflow-y-auto relative`}
+      className={`2xl:m-8 rounded-lg shadow-md ${containerStyle} bg-white h-full 2xl:w-[calc(100%-4rem)] m-4 w-[calc(100%-1rem)] overflow-y-auto relative`}
     >
-      <div className="flex flex-col space-y-2 p-8">
+      <div className="flex flex-col space-y-2 p-4 2xl:p-8">
         <CustomInput
           containerStyle={"!bg-[#F6F6F6]"}
           customStyle={"placeholder:!text-primary"}
@@ -206,7 +206,7 @@ const Filter = ({ containerStyle }) => {
         onClick={() => {
           setPaymentPlanStatus(!paymentPlanStatus);
         }}
-        className="cursor-pointer flex justify-center items-center gap-x-3 p-8"
+        className="cursor-pointer flex justify-center items-center gap-x-3 p-4 2xl:p-8"
       >
         <p className="font-semibold text-tiny ">{t("SearchByPaymentPlan")}</p>
         {paymentPlanStatus ? (
@@ -221,7 +221,7 @@ const Filter = ({ containerStyle }) => {
           paymentPlanStatus ? "max-h-[380px]" : "max-h-[0px]"
         } `}
       >
-        <div className="flex flex-col px-8 pt-8 pb-20 space-y-3">
+        <div className="flex flex-col p-4 2xl:p-8 pb-16 2xl:pb-20 space-y-3">
           <p className="font-semibold text-tiny">{t("Posthandover")}:</p>
           <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
             {[
@@ -284,7 +284,7 @@ const Filter = ({ containerStyle }) => {
         </div>
       </div>
       <div className="h-px w-full bg-primary/20" />
-      <div className="flex flex-col space-y-2 p-8">
+      <div className="flex flex-col space-y-2 p-4 2xl:p-8">
         {addressesIsSuccess && (
           <CustomInput
             readOnly
@@ -352,12 +352,12 @@ const Filter = ({ containerStyle }) => {
 
       <div className="h-px w-full bg-primary/20" />
       {generalDataIsLoading || generalDataIsFetching ? (
-        <div className="text-center text-smaller font-bold p-8 flex flex-col">
+        <div className="text-center text-smaller font-bold p-4 2xl:p-8 flex flex-col">
           {t("Loading")}
         </div>
       ) : (
         generalDataIsSuccess && (
-          <div className="flex flex-col p-8 space-y-2">
+          <div className="flex flex-col p-4 2xl:p-8 pb-8 2xl:pb-12 space-y-2">
             <p className="font-semibold text-tiny ">{t("Price")}:</p>
             <MultiRangeSlider
               max={generalData.MaxPrice}
@@ -382,7 +382,7 @@ const Filter = ({ containerStyle }) => {
         )
       )}
       <div className="h-px w-full bg-primary/20 mt-8" />
-      <div className="flex flex-col p-8 space-y-2">
+      <div className="flex flex-col p-4 2xl:p-8 space-y-2">
         <React.Fragment>
           <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-[#F6F6F6]">
             <div
@@ -463,7 +463,7 @@ const Filter = ({ containerStyle }) => {
         </React.Fragment>
       </div>
       <div className="h-px w-full bg-primary/20" />
-      <div className="flex flex-col p-8 space-y-2">
+      <div className="flex flex-col p-4 2xl:p-8 space-y-2">
         <p className="font-semibold text-tiny">{t("Bedrooms")}:</p>
         <div className="grid grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3 place-items-center">
           <div
@@ -522,7 +522,7 @@ const Filter = ({ containerStyle }) => {
         </div>
       </div>
       <div className="h-px w-full bg-primary/20" />
-      <div className="flex flex-col p-8 space-y-2">
+      <div className="flex flex-col p-4 2xl:p-8 space-y-2">
         {categoriesIsFetching || categoriesIsLoading ? (
           <div className="text-center text-smaller font-bold">
             {t("Loading")}
@@ -603,7 +603,7 @@ const Filter = ({ containerStyle }) => {
         )}
       </div>
       <div className="h-px w-full bg-primary/20" />
-      <div className="flex flex-col p-8 space-y-2">
+      <div className="flex flex-col p-4 2xl:p-8 space-y-2">
         <p className="font-semibold text-tiny">{t("Bathrooms")}:</p>
         <div className="grid grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3">
           <div

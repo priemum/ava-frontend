@@ -3,7 +3,7 @@ import Filter from "./components/Filter";
 import PropertiesList from "./components/PropertiesList";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { showModal } from "../../redux/modal.slice";
+import { showFilterModal, showModal } from "../../redux/modal.slice";
 
 const PropertiesPage = () => {
   const { t } = useTranslation();
@@ -19,9 +19,13 @@ const PropertiesPage = () => {
             className="w-[200px] p-2 rounded-md shadow-sm bg-buttonGrad font-semibold"
             onClick={() => {
               dispatch(
-                showModal({
+                showFilterModal({
                   data: (
-                    <Filter containerStyle={"!m-0 !w-full !h-full !-z-10"} />
+                    <Filter
+                      containerStyle={
+                        "!m-0 !w-full !h-full !-z-10 !rounded-none"
+                      }
+                    />
                   ),
                 })
               );

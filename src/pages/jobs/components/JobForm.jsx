@@ -97,7 +97,7 @@ const JobForm = ({ title, id }) => {
   return (
     <form
       ref={formRef}
-      className="p-8 w-full space-y-4 bg-transparent rounded-md text-white overflow-y-auto relative my-20"
+      className="p-8 w-full space-y-4 rounded-md text-white overflow-y-auto relative my-20"
     >
       <div className=" fixed w-full left-0 top-0 px-4 py-3">
         <p className="text-med lg:text-[35px] font-bold">
@@ -106,7 +106,7 @@ const JobForm = ({ title, id }) => {
         <div className="h-px bg-white/50" />
       </div>
       <CustomInput
-        containerStyle={"bg-primary/70"}
+        containerStyle={"bg-white/20"}
         inputLabel={t("formFullName")}
         placeholder={t("formFullName")}
         type="text"
@@ -116,7 +116,7 @@ const JobForm = ({ title, id }) => {
         error={Boolean(errors?.FullName)}
       />
       <CustomInput
-        containerStyle={"bg-primary/70"}
+        containerStyle={"bg-white/20"}
         inputLabel={t("formEmail")}
         placeholder={t("formEmail")}
         type="email"
@@ -161,7 +161,7 @@ const JobForm = ({ title, id }) => {
             Boolean(errors.PhoneNo)
               ? "!border-[1px] border-red-500"
               : "!border-b-[1px] border-white"
-          } px-1 flex bg-primary/70 rounded-md !outline-none`}
+          } px-1 flex bg-white/20 rounded-md !outline-none`}
           inputClass={`!bg-transparent !text-white !w-full !text-lg !h-full !border-none ${
             i18n.language == "en" ? "px-0" : "mx-10"
           } !outline-none`}
@@ -184,7 +184,7 @@ const JobForm = ({ title, id }) => {
       </>
 
       <CustomInput
-        containerStyle={"bg-primary/70"}
+        containerStyle={"bg-white/20"}
         inputLabel={t("YearsOfExperience")}
         placeholder={t("YearsOfExperience")}
         type="number"
@@ -194,7 +194,7 @@ const JobForm = ({ title, id }) => {
         error={Boolean(errors?.YearsOfExp)}
       />
       <CustomInput
-        containerStyle={"bg-primary/70"}
+        containerStyle={"bg-white/20"}
         inputLabel={t("AreaSpecialty")}
         placeholder={t("AreaSpecialty")}
         type="text"
@@ -235,7 +235,7 @@ const JobForm = ({ title, id }) => {
       </div> */}
       <div className="space-y-1">
         <p className="text-tiny">{t("Gender")} </p>
-        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-primary/70">
+        <div className="flex justify-center items-center border-[1px] rounded-md p-1 gap-x-2 bg-white/20">
           {Gender.map((item, index) => {
             return (
               <React.Fragment key={index}>
@@ -258,7 +258,7 @@ const JobForm = ({ title, id }) => {
         </div>
       </div>
       <CustomInput
-        containerStyle={"bg-primary/70"}
+        containerStyle={"bg-white/20"}
         inputLabel={t("EnglishLvl")}
         value={
           Language_Lvl.find((x) => x.value == values.EnglishLvl)?.lng[
@@ -276,7 +276,7 @@ const JobForm = ({ title, id }) => {
         readOnly
       />
       <CustomInput
-        containerStyle={"bg-primary/70"}
+        containerStyle={"bg-white/20"}
         inputLabel={t("ArabicLvl")}
         value={
           Language_Lvl.find((x) => x.value == values.ArabicLvl)?.lng[
@@ -295,7 +295,7 @@ const JobForm = ({ title, id }) => {
       />
 
       <CustomInput
-        containerStyle={"bg-primary/70"}
+        containerStyle={"bg-white/20"}
         inputLabel={t("OtherLanguages")}
         placeholder={t("OtherLanguages")}
         type="text"
@@ -305,7 +305,7 @@ const JobForm = ({ title, id }) => {
         error={Boolean(errors?.OtherLanguages)}
       />
       <CustomInput
-        containerStyle={"bg-primary/70"}
+        containerStyle={"bg-white/20"}
         inputLabel={t("LinkedInURL")}
         placeholder={t("LinkedInURL")}
         type="text"
@@ -315,7 +315,7 @@ const JobForm = ({ title, id }) => {
         error={Boolean(errors?.LinkedInURL)}
       />
       <CustomInput
-        containerStyle={"bg-primary/70"}
+        containerStyle={"bg-white/20"}
         inputLabel={t("MessageToTeam")}
         placeholder={t("MessageToTeam")}
         type="text"
