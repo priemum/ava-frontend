@@ -25,6 +25,7 @@ export const apiSlice = createApi({
     "Languages",
     "generalData",
     "FilteredProperties",
+    "OpenHouse",
   ],
   endpoints: (builder) => ({}),
 });
