@@ -23,7 +23,7 @@ const Announcements = () => {
         setScrollY(350);
         setRotateY(25);
       } else {
-        setScrollY(50);
+        setScrollY(43);
         setRotateY(4);
       }
     };
