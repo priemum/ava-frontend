@@ -49,7 +49,7 @@ const ImageSlider = ({ data }) => {
               return (
                 <LazyImage
                   key={index}
-                  src={API_BASE_URL + item.URL}
+                  src={API_BASE_URL + item?.URL}
                   divStyle={"h-[80vh] w-[90vw] cursor-pointer"}
                   imgStyle={
                     "xl h-[80vh] w-[90vw]  object-center !object-contain"
@@ -80,7 +80,7 @@ const ImageSlider = ({ data }) => {
           return (
             <LazyImage
               key={index}
-              src={API_BASE_URL + item.URL}
+              src={API_BASE_URL + item?.URL}
               divStyle={"h-[516px] cursor-pointer"}
               imgStyle={
                 "rounded-xl w-full object-center object-cover h-[516px]"
@@ -95,7 +95,7 @@ const ImageSlider = ({ data }) => {
       </Slider>
       <div className="grid grid-cols-2 gap-4 p-4 lg:px-8 max-md:hidden">
         <LazyImage
-          src={API_BASE_URL + data[0].URL}
+          src={API_BASE_URL + data[0]?.URL}
           divStyle={"h-[516px] cursor-pointer"}
           imgStyle={"rounded-xl w-full object-center object-cover h-[516px]"}
           skelatonStyle={"rounded-xl w-full h-[516px]"}
@@ -109,7 +109,7 @@ const ImageSlider = ({ data }) => {
               return (
                 <LazyImage
                   key={index}
-                  src={API_BASE_URL + item.URL}
+                  src={API_BASE_URL + item?.URL}
                   divStyle={"h-[250px] cursor-pointer"}
                   imgStyle={
                     "rounded-xl w-full h-full object-center object-cover h-[250px]"
@@ -130,7 +130,7 @@ const ImageSlider = ({ data }) => {
                   }}
                 >
                   <LazyImage
-                    src={API_BASE_URL + item.URL}
+                    src={API_BASE_URL + item?.URL}
                     divStyle={"h-[250px]"}
                     imgStyle={
                       "rounded-xl w-full h-full object-center object-cover h-[250px]"

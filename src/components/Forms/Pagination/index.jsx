@@ -30,9 +30,9 @@ const Pagination = (props) => {
   };
 
   let lastPage = paginationRange[paginationRange.length - 1];
-  const elementStyle = `w-[30px] h-[30px] text-center m-auto flex justify-center items-center rounded text-[18px] cursor-pointer text-white font-bold`;
+  const elementStyle = `w-[30px] h-[30px] text-center m-auto flex justify-center items-center rounded text-[18px] cursor-pointer text-primary font-bold`;
   return (
-    <div className="flex justify-center items-center bg-black/50 rounded p-2 gap-x-2 my-4">
+    <div className="flex justify-center items-center bg-black/0 rounded p-2 gap-x-2 my-4">
       <button
         disabled={currentPage == 1}
         className={`${elementStyle} ${currentPage == 1 && "text-white/20"}`}
