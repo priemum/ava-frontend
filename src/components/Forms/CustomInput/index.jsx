@@ -27,6 +27,8 @@ const CustomInput = ({
   keepOnSelect,
   translatedOptions,
   inputRef,
+  min,
+  max,
 }) => {
   const [selectStatus, setSelectStatus] = useState(false);
   const { i18n } = useTranslation();
@@ -99,6 +101,8 @@ const CustomInput = ({
             id={id}
             value={value ?? ""}
             readOnly={readOnly}
+            min={min}
+            max={max}
           />
         )}
         {select && (
