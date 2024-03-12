@@ -53,7 +53,7 @@ const Pagination = (props) => {
             key={index}
             disabled={pageNumber == currentPage}
             className={`${elementStyle} ${
-              pageNumber == currentPage && "bg-primary"
+              pageNumber == currentPage && "bg-secondary !text-primary"
             }`}
             onClick={() => onPageChange(pageNumber)}
           >

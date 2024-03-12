@@ -235,10 +235,10 @@ const PropertiesList = () => {
             );
           })}
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center z-20">
           <Pagination
             currentPage={currentPage}
-            totalCount={properties.ids.length}
+            totalCount={properties.count}
             pageSize={itemsPerPage}
             onPageChange={(page) => setCurrentPage(page)}
           />
